@@ -306,7 +306,7 @@ namespace GatNewBll.Blls
                 }).OrderBy(o => new { o.SITE_CD, o.PRODUCT_CD, o.UPC })
                   .ToList();
             }
-           
+            result.TotalCount = totalCount;
             return result;
         }
 

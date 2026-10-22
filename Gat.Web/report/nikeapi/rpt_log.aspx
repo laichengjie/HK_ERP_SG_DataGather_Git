@@ -227,6 +227,7 @@
                     elem: '#grid',
                     id: 'grid',
                     height: 'full-160',
+                    size: 'sm',
                     url: window.location.origin + "/NikeApi/GatNikeApiLoList",
                     method: "post",
                     request: { pageName: 'page', limitName: 'pageSize' },

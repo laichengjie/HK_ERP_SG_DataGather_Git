@@ -209,6 +209,7 @@
                     elem: '#grid',
                     id: 'grid',
                     height: 'full-160',
+                    size: 'sm',
                     url: window.location.origin + "/NikeApi/GatNikeApiOutInList",
                     method: "post",
                     request: { pageName: 'page', limitName: 'pageSize' },

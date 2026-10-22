@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{53BC11F1-EA0E-4DAC-8E96-ECEB75630113}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GatNewBll</RootNamespace>
+    <AssemblyName>GatNewBll</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PublicDll\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.FtpClient">
+      <HintPath>..\..\PublicDll\System.Net.FtpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Blls\NikeApiBill.cs" />
+    <Compile Include="Blls\BurgeonBill.cs" />
+    <Compile Include="Models\NikeApi\BaseRequest.cs" />
+    <Compile Include="Models\NikeApi\BaseResponse.cs" />
+    <Compile Include="Models\NikeApi\NikeApiPosDetailData.cs" />
+    <Compile Include="Models\NikeApi\NikeApiPosMasterData.cs" />
+    <Compile Include="Models\NikeApi\NikeApiPosReceiptData.cs" />
+    <Compile Include="Models\NikeApi\NikeApinPosRequest.cs" />
+    <Compile Include="Models\NikeApi\NikeApiPosResponse.cs" />
+    <Compile Include="Models\NikeApi\GatNikeApiPosSaleModel.cs" />
+    <Compile Include="Models\NikeApi\GatGatNikeApiLogModel.cs" />
+    <Compile Include="Models\Burgeon\GatBurgeonPosSaleDetailModel.cs" />
+    <Compile Include="Service References\BosService_Zx\Reference.cs" />
+    <Compile Include="Blls\NikeBll_OC.cs" />
+    <Compile Include="Blls\AdBll_OC.cs" />
+    <Compile Include="Blls\AdBll.cs" />
+    <Compile Include="Blls\BaseBll.cs" />
+    <Compile Include="Blls\CrocsBll.cs" />
+    <Compile Include="Blls\ArcTeryxBill.cs" />
+    <Compile Include="Blls\BurgeonWebServices.cs" />
+    <Compile Include="Common\ChineseName.cs" />
+    <Compile Include="Common\CompressFile.cs" />
+    <Compile Include="Common\ExportHelper.cs" />
+    <Compile Include="Common\Helper.cs" />
+    <Compile Include="Blls\LiningBll.cs" />
+    <Compile Include="Blls\LiningMemberBll.cs" />
+    <Compile Include="Blls\OnBll.cs" />
+    <Compile Include="Blls\TuMiBll.cs" />
+    <Compile Include="Blls\LiningNopBll.cs" />
+    <Compile Include="Blls\LiningQqdBll.cs" />
+    <Compile Include="Blls\SkechersBll.cs" />
+    <Compile Include="Blls\SolutionBll.cs" />
+    <Compile Include="Blls\UaBll.cs" />
+    <Compile Include="Blls\VendCustBll.cs" />
+    <Compile Include="Blls\VansBill.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Common\W3CDateTime.cs" />
+    <Compile Include="Models\Burgeon\BurgeonPosDetailData.cs" />
+    <Compile Include="Models\Burgeon\BurgeonPosMasterData.cs" />
+    <Compile Include="Models\Burgeon\BurgeonPosReceiptData.cs" />
+    <Compile Include="Models\Burgeon\BurgeonPosRequest.cs" />
+    <Compile Include="Models\Burgeon\BurgeonPosResponse.cs" />
+    <Compile Include="Models\Burgeon\BaseRequest.cs" />
+    <Compile Include="Models\Burgeon\BaseResponse.cs" />
+    <Compile Include="Models\Burgeon\GatBurgeonPosSalePageModel.cs" />
+    <Compile Include="Models\ArcTeryx\ArcTeryxPosReceiptData.cs" />
+    <Compile Include="Models\ArcTeryx\ArcTeryxPosRequest.cs" />
+    <Compile Include="Models\ArcTeryx\ArcTeryxPosResponse.cs" />
+    <Compile Include="Models\ArcTeryx\BaseRequest.cs" />
+    <Compile Include="Models\ArcTeryx\BaseResponse.cs" />
+    <Compile Include="Models\ArcTeryx\GatArcTeryxPosSalePageModel.cs" />
+    <Compile Include="Models\ArcTeryx\ArcTeryxPosDetailData.cs" />
+    <Compile Include="Models\ArcTeryx\ArcTeryxPosMasterData.cs" />
+    <Compile Include="Models\CompanyModel.cs" />
+    <Compile Include="Models\Crocs\CrocsApiRequest.cs" />
+    <Compile Include="Models\Crocs\CrocsApiResponse.cs" />
+    <Compile Include="Models\Crocs\InvStockModel.cs" />
+    <Compile Include="Models\Crocs\PosSaleModel.cs" />
+    <Compile Include="Models\ErpVendCust.cs" />
+    <Compile Include="Models\On\BaseRequest.cs" />
+    <Compile Include="Models\On\BaseResponse.cs" />
+    <Compile Include="Models\On\GatOnInvPageModel.cs" />
+    <Compile Include="Models\On\GatOnPosSalePageModel.cs" />
+    <Compile Include="Models\On\OnInvDetailData.cs" />
+    <Compile Include="Models\On\OnInvMasterData.cs" />
+    <Compile Include="Models\On\OnInvRequest.cs" />
+    <Compile Include="Models\On\OnInvResponse.cs" />
+    <Compile Include="Models\On\OnPosDetailData.cs" />
+    <Compile Include="Models\On\OnPosMasterData.cs" />
+    <Compile Include="Models\On\OnTokenResponse.cs" />
+    <Compile Include="Models\On\OnTokenRequest.cs" />
+    <Compile Include="Models\On\OnPosRequest.cs" />
+    <Compile Include="Models\On\OnPosResponse.cs" />
+    <Compile Include="Models\TuMI\GatTuMiInvPageModel.cs" />
+    <Compile Include="Models\TuMI\GatTuMiPosSalePageModel.cs" />
+    <Compile Include="Models\GatLiningPosSalePageModel.cs" />
+    <Compile Include="Models\GatShopRightModel.cs" />
+    <Compile Include="Models\GatSkechersPossalePageModel.cs" />
+    <Compile Include="Models\GatStockRightModel.cs" />
+    <Compile Include="Models\LiningMember\AddMember.cs" />
+    <Compile Include="Models\LiningMember\GatLiningMemberPosSalePageModel.cs" />
+    <Compile Include="Models\LiningMember\Member.cs" />
+    <Compile Include="Models\LiningMember\MemberResponse.cs" />
+    <Compile Include="Models\LiningMember\Trade.cs" />
+    <Compile Include="Models\LiningMember\TradeResponse.cs" />
+    <Compile Include="Models\LiningMember\SaleDetailData.cs" />
+    <Compile Include="Models\LiningMember\SaleMasterData.cs" />
+    <Compile Include="Models\LiningMember\SalePaymentData.cs" />
+    <Compile Include="Models\LiningNop\AuthTokenRequest.cs" />
+    <Compile Include="Models\LiningNop\AuthTokenResponse.cs" />
+    <Compile Include="Models\LiningNop\BaseRequest.cs" />
+    <Compile Include="Models\LiningNop\BaseResponse.cs" />
+    <Compile Include="Models\LiningNop\GatLiningnopWholesalePageModel.cs" />
+    <Compile Include="Models\LiningNop\WholesaleDetailData.cs" />
+    <Compile Include="Models\LiningNop\WholesaleMasterData.cs" />
+    <Compile Include="Models\LiningNop\WholesaleSalesListRequest.cs" />
+    <Compile Include="Models\LiningNop\WholesaleSalesListResponse.cs" />
+    <Compile Include="Models\LiningQqd\LQPOSSalOrderDataReq.cs" />
+    <Compile Include="Models\LiningQqd\LQPOSSalOrderDataResp.cs" />
+    <Compile Include="Models\SkechersDetailData.cs" />
+    <Compile Include="Models\SkechersMasterData.cs" />
+    <Compile Include="Models\Skechers\AddItemAddDetailRequest.cs" />
+    <Compile Include="Models\Skechers\BaseResponse.cs" />
+    <Compile Include="Models\Skechers\GetAppKeyRequest.cs" />
+    <Compile Include="Models\Skechers\GetAppKeyResponse.cs" />
+    <Compile Include="Models\SolutionBaseData.cs" />
+    <Compile Include="Models\SolutionModel.cs" />
+    <Compile Include="Models\TuMI\BaseRequest.cs" />
+    <Compile Include="Models\TuMI\BaseResponse.cs" />
+    <Compile Include="Models\TuMI\TuMiInvMasterData.cs" />
+    <Compile Include="Models\TuMI\TuMiInvDetailData.cs" />
+    <Compile Include="Models\TuMI\TuMiPosReceiptDetailData.cs" />
+    <Compile Include="Models\TuMI\TuMiPosDetailData.cs" />
+    <Compile Include="Models\TuMI\TuMiPosMasterData.cs" />
+    <Compile Include="Models\TuMI\TuMiInvRequest.cs" />
+    <Compile Include="Models\TuMI\TuMiPosRequest.cs" />
+    <Compile Include="Models\TuMI\TuMiInvResponse.cs" />
+    <Compile Include="Models\TuMI\TuMiPosResponse.cs" />
+    <Compile Include="Models\VendorModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gat.Utils\Gat.Utils.csproj">
+      <Project>{2ea6fcd9-d6e9-4238-907a-0e960f7314ea}</Project>
+      <Name>Gat.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GatEntities\GatEntities.csproj">
+      <Project>{664b81bf-6665-47af-a260-00e7db372dab}</Project>
+      <Name>GatEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GatSqlSugarDAL\GatSqlSugarDAL.csproj">
+      <Project>{b5a716dd-ee8d-4a7f-a78a-5a1e7b794134}</Project>
+      <Name>GatSqlSugarDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper">
+      <Version>7.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="RestSharp">
+      <Version>107.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="SqlSugar">
+      <Version>5.0.9.6</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.Json">
+      <Version>5.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+    <WCFMetadataStorage Include="Service References\BosService_Zx\" />
+    <None Include="Service References\BosService_Zx\BosService_Zx.wsdl" />
+    <None Include="Service References\BosService_Zx\Reference.svcmap" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

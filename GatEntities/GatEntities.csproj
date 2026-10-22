@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{664B81BF-6665-47AF-A260-00E7DB372DAB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GatEntities</RootNamespace>
+    <AssemblyName>GatEntities</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="DbModels\BasCard.cs" />
+    <Compile Include="DbModels\BasCompany.cs" />
+    <Compile Include="DbModels\BasCompanycard.cs" />
+    <Compile Include="DbModels\BasShop.cs" />
+    <Compile Include="DbModels\BasShopcard.cs" />
+    <Compile Include="DbModels\BasShopmap.cs" />
+    <Compile Include="DbModels\BasStock.cs" />
+    <Compile Include="DbModels\BasStockmap.cs" />
+    <Compile Include="DbModels\BasVendor.cs" />
+    <Compile Include="DbModels\BasVendorcard.cs" />
+    <Compile Include="DbModels\BasVendshop.cs" />
+    <Compile Include="DbModels\GatAdMeterialinv.cs" />
+    <Compile Include="DbModels\GatNikeApiPosSale.cs" />
+    <Compile Include="DbModels\GatNikeApiLog.cs" />
+    <Compile Include="DbModels\GatBurgeonPosSaleDetail.cs" />
+    <Compile Include="DbModels\GatBurgeonPosSale.cs" />
+    <Compile Include="DbModels\GatNikeMoveTransfer_OC.cs" />
+    <Compile Include="DbModels\GatAdMoveTransfer_OC.cs" />
+    <Compile Include="DbModels\GatNikePosSaleTransfer_OC.cs" />
+    <Compile Include="DbModels\GatNikeOutIn_OC.cs" />
+    <Compile Include="DbModels\GatNikeMove_OC.cs" />
+    <Compile Include="DbModels\GatAdPersonnel_Wif.cs" />
+    <Compile Include="DbModels\GatAdOutIn_OCTB.cs" />
+    <Compile Include="DbModels\GatAdMove_OCTB.cs" />
+    <Compile Include="DbModels\GatAdPossaleTransfer_OC.cs" />
+    <Compile Include="DbModels\GatAdMove_OC.cs" />
+    <Compile Include="DbModels\GatAdPosSaletransfer_Wif.cs" />
+    <Compile Include="DbModels\GatNikePossale_OC.cs" />
+    <Compile Include="DbModels\GatAdPossale_WifTB.cs" />
+    <Compile Include="DbModels\GatAdPossale_Wif.cs" />
+    <Compile Include="DbModels\GatAdPossale_OCTB.cs" />
+    <Compile Include="DbModels\GatAdPossale_OC.cs" />
+    <Compile Include="DbModels\GatAdPossale.cs" />
+    <Compile Include="DbModels\GatAdPossaleTransfer.cs" />
+    <Compile Include="DbModels\GatAdStockTransfer.cs" />
+    <Compile Include="DbModels\GatCrocsInventory.cs" />
+    <Compile Include="DbModels\GatCrocsPossale.cs" />
+    <Compile Include="DbModels\GatLiningMemberPosSale.cs" />
+    <Compile Include="DbModels\GatLiningMeterialinv.cs" />
+    <Compile Include="DbModels\GatOnMeterialinv.cs" />
+    <Compile Include="DbModels\GatArcTeryxPosSale.cs" />
+    <Compile Include="DbModels\GatShoprightDS.cs" />
+    <Compile Include="DbModels\GatTuMiMeterialinv.cs" />
+    <Compile Include="DbModels\GatOnPosSale.cs" />
+    <Compile Include="DbModels\GatTuMiPosSale.cs" />
+    <Compile Include="DbModels\GatLiningnopWholesale.cs" />
+    <Compile Include="DbModels\GatLiningPossale.cs" />
+    <Compile Include="DbModels\GatMaterial.cs" />
+    <Compile Include="DbModels\GatMaterialrange.cs" />
+    <Compile Include="DbModels\GatShop.cs" />
+    <Compile Include="DbModels\GatShopright.cs" />
+    <Compile Include="DbModels\GatSkechersPosSale.cs" />
+    <Compile Include="DbModels\GatSolcard.cs" />
+    <Compile Include="DbModels\GatSolcompany.cs" />
+    <Compile Include="DbModels\GatSolution.cs" />
+    <Compile Include="DbModels\GatStockright.cs" />
+    <Compile Include="DbModels\GatVansMeterialinv.cs" />
+    <Compile Include="DbModels\GatVansPosSale.cs" />
+    <Compile Include="DbModels\GatUaPossale.cs" />
+    <Compile Include="DbModels\GatVendcustright.cs" />
+    <Compile Include="DbModels\Sysdiagrams.cs" />
+    <Compile Include="DbModels\SysSGLog.cs" />
+    <Compile Include="DbModels\SysLog.cs" />
+    <Compile Include="DbModels\SysUser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="SqlSugar">
+      <Version>5.0.9.6</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

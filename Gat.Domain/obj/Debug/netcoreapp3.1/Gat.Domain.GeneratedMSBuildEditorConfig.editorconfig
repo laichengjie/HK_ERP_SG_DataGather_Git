@@ -1,0 +1,8 @@
+is_global = true
+build_property.RootNamespace = Gat.Domain
+build_property.ProjectDir = c:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\Gat.Domain\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 

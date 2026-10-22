@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E5A90D6A-9C04-4269-8727-0AC52E7A7F22}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gat.DAL</RootNamespace>
+    <AssemblyName>Gat.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DapperService.cs" />
+    <Compile Include="DataContextBase.cs" />
+    <Compile Include="GatDataContext.cs" />
+    <Compile Include="Modules\Card.custom.cs" />
+    <Compile Include="Modules\Company.custom.cs" />
+    <Compile Include="Modules\CompanyCard.custom.cs" />
+    <Compile Include="Modules\DataGather.cs">
+      <DependentUpon>DataGather.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\DataGather.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataGather.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\GatAdMeterialINV_WifTB.custom.cs" />
+    <Compile Include="Modules\GatAdMeterialINV_Wif.custom.cs" />
+    <Compile Include="Modules\GatAdMeterialINV_OCTB.custom.cs" />
+    <Compile Include="Modules\GatAdMeterialINV_OC.custom.cs" />
+    <Compile Include="Modules\GatAdMoveTransfer_OC.custom.cs" />
+    <Compile Include="Modules\GatIkerMaterialInv.custom.cs" />
+    <Compile Include="Modules\GatIkerPosSale.custom.cs" />
+    <Compile Include="Modules\GatTheNorthFaceMeterialINV.custom.cs" />
+    <Compile Include="Modules\GatIkerMeterialTransfe.cs" />
+    <Compile Include="Modules\GatTheNorthFaceMeterialTransfe.cs" />
+    <Compile Include="Modules\GatTheNorthFacePosSale.custom.cs" />
+    <Compile Include="Modules\GatIkerPosSaleTransfer.custom.cs" />
+    <Compile Include="Modules\GatTheNorthFacePosSaletransfer.custom.cs" />
+    <Compile Include="Modules\GatNikeMeterialInv_OC.custom.cs" />
+    <Compile Include="Modules\GatNikeStockTransfer_OC.custom.cs" />
+    <Compile Include="Modules\GatNikePosSale_OC.custom.cs" />
+    <Compile Include="Modules\GatNikeOutIn_OC.custom.cs" />
+    <Compile Include="Modules\GatNikeMove_OC.custom.cs" />
+    <Compile Include="Modules\GatAdMove_OCTB.custom.cs" />
+    <Compile Include="Modules\GatAdPosSaletransfer_Wif.cs" />
+    <Compile Include="Modules\GatAdPosSaletransfer_OC.cs" />
+    <Compile Include="Modules\GatAdMove_OC.custom.cs" />
+    <Compile Include="Modules\GatAdOutIn_OCTB.custom.cs" />
+    <Compile Include="Modules\GatAdPersonnel_Wif.custom.cs" />
+    <Compile Include="Modules\GatAdPosSale_WifTB.custom.cs" />
+    <Compile Include="Modules\GatAdPosSale_Wif.custom.cs" />
+    <Compile Include="Modules\GatAdPosSale_OCTB.custom.cs" />
+    <Compile Include="Modules\GatAdPosSale_OC.custom.cs" />
+    <Compile Include="Modules\GatColumbiaMeterialTransfer.cs" />
+    <Compile Include="Modules\GatLeePosSale.custom.cs" />
+    <Compile Include="Modules\GatLeeMeterialINV.custom.cs" />
+    <Compile Include="Modules\GatIceBreakerMeterialTransfer.custom.cs" />
+    <Compile Include="Modules\GatIceBreakerMeterialINV.custom.cs" />
+    <Compile Include="Modules\GatIceBreakerPosSaletransfer.custom.cs" />
+    <Compile Include="Modules\GatIceBreakerPosSale.custom.cs" />
+    <Compile Include="Modules\GatJackWolfSkinPosSaleTransfer.cs" />
+    <Compile Include="Modules\GatJackWolfSkinMeterialTransfer.cs" />
+    <Compile Include="Modules\GatAdStockTransfer_OC.cs" />
+    <Compile Include="Modules\GatAdStockTransfer.cs" />
+    <Compile Include="Modules\GatLiNingMeterialINV.custom.cs" />
+    <Compile Include="Modules\GatJackWolfSkinMeterialINV.custom.cs" />
+    <Compile Include="Modules\GatAdMeterialINV.custom.cs" />
+    <Compile Include="Modules\GatLiNingPosSale.custom.cs" />
+    <Compile Include="Modules\GatJackWolfSkinPosSale.custom.cs" />
+    <Compile Include="Modules\GatAsicsPosSale.custom.cs" />
+    <Compile Include="Modules\GatAdPosSale.custom.cs" />
+    <Compile Include="Modules\GatAmerINV.custom.cs" />
+    <Compile Include="Modules\GatAmerMaterial.custom.cs" />
+    <Compile Include="Modules\GatAmerOther.custom.cs" />
+    <Compile Include="Modules\GatAmerPosSale.custom.cs" />
+    <Compile Include="Modules\GatAmerReStockInfo.custom.cs" />
+    <Compile Include="Modules\GatAmerShop.custom.cs" />
+    <Compile Include="Modules\GatAdPosSaletransfer.cs" />
+    <Compile Include="Modules\GatAsicsMeterialINV.custom.cs" />
+    <Compile Include="Modules\GatKappaMeterialINV.custom.cs" />
+    <Compile Include="Modules\GatKappaPosSale.custom.cs" />
+    <Compile Include="Modules\GatMaterial.custom.cs" />
+    <Compile Include="Modules\GatOnlineShopSet.cs" />
+    <Compile Include="Modules\GatStockSubModelSet.cs" />
+    <Compile Include="Modules\GatMaterialDiscount.cs" />
+    <Compile Include="Modules\GatOnMeterialTransfer.cs" />
+    <Compile Include="Modules\GatMaterialBalaPrice.cs" />
+    <Compile Include="Modules\GatOnPosSale.cs" />
+    <Compile Include="Modules\GatOnMeterialINVDetail.cs" />
+    <Compile Include="Modules\GatOnPosSaleTransfer.cs" />
+    <Compile Include="Modules\GatMaterialRange.cs" />
+    <Compile Include="Modules\GatMatInv.custom.cs" />
+    <Compile Include="Modules\GatPosSale.custom.cs" />
+    <Compile Include="Modules\GatShop.custom.cs" />
+    <Compile Include="Modules\GatSpecialMaterialRange.cs" />
+    <Compile Include="Modules\GatUaMaterial.custom.cs" />
+    <Compile Include="Modules\GatUaPosSale.custom.cs" />
+    <Compile Include="Modules\GatUaMaterialTransfer.cs" />
+    <Compile Include="Modules\GatUaPosSaleTransfer.cs" />
+    <Compile Include="Modules\StockRight.custom.cs" />
+    <Compile Include="Modules\GatSummary.custom.cs" />
+    <Compile Include="Modules\ReturnModule.cs" />
+    <Compile Include="Modules\Shop.custom.cs" />
+    <Compile Include="Modules\ShopMap.custom.cs" />
+    <Compile Include="Modules\ShopRight.custom.cs" />
+    <Compile Include="Modules\SolCard.custom.cs" />
+    <Compile Include="Modules\SolCompany.cs" />
+    <Compile Include="Modules\Stock.custom.cs" />
+    <Compile Include="Modules\StockMap.custom.cs" />
+    <Compile Include="Modules\User.custom.cs" />
+    <Compile Include="Modules\VendorCard.custom.cs" />
+    <Compile Include="Modules\GatPumaMaterial.custom.cs" />
+    <Compile Include="Modules\GatPumaMatInv.custom.cs" />
+    <Compile Include="Modules\GatPumaPosSale.custom.cs" />
+    <Compile Include="Modules\GatPumaShop.custom.cs" />
+    <Compile Include="Modules\GatNorthMaterialInv.custom.cs" />
+    <Compile Include="Modules\GatNorthPosSale.custom.cs" />
+    <Compile Include="Modules\GatColumbiaMeterialINV.custom.cs" />
+    <Compile Include="Modules\GatColumbiaPosSale.custom.cs" />
+    <Compile Include="Modules\GatColumbiaPosSaletransfer.custom.cs" />
+    <Compile Include="ServiceBase.cs" />
+    <Compile Include="GatService.cs" />
+    <Compile Include="IGatService.cs" />
+    <Compile Include="Modules\ModuleBase.cs" />
+    <Compile Include="Modules\Solution.custom.cs" />
+    <Compile Include="Modules\Syslog.custom.cs" />
+    <Compile Include="Modules\Vendor.custom.cs" />
+    <Compile Include="Modules\VendShop.custom.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ShopRightDS.custom.cs" />
+    <Compile Include="TransactionExtension.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Modules\DataGather.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataGather.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Modules\DataGather.dbml.layout">
+      <DependentUpon>DataGather.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gat.Utils\Gat.Utils.csproj">
+      <Project>{2EA6FCD9-D6E9-4238-907A-0E960F7314EA}</Project>
+      <Name>Gat.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

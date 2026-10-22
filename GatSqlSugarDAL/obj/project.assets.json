@@ -1,0 +1,221 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6.1": {
+      "SqlSugar/5.0.9.6": {
+        "type": "package",
+        "compile": {
+          "lib/SqlSugar.dll": {}
+        },
+        "runtime": {
+          "lib/SqlSugar.dll": {}
+        }
+      },
+      "GatEntities/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "SqlSugar": "5.0.9.6"
+        },
+        "compile": {
+          "bin/placeholder/GatEntities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GatEntities.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.1/win": {
+      "SqlSugar/5.0.9.6": {
+        "type": "package",
+        "compile": {
+          "lib/SqlSugar.dll": {}
+        },
+        "runtime": {
+          "lib/SqlSugar.dll": {}
+        }
+      },
+      "GatEntities/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "SqlSugar": "5.0.9.6"
+        },
+        "compile": {
+          "bin/placeholder/GatEntities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GatEntities.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.1/win-arm64": {
+      "SqlSugar/5.0.9.6": {
+        "type": "package",
+        "compile": {
+          "lib/SqlSugar.dll": {}
+        },
+        "runtime": {
+          "lib/SqlSugar.dll": {}
+        }
+      },
+      "GatEntities/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "SqlSugar": "5.0.9.6"
+        },
+        "compile": {
+          "bin/placeholder/GatEntities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GatEntities.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.1/win-x64": {
+      "SqlSugar/5.0.9.6": {
+        "type": "package",
+        "compile": {
+          "lib/SqlSugar.dll": {}
+        },
+        "runtime": {
+          "lib/SqlSugar.dll": {}
+        }
+      },
+      "GatEntities/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "SqlSugar": "5.0.9.6"
+        },
+        "compile": {
+          "bin/placeholder/GatEntities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GatEntities.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.1/win-x86": {
+      "SqlSugar/5.0.9.6": {
+        "type": "package",
+        "compile": {
+          "lib/SqlSugar.dll": {}
+        },
+        "runtime": {
+          "lib/SqlSugar.dll": {}
+        }
+      },
+      "GatEntities/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "SqlSugar": "5.0.9.6"
+        },
+        "compile": {
+          "bin/placeholder/GatEntities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GatEntities.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SqlSugar/5.0.9.6": {
+      "sha512": "ymOMW/NtjDBHhlWHKmPzSqvhznIXCAJececAC+ETvOx2iAS7GqVCtvt5HXkECKXFPzxAdQaDzpW+8nKkt1UFeA==",
+      "type": "package",
+      "path": "sqlsugar/5.0.9.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/SqlSugar.dll",
+        "sqlsugar.5.0.9.6.nupkg.sha512",
+        "sqlsugar.nuspec"
+      ]
+    },
+    "GatEntities/1.0.0": {
+      "type": "project",
+      "path": "../GatEntities/GatEntities.csproj",
+      "msbuildProject": "../GatEntities/GatEntities.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6.1": [
+      "GatEntities >= 1.0.0",
+      "SqlSugar >= 5.0.9.6"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\lai.cj\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Work\\HKWinApp\\HKWeb\\数据提报\\申格数据提报\\HK_ERP_SG_DataGather\\GatSqlSugarDAL\\GatSqlSugarDAL.csproj",
+      "projectName": "GatSqlSugarDAL",
+      "projectPath": "C:\\Work\\HKWinApp\\HKWeb\\数据提报\\申格数据提报\\HK_ERP_SG_DataGather\\GatSqlSugarDAL\\GatSqlSugarDAL.csproj",
+      "packagesPath": "C:\\Users\\lai.cj\\.nuget\\packages\\",
+      "outputPath": "C:\\Work\\HKWinApp\\HKWeb\\数据提报\\申格数据提报\\HK_ERP_SG_DataGather\\GatSqlSugarDAL\\obj\\",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "UsingMicrosoftNETSdk": false,
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\lai.cj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net461"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "http://proget.hkitcloud.net/nuget/HKInternalNugetPackages/": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net461": {
+          "projectReferences": {
+            "C:\\Work\\HKWinApp\\HKWeb\\数据提报\\申格数据提报\\HK_ERP_SG_DataGather\\GatEntities\\GatEntities.csproj": {
+              "projectPath": "C:\\Work\\HKWinApp\\HKWeb\\数据提报\\申格数据提报\\HK_ERP_SG_DataGather\\GatEntities\\GatEntities.csproj"
+            }
+          }
+        }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net461": {
+        "dependencies": {
+          "SqlSugar": {
+            "target": "Package",
+            "version": "[5.0.9.6, )"
+          }
+        }
+      }
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win-arm64": {
+        "#import": []
+      },
+      "win-x64": {
+        "#import": []
+      },
+      "win-x86": {
+        "#import": []
+      }
+    }
+  }
+}

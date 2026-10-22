@@ -1,0 +1,59 @@
+﻿2021-01-07 更新法雅ad品牌
+--数据库ad销售添加自增id，用来进行数据删除
+if not exists(select * from syscolumns where id=object_id('gat_ad_possale') and name='id')
+begin
+    alter table gat_ad_possale
+    add id int primary key identity
+end
+
+2021-04-20 五环
+--提报方案店铺添加是否默认折扣，折扣设置字段
+if not exists(select * from syscolumns where id=object_id('gat_shopright') and name='DefaultDiscount')
+begin
+    alter table gat_shopright
+    add DefaultDiscount bit not null default(1)
+end
+
+if not exists(select * from syscolumns where id=object_id('gat_shopright') and name='Discount')
+begin
+    alter table gat_shopright
+    add Discount numeric(14,2) not null default(1)
+end
+
+--2021-07
+If Exists(Select Top 1 1 From sysobjects Where id = object_id('[Gat_Ad_Stock_Transfer]'))
+  Drop Table [Gat_Ad_Stock_Transfer]
+CREATE TABLE [dbo].[Gat_Ad_Stock_Transfer](
+	[ShopCode] [varchar](208) NOT NULL,
+	[StockCode] [varchar](50) NOT NULL,
+	[UpdateDate] [datetime] NULL,
+	[BarCode] [varchar](128) NOT NULL,
+	[MaterialCode] [varchar](128) NOT NULL,
+	[SizeCode] [varchar](50) NULL,
+	[Qty] [numeric](24, 6) NULL
+) ON [PRIMARY]
+
+CREATE INDEX shopcode_index
+ON gat_ad_meterialinv (shopcode)
+CREATE INDEX barcode_index
+ON gat_ad_meterialinv (barcode)
+
+
+CREATE INDEX shopcode_index
+ON gat_ad_stock_transfer (shopcode)
+CREATE INDEX barcode_index
+ON gat_ad_stock_transfer (barcode)
+
+
+if not exists(select * from syscolumns where id=object_id('Gat_Ad_Stock_Transfer') and name='CompanyName')
+begin
+    alter table Gat_Ad_Stock_Transfer
+    add CompanyName nvarchar(50) not null
+end
+
+--五环李宁
+if not exists(select * from syscolumns where id=object_id('gat_shopright') and name='TradeCode')
+begin
+    alter table gat_shopright
+    add TradeCode nvarchar(50)
+end

@@ -1,0 +1,161 @@
+
+ul.topnav {
+	list-style: none;
+	padding: 0 20px;
+	margin: 0;
+	float: left;
+	background: #222;
+	font-size: 1.2em;
+	/*background: url(topnav_bg.gif) repeat-x;*/
+}
+ul.topnav li {
+	float: left;
+	margin: 0;
+	padding: 0 15px 0 0;
+	position: relative; /*--Declare X and Y axis base for sub navigation--*/
+}
+ul.topnav li a{
+	padding: 7px 5px;
+	color: #fff;
+	display: block;
+	float: left;
+	text-decoration: none;
+	outline:none;
+}
+ul.topnav li a:hover{
+	background: url(topnav_hover.gif) no-repeat center top;
+	text-decoration:none;
+	color:#fff;
+}
+ul.topnav li span { /*--Drop down trigger styles--*/
+	width: 17px;
+	height: 35px;
+	float: left;
+	background: url(subnav_btn.gif) no-repeat center top;
+}
+ul.topnav li span.subhover {background-position: center bottom; cursor: pointer;} /*--Hover effect for trigger--*/
+ul.topnav li ul.subnav {
+	list-style: none;
+	position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
+	left: 0; 
+	top: 33px;
+	background: #333;
+	margin: 0; padding: 0;
+	display: none;
+	float: left;
+	width: 170px;
+	border: 1px solid #111;
+	z-index:10;
+}
+ul.topnav li ul.subnav li{
+	margin: 0; padding: 0;
+	border-top: 1px solid #252525; /*--Create bevel effect--*/
+	border-bottom: 1px solid #444; /*--Create bevel effect--*/
+	clear: both;
+	width: 170px;
+}
+html ul.topnav li ul.subnav li a {
+	float: left;
+	width: 145px;
+	background: #333 url(dropdown_linkbg.gif) no-repeat 10px center;
+	padding-left: 20px;
+}
+html ul.topnav li ul.subnav li a:hover { /*--Hover effect for subnav links--*/
+	background: #222 url(dropdown_linkbg.gif) no-repeat 10px center;
+}
+
+
+ul.secondnav {
+	list-style: none;
+	padding: 0 20px;
+	margin: 0;
+	float: left;
+	background: #FCFCFC;
+	font-size: 1.2em;
+	/*background: url(topnav_bg.gif) repeat-x;*/
+}
+
+ul.secondnav li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	position: relative; /*--Declare X and Y axis base for sub navigation--*/
+	border-top: 1px solid #000; /* 上边框，实线，颜色为黑色 */
+	border-bottom: 1px solid #000; /* 下边框，实线，颜色为黑色 */
+	border-right: 1px solid #000; /* 右边框，实线，颜色为黑色 */
+}
+
+ul.secondnav li:first-child {
+	border-left: 1px solid #000; /* 左边框，实线，颜色为黑色 */
+}
+
+ul.secondnav li:hover {
+	background: #6699ff;
+}
+
+ul.secondnav li.select {
+	background: #ffffcc;
+}
+
+ul.secondnav li a {
+	padding: 7px 5px;
+	color: black;
+	display: block;
+	float: left;
+	text-decoration: none;
+	outline: none;
+	width: 100%; /* 设置宽度为100% */
+}
+
+ul.secondnav li a:hover {
+	text-decoration: none;
+	color: white;
+}
+
+ul.secondnav li span { /*--Drop down trigger styles--*/
+	width: 17px;
+	height: 35px;
+	float: left;
+	background: url(subnav_btn.gif) no-repeat center top;
+}
+
+ul.secondnav li span.secondsubhover {
+	background-position: center bottom;
+	cursor: pointer;
+}
+/*--Hover effect for trigger--*/
+ul.secondnav li ul.secondsubnav {
+	list-style: none;
+	position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
+	left: 0;
+	top: 33px;
+	background: #FCFCFC;
+	margin: 0;
+	padding: 0;
+	display: none;
+	float: left;
+	width: 170px;
+	border: 1px solid #111;
+	z-index: 10;
+}
+
+ul.secondnav li ul.secondsubnav li {
+	margin: 0;
+	padding: 0;
+	border-top: 1px solid #252525; /*--Create bevel effect--*/
+	border-bottom: 1px solid #444; /*--Create bevel effect--*/
+	clear: both;
+	width: 170px;
+}
+
+html ul.secondnav li ul.secondsubnav li a {
+	float: left;
+	width: 145px;
+	background: #FCFCFC url(dropdown_linkbg.gif) no-repeat 10px center;
+	padding-left: 20px;
+}
+
+html ul.secondnav li ul.secondsubnav li a:hover { /*--Hover effect for subnav links--*/
+	background: #FCFCFC url(dropdown_linkbg.gif) no-repeat 10px center;
+}
+

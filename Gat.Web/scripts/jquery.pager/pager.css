@@ -1,0 +1,42 @@
+﻿#pager{
+    text-align:center;
+    font:10px 微软雅黑,Verdana;
+    padding:2px 2px 20px 2px;
+}
+#pager ul.pages {
+border:none;
+padding:0;
+margin:0;
+}
+
+/**
+**  分页按钮修改说明
+**  原插件中将li样式的float属性设为left,导致无论其父元素如何居中,
+**  li元素都不能居中显示.故将float属性去掉,添加list-style与display.
+**  目前在FF与IE中测试能居中.同时修改li 长度，将其固定，避免页数过
+**  少时该标签显得过长唯一不好的地方就是。。。如果字数过显，则会折断航。.
+**/
+#pager ul.pages li {
+list-style-type:none;
+display:inline;
+border:1px solid #808080;
+margin:0 4px 0 0;
+padding:1px 6px;
+}
+
+#pager ul.pages li:hover {
+border:1px solid #003f7e;
+}
+
+#pager ul.pages li.pgEmpty {
+border:1px solid #eee;
+color:#eee;
+}
+
+#pager ul.pages li.pgCurrent {
+border:1px solid #003f7e;
+color:#000;
+font-weight:700;
+width:15px;
+background-color:#eee;
+}

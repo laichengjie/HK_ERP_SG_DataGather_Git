@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<HK DESC="恒康数据提报平台－帐套连接信息">
+  <Web>
+    <!--平台正式库-->
+    <Server>5Ky7GXHuwXG2kPbygCv3OA==</Server>
+    <LoginType>g8Wf4kdDY9Y=</LoginType>
+    <UserID>Q/1DhWVkjzc=</UserID>
+    <Password>SkyLoICikqDEFWc5R0nSXQ==</Password>
+    <GroupDB>YHI0Dix0huaKwwXaPzXxMN65gYWTu89pgI+EgNFajo4=</GroupDB>
+  </Web>
+  <WebTest>
+    <!--平台测试库-->
+    <Server>TGpN775L4SE7MuRaBuUusKAX+w+m0NEP52oLyM/H90Y=</Server>
+    <LoginType>g8Wf4kdDY9Y=</LoginType>
+    <UserID>UrXI88MSbNU=</UserID>
+    <Password>sndbaDV+Y6oip2bl/xhcCQ==</Password>
+    <GroupDB>UsZwJLajGba7kfvKG+e4ZA==</GroupDB>
+  </WebTest>
+  <ERP>
+    <!--ERP正式库-->
+    <Server>5Ky7GXHuwXG2kPbygCv3OA==</Server>
+    <LoginType>g8Wf4kdDY9Y=</LoginType>
+    <UserID>Q/1DhWVkjzc=</UserID>
+    <Password>SkyLoICikqDEFWc5R0nSXQ==</Password>
+    <GroupDB>YHI0Dix0huZPVu0x/CJMSg==</GroupDB>
+  </ERP>
+  <ERPTest>
+    <!--ERP测试库-->
+    <Server>TGpN775L4SE7MuRaBuUusKAX+w+m0NEP52oLyM/H90Y=</Server>
+    <LoginType>g8Wf4kdDY9Y=</LoginType>
+    <UserID>+DfoKXJaQhI810YIXt/1sA==</UserID>
+    <Password>sndbaDV+Y6oip2bl/xhcCQ==</Password>
+    <GroupDB>BCLhKFyb17g=</GroupDB>
+  </ERPTest>
+</HK>

@@ -1,0 +1,1 @@
+﻿<%@ WebHandler Language="C#" CodeBehind="AJAXHandler.ashx.cs" Class="Gat.Web.admin.AJAXHandler" %>

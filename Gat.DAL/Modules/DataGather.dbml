@@ -1,0 +1,963 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HK_ERP_SG_DataGather" EntityNamespace="Gat.DAL" ContextNamespace="Gat.DAL" Class="GatDataContext" BaseType="Gat.DAL.DataContextBase" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+ <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.100.9;Initial Catalog=HK_ERP_SG_DataGather;User ID=dev_user" SettingsObjectName="Gat.DAL.Properties.Settings" SettingsPropertyName="HK_ERP_SG_DataGatherConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Bas_Card" Member="Cards">
+    <Type Name="Card">
+      <Column Name="CardID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CardCode" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CardName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bas_Company" Member="Companies">
+    <Type Name="Company">
+      <Column Name="CompanyID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CompanyCode" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bas_Shop" Member="Shops">
+    <Type Name="Shop">
+      <Column Name="ShopID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ShopCode" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ShopName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StockID" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bas_ShopCard" Member="ShopCards">
+    <Type Name="ShopCard">
+      <Column Name="CompanyID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ShopID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CardID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AllowUsed" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="NetCardCode" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bas_Stock" Member="Stocks">
+    <Type Name="Stock">
+      <Column Name="StockID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StockCode" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="StockName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AllowUsed" Type="System.Boolean" DbType="Bit  not NULL" CanBeNull="false" />
+      <Column Name="IsObject" Type="System.Boolean" DbType="Bit not  NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bas_VendorCard" Member="VendorCards">
+    <Type Name="VendorCard">
+      <Column Name="VendorID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AllowUsed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bas_VendShop" Member="VendShops">
+    <Type Name="VendShop">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ShopName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StockCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="StockName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_ShopRight" Member="ShopRights">
+    <Type Name="ShopRight">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PastVersionVendorID" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ShopID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CardID" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="AllowUsed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ManualGatStartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ManualGatEndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TradeCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="false" />
+      <Column Name="DefaultDiscount" Type="System.Boolean" CanBeNull="false" />
+      <Column Name="Discount" Type="System.Decimal" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_ShopRightDS" Member="ShopRightDSs">
+    <Type Name="ShopRightDS">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ShopRightID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ShopID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DSShopID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_SolCard" Member="SolCards">
+    <Type Name="SolCard">
+      <Column Name="SolutionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_SolCompany" Member="SolCompanies">
+    <Type Name="SolCompany">
+      <Column Name="SolutionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sys_Log" Member="SysLogs">
+    <Type Name="SysLog">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSucceed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Script" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="LogType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="SolutionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ShopID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sys_User" Member="Users">
+    <Type Name="User">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserCode" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="RoleType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Solution" Member="Solutions">
+    <Type Name="Solution">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PastVersionVendorID" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CardID" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="GatType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Directory" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="ExecType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="ExecFrequency" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DailyType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="OnceStartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RepeatType" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="RepeatInterval" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RepeatStartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ManualGatStartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ManualGatEndTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ManualInterval" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Enabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SpecifyStartTime" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ProcName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="IsAuto" Type="System.Boolean" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bas_Vendor" Member="Vendors">
+    <Type Name="Vendor">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VendorCode" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="VendorName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AllowUsed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ProcName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Environment" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="FirstStartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ReportPath" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bas_CompanyCard" Member="CompanyCards">
+    <Type Name="CompanyCard">
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bas_ShopMap" Member="ShopMaps">
+    <Type Name="ShopMap">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VendShopID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ShopID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Material" Member="GatMaterials">
+    <Type Name="GatMaterial">
+      <Column Name="MaterialID" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="KindName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="Series" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="SubSeries" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="SexCode" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="SexName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ModelCode" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ModelName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ColorCode" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ColorName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="SizeCode" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="SizeName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="RetailPrice" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="AutoFlag" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="StockDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SeasonName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="SaleDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreateDTM" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_MeterialINV" Member="GatMeterialINVs">
+    <Type Name="GatMeterialINV">
+      <Column Name="ShopID" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialID" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ActualQty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="PathQty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_PosSale" Member="GatPosSales">
+    <Type Name="GatPosSale">
+      <Column Name="ShopID" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialID" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="BillDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BillNo" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="PromotionAmount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="PromotionRate" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="SaleType" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="VIPCardNumber" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_SaleSummary" Member="GatSaleSummaries">
+    <Type Name="GatSaleSummary">
+      <Column Name="ShopID" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="BillDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="Amout" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Shop" Member="GatShops">
+    <Type Name="GatShop">
+      <Column Name="ShopID" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="ShopName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="Province" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="KDDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OperationArea" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ShopType" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="ZyFlag" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="DiscountFlag" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="FactoryFlag" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="ShopArea" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="StockArea" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="NikeSaleArea" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Environment" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Ad_MeterialINV" Member="GatAdMeterialINVs">
+    <Type Name="GatAdMeterialINV">
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(208) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="SizeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Ad_Stock_Transfer" Member="GatAdStockTransfer">
+    <Type Name="GatAdStockTransfer">
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(208) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="SizeCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="StockCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Ad_PosSale" Member="GatAdPosSales">
+    <Type Name="GatAdPosSale">
+      <Column Name="id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BillTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="BillNo" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="SaleAmount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="PersonelName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="SizeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SolutionID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="BalaPrice" Type="System.Decimal" CanBeNull="false" />
+      <Column Name="ShopName" Type="System.String" CanBeNull="false" />
+      <Column Name="StockName" Type="System.String" CanBeNull="false" />
+      <Column Name="SmallTicketNo" Type="System.String" DbType="VarChar(40)  NULL" CanBeNull="false" />
+      <Column Name="PersonnelID" Type="System.string" DbType="VarChar(40) NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Kappa_MeterialINV" Member="GatKappaMeterialINVs">
+    <Type Name="GatKappaMeterialINV">
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Kappa_PosSale" Member="GatKappaPosSales">
+    <Type Name="GatKappaPosSale">
+      <Column Name="BillNo" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="RowNum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OperateType" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="StockCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(15,2) NOT NULL" CanBeNull="false" />
+      <Column Name="RetailPrice" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="Discount" Type="System.Decimal" DbType="Decimal(6,4)" CanBeNull="true" />
+      <Column Name="PayAmount" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="TicketNo" Type="System.String" DbType="Char(40)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Puma_Shop" Member="GatPumaShops">
+    <Type Name="GatPumaShop">
+      <Column Name="ShopID" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="ShopName" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="Province" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="KDDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OperationArea" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ShopType" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="ZyFlag" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="DiscountFlag" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="FactoryFlag" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="ShopArea" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="StockArea" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="PumaSaleArea" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Environment" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Puma_PosSale" Member="GatPumaPosSales">
+    <Type Name="GatPumaPosSale">
+      <Column Name="ShopID" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialID" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="BillDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BillNo" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="PromotionAmount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="PromotionRate" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="SaleType" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Puma_MeterialINV" Member="GatPumaMeterialINVs">
+    <Type Name="GatPumaMeterialINV">
+      <Column Name="ShopID" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialID" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ActualQty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="PathQty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Puma_Material" Member="GatPumaMaterials">
+    <Type Name="GatPumaMaterial">
+      <Column Name="MaterialID" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="BarCode" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="KindName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Series" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="SubSeries" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Sex" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Model" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="Size" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="RetailPrice" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="AutoFlag" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="StockDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SaleDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_North_MaterialInv" Member="GatNorthMaterialInvs">
+    <Type Name="GatNorthMaterialInv">
+      <Column Name="StockID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="StockCode" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="StockName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MaterialID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="MaterialCode" Storage="_MateiralCode" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="MaterialName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ColorID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="ColorCode" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="ColorName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SizeID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="SizeCode" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="SizeName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_North_PosSale" Member="GatNorthPosSales">
+    <Type Name="GatNorthPosSale">
+      <Column Name="BillNo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="BillTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ShopID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="ShopName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MaterialID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="MaterialCode" Storage="_MateiralCode" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="MaterialName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ColorID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="ColorCode" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="ColorName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SizeID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="SizeCode" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="SizeName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="SaleType" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="SaleTypeName" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_StockRight" Member="StockRight">
+    <Type Name="StockRight">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PastVersionVendorID" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="StockID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CardID" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="AllowUsed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ManualGatStartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ManualGatEndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bas_StockMap" Member="StockMap">
+    <Type Name="StockMap">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VendStockID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StockID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Amer_InventoryInfo" Member="GatAmerINV">
+    <Type Name="GatAmerINV">
+      <Column Name="StoreName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="ProductCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ProductUnit" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProductQty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Amer_OtherStockInfo" Member="GatAmerOther">
+    <Type Name="GatAmerOther">
+      <Column Name="BillNo" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BillType" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProductCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ProductUnit" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProductQty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="StoreName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Amer_ProductInfo" Member="GatAmerMaterial">
+    <Type Name="GatAmerMaterial">
+      <Column Name="ProductCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProductBar" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ProductStandard" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ProductUnit" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProductPrice" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Amer_ReStockInfo" Member="GatAmerReStockInfo">
+    <Type Name="GatAmerReStockInfo">
+      <Column Name="BillNo" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BillType" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProviderCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProviderName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ProductCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ProductUnit" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProductQty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="ProductPrice" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="TotalPrice" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="StoreName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Amer_ShopInfo" Member="GatAmerShop">
+    <Type Name="GatAmerShop">
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ShopName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ShopAddress" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="ShopLinkman" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Amer_PosSale" Member="GatAmerPosSale">
+    <Type Name="GatAmerPosSale">
+      <Column Name="BillNo" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BillType" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ShopName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProductCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ProductUnit" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProductQty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="ProductPrice" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="TotalPrice" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="ProductLotNumber" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="CreateDTM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="StoreName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Columbia_MaterialInv" Member="GatColumbiaMeterialINV">
+    <Type Name="GatColumbiaMeterialINV">
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(208) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="SizeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ShopName" Type="System.String" CanBeNull="true" />
+      <Column Name="StockName" Type="System.String" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Columbia_PosSale" Member="GatColumbiaPosSale">
+    <Type Name="GatColumbiaPosSale">
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BillTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="BillNo" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="SalesAmount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="PersonnelID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="SizeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SolutionID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="BalaPrice" Type="System.Decimal" CanBeNull="false" />
+      <Column Name="ShopName" Type="System.String" CanBeNull="true" />
+      <Column Name="StockName" Type="System.String" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="Gat_Columbia_PosSale_transfer" Member="GatColumbiaPosSaletransfer">
+    <Type Name="GatColumbiaPosSaletransfer">
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(20) NULL" CanBeNull="true" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BillTime" Type="System.DateTime" DbType="DateTime NULL" CanBeNull="true" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(10,2) NULL" CanBeNull="false" />
+      <Column Name="BillNo" Type="System.String" DbType="VarChar(40) NULL" CanBeNull="true" />
+      <Column Name="SalesAmount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="PersonnelID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="SizeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SolutionID" Type="System.Int32" CanBeNull="true" />
+      <Column Name="TransID" AutoSync="Never" Type="System.Int32" DbType="INT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BalaPrice" Type="System.Decimal" DbType="DECIMAL(24, 6)" CanBeNull="true" />
+      <Column Name="ShopName" Type="System.String" DbType="VARCHAR(100)" CanBeNull="true" />
+      <Column Name="StockName" Type="System.String" DbType="VARCHAR(100)" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="nvarchar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Gat_Ad_PosSale_transfer" Member="GatAdPosSaletransfer">
+    <Type Name="GatAdPosSaletransfer">
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BillTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="BillNo" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="SalesAmount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="PersonnelID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="SizeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SolutionID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="TransID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="BalaPrice" Type="System.Decimal" CanBeNull="false" />
+      <Column Name="ShopName" Type="System.String" CanBeNull="true" />
+      <Column Name="StockName" Type="System.String" CanBeNull="true" />
+      <Column Name="SmallTicketNo" Type="System.String" DbType="VarChar(40) NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Asics_PosSale" Member="GatAsicsPosSale">
+    <Type Name="GatAsicsPosSale">
+      <Column Name="BillCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="StoreName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="StoreCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProdCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProdName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ProdUnit" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ProdQuantity" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="ProdAmount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="CreateDTM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="StockCode" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ProdBarCode" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ProdSpec" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Asics_MeterialINV" Member="GatAsicsMeterialINV">
+    <Type Name="GatAsicsMeterialINV">
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(208) NOT NULL" CanBeNull="false" />
+      <Column Name="StockName" Type="System.String" DbType="VarChar(208) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="SizeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Ua_Material" Member="GatUaMaterial">
+    <Type Name="GatUaMaterial">
+      <Column Name="ID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="ShopCode" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="ShopName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="true" />
+      <Column Name="ActualQty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="false" />
+      <Column Name="PathQty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="false" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="false" />
+      <Column Name="CreateDTM" Type="System.DateTime" DbType="DateTime" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SizeName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Ua_PosSale" Member="GatUaPosSale">
+    <Type Name="GatUaPosSale">
+      <Column Name="ID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="Sequence" Type="System.String" DbType="Varchar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BillTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="ShopName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="BillCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="SizeName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="BalaPrice" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Discount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="ArriveDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="true" />
+      <Column Name="PersonnelCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="PersonnelName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="PromotionID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="PromotionName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="CreateDTM" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime" CanBeNull="false" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SolutionID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="TransID" Type="System.Int32" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Ua_PosSale_Transfer" Member="GatUaPosSaleTransfer">
+    <Type Name="GatUaPosSaleTransfer">
+      <Column Name="ID" AutoSync="Never" Type="System.Int32" DbType="int" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Sequence" Type="System.String" DbType="Varchar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="true" />
+      <Column Name="BillTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="true" />
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="true" />
+      <Column Name="ShopName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="BillCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128)" CanBeNull="false" />
+      <Column Name="SizeName" Type="System.String" DbType="NVarChar(40)" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="BalaPrice" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="true" />
+      <Column Name="Discount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="ArriveDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="true" />
+      <Column Name="PersonnelCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="PersonnelName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="PromotionID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="PromotionName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SolutionID" Type="System.Int32" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_Ua_Material_transfer" Member="GatUaMaterialTransfer">
+    <Type Name="GatUaMaterialTransfer">
+      <Column Name="ID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="ShopCode" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="ShopName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="true" />
+      <Column Name="ActualQty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="false" />
+      <Column Name="PathQty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="false" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="false" />
+      <Column Name="CreateDTM" Type="System.DateTime" DbType="DateTime" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ModifyDTM" Type="System.DateTime" DbType="DateTime" CanBeNull="false" />
+      <Column Name="SolutionID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="SizeName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_JackWolfSkin_MeterialINV" Member="GatJackWolfSkinMeterialINVs">
+    <Type Name="GatJackWolfSkinMeterialINV">
+      <Column Name="Id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="SolutionID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(208) NOT NULL" CanBeNull="false" />
+      <Column Name="ShopName" Type="System.String" DbType="VarChar(208) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="SizeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_JackWolfSkin_PosSale" Member="GatJackWolfSkinPosSales">
+    <Type Name="GatJackWolfSkinPosSale">
+      <Column Name="Id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="SolutionID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BillTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="BillNo" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="SaleAmount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="PersonelName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="SizeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="BalaPrice" Type="System.Decimal" CanBeNull="false" />
+      <Column Name="ShopName" Type="System.String" CanBeNull="false" />
+      <Column Name="StockName" Type="System.String" CanBeNull="false" />
+      <Column Name="SmallTicketNo" Type="System.String" DbType="VarChar(40)  NULL" CanBeNull="false" />
+      <Column Name="PersonnelID" Type="System.string" DbType="VarChar(40) NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_LiNing_MeterialINV" Member="GatLiNingMeterialINVs">
+    <Type Name="GatLiNingMeterialINV">
+      <Column Name="Id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="SolutionID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(208) NOT NULL" CanBeNull="false" />
+      <Column Name="ShopName" Type="System.String" DbType="VarChar(208) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="SizeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_LiNing_PosSale" Member="GatLiNingPosSales">
+    <Type Name="GatLiNingPosSale">
+      <Column Name="Id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="SolutionID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="BillDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BillTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="BillNo" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="SaleAmount" Type="System.Decimal" DbType="Decimal(24,6)" CanBeNull="true" />
+      <Column Name="PersonelName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="SizeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CompanyID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CardName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="BalaPrice" Type="System.Decimal" CanBeNull="false" />
+      <Column Name="ShopName" Type="System.String" CanBeNull="false" />
+      <Column Name="StockName" Type="System.String" CanBeNull="false" />
+      <Column Name="SmallTicketNo" Type="System.String" DbType="VarChar(40)  NULL" CanBeNull="false" />
+      <Column Name="PersonnelID" Type="System.string" DbType="VarChar(40) NULL" CanBeNull="false" />
+      <Column Name="SaleType" Type="System.String" DbType="NVarChar(50)  NULL" CanBeNull="false" />
+      <Column Name="MemberMobile" Type="System.string" DbType="NVarChar(50) NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_MaterialRange" Member="GatMaterialRange">
+    <Type Name="GatMaterialRange">
+      <Column Name="Id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="SolutionId" Type="System.Int32" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialName" Type="System.String" DbType="nVarChar(128) NOT NULL" CanBeNull="true" />
+      <Column Name="CreateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gat_SpecialMaterialRange" Member="GatSpecialMaterialRange">
+    <Type Name="GatSpecialMaterialRange">
+      <Column Name="Id" Type="System.Int32" CanBeNull="false" />
+      <Column Name="SolutionId" Type="System.Int32" CanBeNull="false" />
+      <Column Name="MaterialCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialName" Type="System.String" DbType="nVarChar(128) NOT NULL" CanBeNull="true" />
+      <Column Name="ShopCode" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="ShopName" Type="System.String" DbType="nVarChar(128) NOT NULL" CanBeNull="true" />
+      <Column Name="CreateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7B089218-64A1-44D5-A198-15AB5085B462}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gat.BLL</RootNamespace>
+    <AssemblyName>Gat.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Gat.Library\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ControllerBll\BrandBll.cs" />
+    <Compile Include="ControllerModel\Request\GetSalesRequest.cs" />
+    <Compile Include="ControllerModel\Request\GetStocksRequest.cs" />
+    <Compile Include="ControllerModel\Response\BaseResponse.cs" />
+    <Compile Include="ControllerModel\Response\GetSales.cs" />
+    <Compile Include="ControllerModel\Response\GetStocks.cs" />
+    <Compile Include="GatRepository.cs" />
+    <Compile Include="GatRepository.extends.iker.cs" />
+    <Compile Include="GatRepository.extends.thenorthface.cs" />
+    <Compile Include="GatRepository.extends.nike.cs" />
+    <Compile Include="GatRepository.extends.ad.cs" />
+    <Compile Include="GatRepository.extends.lee.cs" />
+    <Compile Include="GatRepository.extends.icebreaker.cs" />
+    <Compile Include="GatRepository.extends.Material.cs" />
+    <Compile Include="GatRepository.extends.On.cs" />
+    <Compile Include="GatRepository.extends.lining.cs" />
+    <Compile Include="GatRepository.extends.jackwolf.cs" />
+    <Compile Include="Modules\CardB.cs" />
+    <Compile Include="Modules\CompanyB.cs" />
+    <Compile Include="Modules\CompanyCardB.cs" />
+    <Compile Include="Modules\ExeclTransfer.cs" />
+    <Compile Include="Modules\GataAdPosSaletransferB_Wif.cs" />
+    <Compile Include="Modules\GatAdMeterialINVB_Wif.cs" />
+    <Compile Include="Modules\GatAdOutInB_OC.cs" />
+    <Compile Include="Modules\GatAdMoveB.cs" />
+    <Compile Include="Modules\GatAdMoveTransferB_OC.cs" />
+    <Compile Include="Modules\GatAdPersonnelB_Wif.cs" />
+    <Compile Include="Modules\GatIkerMeterialTransferB.cs" />
+    <Compile Include="Modules\GatIkerMaterialInvB.cs" />
+    <Compile Include="Modules\GatIkerPosSaleTransferB.cs" />
+    <Compile Include="Modules\GatIkerPosSaleB.cs" />
+    <Compile Include="Modules\GatTheNorthFaceMeterialINVB.cs" />
+    <Compile Include="Modules\GatTheNorthFacePosSaleB.cs" />
+    <Compile Include="Modules\GatTheNorthFacePosSaletransferB.cs" />
+    <Compile Include="Modules\GatNikeStockTransferB_OC.cs" />
+    <Compile Include="Modules\GatNikeMoveB_OC.cs" />
+    <Compile Include="Modules\GatNikeOutInB_OC.cs" />
+    <Compile Include="Modules\GatNikeMeterialInvB_OC.cs" />
+    <Compile Include="Modules\GatNIkePosSaleB_OC.cs" />
+    <Compile Include="Modules\GatAdPosSaleB_Wif.cs" />
+    <Compile Include="Modules\GatAdPosSaleB_OC.cs" />
+    <Compile Include="Modules\GatAdStockTransferB.cs" />
+    <Compile Include="Modules\GatLeeMeterialINVB.cs" />
+    <Compile Include="Modules\GatIceBreakerMeterialINVB.cs" />
+    <Compile Include="Modules\GatLeePosSaleB.cs" />
+    <Compile Include="Modules\GatIceBreakerPosSaletransferB.cs" />
+    <Compile Include="Modules\GatIceBreakerPosSaleB.cs" />
+    <Compile Include="Modules\GatMaterialBalaPriceB.cs" />
+    <Compile Include="Modules\GatOnlineShopSetB.cs" />
+    <Compile Include="Modules\GatStockSubModelSetB.cs" />
+    <Compile Include="Modules\GatMaterialDiscountB.cs" />
+    <Compile Include="Modules\GatOnMeterialINVDetailB.cs" />
+    <Compile Include="Modules\GatOnMeterialINVB.cs" />
+    <Compile Include="Modules\GatOnPosSaleB.cs" />
+    <Compile Include="Modules\GatOnPosSaleTransferB.cs" />
+    <Compile Include="Modules\GatJackWolfSkinPosSaleTransferB.cs" />
+    <Compile Include="Modules\GatLiNingMeterialINVB.cs" />
+    <Compile Include="Modules\GatJackWolfSkinMeterialINVB.cs" />
+    <Compile Include="Modules\GatAdMeterialINVB.cs" />
+    <Compile Include="Modules\GatLiNingPosSaleB.cs" />
+    <Compile Include="Modules\GatJackWolfSkinPosSaleB.cs" />
+    <Compile Include="Modules\GatAdPosSaleB.cs" />
+    <Compile Include="Modules\GatAmerINVB.cs" />
+    <Compile Include="Modules\GatAsicsMaterialB.cs" />
+    <Compile Include="Modules\GatAmerMaterialB.cs" />
+    <Compile Include="Modules\GatAmerOtherB.cs" />
+    <Compile Include="Modules\GatAsicsPosSaleB.cs" />
+    <Compile Include="Modules\GatAmerPosSaleB.cs" />
+    <Compile Include="Modules\GatAmerReStockInfoB.cs" />
+    <Compile Include="Modules\GatAmerShopB.cs" />
+    <Compile Include="Modules\GataAdPosSaletransferB.cs" />
+    <Compile Include="Modules\GatMaterialRangeB.cs" />
+    <Compile Include="Modules\GatSpecialMaterialRangeB.cs" />
+    <Compile Include="Modules\GatUaMaterialTransferB.cs" />
+    <Compile Include="Modules\GatUaPosSaletransferB.cs" />
+    <Compile Include="Modules\GatKappaMeterialINVB.cs" />
+    <Compile Include="Modules\GatKappaPosSaleB.cs" />
+    <Compile Include="Modules\GatMaterialB.cs" />
+    <Compile Include="Modules\GatMatInvB.cs" />
+    <Compile Include="Modules\GatNorthMaterialInvB.cs" />
+    <Compile Include="Modules\GatNorthPosSaleB.cs" />
+    <Compile Include="Modules\GatPosSaleB.cs" />
+    <Compile Include="Modules\GatShopB.cs" />
+    <Compile Include="Modules\GatSummaryB.cs" />
+    <Compile Include="Modules\GatUaMaterialB.cs" />
+    <Compile Include="Modules\GatUaPosSaleB.cs" />
+    <Compile Include="Modules\LogicBase.cs" />
+    <Compile Include="Modules\ShopB.cs" />
+    <Compile Include="Modules\ShopMapB.cs" />
+    <Compile Include="Modules\ShopRightB.cs" />
+    <Compile Include="Modules\ShopRightDSB.cs" />
+    <Compile Include="Modules\SolCardB.cs" />
+    <Compile Include="Modules\SolCompanyB.cs" />
+    <Compile Include="Modules\SolutionB.cs" />
+    <Compile Include="Modules\StockMapB.cs" />
+    <Compile Include="Modules\StockRightB.cs" />
+    <Compile Include="Modules\SysLogB.cs" />
+    <Compile Include="Modules\VendorCardB.cs" />
+    <Compile Include="Modules\VendorShopB.cs" />
+    <Compile Include="Modules\UserB.cs" />
+    <Compile Include="Modules\VendorB.cs" />
+    <Compile Include="Modules\GatPumaMaterialB.cs" />
+    <Compile Include="Modules\GatPumaPosSaleB.cs" />
+    <Compile Include="Modules\GatPumaShopB.cs" />
+    <Compile Include="Modules\GatColumbiaPosSaleB.cs" />
+    <Compile Include="Modules\GatColumbiaMeterialINVB.cs" />
+    <Compile Include="Modules\GatColumbiaPosSaletransferB.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GatPrincipal.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gat.Dal\Gat.DAL.csproj">
+      <Project>{E5A90D6A-9C04-4269-8727-0AC52E7A7F22}</Project>
+      <Name>Gat.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gat.Utils\Gat.Utils.csproj">
+      <Project>{2EA6FCD9-D6E9-4238-907A-0E960F7314EA}</Project>
+      <Name>Gat.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Modules\GatPumaMatInvB.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GatRepository.extends.solution.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GatRepository.extends.columbia.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

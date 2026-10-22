@@ -1,0 +1,142 @@
+.yuan-bg{
+    position : fixed;
+    background-color : #333;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    filter:alpha(Opacity=20);
+    -moz-opacity:0.2;
+    opacity: 0.2;
+    z-index : 9999;
+}
+
+.yuan-outer{
+    position : fixed;
+    left:0px;
+    top:0px;
+    width:1px;
+    height:1px;
+    filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#14000000', EndColorStr='#14000000');
+    background : none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
+    z-index : 10000;
+    padding:5px;
+    zoom: 1;
+    font-size:12px;
+    overflow:hidden;
+}
+
+.yuan-inner{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #676767;
+    /*color: #3F3F3F;*/
+    position: relative;
+    height:100%;
+}
+
+.yuan-title:before, .yuan-title:after, .yuan-bottom:before, .yuan-bottom:after {
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.yuan-title:after,.yuan-title:after {
+    clear: both;
+}
+.yuan-title {
+    background: url(headerbg.gif) no-repeat scroll 3px 6px #F4F4F4;
+    border-bottom: 1px solid #E5E5E5;
+    cursor: move;
+    height: 28px;
+    line-height: 28px;
+    padding-right: 40px;
+    position: relative;
+    text-indent:1em;
+}
+.yuan-title h4{
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    height: 28px;
+    margin: 0 0 0 10px;
+    overflow: hidden;
+}
+
+.yuan-title a.yuan-closer{
+    background: url("pop_close.png") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    height: 17px;
+    overflow: hidden;
+    position: absolute;
+    right: 5px;
+    text-indent: -999em;
+    top: 5px;
+    width: 17px;
+    outline:none;
+}
+.yuan-title a.yuan-closer:hover{
+     background-position: -19px 0;
+}
+
+.yuan-body{
+    /*background:url("warning.gif") no-repeat scroll 4px 8px #fff;text-indent:2em;*/
+    padding:15px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    
+}
+
+.yuan-bottom {
+    background: none repeat scroll 0 0 #F1F1F1;
+    border-top: 1px solid #E9E9E9;
+    font-size: 12px;
+    text-align: right;
+    height:35px;
+}
+.yuan-bottom .yuan-pnl-botton{
+    float:right;
+}
+.yuan-bottom .yuan-bottom-op{
+    float:left;
+    height:100%;
+    color:#333;
+    line-height:35px;
+    font-size:11px;
+    text-align:left;
+}
+.yuan-bottom .yuan-botton{    
+    text-decoration:none;
+    background:url(yuanbutton.png) no-repeat 0 0 transparent;
+    padding:6px 15px;
+    cursor:pointer;
+    outline:none;
+    color:#000;
+    line-height:35px;
+}
+.yuan-bottom .yuan-bottom-op i.loading{
+    padding: 12px 15px; 
+    background: url("loading.gif") no-repeat scroll center center transparent; 
+    line-height: 32px;
+}
+.yuan-bottom .yuan-bottom-op i.warning{
+    padding: 2px 12px;
+    background: url("notify.gif") no-repeat scroll -8px 2px transparent;
+    line-height: 32px;
+}
+.yuan-bottom .yuan-bottom-op i.correct{
+    background: url("correct.16x16.gif") no-repeat scroll 7px 2px transparent;
+    line-height: 32px;
+    padding: 2px 12px;
+}
+.yuan-bottom .warning{color:#CC3300;}
+
+.yuan-botton:hover{
+    background-position:-56px 0px;
+}
+.yuan-botton:active{
+    background-position:-113px 0px;
+}
+.overflow{ overflow:hidden; }
+
+.yuan-body ul{line-height: 25px; padding:2px 18px; font-size:11px;font-weight:normal;color:Red;text-align:left;}
+.yuan-body li{ list-style-type:disc; }

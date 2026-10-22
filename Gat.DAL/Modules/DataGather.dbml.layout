@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 18.75, 44" name="DataGather">
+  <DataContextMoniker Name="/GatDataContext" />
+  <nestedChildShapes>
+    <classShape Id="98e60090-308b-47e3-b677-c65814e7905f" absoluteBounds="0.5, 0.5, 2, 1.3525109863281251">
+      <DataClassMoniker Name="/GatDataContext/Card" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f81da15e-babc-44ee-aed4-d470c652cf32" absoluteBounds="0.515, 0.96, 1.9700000000000002, 0.792510986328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a38d0ec1-579a-492f-a3f1-9b876af79348" absoluteBounds="2.5, 0.5, 2, 1.3525109863281251">
+      <DataClassMoniker Name="/GatDataContext/Company" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cb4ef06e-bb2f-4397-aaa2-fd5558f93972" absoluteBounds="2.515, 0.96, 1.9700000000000002, 0.792510986328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a062cb1c-e88d-47a1-9070-01356c0676cf" absoluteBounds="0.5, 1.875, 2, 1.7220992024739577">
+      <DataClassMoniker Name="/GatDataContext/Shop" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fde7f105-11f1-4e59-9c76-13aa286f69cb" absoluteBounds="0.515, 2.335, 1.9700000000000002, 1.1620992024739583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c53f8b12-7653-4a46-80fb-9f5861886ba5" absoluteBounds="4.5, 0.5, 2, 1.7220992024739577">
+      <DataClassMoniker Name="/GatDataContext/ShopCard" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fc1da132-7d1d-4519-8ec0-c2afdfebe0f8" absoluteBounds="4.5150000000000006, 0.96, 1.9700000000000002, 1.1620992024739583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="aeed7619-4332-4f1e-8ee3-020561797712" absoluteBounds="0.5, 3.625, 2, 1.9068933105468746">
+      <DataClassMoniker Name="/GatDataContext/Stock" />
+      <nestedChildShapes>
+        <elementListCompartment Id="76ca3104-01db-4e4f-8690-08201a1f7342" absoluteBounds="0.515, 4.085, 1.9700000000000002, 1.346893310546875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3fb5ec67-1f13-4997-a162-f69962c131eb" absoluteBounds="6.5, 2.25, 2, 1.7220992024739577">
+      <DataClassMoniker Name="/GatDataContext/VendorCard" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c958226c-aa0e-403e-b610-ad648ff223fe" absoluteBounds="6.5150000000000006, 2.71, 1.9700000000000002, 1.1620992024739583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="eea034f7-b022-4006-a0e8-0235e5a563a4" absoluteBounds="6.5, 4, 2, 2.0916874186197916">
+      <DataClassMoniker Name="/GatDataContext/VendShop" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3c869273-5671-4d9f-904c-51ea26d1c406" absoluteBounds="6.5150000000000006, 4.46, 1.9700000000000002, 1.5316874186197915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="587231fd-7dd3-414a-87ba-a492961b53a5" absoluteBounds="10.5, 0.5, 2, 3.2004520670572916">
+      <DataClassMoniker Name="/GatDataContext/ShopRight" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4a91d73c-da64-4a39-977b-493aa01b2974" absoluteBounds="10.515, 0.96, 1.9700000000000002, 2.6404520670572915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="49de10c9-56cc-49df-9d75-c528e3ecd71d" absoluteBounds="0.5, 5.5, 2, 1.1677168782552077">
+      <DataClassMoniker Name="/GatDataContext/SolCard" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ef9c284a-5e9c-4ff6-855f-744c8df2df0e" absoluteBounds="0.515, 5.9600000000000009, 1.9700000000000002, 0.60771687825520826" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b0cc8eee-dce8-4693-adcb-d44fcc80c439" absoluteBounds="4.5, 2.25, 2, 1.1677168782552077">
+      <DataClassMoniker Name="/GatDataContext/SolCompany" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b44cef83-d631-4c98-9b3f-80c240efcfc3" absoluteBounds="4.5150000000000006, 2.7100000000000009, 1.9700000000000002, 0.60771687825520826" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6f6fe50c-ab16-4a91-8018-9d21f1bb8507" absoluteBounds="8.5, 3.5, 2, 2.8308638509114576">
+      <DataClassMoniker Name="/GatDataContext/SysLog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2294fd23-ce0f-4857-8427-1b14df1165ac" absoluteBounds="8.515, 3.9600000000000009, 1.9700000000000002, 2.270863850911458" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8531bd9a-b380-49f0-84d5-f5d28342b625" absoluteBounds="6.5, 6.125, 2, 1.7220992024739594">
+      <DataClassMoniker Name="/GatDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e3bcf36b-7877-4829-8e61-87db45f1cc1d" absoluteBounds="6.515, 6.5850000000000009, 1.9700000000000002, 1.1620992024739583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7f7a297b-3b72-4e9f-959b-fc746ad66090" absoluteBounds="12.5, 0.5, 2, 5.0483931477864576">
+      <DataClassMoniker Name="/GatDataContext/Solution" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0013bce2-9d70-48ab-8e0c-2f9888365ad2" absoluteBounds="12.515, 0.96, 1.9700000000000002, 4.488393147786458" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2b3fa569-5fb1-4e4a-b2a7-323f56d39cdc" absoluteBounds="4.5, 3.375, 2, 2.6460697428385416">
+      <DataClassMoniker Name="/GatDataContext/Vendor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="766c2d3f-8316-4144-93dd-91c5f489c35b" absoluteBounds="4.515, 3.835, 1.9700000000000002, 2.0860697428385415" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ceed1d36-9569-40b3-a0f6-27d57924b863" absoluteBounds="8.5, 2.375, 2, 1.1677168782552077">
+      <DataClassMoniker Name="/GatDataContext/CompanyCard" />
+      <nestedChildShapes>
+        <elementListCompartment Id="891199f6-6dec-4281-b2f1-e13b020c3c6c" absoluteBounds="8.515, 2.835, 1.9700000000000002, 0.60771687825520826" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5aa99da1-6372-4ce1-b800-df36096bf772" absoluteBounds="6.5, 0.5, 2, 1.7220992024739581">
+      <DataClassMoniker Name="/GatDataContext/ShopMap" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d4996445-4fdb-421c-8ca1-5f0b69118572" absoluteBounds="6.515, 0.96, 1.9700000000000002, 1.1620992024739583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="15471b21-5ba9-46a6-ad42-4ccc31b6df82" absoluteBounds="2.5, 1.875, 2, 5.2331872558593755">
+      <DataClassMoniker Name="/GatDataContext/GatMaterial" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a675c875-2522-44dd-a294-639ac6e9d40d" absoluteBounds="2.5150000000000006, 2.3350000000000009, 1.9700000000000002, 4.673187255859375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="342c8253-2466-4750-8bc0-803742732210" absoluteBounds="5.125, 9.875, 2, 2.6460697428385416">
+      <DataClassMoniker Name="/GatDataContext/GatMeterialINV" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c9c6438c-85f8-4710-8d59-dd3f78ae8abc" absoluteBounds="5.1400000000000006, 10.335, 1.9700000000000002, 2.0860697428385415" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d0048463-4645-4e15-816d-ae0ba7a1e7d1" absoluteBounds="9.125, 9.875, 2, 3.9396284993489576">
+      <DataClassMoniker Name="/GatDataContext/GatPosSale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8befc768-af74-46c9-8aa4-831043e71fe8" absoluteBounds="9.14, 10.335, 1.9700000000000002, 3.379628499348958" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3201a00d-c30c-498c-9e16-4e68456e7417" absoluteBounds="7.125, 9.875, 2, 2.2764815266927094">
+      <DataClassMoniker Name="/GatDataContext/GatSaleSummary" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ae46713b-fe07-4414-9464-b34f97cbac29" absoluteBounds="7.1400000000000006, 10.335, 1.9700000000000002, 1.7164815266927083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="48545ec9-fd10-46ef-af14-682fd1860a2e" absoluteBounds="14.5, 0.5, 2, 5.0483931477864576">
+      <DataClassMoniker Name="/GatDataContext/GatShop" />
+      <nestedChildShapes>
+        <elementListCompartment Id="424d88a4-111a-4046-a8a7-e5bd0a26a38c" absoluteBounds="14.515, 0.96000000000000085, 1.9700000000000002, 4.488393147786458" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9cb31a7e-84de-4854-b989-ab24833dc81d" absoluteBounds="0.5, 19.625, 2, 2.6460697428385451">
+      <DataClassMoniker Name="/GatDataContext/GatAdMeterialINV" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be59db3f-74d1-438a-ab08-af18f065f87d" absoluteBounds="0.51500000000000057, 20.085, 1.9700000000000002, 2.0860697428385415" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1a3eea1e-dc79-48e5-a12a-25ab1afb6c88" absoluteBounds="2.5, 19.625, 2, 4.8635990397135416">
+      <DataClassMoniker Name="/GatDataContext/GatAdPosSale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cf8c4cae-b20f-49b0-98d2-453e93f59fb5" absoluteBounds="2.515, 20.085, 1.9700000000000002, 4.3035990397135411" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="566821d0-f091-4c24-8a3c-71c90688e091" absoluteBounds="11.625, 19.625, 2, 2.2764815266927094">
+      <DataClassMoniker Name="/GatDataContext/GatKappaMeterialINV" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d376683a-3e8b-4c66-bd9d-9d48ac59ef87" absoluteBounds="11.64, 20.085, 1.9700000000000002, 1.7164815266927083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ed2fb3b7-4a20-41f5-bf88-d838f998f021" absoluteBounds="9.625, 19.625, 2, 3.7548343912760451">
+      <DataClassMoniker Name="/GatDataContext/GatKappaPosSale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f30850b8-dbf1-43c9-bf6b-558165d39881" absoluteBounds="9.64, 20.085, 1.9700000000000002, 3.1948343912760415" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fb540027-638f-4359-b8ed-5f42f70187e2" absoluteBounds="0.5, 24.625, 2, 5.0483931477864594">
+      <DataClassMoniker Name="/GatDataContext/GatPumaShop" />
+      <nestedChildShapes>
+        <elementListCompartment Id="376f85df-f85e-4877-aa30-f781eb4ff000" absoluteBounds="0.51500000000000057, 25.085, 1.9700000000000002, 4.488393147786458" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1d956eb9-961b-4af0-a0d0-f71f3e979cf4" absoluteBounds="4.5, 24.625, 2, 3.7548343912760451">
+      <DataClassMoniker Name="/GatDataContext/GatPumaPosSale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="63d1aab4-d954-4376-8107-cc7c7dbc4dcd" absoluteBounds="4.5150000000000006, 25.085, 1.9700000000000002, 3.1948343912760415" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b6c41db6-156f-4f66-967d-bcfecb320381" absoluteBounds="2.5, 24.625, 2, 2.6460697428385451">
+      <DataClassMoniker Name="/GatDataContext/GatPumaMeterialINV" />
+      <nestedChildShapes>
+        <elementListCompartment Id="73d02b4b-c780-4a29-908b-27dc361a1f21" absoluteBounds="2.5150000000000006, 25.085, 1.9700000000000002, 2.0860697428385415" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5d800d23-187b-4b33-abcd-c84965c272a0" absoluteBounds="6.5, 24.625, 2, 4.1244226074218773">
+      <DataClassMoniker Name="/GatDataContext/GatPumaMaterial" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4beb73bf-4a33-422c-a05f-e8ba9583e864" absoluteBounds="6.5150000000000006, 25.085, 1.9700000000000002, 3.564422607421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4634dacb-b06b-4783-8b02-807f74f83995" absoluteBounds="15.875, 12.125, 2, 4.1244226074218755">
+      <DataClassMoniker Name="/GatDataContext/GatNorthMaterialInv" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5e74a81c-96d3-4ed5-b4a4-db586ecf2f59" absoluteBounds="15.89, 12.585, 1.9700000000000002, 3.564422607421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a8753280-0e89-46f0-9067-2e55a1da747c" absoluteBounds="13.875, 12.125, 2, 4.8635990397135416">
+      <DataClassMoniker Name="/GatDataContext/GatNorthPosSale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="86f79225-ff3c-4d5c-ac27-1d741345c587" absoluteBounds="13.89, 12.585, 1.9700000000000002, 4.3035990397135411" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7691a290-0d0b-431d-85ac-ed8417366cf9" absoluteBounds="16.5, 0.5, 2, 2.6460697428385451">
+      <DataClassMoniker Name="/GatDataContext/StockRight" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f3a602d0-20d5-43cf-9b31-c22e27cc04c0" absoluteBounds="16.515, 0.96000000000000085, 1.9700000000000002, 2.0860697428385415" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2943fffe-3f3d-4a70-8363-e01f57827b46" absoluteBounds="10.5, 3.75, 2, 1.7220992024739594">
+      <DataClassMoniker Name="/GatDataContext/StockMap" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2670634a-5c72-4d09-bdb3-92196dc19e1b" absoluteBounds="10.515, 4.2100000000000009, 1.9700000000000002, 1.1620992024739583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="44c8d33e-6450-4c9a-b2ee-5d41a53169fe" absoluteBounds="0.5, 29.875, 2, 2.830863850911463">
+      <DataClassMoniker Name="/GatDataContext/GatAmerINV" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dd39d9c3-b8eb-4304-9740-7bdcd882fef4" absoluteBounds="0.515, 30.335, 1.9700000000000002, 2.270863850911458" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="155ca52a-ee88-47dd-be87-9a0c3e0cfb3c" absoluteBounds="2.5, 29.875, 2, 3.385246175130213">
+      <DataClassMoniker Name="/GatDataContext/GatAmerOther" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bb39973d-0356-4a3c-ae69-c0a4fe32bb34" absoluteBounds="2.515, 30.335, 1.9700000000000002, 2.825246175130208" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="804aaee0-115a-424e-8b59-dffac172d43c" absoluteBounds="6.5, 29.875, 2, 3.0156579589843773">
+      <DataClassMoniker Name="/GatDataContext/GatAmerMaterial" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e7edab17-257e-464f-b09c-51aade65f241" absoluteBounds="6.5150000000000006, 30.335, 1.9700000000000002, 2.455657958984375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="93d80b72-62ec-437e-9983-860cb5061cb0" absoluteBounds="8.5, 29.875, 2, 4.1244226074218773">
+      <DataClassMoniker Name="/GatDataContext/GatAmerReStockInfo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="df93477c-f515-42c1-b062-b07b7a1deb06" absoluteBounds="8.515, 30.335, 1.9700000000000002, 3.564422607421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="73bd75ce-6663-4484-8e83-2cf6de1fabfb" absoluteBounds="12, 29.875, 2, 2.830863850911463">
+      <DataClassMoniker Name="/GatDataContext/GatAmerShop" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8f8688f0-e67f-405f-a29c-72409f34e753" absoluteBounds="12.015, 30.335, 1.9700000000000002, 2.270863850911458" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="43b9e4d1-b762-44c3-aa68-ad942b27d794" absoluteBounds="4.5, 29.875, 2, 4.494010823567713">
+      <DataClassMoniker Name="/GatDataContext/GatAmerPosSale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dff861fb-2ff2-4385-beac-68f4e6a06e1b" absoluteBounds="4.515, 30.335, 1.9700000000000002, 3.934010823567708" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="282a37d2-3a4e-43b3-93cc-b5d3a96c2e38" absoluteBounds="0.5, 34.625, 2, 3.0156579589843773">
+      <DataClassMoniker Name="/GatDataContext/GatColumbiaMeterialINV" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fc3acd7c-a732-4d46-94d6-3aff5611c5d5" absoluteBounds="0.51500000000000012, 35.085, 1.9700000000000002, 2.455657958984375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e40e6cba-4e1f-4159-b1c6-907fdf6d8bb7" absoluteBounds="2.5, 34.625, 2, 4.3092167154947916">
+      <DataClassMoniker Name="/GatDataContext/GatColumbiaPosSale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8bd49d86-2353-404d-9595-b090526b7c27" absoluteBounds="2.515, 35.085, 1.9700000000000002, 3.7492167154947915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c67c4148-a1fe-4cbe-ab34-7db318f61c7a" absoluteBounds="4.5, 34.625, 2, 4.494010823567713">
+      <DataClassMoniker Name="/GatDataContext/GatColumbiaPosSaletransfer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cb435e18-88fa-4983-8799-a686570d7525" absoluteBounds="4.515, 35.085, 1.9700000000000002, 3.934010823567708" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="86062d88-0aeb-4041-9770-be4296989f39" absoluteBounds="4.5, 19.625, 2, 4.6788049316406273">
+      <DataClassMoniker Name="/GatDataContext/GatAdPosSaletransfer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="862d4895-0205-4517-8ebe-623d4b26ecd4" absoluteBounds="4.5150000000000006, 20.085, 1.9700000000000002, 4.118804931640625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5e2e898e-02e2-4300-8155-9f48ce246a6d" absoluteBounds="0.5, 39.625, 2, 4.1244226074218773">
+      <DataClassMoniker Name="/GatDataContext/GatAsicsPosSale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="37dbb608-0daf-4456-b84f-1d133a4bbf95" absoluteBounds="0.51499999999999968, 40.085, 1.9700000000000002, 3.564422607421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9ecc7292-3bf2-4f93-9920-6a03d8771c9f" absoluteBounds="2.5, 39.625, 2, 2.6460697428385416">
+      <DataClassMoniker Name="/GatDataContext/GatAsicsMeterialINV" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f11902e5-86ba-479a-addf-e86cafe889f8" absoluteBounds="2.5149999999999997, 40.085, 1.9700000000000002, 2.0860697428385415" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="14f03aa5-d8c0-4521-abf8-be15036d65a8" absoluteBounds="6.5, 19.625, 2, 2.0916874186197916">
+      <DataClassMoniker Name="/GatDataContext/GatAdStockTransfer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a8fbf121-ac55-43fa-a5ab-f2262f35e2d6" absoluteBounds="6.515, 20.085, 1.9700000000000002, 1.5316874186197915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="844258d0-e1d4-4b16-89cd-c4ea945cf163" absoluteBounds="2.5, 13.5, 2, 3.7548343912760416">
+      <DataClassMoniker Name="/GatDataContext/GatUaMaterial" />
+      <nestedChildShapes>
+        <elementListCompartment Id="763a8c13-1a9a-47d4-9f2f-0809c4e4861a" absoluteBounds="2.5150000000000006, 13.96, 1.9700000000000002, 3.1948343912760415" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b41a5c19-3b5e-455b-a236-28f2281491ae" absoluteBounds="0.5, 13.5, 2, 6.1571577962239576">
+      <DataClassMoniker Name="/GatDataContext/GatUaPosSale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="27f3309f-fb72-4697-94ce-bc586654375c" absoluteBounds="0.51499999999999968, 13.96, 1.9700000000000002, 5.597157796223958" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9f8fb8ce-25fd-48f0-abff-5e29cae66636" absoluteBounds="4.5, 13.5, 2, 5.4179813639322907">
+      <DataClassMoniker Name="/GatDataContext/GatUaPosSaleTransfer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fd1c5c4a-f22b-4077-8eb3-972ea86857e0" absoluteBounds="4.5150000000000006, 13.96, 1.9700000000000002, 4.8579813639322911" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4ae0b477-279d-4521-9311-fee186455294" absoluteBounds="6.5, 13.5, 2, 3.2004520670572916">
+      <DataClassMoniker Name="/GatDataContext/GatUaMaterialTransfer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="258e19ed-48b9-441d-ad00-c607d7683d45" absoluteBounds="6.515, 13.96, 1.9700000000000002, 2.6404520670572915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="57578b9b-f804-48cd-b4d1-1d9e1dfc62c1" absoluteBounds="13.875, 6.375, 2, 3.2004520670572916">
+      <DataClassMoniker Name="/GatDataContext/GatJackWolfSkinMeterialINV" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5b49f0b4-518f-48f0-ad0a-9ae4b3fdacf6" absoluteBounds="13.89, 6.8350000000000009, 1.9700000000000002, 2.6404520670572915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9b9b5de0-36c1-4c1b-acdc-64622a6c173b" absoluteBounds="11.875, 6.375, 2, 4.6788049316406246">
+      <DataClassMoniker Name="/GatDataContext/GatJackWolfSkinPosSale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="acbf4c2a-7a16-453c-94fa-af38f427f3d1" absoluteBounds="11.89, 6.835, 1.9700000000000002, 4.118804931640625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="361aa26d-16e4-48a3-bd54-8f4b5633741b" absoluteBounds="2.5, 8.375, 2, 3.2004520670572916">
+      <DataClassMoniker Name="/GatDataContext/GatLiNingMeterialINV" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2acf524c-cbbb-4b7a-9d3f-549fc336aa41" absoluteBounds="2.5149999999999997, 8.835, 1.9700000000000002, 2.6404520670572915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="572bc701-25af-4bff-97a8-90c8871343db" absoluteBounds="0.5, 8.375, 2, 5.0483931477864576">
+      <DataClassMoniker Name="/GatDataContext/GatLiNingPosSale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fdb8a51a-ec1c-4ade-b5fb-fb893dfeccf9" absoluteBounds="0.51500000000000012, 8.835, 1.9700000000000002, 4.488393147786458" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="58ebc764-3e7b-437f-abe2-d630add1722e" absoluteBounds="8.5, 0.5, 2, 1.9068933105468751">
+      <DataClassMoniker Name="/GatDataContext/GatMaterialRange" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f59e516e-e2f5-43a8-b859-714dc968b491" absoluteBounds="8.515, 0.96, 1.9700000000000002, 1.346893310546875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b96456bf-3c93-4b67-b667-a707523fb220" absoluteBounds="4.5, 6, 2, 2.2764815266927085">
+      <DataClassMoniker Name="/GatDataContext/GatSpecialMaterialRange" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f918949e-a259-4e4b-9a0b-32aa4006139f" absoluteBounds="4.515, 6.46, 1.9700000000000002, 1.7164815266927085" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6590da27-5fb9-460c-a3f7-edc07404e3f7" absoluteBounds="9, 7, 2, 1.7220992024739581">
+      <DataClassMoniker Name="/GatDataContext/Gat_ShopRightDS" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d20c729d-e543-45e2-8367-16bb9c29b648" absoluteBounds="9.015, 7.4600000000000009, 1.9700000000000002, 1.1620992024739583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

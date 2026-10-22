@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\LICENSE" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
+    <None Include="wwwroot\lib\layui\font\iconfont.svg" />
+    <None Include="wwwroot\lib\layui\font\iconfont.woff2" />
+    <None Include="wwwroot\lib\layui\layui.all.js" />
+    <None Include="wwwroot\lib\layui\layui.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\carousel.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\code.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\colorpicker.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\element.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\flow.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\form.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\jquery.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\laydate.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\layedit.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\layer.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\laypage.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\laytpl.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\mobile.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\rate.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\slider.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\table.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\transfer.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\tree.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\upload.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\util.js" />
+  </ItemGroup>
+
+</Project>

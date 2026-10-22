@@ -1,0 +1,8 @@
+C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\GatEntities\bin\Debug\GatEntities.dll
+C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\GatEntities\bin\Debug\GatEntities.pdb
+C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\GatEntities\bin\Debug\SqlSugar.dll
+C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\GatEntities\obj\Debug\GatEntities.csproj.AssemblyReference.cache
+C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\GatEntities\obj\Debug\GatEntities.csproj.CoreCompileInputs.cache
+C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\GatEntities\obj\Debug\GatEntit.2C14F132.Up2Date
+C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\GatEntities\obj\Debug\GatEntities.dll
+C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\GatEntities\obj\Debug\GatEntities.pdb

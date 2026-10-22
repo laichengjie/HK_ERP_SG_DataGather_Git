@@ -1,0 +1,9 @@
+.tooltip {
+    background: url("black_arrow.png") repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    display: none;
+    font-size: 12px;
+    height: 70px;
+    padding: 25px;
+    width: 160px;
+}

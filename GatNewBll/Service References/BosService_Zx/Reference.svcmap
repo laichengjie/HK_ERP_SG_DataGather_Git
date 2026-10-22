@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a7d3f1c6-52b8-4e19-9f0a-3c86b57d24e1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContract>false</GenerateMessageContract>
+    <ReuseTypes />
+    <CollectionMapping>
+      <CollectionMappings />
+    </CollectionMapping>
+    <NamespaceMappings>
+      <NamespaceMapping TargetNamespace="Bxh.Bj" SourceNamespace="http://tempuri.org/" />
+    </NamespaceMappings>
+    <SerializableTypes />
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractAssemblies />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://39.106.69.242:20002/WebService/Zx/BosService_Zx.asmx?WSDL" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BosService_Zx.wsdl" MetadataType="Wsdl" ID="1" SourceId="1" SourceUrl="http://39.106.69.242:20002/WebService/Zx/BosService_Zx.asmx?WSDL" />
+  </Metadata>
+  <Extensions />
+</ReferenceGroup>

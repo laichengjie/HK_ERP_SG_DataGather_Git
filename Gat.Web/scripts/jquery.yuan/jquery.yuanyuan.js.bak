@@ -1,0 +1,347 @@
+﻿
+
+; (function ($) { 
+    
+    $.extend($.fn, {
+        getCss: function(key) {
+            var v = parseInt(this.css(key));
+            if (isNaN(v))
+                return false;
+            return v;
+        }
+    });
+    $.fn.drag = function(opts) {
+        var ps = $.extend({
+            zIndex: 20,
+            opacity: .7,
+            handler: null,
+            onMove: function(e) { },
+            onDrop: function(e) { }
+        }, opts);
+
+        var dragndrop = {
+            drag: function(e) {
+                var dragData = e.data.dragData;
+                dragData.target.css({
+                    left: dragData.left + e.pageX - dragData.offLeft,
+                    top: dragData.top + e.pageY - dragData.offTop
+                });
+                dragData.handler.css({ cursor: 'move' });
+                dragData.onMove(e);
+            },
+            drop: function(e) {
+                var dragData = e.data.dragData;
+                dragData.target.css(dragData.oldCss); //.css({ 'opacity': '' });
+                dragData.handler.css('cursor', dragData.oldCss.cursor);
+                dragData.onDrop(e);
+                $(this).unbind('mousemove',dragndrop.drag);
+                $(this).unbind('mouseup', dragndrop.drop);
+            }
+        }
+        return this.each(function() {
+            var me = this;
+            var handler = null;
+            if (typeof ps.handler == 'undefined' || ps.handler == null){
+                handler = $(me);
+            }
+            else{
+                handler = (typeof ps.handler == 'string' ? $(ps.handler, this) : ps.handle);
+            }
+
+            handler.bind('mousedown', { e: me }, function(ev) {
+                var target = $(ev.data.e);
+                var oldCss = {};
+                if (target.css('position') !== 'absolute') {
+                    /*try {
+                        target.position(oldCss);
+                    } catch (ex) { }*/
+                    target.css('position', 'absolute');
+                }
+
+                var dragData = {
+                    left: oldCss.left || target.getCss('left') || 0,
+                    top: oldCss.top || target.getCss('top') || 0,
+                    offLeft: ev.pageX,
+                    offTop: ev.pageY,
+                    oldCss: oldCss,
+                    onMove: ps.onMove,
+                    onDrop: ps.onDrop,
+                    handler: handler,
+                    target: target
+                }
+                $(document)
+                .bind('mousemove',{dragData: dragData},dragndrop.drag)
+                .bind('mouseup', { dragData: dragData }, dragndrop.drop);
+            });
+        });
+    }
+    
+    $.yuanyuan = function(settings){  
+        // 扩展缓冲动画
+        $.extend($.easing, {
+            easeOutBounce: function (x, t, b, c, d) {
+                if ((t /= d) < (1 / 2.75)) {
+                    return c * (7.5625 * t * t) + b;
+                } else if (t < (2 / 2.75)) {
+                    return c * (7.5625 * (t -= (1.5 / 2.75)) * t + .75) + b;
+                } else if (t < (2.5 / 2.75)) {
+                    return c * (7.5625 * (t -= (2.25 / 2.75)) * t + .9375) + b;
+                } else {
+                    return c * (7.5625 * (t -= (2.625 / 2.75)) * t + .984375) + b;
+                }
+            } ,
+
+            easeOutBack: function (x, t, b, c, d, s) {
+		        if (s == undefined) s = 1.70158;
+		        return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+	        },
+            easeInOutQuint: function (x, t, b, c, d) {
+		        if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
+		        return c/2*((t-=2)*t*t*t*t + 2) + b;
+	        }
+        });
+
+        
+        var opt = $.extend({
+            title : '提示' , //标题
+            hclose : true , //标题头部的关闭按钮
+            html : '&nbsp;&nbsp;', //内容，如果指定iframe的话忽略该配置
+            url : null, // iframe地址，目前暂不支持
+            loading : false,
+            height : null,
+            width : 300,
+            icon : 'none' , //'none','correct','warning',loding,error
+            create : null, //创建DOM时回高
+            callback : null , //关闭时的回调 
+            buttons : { }, //按钮，以名称做为按钮文本
+        },settings);
+        
+        var browser = navigator.userAgent.toLowerCase();
+        var ie    = browser.indexOf('msie') > -1 && browser.indexOf('opera') == -1;
+        var version = browser.match(/(msie|firefox|webkit|opera)[\/:\s](\d+)/) ? RegExp.$2 : '0';
+        var ie6     = ie && version < 7;
+
+        var doc = $(document),body = $(document.body), win = $(window);
+        var cssHidden = { 'overflow': 'hidden' },cssNormal = { 'overflow':'' };
+        var docHeight = doc.height(),docWidth = doc.width(),winHeight = win.height(),windWidth = win.width();
+
+        var elements = document.getElementsByTagName('script');
+        var path = '';
+        for (var i = 0, len = elements.length; i < len; i++) {
+            if (elements[i].src && elements[i].src.match(/yuanyuan[\w\-\.]*\.js/)) {
+                path =  elements[i].src.substring(0, elements[i].src.lastIndexOf('/') + 1);
+            }
+        }
+        //alert(path);
+
+        var minWidth = 250,minHeight = 100;
+        if(opt.width < minWidth) opt.width = minWidth;
+        
+        if(opt.height && typeof(opt.height!=='undefined') && opt.height < minHeight) opt.height = minHeight;
+        //alert(typeof(opt.height));
+                
+        $.func = {  };
+        $.func.create = function(){
+            // #5742 - background
+            $('<div />')
+            .attr({ 'class' : 'yuan-bg' })
+            .css({  
+                height : docHeight
+            })
+            .appendTo(body);
+
+            // #5742 - outeropt.width，opt.height
+            var $outer = $('<div />')
+            .attr({ 'class' : 'yuan-outer' })
+            .css({
+                'left' : windWidth / 2,
+                'top' :  winHeight / 2,
+                'width' : 1,
+                'height' : 1 
+            })
+            .appendTo(body);
+
+            // #5742 - inner
+            var $inner = $('<div />')
+            .attr({ 'class' : 'yuan-inner' })
+            .appendTo($outer);
+
+            // #5742 - title
+            var $title = $('<div />')
+            .attr({ 'class' : 'yuan-title' })
+            .appendTo($inner)
+            .append(
+                $('<h4 />')
+                .html(opt.title)    
+            )
+            .append(
+                (function(){
+                    if(opt.hclose){
+                        return $('<a />')
+                                .attr({
+                                    hideFocus: true,
+                                    href: 'javascript:;',
+                                    title:'关闭',
+                                    'class' : 'yuan-closer'
+                                })
+                                .bind('click',function(e){
+                                    var e = e || window.event;
+                                    e.preventDefault();
+                                    // #5577 close
+                                    $.func.hide();
+                                });
+                    }else{
+                        return $('<span />');
+                    }
+                })()
+            );
+
+            // #5742 - body
+            var gif = path + opt.icon + '.gif';
+            var icon = "<i style='padding:12px 15px;background:url(" + gif + ") no-repeat center center;line-height:32px;'>&nbsp;</i>&nbsp;&nbsp;";
+            $('<div />')
+            .attr({ 
+                'class' : 'yuan-body'
+            })
+            .html(opt.icon !== 'none' ? icon + opt.html  : opt.html)
+            .appendTo($inner);
+
+            var $bottom = $('<div />')
+                .attr({ 'class' : 'yuan-bottom' })
+                .append(
+                  (function(){
+                    return $('<div />').attr('class','yuan-bottom-op');
+                  })());
+            
+            var bc = 0;
+            $.each(opt.buttons || {},function(n,v){
+                $('<a></a>')
+                .attr({
+                    'class' : 'yuan-botton',
+                    'href' : 'javascript:;',
+                    'hideFocus' : true
+                })
+                .html(n)
+                .bind('click',function(e){
+                    var e = e || window.event;
+                    e.preventDefault();
+                    //$.func.hide();
+                    if($.isFunction(v)) v();
+                })
+                .appendTo($bottom);
+                $bottom.append('<span>&nbsp;</span>');
+                bc += 1;
+            });
+            if(bc > 0) $bottom.appendTo($inner);
+
+            this.wrapper = $inner;
+            if($.isFunction(opt.create)) opt.create();
+
+        } //create all ui element
+
+        $.func.animate = function(set){
+            //var $bg = $('div.yuan-bg');
+            var $outer = $('div.yuan-outer');
+            $outer
+            .animate({
+                left : set.left,
+                top : set.top,
+                width : set.width,
+                height : set.height
+            },400,'easeInOutQuint',function(){
+                if($.isFunction(set.callback)) set.callback();
+            });
+        } // # animate
+        
+        $.func.show = function(){
+            var $outer = $('div.yuan-outer'),
+                $inner = $outer.children('div.yuan-inner'),
+                $bottom =$inner.children('div.yuan-bottom').css('opacity','0'),
+                $body = $inner.children('div.yuan-body'),
+                $title = $inner.children('div.yuan-title');
+            body.css(cssHidden);
+            if(opt.loading){
+                $body
+                //.css('background','url('+path + 'loading.gif) no-repeat center center')
+                .children()
+                .css('display','none');
+            }
+            //if(set.height && typeof(opt.height) !== 'undefined' && set.height < minHeight) set.height = minHeight;
+            $outer.css({
+                //'visibility' : 'hidden',
+                'width' : opt.width//,
+                //height : 'auto'
+            });
+            //var innerHeight = $inner.height();//alert(innerHeight);
+            if(opt.height === null || typeof(opt.height) === 'undefined'){
+                $outer.css('height','auto');
+            }else{
+                $outer.css('height',opt.height);
+            }
+            //alert($inner.height());         
+            var height = $outer.height();
+            $outer.css({
+                'height' :1,
+                'width' : 1
+            });
+            var settings = {
+                left : ($(window).width() - opt.width) / 2,
+                top : ($(window).height() - height) / 2,
+                width : opt.width,
+                height : height,
+                close : false,
+                callback : function(){
+                    var ih = $inner.height(),hh = $title.outerHeight(true),bh = $bottom.outerHeight(true),bp = window.parseInt($body.css('padding-left'));
+                    $body
+                    .css({
+                        'height' : ih - hh - bh - 2 * bp/*,
+                        'background-position' : '-9999px -9999px'*/
+                    })
+                    .children()
+                    .css('display','');
+                    $bottom.fadeTo('100',1)
+                }
+            };
+            $.func.animate(settings);
+        }
+
+        $.func.hide = function(){
+            var settings = {
+                left : ($(window).width() - 1) / 2,
+                top : ($(window).height() - 1) / 2,
+                width : 1,
+                height : 1,
+                callback : function(){
+                    if($.isFunction(opt.callback)) opt.callback();
+                    $('div.yuan-outer').remove();
+                    body.css(cssNormal);
+                }
+            };
+            $('div.yuan-bg').remove();
+            if(opt.loading) $('div.yuan-body').empty();
+            $.func.animate(settings);
+        }
+
+        /*win.resize(function(){
+            var $outer = $('div.yuan-outer')
+            var settings = {
+                left : ($(window).width() - opt.width) / 2,
+                top : ($(window).height() - $outer.height()) / 2,
+                width : opt.width,
+                height : $outer.height(),
+                close : false,
+                callback : $.noop
+            };
+            $.func.animate(settings);
+        });*/
+
+        $.func.create();
+        $.func.show();
+        $.unyuan = $.func.hide;
+        $('div.yuan-outer').drag({
+            handler: 'div.yuan-title'
+        });
+        
+    }; //提示插件
+
+})(jQuery);

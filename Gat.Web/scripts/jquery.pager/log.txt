@@ -1,0 +1,16 @@
+== 2010-12-20 : 1008283125=>应用程序请求开始(Application_BeginRequest)...
+== 2010-12-20 : 1008283125=>身份验证开始(Application_AuthenticateRequest)...
+== 2010-12-20 : 1008283281=>应用程序请求开始(Application_BeginRequest)...
+== 2010-12-20 : 1008283281=>身份验证开始(Application_AuthenticateRequest)...
+2010 年 12 月 20 日   10 时 14 分 30 秒 0625    消息：应用程序请求开始(Application_BeginRequest)
+2010 年 12 月 20 日   10 时 14 分 30 秒 0625    消息：身份验证开始(Application_AuthenticateRequest)
+2010 年 12 月 20 日   10 时 14 分 37 秒 9531    消息：应用程序请求开始(Application_BeginRequest)
+2010 年 12 月 20 日   10 时 14 分 37 秒 9531    消息：艹出错了(Application_Error)
+2010 年 12 月 20 日   10 时 32 分 53 秒 9687    消息：应用程序请求开始(Application_BeginRequest)
+2010 年 12 月 20 日   10 时 32 分 53 秒 9687    消息：身份验证开始(Application_AuthenticateRequest)
+2010 年 12 月 20 日   10 时 32 分 53 秒 9843    消息：应用程序请求开始(Application_BeginRequest)
+2010 年 12 月 20 日   10 时 32 分 53 秒 9843    消息：身份验证开始(Application_AuthenticateRequest)
+2010 年 12 月 20 日   10 时 32 分 55 秒 6562    消息：应用程序请求开始(Application_BeginRequest)
+2010 年 12 月 20 日   10 时 32 分 55 秒 6562    消息：身份验证开始(Application_AuthenticateRequest)
+2010 年 12 月 20 日   10 时 32 分 55 秒 6875    消息：应用程序请求开始(Application_BeginRequest)
+2010 年 12 月 20 日   10 时 32 分 55 秒 6875    消息：身份验证开始(Application_AuthenticateRequest)

@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="TestInterface">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="api" type="tns:ApiParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ApiParameter">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:HeadForm">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SIGN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="APPKEY" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="APPSECRET" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="APPTOKEN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="APPINTERFACE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="METHOD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TABLE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CONTENT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PROCEDUER" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TABLEKEY" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PREFIX" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="HeadForm">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="STORECODE" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DESCRIPTION" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DESCRIPTION1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SOURCE_SYS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SENDDATE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ETR_DATE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MESG_ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MESG_GUID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZSPARE01" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZSPARE02" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZSPARE03" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZSPARE04" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZSPARE05" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TestInterfaceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestInterfaceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReceivingInterface">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="api" type="tns:ApiParameter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReceivingInterfaceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReceivingInterfaceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="TestInterfaceSoapIn">
+    <wsdl:part name="parameters" element="tns:TestInterface" />
+  </wsdl:message>
+  <wsdl:message name="TestInterfaceSoapOut">
+    <wsdl:part name="parameters" element="tns:TestInterfaceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReceivingInterfaceSoapIn">
+    <wsdl:part name="parameters" element="tns:ReceivingInterface" />
+  </wsdl:message>
+  <wsdl:message name="ReceivingInterfaceSoapOut">
+    <wsdl:part name="parameters" element="tns:ReceivingInterfaceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="BosService_ZxSoap">
+    <wsdl:operation name="TestInterface">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">接口测试</wsdl:documentation>
+      <wsdl:input message="tns:TestInterfaceSoapIn" />
+      <wsdl:output message="tns:TestInterfaceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceivingInterface">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">接收数据接口</wsdl:documentation>
+      <wsdl:input message="tns:ReceivingInterfaceSoapIn" />
+      <wsdl:output message="tns:ReceivingInterfaceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BosService_ZxSoap" type="tns:BosService_ZxSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TestInterface">
+      <soap:operation soapAction="http://tempuri.org/TestInterface" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceivingInterface">
+      <soap:operation soapAction="http://tempuri.org/ReceivingInterface" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BosService_ZxSoap12" type="tns:BosService_ZxSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TestInterface">
+      <soap12:operation soapAction="http://tempuri.org/TestInterface" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceivingInterface">
+      <soap12:operation soapAction="http://tempuri.org/ReceivingInterface" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BosService_Zx">
+    <wsdl:port name="BosService_ZxSoap" binding="tns:BosService_ZxSoap">
+      <soap:address location="http://39.106.69.242:20002/WebService/Zx/BosService_Zx.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BosService_ZxSoap12" binding="tns:BosService_ZxSoap12">
+      <soap12:address location="http://39.106.69.242:20002/WebService/Zx/BosService_Zx.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

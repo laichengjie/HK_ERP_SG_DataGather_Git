@@ -122,25 +122,19 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="cpBody" runat="server">
     <div id="confirm"></div>
 
-    <!-- 方案下拉 -->
-    <div class="search" style="height: 40px; padding-top: 10px;">
-        <div>
-            <div class="l">
-                方案：
-                <asp:DropDownList ID="solution" runat="server"></asp:DropDownList>
-            </div>
-            <br />
-        </div>
+    <!-- 方案下拉 + 销售时间（同一行） -->
+    <div class="search" style="padding-top: 10px;">
+        方案：
+        <asp:DropDownList ID="solution" runat="server"></asp:DropDownList>
+        &nbsp;&nbsp;
+        <span style="color: #FF6600; font-weight: bold;">单据时间</span>：
+        <asp:TextBox ID="txtStartBillDate" runat="server" CssClass="datepicker"></asp:TextBox>
+        -
+        <asp:TextBox ID="txtEndBillDate" runat="server" CssClass="datepicker"></asp:TextBox>
     </div>
 
     <!-- 查询条件区域 -->
     <div class="search">
-        <span style="color: #FF6600; font-weight: bold;">销售时间</span>：
-        <asp:TextBox ID="txtStartBillDate" runat="server" CssClass="datepicker"></asp:TextBox>
-        -
-        <asp:TextBox ID="txtEndBillDate" runat="server" CssClass="datepicker"></asp:TextBox>
-        &nbsp;&nbsp;
-   
         <span>
             <label>店铺代码：</label>
             <asp:TextBox ID="shopCode" runat="server"></asp:TextBox>
@@ -220,7 +214,7 @@
                    <%-- barCode: ctlVal('<%= barCode.ClientID %>'),
                     materialCode: ctlVal('<%= materialCode.ClientID %>'),
                     sizeCode: ctlVal('<%= sizeCode.ClientID %>'),--%>
-                    status: ddlVal('<%= status.ClientID %>')
+                    status: ddlVal('<%= status.ClientID %>'),
                     interfacetype: ddlVal('<%= InterfaceType.ClientID %>')
                 };
             }

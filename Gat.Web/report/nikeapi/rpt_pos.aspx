@@ -172,6 +172,30 @@
             // 如果页面没有 ddlVendor，此处值为 undefined，接口需能兼容
             var vendorId = $('#ddlVendor').val();
 
+            // 读取控件当前值（文本框 / 下拉框）
+            function ctlVal(clientId) {
+                var el = document.getElementById(clientId);
+                return el ? el.value : '';
+            }
+            function ddlVal(clientId) {
+                var el = document.getElementById(clientId);
+                return (el && el.selectedIndex >= 0) ? el.options[el.selectedIndex].value : '';
+            }
+
+            // 统一的查询参数：首次加载、切方案、点击查询、分页都取当前界面上的实时值
+            function getQueryParams() {
+                return {
+                    solutionId: ddlVal('<%= solution.ClientID %>'),
+                    vendorId: vendorId || '',
+                    startBillDate: ctlVal('<%= txtStartBillDate.ClientID %>'),
+                    endBillDate: ctlVal('<%= txtEndBillDate.ClientID %>'),
+                    shopCode: ctlVal('<%= shopCode.ClientID %>'),
+                    cardShopCode: ctlVal('<%= cardShopCode.ClientID %>'),
+                    billNo: ctlVal('<%= billNo.ClientID %>'),
+                    status: ddlVal('<%= status.ClientID %>')
+                };
+            }
+
             layui.use(['table'], function () {
                 var table = layui.table;
 
@@ -183,7 +207,7 @@
                     url: window.location.origin + "/NikeApi/GatNikeApiPosSaleList",
                     method: "post",
                     request: { pageName: 'page', limitName: 'pageSize' },
-                    where: { solutionId: '', vendorId: vendorId },
+                    where: getQueryParams(),
                     parseData: function (res) {
                         return {
                             code: 0,
@@ -256,10 +280,10 @@
                         $(res).each(function (i, item) {
                             $sel.append('<option value="' + item.Id + '">' + item.CompanyName + '-' + item.CardName + '</option>');
                         });
-                        // 填充完方案后重载表格，避免首屏空白
+                        // 填充完方案后重载表格，避免首屏空白（带上全部查询条件）
                         if ($sel.val()) {
                             table.reload('grid', {
-                                where: { solutionId: $sel.val(), vendorId: vendorId },
+                                where: getQueryParams(),
                                 page: { curr: 1 }
                             });
                         }
@@ -268,26 +292,8 @@
 
                 // 3. 表格重新加载方法
                 function gridReload() {
-                    var val = function (clientId) {
-                        var el = document.getElementById(clientId);
-                        return el ? el.value : '';
-                    };
-                    var ddlVal = function (clientId) {
-                        var el = document.getElementById(clientId);
-                        return el ? el.options[el.selectedIndex].value : '';
-                    };
-
                     table.reload('grid', {
-                        where: {
-                            solutionId: ddlVal('<%= solution.ClientID %>'),
-                            startBillDate: val('<%= txtStartBillDate.ClientID %>'),
-                            endBillDate: val('<%= txtEndBillDate.ClientID %>'),
-                            shopCode: val('<%= shopCode.ClientID %>'),
-                            cardShopCode: val('<%= cardShopCode.ClientID %>'),
-                            billNo: val('<%= billNo.ClientID %>'),
-                            status: ddlVal('<%= status.ClientID %>'),
-                            vendorId: vendorId
-                        },
+                        where: getQueryParams(),
                         page: { curr: 1 }
                     });
                 }

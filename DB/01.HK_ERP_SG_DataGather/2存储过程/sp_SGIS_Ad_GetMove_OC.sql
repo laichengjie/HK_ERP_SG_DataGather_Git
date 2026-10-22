@@ -1,0 +1,1415 @@
+﻿IF EXISTS (SELECT *
+           FROM sys.objects
+           WHERE object_id=OBJECT_ID(N'[dbo].[sp_SGIS_Ad_GetMove_OC]')AND type IN (N'P', N'PC'))
+    DROP PROCEDURE [dbo].sp_SGIS_Ad_GetMove_OC;
+GO
+
+/* ==========================================================================================
+描    述：阿迪全渠道调拨单数据
+创 建 人：lcj
+创建日期：2023-08-24
+说明：
+更新说明：
+-- ==========================================================================================*/
+CREATE PROCEDURE [dbo].[sp_SGIS_Ad_GetMove_OC]
+    @VendorID INT = -1,          --供应商ID
+    @GatType INT = 1,            --采集类型，1：正常采集；0：补采
+    @CompanyID VARCHAR(20) = '', --公司ID 
+    @CardID VARCHAR(20) = '',    -- 品牌ID 
+    @StartTime DATETIME,         -- 补采时开始时间
+    @EndTime DATETIME,           --补采结束时间
+    @DateNow DATETIME,           --当前开始采集的时间
+    @IsTB INT = 0                --是否三小时数据
+AS
+BEGIN
+
+    IF OBJECT_ID('tempdB..#ShopStock') IS NOT NULL
+        DROP TABLE #ShopStock;
+    CREATE TABLE #ShopStock
+    (
+        CompanyID VARCHAR(50) NULL,
+        ShopID VARCHAR(50) NULL,
+        ShopCode VARCHAR(50) NULL,  --仓库代码
+        ShopName NVARCHAR(100) NULL,
+        StockID VARCHAR(50) NULL,   --仓库代码
+        StockCode VARCHAR(50) NULL, --仓库代码
+        StockName NVARCHAR(100) NULL,
+        StockType INT NULL, --仓库类型  0仓库  1店铺
+		IsShop bit null --是否店铺 1店铺 0大仓
+    ); --提报店铺
+
+
+
+    DECLARE @Start DATETIME = GETDATE(); --本次捞取数据的开始时间
+    DECLARE @End DATETIME = GETDATE(); --本次捞取数据的结束时间
+    DECLARE @HisDays INT = 60; -- 历史数据保留60天
+
+    DECLARE @IsAuto BIT = 1; --提取方案方式 1：自动：0:手动
+    DECLARE @SolutionID INT = 0; --提报方案ID
+    DECLARE @DrewTime VARCHAR(20); --提报时间点
+
+    /*
+	 IF OBJECT_ID('tempdB..#VendShop') IS NOT NULL
+        DROP TABLE #VendShop;
+    CREATE TABLE #VendShop
+    ( -- 供应商店铺
+        VendShopID INT NOT NULL, --
+        ShopCode VARCHAR(50) NULL,
+        ShopName VARCHAR(100) NULL,
+        StockCode VARCHAR(50) NULL,
+        StockName VARCHAR(100) NULL,
+    );
+    IF OBJECT_ID('tempdB..#ShopMap') IS NOT NULL
+        DROP TABLE #ShopMap;
+    CREATE TABLE #ShopMap
+    ( -- 店铺关系1
+        VendShopID INT NOT NULL,
+        ShopID VARCHAR(20) NOT NULL,
+        CompanyID VARCHAR(20)
+    );
+
+    -- 供应商店铺
+    INSERT INTO #VendShop
+    SELECT ID,
+           ShopCode,
+           ShopName,
+           StockCode,
+           StockName
+    FROM HK_ERP_SG_DataGather.dbo.Bas_VendShop
+    WHERE VendorID = @VendorID;
+
+    -- 店铺映射关系
+    INSERT INTO #ShopMap
+    SELECT VendShopID,
+           ShopID,
+           CompanyID
+    FROM HK_ERP_SG_DataGather.dbo.Bas_ShopMap a
+        INNER JOIN HK_ERP_SG_DataGather.dbo.Bas_VendShop b
+            ON a.VendShopID = b.ID
+    WHERE b.VendorID = @VendorID;
+	*/
+	--店仓
+    DELETE FROM #ShopStock; --清空上一次循环的数据（取店铺）
+    INSERT INTO #ShopStock
+    (
+        ShopID
+    )
+    SELECT DISTINCT
+           ShopID
+    FROM HK_ERP_SG_DataGather.dbo.Gat_ShopRight
+    WHERE AllowUsed = 1
+          AND CompanyID = @CompanyID
+          AND CardID = @CardID
+          AND ISNULL(VendorID, -2) = @VendorID;
+
+    UPDATE a
+    SET a.CompanyID = @CompanyID
+    FROM #ShopStock a;
+
+    UPDATE a
+    SET a.ShopCode = b.ShopCode,
+        a.ShopName = b.ShopName,
+        a.StockID = b.StockID,
+        a.StockCode = c.StockCode,
+        a.StockName = c.StockName,
+        a.StockType = c.StockType,
+		a.IsShop=1
+    FROM #ShopStock a
+        INNER JOIN dbo.Bas_Shop b
+            ON b.CompanyID = a.CompanyID
+               AND b.ShopID = a.ShopID
+        LEFT JOIN dbo.Bas_Stock c
+            ON c.StockID = b.StockID
+               AND c.CompanyID = b.CompanyID;
+    --大仓
+   insert into #ShopStock( 
+        CompanyID,
+        ShopID ,
+        ShopCode ,  --仓库代码
+        ShopName ,
+        StockID ,   --仓库代码
+        StockCode , --仓库代码
+        StockName ,
+        StockType , --仓库类型  0仓库  1店铺
+		IsShop  --是否店铺 1店铺 0大仓
+		)
+    SELECT DISTINCT
+        a.CompanyID,
+        ''ShopID ,
+        ''ShopCode ,  --仓库代码
+        '' ShopName ,
+        a.StockID ,   --仓库代码
+        b.StockCode,
+        b.StockName,
+        b.StockType,
+		0 IsShop  --是否店铺 1店铺 0大仓)
+    FROM HK_ERP_SG_DataGather.dbo.Gat_StockRight a
+	LEFT JOIN dbo.Bas_Stock b ON b.StockID = a.StockID  AND b.CompanyID = a.CompanyID
+    WHERE  a. AllowUsed = 1 AND  a.CompanyID = @CompanyID
+          AND ISNULL(a.VendorID, -2) = @VendorID
+          AND a.CardID = @CardID
+          AND NOT EXISTS
+         (
+          SELECT TOP 1 1 FROM #ShopStock b WHERE b.StockID = a.StockID
+          );
+
+    --①.先获取方案内容
+    SELECT TOP 1
+           @IsAuto = ISNULL(IsAuto, 1),
+           @SolutionID = ID
+    FROM HK_ERP_SG_DataGather.dbo.Gat_Solution
+    WHERE ISNULL(VendorID, -2) = @VendorID
+          AND CompanyID = @CompanyID
+          AND CardID = @CardID;
+    IF @IsTB = 0
+    BEGIN
+        IF @GatType = 0 --补采
+        BEGIN
+            SET @Start = @StartTime;
+            SET @End = @EndTime;
+        END;
+        ELSE
+        BEGIN
+            SET @Start = @StartTime;
+            SET @End = @DateNow;
+
+        END;
+    END;
+    ELSE
+    BEGIN
+        SET @Start = @StartTime;
+        SET @End = @EndTime;
+    END;
+    IF OBJECT_ID('tempdb..#Move', 'U') IS NOT NULL
+        DROP TABLE #Move;
+    CREATE TABLE #Move
+    (
+        [id] [INT] IDENTITY(1, 1) NOT NULL, --序号
+        [SolutionID] [INT] NOT NULL,        --方案ID
+        [CompanyID] [VARCHAR](20) NULL,     --公司
+        [BillNo] [VARCHAR](40) NOT NULL,    --单号
+        [ShopCode] [VARCHAR](50) NOT NULL,  --店铺代码
+        [ShopName] [NVARCHAR](100) NULL,    --店铺名称
+        [OutStockCode] [VARCHAR](50) NULL,  --仓库代码
+        [OutStockName] [NVARCHAR](100) NULL,
+        [OutStocType] [VARCHAR](100) NULL,  --出库仓类型/发货仓类型
+        [InStockCode] [VARCHAR](50) NULL,   --仓库代码
+        [InStockName] [NVARCHAR](100) NULL,
+        [InStocType] [VARCHAR](100) NULL,   --入库仓类型/入库仓类型
+        [BillDate] [DATETIME] NOT NULL,     --销售日期
+        [BillTime] [DATETIME] NOT NULL,     --制单时间
+        [MaterialCode] [VARCHAR](50) NULL,  --货号
+        [BarCode] [VARCHAR](128) NULL,      --条码
+        [SizeCode] [VARCHAR](50) NULL,      --尺码
+        [SizeName] [NVARCHAR](100) NULL,    --尺码名称
+        [Qty] [NUMERIC](10, 2) NOT NULL,    --数量
+        [State] [VARCHAR](50) NULL,         --状态
+        [ModifyTime] [DATETIME] NULL,       --修改时间
+        BillTypeID [VARCHAR](20) NULL,      --单据类型
+        BillTypeName [NVARCHAR](50) NULL,   --单据类型
+        CardID [VARCHAR](20) NULL,          --品牌
+        CardName [VARCHAR](20) NULL, --品牌名稱
+    );
+	/*
+    BEGIN --采购到货单
+        INSERT INTO #Move
+        (
+            SolutionID,   --方案ID
+            CompanyID,    --公司
+            BillNo,       --单号
+            ShopCode,     --店铺代码
+            ShopName,     --店铺名称
+            OutStockCode, --仓库代码
+            OutStockName,
+            OutStocType,  --出库仓类型/发货仓类型
+            InStockCode,  --仓库代码
+            InStockName,
+            InStocType,   --入库仓类型/入库仓类型
+            BillDate,     --销售日期
+            BillTime,     --制单时间
+            MaterialCode, --货号
+            BarCode,      --条码
+            SizeCode,     --尺码
+            SizeName,     --尺码名称
+            Qty,          --数量
+            State,        --状态
+            ModifyTime,   --修改时间
+            BillTypeID,   --单据类型
+            BillTypeName, --单据类型
+            CardID        --品牌
+
+        )
+        SELECT @SolutionID SolutionID,  --方案ID
+               a.CompanyID,             --公司ID
+               b.BillNo,                --单号
+               d.ShopCode ShopCode,     --店铺代码
+               d.ShopName ShopName,     --店铺名称
+               'ADDC' OutStockCode,     --仓库代码
+               'ADDC' OutStockName,     --仓库名称
+               'ADDC' OutStocType,      --出库仓类型/发货仓类型
+               d.StockCode InStockCode, --仓库代码
+               d.StockName InStockName, --仓库名称
+               'POS' InStocType,        --入库仓类型/入库仓类型
+               m.CheckDate BillDate,    --销售日期
+               GETDATE() BillTime,      --导入时间
+               c.MaterialCode,          --货号
+               ms.BarCode,              --条码
+               f.SizeCode,              --尺码
+               f.SizeName,              --尺码名称
+               a.Qty,                   --数量
+               'InTransit' State,       --状态
+               GETDATE() ModifyTime,    --更新时间
+               m.BillTypeID,            --单据类型
+               '采购到货单' BillTypeName,    --单据类型
+               @CardID CardID           --品牌
+        FROM dbo.SD_Pur_ReceiptSize a
+            INNER JOIN dbo.SD_Pur_ReceiptDetail b
+                ON b.CompanyID = a.CompanyID
+                   AND b.BillNo = a.BillNo
+                   AND b.Sequence = a.Sequence
+            INNER JOIN dbo.SD_Pur_ReceiptMaster m
+                ON a.CompanyID = m.CompanyID
+                   AND a.BillNo = m.BillNo
+            INNER JOIN dbo.SD_Mat_Material c
+                ON a.MaterialID = c.MaterialID
+            INNER JOIN #ShopStock d
+                ON d.StockID = m.StockID
+                   AND a.CompanyID = d.CompanyID
+            INNER JOIN dbo.SD_Bas_ShopCard e
+                ON d.CompanyID = e.CompanyID
+                   AND d.ShopID = e.ShopID
+                   AND c.CardID = e.CardID
+            INNER JOIN dbo.SD_Mat_Size f
+                ON a.SizeID = f.SizeID
+            LEFT JOIN dbo.Bas_Company j
+                ON a.CompanyID = j.CompanyID
+            LEFT JOIN dbo.SD_Mat_Card i
+                ON c.CardID = i.CardID
+            JOIN dbo.SD_Mat_MaterialSize ms
+                ON ms.SizeID = a.SizeID
+                   AND ms.MaterialID = a.MaterialID
+        WHERE a.CompanyID = @CompanyID
+              AND e.CardID = @CardID
+              AND m.CheckDate > @Start
+              AND m.CheckDate <= @End;
+    END;
+	*/
+    BEGIN --采购入库单
+        INSERT INTO #Move
+        (
+            SolutionID,   --方案ID
+            CompanyID,    --公司
+            BillNo,       --单号
+            ShopCode,     --店铺代码
+            ShopName,     --店铺名称
+            OutStockCode, --仓库代码
+            OutStockName,
+            OutStocType,  --出库仓类型/发货仓类型
+            InStockCode,  --仓库代码
+            InStockName,
+            InStocType,   --入库仓类型/入库仓类型
+            BillDate,     --销售日期
+            BillTime,     --制单时间
+            MaterialCode, --货号
+            BarCode,      --条码
+            SizeCode,     --尺码
+            SizeName,     --尺码名称
+            Qty,          --数量
+            State,        --状态
+            ModifyTime,   --修改时间
+            BillTypeID,   --单据类型
+            BillTypeName, --单据类型
+            CardID        --品牌
+
+        )
+        SELECT @SolutionID SolutionID,  --方案ID
+               a.CompanyID,             --公司ID
+               b.BillNo,                --单号
+               d.ShopCode ShopCode,     --店铺代码
+               d.ShopName ShopName,     --店铺名称
+               'ADDC' OutStockCode,     --仓库代码
+               NULL OutStockName,       --仓库名称
+               'ADDC' OutStocType,      --出库仓类型/发货仓类型
+               d.StockCode InStockCode, --仓库代码
+               d.StockName InStockName, --仓库名称
+               'POS' InStocType,        --入库仓类型/入库仓类型
+               m.CheckDate BillDate,    --销售日期
+               GETDATE() BillTime,      --导入时间
+               c.MaterialCode,          --货号
+               ms.BarCode,              --条码
+               f.SizeCode,              --尺码
+               f.SizeName,              --尺码名称
+               a.Qty,                   --数量
+               'Complete' State,        --状态
+               GETDATE() ModifyTime,    --更新时间
+               m.BillTypeID,            --单据类型
+               '采购入库单' BillTypeName,    --单据类型
+               @CardID CardID           --品牌
+        FROM dbo.SD_Inv_TransSize a
+            INNER JOIN dbo.SD_Inv_TransDetail b
+                ON b.CompanyID = a.CompanyID
+                   AND b.BillNo = a.BillNo
+                   AND b.Sequence = a.Sequence
+            INNER JOIN dbo.SD_Inv_TransMaster m
+                ON a.CompanyID = m.CompanyID
+                   AND a.BillNo = m.BillNo
+            INNER JOIN dbo.SD_Mat_Material c
+                ON a.MaterialID = c.MaterialID
+            INNER JOIN #ShopStock d
+                ON d.StockID = m.StockID
+                   AND a.CompanyID = d.CompanyID --and d.IsShop=1
+            --INNER JOIN dbo.SD_Bas_ShopCard e
+            --    ON d.CompanyID = e.CompanyID
+            --       AND d.ShopID = e.ShopID
+            --       AND c.CardID = e.CardID
+            INNER JOIN dbo.SD_Mat_Size f
+                ON a.SizeID = f.SizeID
+            LEFT JOIN dbo.Bas_Company j
+                ON a.CompanyID = j.CompanyID
+            LEFT JOIN dbo.SD_Mat_Card i
+                ON c.CardID = i.CardID
+            JOIN dbo.SD_Mat_MaterialSize ms
+                ON ms.SizeID = a.SizeID
+                   AND ms.MaterialID = a.MaterialID
+        WHERE m.CompanyID = @CompanyID
+              AND c.CardID = @CardID
+              AND m.CheckDate > @Start
+              AND m.CheckDate <= @End
+              AND m.BillTypeID = 'Inv_Cgrk'
+			  AND m.BillStatus=4
+    END;
+	    BEGIN --采购退货出库单
+        INSERT INTO #Move
+        (
+            SolutionID,   --方案ID
+            CompanyID,    --公司
+            BillNo,       --单号
+            ShopCode,     --店铺代码
+            ShopName,     --店铺名称
+            OutStockCode, --仓库代码
+            OutStockName,
+            OutStocType,  --出库仓类型/发货仓类型
+            InStockCode,  --仓库代码
+            InStockName,
+            InStocType,   --入库仓类型/入库仓类型
+            BillDate,     --销售日期
+            BillTime,     --制单时间
+            MaterialCode, --货号
+            BarCode,      --条码
+            SizeCode,     --尺码
+            SizeName,     --尺码名称
+            Qty,          --数量
+            State,        --状态
+            ModifyTime,   --修改时间
+            BillTypeID,   --单据类型
+            BillTypeName, --单据类型
+            CardID        --品牌
+
+        )
+        SELECT @SolutionID SolutionID,  --方案ID
+               a.CompanyID,             --公司ID
+               b.BillNo,                --单号
+               d.ShopCode ShopCode,     --店铺代码
+               d.ShopName ShopName,     --店铺名称
+               d.StockCode OutStockCode,     --仓库代码
+               d.StockName  OutStockName,       --仓库名称
+               'POS' OutStocType,      --出库仓类型/发货仓类型
+               'ADDC' InStockCode, --仓库代码
+               NULL InStockName, --仓库名称
+               'ADDC'  InStocType,        --入库仓类型/入库仓类型
+               m.CheckDate BillDate,    --销售日期
+               GETDATE() BillTime,      --导入时间
+               c.MaterialCode,          --货号
+               ms.BarCode,              --条码
+               f.SizeCode,              --尺码
+               f.SizeName,              --尺码名称
+               a.Qty,                   --数量
+               'Complete' State,        --状态
+               GETDATE() ModifyTime,    --更新时间
+               m.BillTypeID,            --单据类型
+               '采购退货出库单' BillTypeName,    --单据类型
+               @CardID CardID           --品牌
+        FROM dbo.SD_Inv_TransSize a
+            INNER JOIN dbo.SD_Inv_TransDetail b
+                ON b.CompanyID = a.CompanyID
+                   AND b.BillNo = a.BillNo
+                   AND b.Sequence = a.Sequence
+            INNER JOIN dbo.SD_Inv_TransMaster m
+                ON a.CompanyID = m.CompanyID
+                   AND a.BillNo = m.BillNo
+            INNER JOIN dbo.SD_Mat_Material c
+                ON a.MaterialID = c.MaterialID
+            INNER JOIN #ShopStock d
+                ON d.StockID = m.StockID
+                   AND a.CompanyID = d.CompanyID --and d.IsShop=1
+            --INNER JOIN dbo.SD_Bas_ShopCard e
+            --    ON d.CompanyID = e.CompanyID
+            --       AND d.ShopID = e.ShopID
+            --       AND c.CardID = e.CardID
+            INNER JOIN dbo.SD_Mat_Size f
+                ON a.SizeID = f.SizeID
+            LEFT JOIN dbo.Bas_Company j
+                ON a.CompanyID = j.CompanyID
+            LEFT JOIN dbo.SD_Mat_Card i
+                ON c.CardID = i.CardID
+            JOIN dbo.SD_Mat_MaterialSize ms
+                ON ms.SizeID = a.SizeID
+                   AND ms.MaterialID = a.MaterialID
+        WHERE m.CompanyID = @CompanyID
+              AND c.CardID = @CardID
+              AND m.CheckDate > @Start
+              AND m.CheckDate <= @End
+              AND m.BillTypeID = 'Inv_Thck'
+			  AND m.BillStatus=4
+    END;
+    BEGIN --调拨出库单
+        INSERT INTO #Move
+        (
+            SolutionID,   --方案ID
+            CompanyID,    --公司
+            BillNo,       --单号
+            ShopCode,     --店铺代码
+            ShopName,     --店铺名称
+            OutStockCode, --仓库代码
+            OutStockName,
+            OutStocType,  --出库仓类型/发货仓类型
+            InStockCode,  --仓库代码
+            InStockName,
+            InStocType,   --入库仓类型/入库仓类型
+            BillDate,     --销售日期
+            BillTime,     --制单时间
+            MaterialCode, --货号
+            BarCode,      --条码
+            SizeCode,     --尺码
+            SizeName,     --尺码名称
+            Qty,          --数量
+            State,        --状态
+            ModifyTime,   --修改时间
+            BillTypeID,   --单据类型
+            BillTypeName, --单据类型
+            CardID        --品牌
+
+        )
+        SELECT @SolutionID SolutionID,   --方案ID
+               a.CompanyID,              --公司ID
+               b.BillNo,                 --单号
+               '' ShopCode,      --店铺代码
+               '' ShopName,      --店铺名称
+               dd.StockCode OutStockCode, --仓库代码
+               dd.StockName OutStockName, --仓库名称
+               dd.StockType OutStocType,  --出库仓类型/发货仓类型
+               k.StockCode InStockCode,  --仓库代码
+               k.StockName InStockName,  --仓库名称
+               k.StockType InStocType,   --入库仓类型/入库仓类型
+               m.OutCheckDate BillDate,  --销售日期
+               GETDATE() BillTime,       --导入时间
+               c.MaterialCode,           --货号
+               ms.BarCode,               --条码
+               f.SizeCode,               --尺码
+               f.SizeName,               --尺码名称
+               a.OutQty Qty,             --数量
+               'InTransit' State,        --状态
+               GETDATE() ModifyTime,     --更新时间
+               'Inv_MovOut' BillTypeID,  --单据类型
+               '调拨出库单' BillTypeName,     --单据类型
+               @CardID CardID            --品牌
+        FROM dbo.SD_Inv_MoveSize a
+            INNER JOIN dbo.SD_Inv_MoveDetail b
+                ON b.CompanyID = a.CompanyID
+                   AND b.BillNo = a.BillNo
+                   AND b.Sequence = a.Sequence
+            INNER JOIN dbo.SD_Inv_MoveMaster m
+                ON a.CompanyID = m.CompanyID
+                   AND a.BillNo = m.BillNo
+            INNER JOIN dbo.SD_Mat_Material c
+                ON a.MaterialID = c.MaterialID
+            INNER JOIN dbo.SD_Mat_Size f
+                ON a.SizeID = f.SizeID
+            LEFT JOIN dbo.Bas_Company j
+                ON a.CompanyID = j.CompanyID
+            LEFT JOIN dbo.SD_Mat_Card i
+                ON c.CardID = i.CardID
+		    LEFT JOIN dbo.Bas_Stock dd
+                ON dd.CompanyID = m.CompanyID
+                   AND dd.StockID = m.OutStockID
+            LEFT JOIN dbo.Bas_Stock k
+                ON k.CompanyID = m.CompanyID
+                   AND k.StockID = m.InStockID
+            JOIN dbo.SD_Mat_MaterialSize ms
+                ON ms.SizeID = a.SizeID
+                   AND ms.MaterialID = a.MaterialID
+        WHERE m.CompanyID = @CompanyID
+              AND c.CardID = @CardID
+			  and  exists (select top 1 1 from #ShopStock d where d.StockID in( m.OutStockID,m.InStockID)AND a.CompanyID = d.CompanyID)
+              AND m.OutCheckDate > @Start
+              AND m.OutCheckDate <= @End
+              AND m.OutBillStatus = 4;
+	   
+    END;
+    BEGIN --调拨入库单
+        INSERT INTO #Move
+        (
+            SolutionID,   --方案ID
+            CompanyID,    --公司
+            BillNo,       --单号
+            ShopCode,     --店铺代码
+            ShopName,     --店铺名称
+            OutStockCode, --仓库代码
+            OutStockName,
+            OutStocType,  --出库仓类型/发货仓类型
+            InStockCode,  --仓库代码
+            InStockName,
+            InStocType,   --入库仓类型/入库仓类型
+            BillDate,     --销售日期
+            BillTime,     --制单时间
+            MaterialCode, --货号
+            BarCode,      --条码
+            SizeCode,     --尺码
+            SizeName,     --尺码名称
+            Qty,          --数量
+            State,        --状态
+            ModifyTime,   --修改时间
+            BillTypeID,   --单据类型
+            BillTypeName, --单据类型
+            CardID        --品牌
+
+        )
+        SELECT @SolutionID SolutionID,   --方案ID
+               a.CompanyID,              --公司ID
+               b.BillNo,                 --单号
+               '' ShopCode,      --店铺代码
+               '' ShopName,      --店铺名称
+               dd.StockCode OutStockCode, --仓库代码
+               dd.StockName OutStockName, --仓库名称
+               dd.StockType OutStocType,  --出库仓类型/发货仓类型
+               k.StockCode InStockCode,  --仓库代码
+               k.StockName InStockName,  --仓库名称
+               k.StockType InStocType,   --入库仓类型/入库仓类型
+               m.InCheckDate BillDate,  --销售日期
+               GETDATE() BillTime,       --导入时间
+               c.MaterialCode,           --货号
+               ms.BarCode,               --条码
+               f.SizeCode,               --尺码
+               f.SizeName,               --尺码名称
+               a.OutQty Qty,             --数量
+               'Complete' State,         --状态
+               GETDATE() ModifyTime,     --更新时间
+               'Inv_MovIn' BillTypeID,   --单据类型
+               '调拨入库单' BillTypeName,     --单据类型
+               @CardID CardID            --品牌
+        FROM dbo.SD_Inv_MoveSize a
+            INNER JOIN dbo.SD_Inv_MoveDetail b
+                ON b.CompanyID = a.CompanyID
+                   AND b.BillNo = a.BillNo
+                   AND b.Sequence = a.Sequence
+            INNER JOIN dbo.SD_Inv_MoveMaster m
+                ON a.CompanyID = m.CompanyID
+                   AND a.BillNo = m.BillNo
+            INNER JOIN dbo.SD_Mat_Material c
+                ON a.MaterialID = c.MaterialID
+            INNER JOIN dbo.SD_Mat_Size f
+                ON a.SizeID = f.SizeID
+            LEFT JOIN dbo.Bas_Company j
+                ON a.CompanyID = j.CompanyID
+            LEFT JOIN dbo.SD_Mat_Card i
+                ON c.CardID = i.CardID
+			 LEFT JOIN dbo.Bas_Stock dd
+                ON dd.CompanyID = m.CompanyID
+                   AND dd.StockID = m.OutStockID
+            LEFT JOIN dbo.Bas_Stock k
+                ON k.CompanyID = m.CompanyID
+                   AND k.StockID = m.InStockID
+            JOIN dbo.SD_Mat_MaterialSize ms
+                ON ms.SizeID = a.SizeID
+                   AND ms.MaterialID = a.MaterialID
+        WHERE m.CompanyID = @CompanyID
+              AND c.CardID = @CardID
+			    and  exists (select top 1 1 from #ShopStock d where d.StockID in( m.OutStockID,m.InStockID)AND a.CompanyID = d.CompanyID)
+              AND m.InCheckDate > @Start
+              AND m.InCheckDate <= @End
+              AND m.InBillStatus = 4;
+    END;
+
+    IF @IsTB = 1
+    BEGIN --补偿取 上一次遗漏的单据
+        --上一次提报时间点
+        SELECT @DrewTime = FORMAT(MAX(ModifyTime), 'yyyyMMddHH')
+        FROM HK_ERP_SG_DataGather.dbo.Gat_Ad_Move_OCTB;
+
+        IF OBJECT_ID('tempdb..#MoveBill', 'U') IS NOT NULL
+            DROP TABLE #MoveBill;
+        CREATE TABLE #MoveBill
+        (
+            [CompanyID] [VARCHAR](20) NULL,  --公司
+            [BillNo] [VARCHAR](40) NOT NULL, --单号
+            BillTypeID [VARCHAR](40) NULL,
+        );
+        INSERT INTO #MoveBill
+        (
+            CompanyID,
+            BillNo,
+            BillTypeID
+        )
+        SELECT CompanyID,
+               BillNo,
+               BillTypeID
+        FROM HK_ERP_SG_DataGather.dbo.Gat_Ad_Move_OCTB a
+        WHERE a.SolutionID = @SolutionID
+              AND a.DrewTime = @DrewTime;
+
+        DECLARE @LastStart DATETIME; --本次捞取数据的开始时间
+        DECLARE @LastEnd DATETIME; --本次捞取数据的结束时间
+
+        SELECT @LastStart = DATEADD(HOUR, -3, @Start);
+        SELECT @LastEnd = DATEADD(HOUR, -3, @End);
+		/*
+        BEGIN --采购到货单
+            INSERT INTO #Move
+            (
+                SolutionID,   --方案ID
+                CompanyID,    --公司
+                BillNo,       --单号
+                ShopCode,     --店铺代码
+                ShopName,     --店铺名称
+                OutStockCode, --仓库代码
+                OutStockName,
+                OutStocType,  --出库仓类型/发货仓类型
+                InStockCode,  --仓库代码
+                InStockName,
+                InStocType,   --入库仓类型/入库仓类型
+                BillDate,     --销售日期
+                BillTime,     --制单时间
+                MaterialCode, --货号
+                BarCode,      --条码
+                SizeCode,     --尺码
+                SizeName,     --尺码名称
+                Qty,          --数量
+                State,        --状态
+                ModifyTime,   --修改时间
+                BillTypeID,   --单据类型
+                BillTypeName, --单据类型
+                CardID        --品牌
+
+            )
+            SELECT @SolutionID SolutionID,  --方案ID
+                   a.CompanyID,             --公司ID
+                   b.BillNo,                --单号
+                   d.ShopCode ShopCode,     --店铺代码
+                   d.ShopName ShopName,     --店铺名称
+                   'ADDC' OutStockCode,     --仓库代码
+                   'ADDC' OutStockName,     --仓库名称
+                   'ADDC' OutStocType,      --出库仓类型/发货仓类型
+                   d.StockCode InStockCode, --仓库代码
+                   d.StockName InStockName, --仓库名称
+                   'POS' InStocType,        --入库仓类型/入库仓类型
+                   m.CheckDate BillDate,    --销售日期
+                   GETDATE() BillTime,      --导入时间
+                   c.MaterialCode,          --货号
+                   ms.BarCode,              --条码
+                   f.SizeCode,              --尺码
+                   f.SizeName,              --尺码名称
+                   a.Qty,                   --数量
+                   'InTransit' State,       --状态
+                   GETDATE() ModifyTime,    --更新时间
+                   m.BillTypeID,            --单据类型
+                   '采购到货单' BillTypeName,    --单据类型
+                   @CardID CardID           --品牌
+            FROM dbo.SD_Pur_ReceiptSize a
+                INNER JOIN dbo.SD_Pur_ReceiptDetail b
+                    ON b.CompanyID = a.CompanyID
+                       AND b.BillNo = a.BillNo
+                       AND b.Sequence = a.Sequence
+                INNER JOIN dbo.SD_Pur_ReceiptMaster m
+                    ON a.CompanyID = m.CompanyID
+                       AND a.BillNo = m.BillNo
+                INNER JOIN dbo.SD_Mat_Material c
+                    ON a.MaterialID = c.MaterialID
+                INNER JOIN #ShopStock d
+                    ON d.StockID = m.StockID
+                       AND a.CompanyID = d.CompanyID
+                INNER JOIN dbo.SD_Bas_ShopCard e
+                    ON d.CompanyID = e.CompanyID
+                       AND d.ShopID = e.ShopID
+                       AND c.CardID = e.CardID
+                INNER JOIN dbo.SD_Mat_Size f
+                    ON a.SizeID = f.SizeID
+                LEFT JOIN dbo.Bas_Company j
+                    ON a.CompanyID = j.CompanyID
+                LEFT JOIN dbo.SD_Mat_Card i
+                    ON c.CardID = i.CardID
+                JOIN dbo.SD_Mat_MaterialSize ms
+                    ON ms.SizeID = a.SizeID
+                       AND ms.MaterialID = a.MaterialID
+            WHERE a.CompanyID = @CompanyID
+                  AND e.CardID = @CardID
+                  AND m.CheckDate > @LastStart
+                  AND m.CheckDate <= @LastEnd
+                  AND NOT EXISTS
+            (
+                SELECT TOP 1
+                       1
+                FROM #MoveBill p
+                WHERE p.CompanyID = a.CompanyID
+                      AND p.BillNo = a.BillNo
+            )
+                  AND NOT EXISTS
+            (
+                SELECT TOP 1
+                       1
+                FROM #Move p
+                WHERE p.CompanyID = a.CompanyID
+                      AND p.BillNo = a.BillNo
+            );
+        END;
+		*/
+        BEGIN --采购入库单
+            INSERT INTO #Move
+            (
+                SolutionID,   --方案ID
+                CompanyID,    --公司
+                BillNo,       --单号
+                ShopCode,     --店铺代码
+                ShopName,     --店铺名称
+                OutStockCode, --仓库代码
+                OutStockName,
+                OutStocType,  --出库仓类型/发货仓类型
+                InStockCode,  --仓库代码
+                InStockName,
+                InStocType,   --入库仓类型/入库仓类型
+                BillDate,     --销售日期
+                BillTime,     --制单时间
+                MaterialCode, --货号
+                BarCode,      --条码
+                SizeCode,     --尺码
+                SizeName,     --尺码名称
+                Qty,          --数量
+                State,        --状态
+                ModifyTime,   --修改时间
+                BillTypeID,   --单据类型
+                BillTypeName, --单据类型
+                CardID        --品牌
+
+            )
+            SELECT @SolutionID SolutionID,  --方案ID
+                   a.CompanyID,             --公司ID
+                   b.BillNo,                --单号
+                   d.ShopCode ShopCode,     --店铺代码
+                   d.ShopName ShopName,     --店铺名称
+                   'ADDC' OutStockCode,     --仓库代码
+                   NULL OutStockName,       --仓库名称
+                   'ADDC' OutStocType,      --出库仓类型/发货仓类型
+                   d.StockCode InStockCode, --仓库代码
+                   d.StockName InStockName, --仓库名称
+                   'POS' InStocType,        --入库仓类型/入库仓类型
+                   m.CheckDate BillDate,    --销售日期
+                   GETDATE() BillTime,      --导入时间
+                   c.MaterialCode,          --货号
+                   ms.BarCode,              --条码
+                   f.SizeCode,              --尺码
+                   f.SizeName,              --尺码名称
+                   a.Qty,                   --数量
+                   'Complete' State,        --状态
+                   GETDATE() ModifyTime,    --更新时间
+                   m.BillTypeID,            --单据类型
+                   '采购入库单' BillTypeName,    --单据类型
+                   @CardID CardID           --品牌
+            FROM dbo.SD_Inv_TransSize a
+                INNER JOIN dbo.SD_Inv_TransDetail b
+                    ON b.CompanyID = a.CompanyID
+                       AND b.BillNo = a.BillNo
+                       AND b.Sequence = a.Sequence
+                INNER JOIN dbo.SD_Inv_TransMaster m
+                    ON a.CompanyID = m.CompanyID
+                       AND a.BillNo = m.BillNo
+                INNER JOIN dbo.SD_Mat_Material c
+                    ON a.MaterialID = c.MaterialID
+                INNER JOIN #ShopStock d
+                    ON d.StockID = m.StockID
+                       AND a.CompanyID = d.CompanyID --and IsShop=1
+                --INNER JOIN dbo.SD_Bas_ShopCard e
+                --    ON d.CompanyID = e.CompanyID
+                --       AND d.ShopID = e.ShopID
+                --       AND c.CardID = e.CardID
+                INNER JOIN dbo.SD_Mat_Size f
+                    ON a.SizeID = f.SizeID
+                LEFT JOIN dbo.Bas_Company j
+                    ON a.CompanyID = j.CompanyID
+                LEFT JOIN dbo.SD_Mat_Card i
+                    ON c.CardID = i.CardID
+                JOIN dbo.SD_Mat_MaterialSize ms
+                    ON ms.SizeID = a.SizeID
+                       AND ms.MaterialID = a.MaterialID
+            WHERE m.CompanyID = @CompanyID
+                  AND c.CardID = @CardID
+                  AND m.CheckDate > @LastStart
+                  AND m.CheckDate <= @LastEnd
+                  AND m.BillTypeID = 'Inv_Cgrk'
+                  AND NOT EXISTS
+            (
+                SELECT TOP 1
+                       1
+                FROM #MoveBill p
+                WHERE p.CompanyID = a.CompanyID
+                      AND p.BillNo = a.BillNo
+            )
+                  AND NOT EXISTS
+            (
+                SELECT TOP 1
+                       1
+                FROM #Move p
+                WHERE p.CompanyID = a.CompanyID
+                      AND p.BillNo = a.BillNo
+            );
+        END;
+		   BEGIN --采购退货出库单
+            INSERT INTO #Move
+            (
+                SolutionID,   --方案ID
+                CompanyID,    --公司
+                BillNo,       --单号
+                ShopCode,     --店铺代码
+                ShopName,     --店铺名称
+                OutStockCode, --仓库代码
+                OutStockName,
+                OutStocType,  --出库仓类型/发货仓类型
+                InStockCode,  --仓库代码
+                InStockName,
+                InStocType,   --入库仓类型/入库仓类型
+                BillDate,     --销售日期
+                BillTime,     --制单时间
+                MaterialCode, --货号
+                BarCode,      --条码
+                SizeCode,     --尺码
+                SizeName,     --尺码名称
+                Qty,          --数量
+                State,        --状态
+                ModifyTime,   --修改时间
+                BillTypeID,   --单据类型
+                BillTypeName, --单据类型
+                CardID        --品牌
+
+            )
+            SELECT @SolutionID SolutionID,  --方案ID
+                   a.CompanyID,             --公司ID
+                   b.BillNo,                --单号
+                   d.ShopCode ShopCode,     --店铺代码
+                   d.ShopName ShopName,     --店铺名称
+                   d.StockCode OutStockCode,     --仓库代码
+                   d.StockName  OutStockName,       --仓库名称
+                   'POS' OutStocType,      --出库仓类型/发货仓类型
+                   'ADDC' InStockCode, --仓库代码
+                   NULL InStockName, --仓库名称
+                   'ADDC'  InStocType,        --入库仓类型/入库仓类型
+                   m.CheckDate BillDate,    --销售日期
+                   GETDATE() BillTime,      --导入时间
+                   c.MaterialCode,          --货号
+                   ms.BarCode,              --条码
+                   f.SizeCode,              --尺码
+                   f.SizeName,              --尺码名称
+                   a.Qty,                   --数量
+                   'Complete' State,        --状态
+                   GETDATE() ModifyTime,    --更新时间
+                   m.BillTypeID,            --单据类型
+                   '采购退货出库单' BillTypeName,    --单据类型
+                   @CardID CardID           --品牌
+            FROM dbo.SD_Inv_TransSize a
+                INNER JOIN dbo.SD_Inv_TransDetail b
+                    ON b.CompanyID = a.CompanyID
+                       AND b.BillNo = a.BillNo
+                       AND b.Sequence = a.Sequence
+                INNER JOIN dbo.SD_Inv_TransMaster m
+                    ON a.CompanyID = m.CompanyID
+                       AND a.BillNo = m.BillNo
+                INNER JOIN dbo.SD_Mat_Material c
+                    ON a.MaterialID = c.MaterialID
+                INNER JOIN #ShopStock d
+                    ON d.StockID = m.StockID
+                       AND a.CompanyID = d.CompanyID --and IsShop=1
+                --INNER JOIN dbo.SD_Bas_ShopCard e
+                --    ON d.CompanyID = e.CompanyID
+                --       AND d.ShopID = e.ShopID
+                --       AND c.CardID = e.CardID
+                INNER JOIN dbo.SD_Mat_Size f
+                    ON a.SizeID = f.SizeID
+                LEFT JOIN dbo.Bas_Company j
+                    ON a.CompanyID = j.CompanyID
+                LEFT JOIN dbo.SD_Mat_Card i
+                    ON c.CardID = i.CardID
+                JOIN dbo.SD_Mat_MaterialSize ms
+                    ON ms.SizeID = a.SizeID
+                       AND ms.MaterialID = a.MaterialID
+            WHERE m.CompanyID = @CompanyID
+                  AND c.CardID = @CardID
+                  AND m.CheckDate > @LastStart
+                  AND m.CheckDate <= @LastEnd
+                  AND m.BillTypeID = 'Inv_Thck'
+                  AND NOT EXISTS
+            (
+                SELECT TOP 1
+                       1
+                FROM #MoveBill p
+                WHERE p.CompanyID = a.CompanyID
+                      AND p.BillNo = a.BillNo
+            )
+                  AND NOT EXISTS
+            (
+                SELECT TOP 1
+                       1
+                FROM #Move p
+                WHERE p.CompanyID = a.CompanyID
+                      AND p.BillNo = a.BillNo
+            );
+        END;
+        BEGIN --调拨出库单
+            INSERT INTO #Move
+            (
+                SolutionID,   --方案ID
+                CompanyID,    --公司
+                BillNo,       --单号
+                ShopCode,     --店铺代码
+                ShopName,     --店铺名称
+                OutStockCode, --仓库代码
+                OutStockName,
+                OutStocType,  --出库仓类型/发货仓类型
+                InStockCode,  --仓库代码
+                InStockName,
+                InStocType,   --入库仓类型/入库仓类型
+                BillDate,     --销售日期
+                BillTime,     --制单时间
+                MaterialCode, --货号
+                BarCode,      --条码
+                SizeCode,     --尺码
+                SizeName,     --尺码名称
+                Qty,          --数量
+                State,        --状态
+                ModifyTime,   --修改时间
+                BillTypeID,   --单据类型
+                BillTypeName, --单据类型
+                CardID        --品牌
+
+            )
+            SELECT @SolutionID SolutionID,   --方案ID
+                   a.CompanyID,              --公司ID
+                   b.BillNo,                 --单号
+                    '' ShopCode,      --店铺代码
+                   '' ShopName,      --店铺名称
+                   dd.StockCode OutStockCode, --仓库代码
+                   dd.StockName OutStockName, --仓库名称
+                   dd.StockType OutStocType,  --出库仓类型/发货仓类型
+                   k.StockCode InStockCode,  --仓库代码
+                   k.StockName InStockName,  --仓库名称
+                   k.StockType InStocType,   --入库仓类型/入库仓类型
+                   m.OutCheckDate BillDate,  --销售日期
+                   GETDATE() BillTime,       --导入时间
+                   c.MaterialCode,           --货号
+                   ms.BarCode,               --条码
+                   f.SizeCode,               --尺码
+                   f.SizeName,               --尺码名称
+                   a.OutQty Qty,             --数量
+                   'InTransit' State,        --状态
+                   GETDATE() ModifyTime,     --更新时间
+                   'Inv_MovOut' BillTypeID,  --单据类型
+                   '调拨出库单' BillTypeName,     --单据类型
+                   @CardID CardID            --品牌
+            FROM dbo.SD_Inv_MoveSize a
+                INNER JOIN dbo.SD_Inv_MoveDetail b
+                    ON b.CompanyID = a.CompanyID
+                       AND b.BillNo = a.BillNo
+                       AND b.Sequence = a.Sequence
+                INNER JOIN dbo.SD_Inv_MoveMaster m
+                    ON a.CompanyID = m.CompanyID
+                       AND a.BillNo = m.BillNo
+                INNER JOIN dbo.SD_Mat_Material c
+                    ON a.MaterialID = c.MaterialID
+                INNER JOIN dbo.SD_Mat_Size f
+                    ON a.SizeID = f.SizeID
+                LEFT JOIN dbo.Bas_Company j
+                    ON a.CompanyID = j.CompanyID
+                LEFT JOIN dbo.SD_Mat_Card i
+                    ON c.CardID = i.CardID
+               LEFT JOIN dbo.Bas_Stock dd
+                ON dd.CompanyID = m.CompanyID
+                   AND dd.StockID = m.OutStockID
+            LEFT JOIN dbo.Bas_Stock k
+                ON k.CompanyID = m.CompanyID
+                   AND k.StockID = m.InStockID
+                JOIN dbo.SD_Mat_MaterialSize ms
+                    ON ms.SizeID = a.SizeID
+                       AND ms.MaterialID = a.MaterialID
+            WHERE m.CompanyID = @CompanyID
+                  AND c.CardID = @CardID
+				    and  exists (select top 1 1 from #ShopStock d where d.StockID in( m.OutStockID,m.InStockID)AND a.CompanyID = d.CompanyID)
+                  AND m.OutCheckDate > @LastStart
+                  AND m.OutCheckDate <= @LastEnd
+                  AND m.OutBillStatus = 4
+                  AND NOT EXISTS
+            (
+                SELECT TOP 1
+                       1
+                FROM #MoveBill p
+                WHERE p.CompanyID = a.CompanyID
+                      AND p.BillNo = a.BillNo
+                      AND p.BillTypeID = 'Inv_MovOut'
+            )
+                  AND NOT EXISTS
+            (
+                SELECT TOP 1
+                       1
+                FROM #Move p
+                WHERE p.CompanyID = a.CompanyID
+                      AND p.BillNo = a.BillNo
+                      AND p.BillTypeID = 'Inv_MovOut'
+            );
+        END;
+        BEGIN --调拨入库单
+            INSERT INTO #Move
+            (
+                SolutionID,   --方案ID
+                CompanyID,    --公司
+                BillNo,       --单号
+                ShopCode,     --店铺代码
+                ShopName,     --店铺名称
+                OutStockCode, --仓库代码
+                OutStockName,
+                OutStocType,  --出库仓类型/发货仓类型
+                InStockCode,  --仓库代码
+                InStockName,
+                InStocType,   --入库仓类型/入库仓类型
+                BillDate,     --销售日期
+                BillTime,     --制单时间
+                MaterialCode, --货号
+                BarCode,      --条码
+                SizeCode,     --尺码
+                SizeName,     --尺码名称
+                Qty,          --数量
+                State,        --状态
+                ModifyTime,   --修改时间
+                BillTypeID,   --单据类型
+                BillTypeName, --单据类型
+                CardID        --品牌
+
+            )
+            SELECT @SolutionID SolutionID,   --方案ID
+                   a.CompanyID,              --公司ID
+                   b.BillNo,                 --单号
+                    '' ShopCode,      --店铺代码
+               '' ShopName,      --店铺名称
+                   dd.StockCode OutStockCode, --仓库代码
+                   dd.StockName OutStockName, --仓库名称
+                   dd.StockType OutStocType,  --出库仓类型/发货仓类型
+                   k.StockCode InStockCode,  --仓库代码
+                   k.StockName InStockName,  --仓库名称
+                   k.StockType InStocType,   --入库仓类型/入库仓类型
+                   m.InCheckDate BillDate,  --销售日期
+                   GETDATE() BillTime,       --导入时间
+                   c.MaterialCode,           --货号
+                   ms.BarCode,               --条码
+                   f.SizeCode,               --尺码
+                   f.SizeName,               --尺码名称
+                   a.OutQty Qty,             --数量
+                   'Complete' State,         --状态
+                   GETDATE() ModifyTime,     --更新时间
+                   'Inv_MovIn' BillTypeID,   --单据类型
+                   '调拨入库单' BillTypeName,     --单据类型
+                   @CardID CardID            --品牌
+            FROM dbo.SD_Inv_MoveSize a
+                INNER JOIN dbo.SD_Inv_MoveDetail b
+                    ON b.CompanyID = a.CompanyID
+                       AND b.BillNo = a.BillNo
+                       AND b.Sequence = a.Sequence
+                INNER JOIN dbo.SD_Inv_MoveMaster m
+                    ON a.CompanyID = m.CompanyID
+                       AND a.BillNo = m.BillNo
+                INNER JOIN dbo.SD_Mat_Material c
+                    ON a.MaterialID = c.MaterialID
+                INNER JOIN dbo.SD_Mat_Size f
+                    ON a.SizeID = f.SizeID
+                LEFT JOIN dbo.Bas_Company j
+                    ON a.CompanyID = j.CompanyID
+                LEFT JOIN dbo.SD_Mat_Card i
+                    ON c.CardID = i.CardID
+                 LEFT JOIN dbo.Bas_Stock dd
+                ON dd.CompanyID = m.CompanyID
+                   AND dd.StockID = m.OutStockID
+            LEFT JOIN dbo.Bas_Stock k
+                ON k.CompanyID = m.CompanyID
+                   AND k.StockID = m.InStockID
+                JOIN dbo.SD_Mat_MaterialSize ms
+                    ON ms.SizeID = a.SizeID
+                       AND ms.MaterialID = a.MaterialID
+            WHERE m.CompanyID = @CompanyID
+                  AND c.CardID = @CardID
+				    and  exists (select top 1 1 from #ShopStock d where d.StockID in( m.OutStockID,m.InStockID)AND a.CompanyID = d.CompanyID)
+                  AND m.InCheckDate > @LastStart
+                  AND m.InCheckDate <= @LastEnd
+                  AND m.InBillStatus = 4
+                  AND NOT EXISTS
+            (
+                SELECT TOP 1
+                       1
+                FROM #MoveBill p
+                WHERE p.CompanyID = a.CompanyID
+                      AND p.BillNo = a.BillNo
+                      AND p.BillTypeID = 'Inv_MovIn'
+            )
+                  AND NOT EXISTS
+            (
+                SELECT TOP 1
+                       1
+                FROM #Move p
+                WHERE p.CompanyID = a.CompanyID
+                      AND p.BillNo = a.BillNo
+                      AND p.BillTypeID = 'Inv_MovIn'
+            );
+        END;
+    END;
+
+    --调拨单仓库类型处理  0  仓  1 店
+    --举例：仓发店：发货仓类型DC入库仓类型是POS；
+    UPDATE a
+    SET a.OutStocType = 'DC',
+        a.InStocType = 'POS'
+    FROM #Move a
+    WHERE a.BillTypeID IN ( 'Inv_MovOut', 'Inv_MovIn' )
+          AND a.OutStocType = '0'
+          AND a.InStocType = '1';
+    --店发仓：发货仓类型POS入库仓类型是DC；
+    UPDATE a
+    SET a.OutStocType = 'POS',
+        a.InStocType = 'DC'
+    FROM #Move a
+    WHERE a.BillTypeID IN ( 'Inv_MovOut', 'Inv_MovIn' )
+          AND a.OutStocType = '1'
+          AND a.InStocType = '0';
+    --店间调拨：发货放与入库方均是POS；
+    UPDATE a
+    SET a.OutStocType = 'POS',
+        a.InStocType = 'POS'
+    FROM #Move a
+    WHERE a.BillTypeID IN ( 'Inv_MovOut', 'Inv_MovIn' )
+          AND a.OutStocType = '1'
+          AND a.InStocType = '1';
+    --仓到仓调拨不提取
+	/*
+	DELETE a
+    FROM #Move a
+    WHERE a.BillTypeID IN ( 'Inv_MovOut', 'Inv_MovIn' )
+          AND a.OutStocType = '0'
+          AND a.InStocType = '0'
+    */
+    --仓到仓调拨
+	UPDATE a
+    SET a.OutStocType = 'DC',
+        a.InStocType = 'DC'
+    FROM #Move a
+    WHERE a.BillTypeID IN ( 'Inv_MovOut', 'Inv_MovIn' )
+          AND a.OutStocType = '0'
+          AND a.InStocType = '0';
+
+    --采购入库发货方ADDC，入库方POS；
+    --采购入库发货方ADDC，入库方POS；
+    --如果出入库方的仓库范围两者都不在提报平台的店铺范围内是不需要传的；
+
+
+
+
+    IF @IsTB = 0
+    BEGIN
+        --删除指定范围之内的数据，防止补采产生重复数据
+        DELETE a FROM HK_ERP_SG_DataGather.dbo.Gat_Ad_Move_OC a
+		inner join #Move b on b.SolutionID= a.SolutionID and b.CompanyID=a.CompanyID and b.billno=a.billno and b.BillTypeID=a.BillTypeID AND b.CardID=a.CardID
+        WHERE a.CompanyID = @CompanyID
+              AND a.CardID = @CardID
+              --AND a.BillTime > @Start
+              --AND a.BillTime <= @End;
+
+        --删除历史数据
+        DELETE FROM HK_ERP_SG_DataGather.dbo.Gat_Ad_Move_OC
+        WHERE CompanyID = @CompanyID
+              AND CardID = @CardID
+              AND BillTime <= DATEADD(DAY, @HisDays * -1, CONVERT(VARCHAR(10), GETDATE(), 120));
+
+
+        -- 开始插入数据
+        IF (@IsAuto = 0) --手动数据去到中转库
+        BEGIN
+            INSERT INTO HK_ERP_SG_DataGather.dbo.Gat_Ad_Move_Transfer_OC
+            (
+                SolutionID,   --方案ID
+                CompanyID,    --公司
+                BillNo,       --单号
+                ShopCode,     --店铺代码
+                ShopName,     --店铺名称
+                OutStockCode, --仓库代码
+                OutStockName,
+                OutStocType,  --出库仓类型/发货仓类型
+                InStockCode,  --仓库代码
+                InStockName,
+                InStocType,   --入库仓类型/入库仓类型
+                BillDate,     --销售日期
+                BillTime,     --制单时间
+                MaterialCode, --货号
+                BarCode,      --条码
+                SizeCode,     --尺码
+                SizeName,     --尺码名称
+                Qty,          --数量
+                State,        --状态
+                ModifyTime,   --修改时间
+                BillTypeID,   --单据类型
+                BillTypeName, --单据类型
+                CardID,       --品牌
+                DrewTime
+            )
+            SELECT SolutionID,           --方案ID
+                   CompanyID,            --公司
+                   BillNo,               --单号
+                   ShopCode,             --店铺代码
+                   ShopName,             --店铺名称
+                   OutStockCode,         --仓库代码
+                   OutStockName,
+                   OutStocType,          --出库仓类型/发货仓类型
+                   InStockCode,          --仓库代码
+                   InStockName,
+                   InStocType,           --入库仓类型/入库仓类型
+                   BillDate,             --销售日期
+                   GETDATE() BillTime,   --制单时间
+                   MaterialCode,         --货号
+                   BarCode,              --条码
+                   SizeCode,             --尺码
+                   SizeName,             --尺码名称
+                   Qty,                  --数量
+                   State,                --状态
+                   GETDATE() ModifyTime, --修改时间
+                   BillTypeID,           --单据类型
+                   BillTypeName,         --单据类型
+                   CardID,               --品牌
+                   @DrewTime DrewTime
+            FROM #Move;
+        END;
+        IF (@IsAuto = 1) --自动数据去到真实库
+        BEGIN
+            INSERT INTO HK_ERP_SG_DataGather.dbo.Gat_Ad_Move_OC
+            (
+                SolutionID,   --方案ID
+                CompanyID,    --公司
+                BillNo,       --单号
+                ShopCode,     --店铺代码
+                ShopName,     --店铺名称
+                OutStockCode, --仓库代码
+                OutStockName,
+                OutStocType,  --出库仓类型/发货仓类型
+                InStockCode,  --仓库代码
+                InStockName,
+                InStocType,   --入库仓类型/入库仓类型
+                BillDate,     --销售日期
+                BillTime,     --制单时间
+                MaterialCode, --货号
+                BarCode,      --条码
+                SizeCode,     --尺码
+                SizeName,     --尺码名称
+                Qty,          --数量
+                State,        --状态
+                ModifyTime,   --修改时间
+                BillTypeID,   --单据类型
+                BillTypeName, --单据类型
+                CardID,       --品牌
+                DrewTime
+            )
+            SELECT SolutionID,           --方案ID
+                   CompanyID,            --公司
+                   BillNo,               --单号
+                   ShopCode,             --店铺代码
+                   ShopName,             --店铺名称
+                   OutStockCode,         --仓库代码
+                   OutStockName,
+                   OutStocType,          --出库仓类型/发货仓类型
+                   InStockCode,          --仓库代码
+                   InStockName,
+                   InStocType,           --入库仓类型/入库仓类型
+                   BillDate,             --销售日期
+                   GETDATE() BillTime,   --制单时间
+                   MaterialCode,         --货号
+                   BarCode,              --条码
+                   SizeCode,             --尺码
+                   SizeName,             --尺码名称
+                   Qty,                  --数量
+                   State,                --状态
+                   GETDATE() ModifyTime, --修改时间
+                   BillTypeID,           --单据类型
+                   BillTypeName,         --单据类型
+                   CardID,               --品牌
+                   @DrewTime DrewTime
+            FROM #Move;
+        END;
+    END;
+    ELSE
+    BEGIN
+        SELECT @DrewTime = FORMAT(GETDATE(), 'yyyyMMddHH');
+        --删除指定范围之内的数据，防止补采产生重复数据
+  --      DELETE a FROM HK_ERP_SG_DataGather.dbo.Gat_Ad_Move_OCTB a
+		--inner join #Move b on b.SolutionID= a.SolutionID and b.CompanyID=a.CompanyID and b.billno=a.billno and b.BillTypeID=a.BillTypeID
+  --      WHERE a.CompanyID = @CompanyID
+  --            AND a.CardID = @CardID
+  --            AND a.BillTime > @Start
+  --            AND a.BillTime <= @End
+			 
+		DELETE FROM HK_ERP_SG_DataGather.dbo.Gat_Ad_Move_OCTB
+        WHERE  ModifyTime <= DATEADD(DAY,-2, CONVERT(VARCHAR(10), GETDATE(), 120));
+
+        INSERT INTO HK_ERP_SG_DataGather.dbo.Gat_Ad_Move_OCTB
+        (
+            SolutionID,   --方案ID
+            CompanyID,    --公司
+            BillNo,       --单号
+            ShopCode,     --店铺代码
+            ShopName,     --店铺名称
+            OutStockCode, --仓库代码
+            OutStockName,
+            OutStocType,  --出库仓类型/发货仓类型
+            InStockCode,  --仓库代码
+            InStockName,
+            InStocType,   --入库仓类型/入库仓类型
+            BillDate,     --销售日期
+            BillTime,     --制单时间
+            MaterialCode, --货号
+            BarCode,      --条码
+            SizeCode,     --尺码
+            SizeName,     --尺码名称
+            Qty,          --数量
+            State,        --状态
+            ModifyTime,   --修改时间
+            BillTypeID,   --单据类型
+            BillTypeName, --单据类型
+            CardID,       --品牌
+            DrewTime
+        )
+        SELECT  distinct SolutionID,           --方案ID
+               CompanyID,            --公司
+               BillNo,               --单号
+               ShopCode,             --店铺代码
+               ShopName,             --店铺名称
+               OutStockCode,         --仓库代码
+               OutStockName,
+               OutStocType,          --出库仓类型/发货仓类型
+               InStockCode,          --仓库代码
+               InStockName,
+               InStocType,           --入库仓类型/入库仓类型
+               BillDate,             --销售日期
+               GETDATE() BillTime,   --制单时间
+               MaterialCode,         --货号
+               BarCode,              --条码
+               SizeCode,             --尺码
+               SizeName,             --尺码名称
+               Qty,                  --数量
+               State,                --状态
+               GETDATE() ModifyTime, --修改时间
+               BillTypeID,           --单据类型
+               BillTypeName,         --单据类型
+               CardID,               --品牌
+               @DrewTime DrewTime
+        FROM #Move;
+    END;
+END;
+
+
+

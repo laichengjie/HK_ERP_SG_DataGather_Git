@@ -1,0 +1,191 @@
+
+--建表  drop table Gat_IceBreaker_PosSale
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM sysobjects
+    WHERE id = OBJECT_ID('Gat_IceBreaker_PosSale')
+          AND type = 'U'
+)
+BEGIN
+    CREATE TABLE [dbo].[Gat_IceBreaker_PosSale]
+    (
+        [id] [INT] IDENTITY(1, 1) NOT NULL,
+        [SolutionID] [INT] NOT NULL,
+        [CardID] [VARCHAR](20) NULL,
+        [CardName] [VARCHAR](20) NULL,
+        [CompanyID] [VARCHAR](20) NOT NULL,
+        [CompanyName] [NVARCHAR](50) NULL,
+        [ShopID] [NVARCHAR](50) NOT NULL,
+        [ShopCode] [VARCHAR](50) NOT NULL,
+        [ShopName] [NVARCHAR](100) NULL,
+        [BillNo] [VARCHAR](40) NOT NULL,
+        [SourceBillNo] [VARCHAR](40) NOT NULL,
+        [BillDate] [DATETIME] NOT NULL,
+        [BillTime] [DATETIME] NULL,
+        [MaterialCode] [NVARCHAR](60) NOT NULL,
+        [BarCode] [VARCHAR](100) NOT NULL,
+        [Qty] [DECIMAL](24, 6) NULL,
+        [RetailPrice] [DECIMAL](24, 6) NULL, -- 吊牌价 取零售价
+        [PayAmount] [DECIMAL](24, 6) NULL,   --业绩金额 取 结算金额
+        [IsImport] [BIT] NULL,
+        [ModifyDtm] [DATETIME] NULL
+            CONSTRAINT [PK_Gat_IceBreaker_PosSale]
+            PRIMARY KEY CLUSTERED (
+                                      [id] ASC,
+                                      [SolutionID] ASC,
+                                      [CompanyID] ASC,
+                                      [BillNo] ASC,
+                                      [ShopCode] ASC,
+                                      [MaterialCode] ASC,
+                                      [BarCode] ASC
+                                  )
+            WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
+                  ALLOW_PAGE_LOCKS = ON
+                 ) ON [PRIMARY]
+    ) ON [PRIMARY];
+END;
+GO
+
+--建表  drop table Gat_IceBreaker_PosSale_transfer
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM sysobjects
+    WHERE id = OBJECT_ID('Gat_IceBreaker_PosSale_transfer')
+          AND type = 'U'
+)
+BEGIN
+    CREATE TABLE [dbo].[Gat_IceBreaker_PosSale_transfer]
+    (
+        [TransID] [INT] IDENTITY(1, 1) NOT NULL,
+        [SolutionID] [INT] NOT NULL,
+        [CardID] [VARCHAR](20) NULL,
+        [CardName] [VARCHAR](20) NULL,
+        [CompanyID] [VARCHAR](20) NOT NULL,
+        [CompanyName] [NVARCHAR](50) NULL,
+        [ShopID] [NVARCHAR](50) NOT NULL,
+        [ShopCode] [VARCHAR](50) NOT NULL,
+        [ShopName] [NVARCHAR](100) NULL,
+        [BillNo] [VARCHAR](40) NOT NULL,
+        [SourceBillNo] [VARCHAR](40) NOT NULL,
+        [BillDate] [DATETIME] NOT NULL,
+        [BillTime] [DATETIME] NULL,
+        [MaterialCode] [NVARCHAR](60) NOT NULL,
+        [BarCode] [VARCHAR](100) NOT NULL,
+        [Qty] [DECIMAL](24, 6) NULL,
+        [RetailPrice] [DECIMAL](24, 6) NULL, -- 吊牌价 取零售价
+        [PayAmount] [DECIMAL](24, 6) NULL,   --业绩金额 取 结算金额
+        [IsImport] [BIT] NULL,
+        [ModifyDtm] [DATETIME] NULL
+            CONSTRAINT [PK_Gat_IceBreaker_PosSale_transfer]
+            PRIMARY KEY CLUSTERED (
+                                      [TransID] ASC,
+                                      [SolutionID] ASC,
+                                      [CompanyID] ASC,
+                                      [BillNo] ASC,
+                                      [ShopCode] ASC,
+                                      [MaterialCode] ASC,
+                                      [BarCode] ASC
+                                  )
+            WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
+                  ALLOW_PAGE_LOCKS = ON
+                 ) ON [PRIMARY]
+    ) ON [PRIMARY];
+END;
+GO
+
+
+
+
+--建表  drop table Gat_IceBreaker_MaterialInv
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM sysobjects
+    WHERE id = OBJECT_ID('Gat_IceBreaker_MaterialInv')
+          AND type = 'U'
+)
+BEGIN
+    CREATE TABLE [dbo].[Gat_IceBreaker_MaterialInv]
+    (
+        [id] [INT] IDENTITY(1, 1) NOT NULL,
+        [SolutionID] [INT] NOT NULL,
+        [CardID] [VARCHAR](20) NULL,
+        [CardName] [VARCHAR](20) NULL,
+        [CompanyID] [VARCHAR](20) NOT NULL,
+        [CompanyName] [NVARCHAR](50) NULL,
+        [ShopID] [NVARCHAR](50) NOT NULL,
+        [ShopCode] [VARCHAR](50) NOT NULL,
+        [ShopName] [NVARCHAR](100) NULL,
+        [MaterialCode] [NVARCHAR](60) NOT NULL,
+        [Barcode] [NVARCHAR](100) NOT NULL,
+        [ActualQty] [NUMERIC](24, 6) NULL, --库存数量
+        [PathQty] [NUMERIC](24, 6) NULL,   --在途数量
+        [IsImport] [BIT] NULL,
+        [ModifyDtm] [DATETIME] NULL,
+        CONSTRAINT [PK_Gat_IceBreaker_MaterialInv]
+            PRIMARY KEY CLUSTERED (
+                                      [CompanyID] ASC,
+                                      [ShopCode] ASC,
+                                      [Barcode] ASC
+                                  )
+            WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
+                  ALLOW_PAGE_LOCKS = ON
+                 ) ON [PRIMARY]
+    ) ON [PRIMARY];
+END;
+GO
+
+
+
+--建表  drop table Gat_IceBreaker_MaterialInv_Transfer
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM sysobjects
+    WHERE id = OBJECT_ID('Gat_IceBreaker_MaterialInv_Transfer')
+          AND type = 'U'
+)
+BEGIN
+    CREATE TABLE [dbo].[Gat_IceBreaker_MaterialInv_Transfer]
+    (
+        [id] [INT] IDENTITY(1, 1) NOT NULL,
+        [SolutionID] [INT] NOT NULL,
+        [CardID] [VARCHAR](20) NULL,
+        [CardName] [VARCHAR](20) NULL,
+        [CompanyID] [VARCHAR](20) NOT NULL,
+        [CompanyName] [NVARCHAR](50) NULL,
+        [ShopID] [NVARCHAR](50) NOT NULL,
+        [ShopCode] [VARCHAR](50) NOT NULL,
+        [ShopName] [NVARCHAR](100) NULL,
+        [MaterialCode] [NVARCHAR](60) NOT NULL,
+        [Barcode] [NVARCHAR](100) NOT NULL,
+        [ActualQty] [NUMERIC](24, 6) NULL, --库存数量
+        [PathQty] [NUMERIC](24, 6) NULL,   --在途数量
+        [IsImport] [BIT] NULL,
+        [ModifyDtm] [DATETIME] NULL,
+        CONSTRAINT [PK_Gat_IceBreaker_MaterialInv_Transfer]
+            PRIMARY KEY CLUSTERED (
+                                      [CompanyID] ASC,
+                                      [ShopCode] ASC,
+                                      [Barcode] ASC
+                                  )
+            WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
+                  ALLOW_PAGE_LOCKS = ON
+                 ) ON [PRIMARY]
+    ) ON [PRIMARY];
+END;
+GO
+
+
+IF COL_LENGTH('Gat_IceBreaker_PosSale', 'SizeName') IS NULL
+    ALTER TABLE Gat_IceBreaker_PosSale ADD SizeName NVARCHAR(50) NULL;
+GO
+IF COL_LENGTH('Gat_IceBreaker_PosSale_transfer', 'SizeName') IS NULL
+    ALTER TABLE Gat_IceBreaker_PosSale_transfer ADD SizeName NVARCHAR(50) NULL;
+GO
+
+IF COL_LENGTH('Gat_IceBreaker_MaterialInv', 'SizeName') IS NULL
+    ALTER TABLE Gat_IceBreaker_MaterialInv ADD SizeName NVARCHAR(50) NULL;
+GO

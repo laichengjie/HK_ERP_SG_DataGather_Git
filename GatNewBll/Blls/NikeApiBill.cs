@@ -64,7 +64,21 @@ namespace GatNewBll.Blls
             }
             if (!string.IsNullOrEmpty(CardShopCode))
             {
-                //data = data.Where(o => o.Salesrep.Contains(CardShopCode));
+                data = data.Where(o => o.StockCode.Contains(CardShopCode));
+            }
+
+            if (!string.IsNullOrEmpty(interfacetype))
+            {
+                string BillType = "POS";
+                if (interfacetype == "1")
+                {
+                    BillType = "INV";
+                }
+                else if (interfacetype == "2")
+                {
+                    BillType = "OutIn";
+                }
+                data = data.Where(o => o.BillType== BillType);
             }
             if (!string.IsNullOrEmpty(billNo))
             {
@@ -259,8 +273,9 @@ namespace GatNewBll.Blls
         /// <param name="startTime">开始时间</param>
         /// <param name="endTime">结束时间</param>
         /// <param name="idsStr">单号ID字符串</param>
+        /// <param name="InterfaceType">接口类型 0 销售 1 库存 2 出入库</param>
         /// <returns></returns>
-        public HandleArgs PushPostDataSave(int solutionId, DateTime? startTime, DateTime? endTime, string idsStr)
+        public HandleArgs PushPostDataSave(int solutionId, DateTime? startTime, DateTime? endTime, string idsStr,string InterfaceType="0")
         {
             HandleArgs result = new HandleArgs();
             try

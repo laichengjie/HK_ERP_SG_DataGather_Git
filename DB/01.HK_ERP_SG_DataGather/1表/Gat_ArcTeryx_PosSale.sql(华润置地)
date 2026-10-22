@@ -1,0 +1,134 @@
+IF NOT Exists(select top 1 * from sysObjects where Id=OBJECT_ID(N'Gat_ArcTeryx_PosSale') and xtype='U')
+BEGIN
+CREATE TABLE [dbo].[Gat_ArcTeryx_PosSale](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SolutionId] [int] NOT NULL,
+	[CompanyID] [varchar](20) NOT NULL,
+	[BillNo] [varchar](40) NOT NULL,
+	[CashierId] [varchar](40) NOT NULL,--品牌方 收银员编码
+	[CheckCode] [varchar](40) NOT NULL,-- 品牌方 店铺验证密钥
+	[Comments] [Nvarchar](250) NOT NULL,-- 备注
+	[TillId] [Nvarchar](250) NOT NULL,-- 品牌方 收银机编号
+	[SaleDate] [datetime] NOT NULL,--订单时间
+	[StoreCode] [varchar](20) NOT NULL,--品牌方 店铺代码
+	[Saletype] [varchar](40) NOT NULL,--销售类型
+	[CardID] [varchar](20) NULL,--品牌ID
+	[ShopID] [varchar](50) NULL,
+	[ShopCode] [varchar](50) NULL,--店铺代码
+	[PostJaon] [text] NULL,
+	[ReturnJson] [text] NULL,
+	[IsSuccess] [bit] NOT NULL,
+	[CreateDtm] [datetime] NOT NULL,
+	[ModifyDtm] [datetime] NOT NULL,
+	[Qty] [int] NULL,--数量
+	[Amount] [decimal](24, 6) NULL,--订单总金额（POS单总结算金额）
+	[IsImport] [bit] NULL,
+	[Mall] [varchar](50) NULL,--商场编码
+ CONSTRAINT [PK_Gat_ArcTeryx_PosSale] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC,
+	[SolutionId] ASC,
+	[CompanyID] ASC,
+	[BillNo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+end
+
+
+IF NOT Exists(select top 1 * from sysObjects where Id=OBJECT_ID(N'Gat_ArcTeryx_PosSale_Detail') and xtype='U')
+BEGIN
+CREATE TABLE [dbo].[Gat_ArcTeryx_PosSale_Detail](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SolutionId] [int] NOT NULL,
+	[CompanyID] [varchar](20) NOT NULL,
+	[BillNo] [varchar](40) NOT NULL,
+	[MaterialID] VARCHAR(40) NULL,     --货号ID
+	[ItemCode] [varchar](60) NULL,--货号
+	[Quantity] [int] NOT NULL,--销售数量
+	[Price] [numeric](24, 6) NOT NULL,--商品价格（结算价）
+ CONSTRAINT [PK_Gat_ArcTeryx_PosSale_Detail] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC,
+	[SolutionId] ASC,
+	[CompanyID] ASC,
+	[BillNo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+end
+
+
+IF NOT Exists(select top 1 * from sysObjects where Id=OBJECT_ID(N'Gat_ArcTeryx_PosSale_Receipt') and xtype='U')
+BEGIN
+CREATE TABLE [dbo].[Gat_ArcTeryx_PosSale_Receipt](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SolutionId] [int] NOT NULL,
+	[CompanyID] [varchar](20) NOT NULL,
+	[BillNo] [varchar](40) NOT NULL,
+	[Sequence] VARCHAR(10)  NOT NULL,
+	[CardBank] [Nvarchar](60) NULL,--支付银行
+	[CardNumber] [varchar](60) NULL,--银行卡卡号
+	[DiscountAmt] [numeric](24, 6)  NULL,--优惠金额
+	[PayAmt] [numeric](24, 6)  NULL,--应收金额
+	[value] [numeric](24, 6)  NULL,--支付金额（实收金额）
+	[PaymentMethod] [Nvarchar](60) NOT NULL,--支付方式
+	[Time] [varchar](20) NOT NULL,--支付时间  销售日期时间 格式：	yyyyMMddhhmmss	
+ CONSTRAINT [PK_Gat_ArcTeryx_PosSale_Receipt] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC,
+	[SolutionId] ASC,
+	[CompanyID] ASC,
+	[BillNo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+end
+
+
+IF NOT Exists(select top 1 * from sysObjects where Id=OBJECT_ID(N'Gat_ArcTeryx_ShopMall') and xtype='U')
+BEGIN
+CREATE TABLE [dbo].[Gat_ArcTeryx_ShopMall](
+	 CompanyID [varchar](20) NOT NULL,
+	 ShopID    [VARCHAR](50) NOT NULL,          --店铺ID
+     CashierId [varchar](40) NOT NULL, --品牌方 收银员编码
+	 CheckCode [varchar](40) NOT NULL, --品牌方 店铺验证密钥
+	 Store  [varchar](20) NOT NULL,--品牌方 店铺代码
+     Mall varchar(50) NULL,            --品牌方 商场编码
+	 TillId [Nvarchar](250) NOT NULL,-- 品牌方 收银机编号
+ CONSTRAINT [PK_Gat_ArcTeryx_ShopMall] PRIMARY KEY CLUSTERED 
+(
+	[CompanyID] ASC,
+	[ShopID] ASC
+	
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+end
+
+---收款方式映射表
+IF NOT Exists(select top 1 * from sysObjects where Id=OBJECT_ID(N'Gat_ArcTeryx_ReceiptType') and xtype='U')
+BEGIN
+CREATE TABLE [dbo].[Gat_ArcTeryx_ReceiptType](
+	 SystemDefID [varchar](40) NOT NULL,         --ERP内置收款方式名称
+	 ReceiptTypeName    [NVARCHAR](50) NOT NULL, ---ERP内置收款方式名称
+     ArcTeryxCode [varchar](40) NOT NULL,        --品牌方 收款编码
+ CONSTRAINT [PK_Gat_ArcTeryx_ReceiptType] PRIMARY KEY CLUSTERED 
+(
+	[SystemDefID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+end
+
+
+
+
+/*
+
+
+select *from Gat_ArcTeryx_ShopMall
+insert into Gat_ArcTeryx_ShopMall(CompanyID,ShopID,CashierId,CheckCode,Store,Mall,TillId) 
+select 'HK' CompanyID,'HK000004'ShopID,'20081rhgb122n0101'CashierId,'p88888888'CheckCode,'RHGB122N01'Store,'20081'Mall,'01'TillId
+
+*/
+
+
+IF COL_LENGTH('Gat_ArcTeryx_PosSale', 'PushBillNo') IS NULL
+ALTER TABLE Gat_ArcTeryx_PosSale ADD  PushBillNo VARCHAR(40)  NULL;
+GO

@@ -21,8 +21,8 @@ namespace Gat.Web.report.nikeapi
 
         protected override void OnLoad(EventArgs e)
         {
-            this.TopTitle = " 耐克报表";
-            this.SubTitle = "耐克Pos销售明细";
+            this.TopTitle = " Nike报表";
+            this.SubTitle = "Nike 销售明细";
             base.OnLoad(e);
             if (!IsPostBack)
             {

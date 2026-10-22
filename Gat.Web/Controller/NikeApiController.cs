@@ -29,11 +29,14 @@ namespace Gat.Web.Controller
             {
                 solutionIdValue = input.SolutionId.Value;
             }
-            else
+            else if (input.VendorId.HasValue)
             {
                 SolutionBll solBll = new SolutionBll();
                 var solution = solBll.GetFirstSolutionByVendorId(input.VendorId.Value);
-                solutionIdValue = solution.Id;
+                if (solution != null)
+                {
+                    solutionIdValue = solution.Id;
+                }
             }
             var pageList = bll.GatNikeApiLoList(solutionIdValue, input.Page, input.PageSize,
                 input.StartBillDate, input.EndBillDate, input.ShopCode, input.CardShopCode, input.BillNo, input.Status,input.InterfaceType, ref totalCount, ref totalQty, ref totalAmount,true);
@@ -57,11 +60,14 @@ namespace Gat.Web.Controller
             {
                 solutionIdValue = input.SolutionId.Value;
             }
-            else
+            else if (input.VendorId.HasValue)
             {
                 SolutionBll solBll = new SolutionBll();
                 var solution = solBll.GetFirstSolutionByVendorId(input.VendorId.Value);
-                solutionIdValue = solution.Id;
+                if (solution != null)
+                {
+                    solutionIdValue = solution.Id;
+                }
             }
             var pageList = bll.GatNikeApiPosSaleList(solutionIdValue, input.Page, input.PageSize,
                 input.StartBillDate, input.EndBillDate, input.ShopCode, input.CardShopCode, input.BillNo, input.Status, ref totalCount, ref totalQty, ref totalAmount, true);
@@ -95,7 +101,7 @@ namespace Gat.Web.Controller
                 {
                     idsStr = string.Join(",", input.Ids);
                 }
-                var HANDLE = bll.PushPostDataSave(input.SolutionId,null,null, idsStr);
+                var HANDLE = bll.PushPostDataSave(input.SolutionId,null,null, idsStr,input.InterfaceType);
                 if (HANDLE.Status == HandleStatus.Completed)
                 {
                     result.Success = true;

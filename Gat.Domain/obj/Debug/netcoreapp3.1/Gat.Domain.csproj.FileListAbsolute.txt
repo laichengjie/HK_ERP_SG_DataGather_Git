@@ -1,9 +1,0 @@
-C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\Gat.Domain\bin\Debug\netcoreapp3.1\Gat.Domain.deps.json
-C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\Gat.Domain\bin\Debug\netcoreapp3.1\Gat.Domain.dll
-C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\Gat.Domain\bin\Debug\netcoreapp3.1\Gat.Domain.pdb
-C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\Gat.Domain\obj\Debug\netcoreapp3.1\Gat.Domain.GeneratedMSBuildEditorConfig.editorconfig
-C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\Gat.Domain\obj\Debug\netcoreapp3.1\Gat.Domain.AssemblyInfoInputs.cache
-C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\Gat.Domain\obj\Debug\netcoreapp3.1\Gat.Domain.AssemblyInfo.cs
-C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\Gat.Domain\obj\Debug\netcoreapp3.1\Gat.Domain.csproj.CoreCompileInputs.cache
-C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\Gat.Domain\obj\Debug\netcoreapp3.1\Gat.Domain.dll
-C:\Work\HKWinApp\HKWeb\数据提报\申格数据提报\HK_ERP_SG_DataGather\Gat.Domain\obj\Debug\netcoreapp3.1\Gat.Domain.pdb

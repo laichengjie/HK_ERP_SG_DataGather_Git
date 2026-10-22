@@ -452,4 +452,23 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-/AvaloniaHKPOS/Views/SettlementView.axaml
+
+##
+## 本项目补充规则（.NET Framework / ASP.NET WebForms + MVC）
+##
+
+# 编译产物：bin/、obj/、packages/ 目录已在上方忽略，
+# 这里补充散落在其它目录中的同名二进制
+*.dll
+*.exe
+
+# 例外：第三方引用库必须入库，不能忽略
+!Gat.Library/**
+!Gat.Utils/DLL/**
+
+# 站点运行时生成目录（上传文件、报表缓存）
+Gat.Web/Files/
+Gat.Web/Logs/
+
+# Office 临时文件
+~$*

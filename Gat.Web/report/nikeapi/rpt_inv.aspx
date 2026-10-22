@@ -140,7 +140,6 @@
             &nbsp;
             <label>尺码：</label>
             <asp:TextBox ID="sizeCode" runat="server"></asp:TextBox>
-             &nbsp;
             <label>单号：</label>
             <asp:TextBox ID="billNo" runat="server"></asp:TextBox>
             &nbsp;
@@ -190,8 +189,7 @@
                     vendorId: vendorId || '',
                     startBillDate: ctlVal('<%= txtStartBillDate.ClientID %>'),
                     endBillDate: ctlVal('<%= txtEndBillDate.ClientID %>'),
-                   <%-- shopCode: ctlVal('<%= shopCode.ClientID %>'),--%>
-                    stockCode: ctlVal('<%= stockCode.ClientID %>'), 
+                    stockCode: ctlVal('<%= stockCode.ClientID %>'),
                     barCode: ctlVal('<%= barCode.ClientID %>'),
                     materialCode: ctlVal('<%= materialCode.ClientID %>'),
                     sizeCode: ctlVal('<%= sizeCode.ClientID %>'),

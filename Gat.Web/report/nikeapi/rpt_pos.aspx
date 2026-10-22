@@ -13,57 +13,59 @@
     <script src="/scripts/jquery-confirm.min.js"></script>
     <link href="/styles/layui/css/layui.css" rel="stylesheet" />
     <script src="/styles/layui/layui.js"></script>
-    
+
     <style type="text/css">
-        body { font-size: 12px; }
+        body {
+            font-size: 12px;
+        }
 
         /* ★ 搜索区域整体样式优化 */
         .search {
-            font-size: 14px; 
-            line-height: 30px; 
+            font-size: 14px;
+            line-height: 30px;
             margin-bottom: 10px;
         }
-        
-        /* 统一表单控件（输入框、下拉框）的高度、字体、边框和对齐 */
-        .search input[type="text"],
-        .search select {
-            height: 28px;
-            line-height: 28px;
-            font-size: 14px;
-            padding: 0 6px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            vertical-align: middle;
-            box-sizing: border-box;
-        }
 
-        /* 调整日期框宽度 */
-        .search input[id$="txtStartBillDate"],
-        .search input[id$="txtEndBillDate"] {
-            width: 140px !important;
-        }
-        
-        /* 调整普通文本框宽度 */
-        .search input[id$="shopCode"],
-        .search input[id$="cardShopCode"],
-        .search input[id$="billNo"] {
-            width: 200px;
-        }
+            /* 统一表单控件（输入框、下拉框）的高度、字体、边框和对齐 */
+            .search input[type="text"],
+            .search select {
+                height: 28px;
+                line-height: 28px;
+                font-size: 14px;
+                padding: 0 6px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                vertical-align: middle;
+                box-sizing: border-box;
+            }
 
-        /* 统一按钮样式 */
-        .search button, 
-        .search input[type="submit"] {
-            height: 28px;
-            line-height: 26px;
-            padding: 0 12px;
-            font-size: 14px;
-            vertical-align: middle;
-            cursor: pointer;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            background-color: #f8f8f8;
-        }
-        
+            /* 调整日期框宽度 */
+            .search input[id$="txtStartBillDate"],
+            .search input[id$="txtEndBillDate"] {
+                width: 140px !important;
+            }
+
+            /* 调整普通文本框宽度 */
+            .search input[id$="shopCode"],
+            .search input[id$="stockCode"],
+            .search input[id$="billNo"] {
+                width: 200px;
+            }
+
+            /* 统一按钮样式 */
+            .search button,
+            .search input[type="submit"] {
+                height: 28px;
+                line-height: 26px;
+                padding: 0 12px;
+                font-size: 14px;
+                vertical-align: middle;
+                cursor: pointer;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                background-color: #f8f8f8;
+            }
+
         /* 查询按钮高亮 */
         #btnSearch {
             color: #fff;
@@ -80,12 +82,13 @@
             color: #333;
             line-height: 28px;
         }
-        .total-info label {
-            color: #ff5722; /* 数值高亮 */
-            margin-left: 5px;
-        }
+
+            .total-info label {
+                color: #ff5722; /* 数值高亮 */
+                margin-left: 5px;
+            }
     </style>
-    
+
     <script type="text/javascript">
         jQuery(function ($) {
             // ★ 修复：只初始化存在的日期框，去除高度限制，交由 CSS 控制
@@ -111,7 +114,7 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="cpBody" runat="server">
     <div id="confirm"></div>
-    
+
     <!-- 方案下拉 -->
     <div class="search" style="height: 40px; padding-top: 10px;">
         <div>
@@ -122,7 +125,7 @@
             <br />
         </div>
     </div>
-    
+
     <!-- 查询条件区域 -->
     <div class="search">
         <span style="color: #FF6600; font-weight: bold;">销售时间</span>：
@@ -132,12 +135,20 @@
         &nbsp;&nbsp;
    
         <span>
-            <label>店铺代码：</label>
+            <label> 店铺代码：</label>
             <asp:TextBox ID="shopCode" runat="server"></asp:TextBox>
             &nbsp;
+            <%--<label>仓库代码：</label>
+            <asp:TextBox ID="stockCode" runat="server"></asp:TextBox>
+            &nbsp;--%>
             <label>条码：</label>
-            <asp:TextBox ID="cardShopCode" runat="server"></asp:TextBox>
+            <asp:TextBox ID="barCode" runat="server"></asp:TextBox>
             &nbsp;
+            <label>货号：</label>
+            <asp:TextBox ID="materialCode" runat="server"></asp:TextBox>
+            &nbsp;
+            <label>尺码：</label>
+            <asp:TextBox ID="sizeCode" runat="server"></asp:TextBox>
             <label>单号：</label>
             <asp:TextBox ID="billNo" runat="server"></asp:TextBox>
             &nbsp;
@@ -152,15 +163,13 @@
             <asp:Button ID="btnExport" runat="server" OnClick="BtnExport_Click" Text="导出数据" />
 
             <!-- 统计数据（修复了错别字和排版） -->
-            <span class="total-info">
-                总数量：<label id="LabelTotalQty">0</label>
+            <span class="total-info">总数量：<label id="LabelTotalQty">0</label>
             </span>
-            <span class="total-info">
-                总金额：<label id="LabelTotalAmount">0</label>
+            <span class="total-info">总金额：<label id="LabelTotalAmount">0</label>
             </span>
         </span>
     </div>
-    
+
     <!-- 表格区域 -->
     <div class="bas_shopright">
         <table class="layui-hide" id="grid"></table>
@@ -190,8 +199,10 @@
                     startBillDate: ctlVal('<%= txtStartBillDate.ClientID %>'),
                     endBillDate: ctlVal('<%= txtEndBillDate.ClientID %>'),
                     shopCode: ctlVal('<%= shopCode.ClientID %>'),
-                    cardShopCode: ctlVal('<%= cardShopCode.ClientID %>'),
-                    billNo: ctlVal('<%= billNo.ClientID %>'),
+                   <%-- stockCode: ctlVal('<%= stockCode.ClientID %>'),--%>
+                    barCode: ctlVal('<%= barCode.ClientID %>'),
+                    materialCode: ctlVal('<%= materialCode.ClientID %>'),
+                    sizeCode: ctlVal('<%= sizeCode.ClientID %>'),
                     status: ddlVal('<%= status.ClientID %>')
                 };
             }
@@ -235,8 +246,8 @@
                                 return "<input type='checkbox' disabled " + (on ? "checked" : "") + " />";
                             }
                         },
-                        
-                        { field: "BillDate", title: "单据日期", width: 200  },
+
+                        { field: "BillDate", title: "单据日期", width: 200 },
                         { field: "STORE_CD", title: "店铺代码", width: 120 },
                         { field: "BusinessType", title: "业务类型", width: 100 },
                         { field: "BillNo", title: "单据编号", width: 200 },
@@ -249,8 +260,8 @@
                         { field: "NET_SALES_AMT_INCL_TAX", title: "结算金额", width: 100 },
                         { field: "MSRP_LC", title: "零售价", width: 100 },
                         { field: "TOTAL_PARTNER_MSRP_AMT", title: "零售金额", width: 100 },
-                        { field: "ModifyDtm", title: "修改时间", width: 200  },
-                        
+                        { field: "ModifyDtm", title: "修改时间", width: 200 },
+
                     ]],
                     page: true,
                     loading: true

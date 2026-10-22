@@ -47,7 +47,7 @@
 
             /* 调整普通文本框宽度 */
             .search input[id$="shopCode"],
-            .search input[id$="cardShopCode"],
+            .search input[id$="stockCode"],
             .search input[id$="billNo"] {
                 width: 120px;
             }
@@ -146,8 +146,17 @@
             <asp:TextBox ID="shopCode" runat="server"></asp:TextBox>
             &nbsp;
             <label>仓库代码：</label>
-            <asp:TextBox ID="cardShopCode" runat="server"></asp:TextBox>
+            <asp:TextBox ID="stockCode" runat="server"></asp:TextBox>
+       <%--     &nbsp;
+            <label>条码：</label>
+            <asp:TextBox ID="barCode" runat="server"></asp:TextBox>
             &nbsp;
+            <label>货号：</label>
+            <asp:TextBox ID="materialCode" runat="server"></asp:TextBox>
+            &nbsp;
+            <label>尺码：</label>
+            <asp:TextBox ID="sizeCode" runat="server"></asp:TextBox>--%>
+             &nbsp;
             <label>单号：</label>
             <asp:TextBox ID="billNo" runat="server"></asp:TextBox>
             &nbsp;
@@ -207,9 +216,11 @@
                     startBillDate: ctlVal('<%= txtStartBillDate.ClientID %>'),
                     endBillDate: ctlVal('<%= txtEndBillDate.ClientID %>'),
                     shopCode: ctlVal('<%= shopCode.ClientID %>'),
-                    cardShopCode: ctlVal('<%= cardShopCode.ClientID %>'),
-                    billNo: ctlVal('<%= billNo.ClientID %>'),
-                    status: ddlVal('<%= status.ClientID %>'),
+                    stockCode: ctlVal('<%= stockCode.ClientID %>'),
+                   <%-- barCode: ctlVal('<%= barCode.ClientID %>'),
+                    materialCode: ctlVal('<%= materialCode.ClientID %>'),
+                    sizeCode: ctlVal('<%= sizeCode.ClientID %>'),--%>
+                    status: ddlVal('<%= status.ClientID %>')
                     interfacetype: ddlVal('<%= InterfaceType.ClientID %>')
                 };
             }
@@ -340,7 +351,7 @@
                     var solutionId = $('#<%= solution.ClientID %>').val();
                     var interfacetype = $('#<%= InterfaceType.ClientID %>').val();
 
-                   
+
 
                     $.ajax({
                         url: window.location.origin + "/NikeApi/repost",

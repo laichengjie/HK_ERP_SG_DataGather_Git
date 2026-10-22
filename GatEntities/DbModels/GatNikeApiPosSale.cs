@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using SqlSugar;
-using static System.Net.Mime.MediaTypeNames;
+
 namespace GatEntities.DbModels
 {
     /// <summary>
@@ -209,6 +207,4 @@ namespace GatEntities.DbModels
         [SugarColumn(ColumnName = "PushBillNo", Length = 40)]
         public string PushBillNo { get; set; }
     }
-
-
 }

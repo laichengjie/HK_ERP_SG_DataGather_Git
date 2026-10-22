@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using SqlSugar;
-using static System.Net.Mime.MediaTypeNames;
+
 namespace GatEntities.DbModels
 {
     /// <summary>
@@ -20,7 +18,7 @@ namespace GatEntities.DbModels
         /// <summary>
         /// 提报方案Id
         /// </summary>
-        [SugarColumn(ColumnName = "SolutionId")]
+        [SugarColumn(ColumnName = "SolutionId", IsNullable = false)]
         public int SolutionId { get; set; }
 
         /// <summary>
@@ -90,18 +88,6 @@ namespace GatEntities.DbModels
         public string StockCode { get; set; }
 
         /// <summary>
-        /// 数量
-        /// </summary>
-        [SugarColumn(ColumnName = "Qty")]
-        public int? Qty { get; set; }
-
-        /// <summary>
-        /// 订单总金额（POS单总结算金额）
-        /// </summary>
-        [SugarColumn(ColumnName = "Amount", ColumnDataType = "decimal(24,6)")]
-        public decimal? Amount { get; set; }
-
-        /// <summary>
         /// 上传数据json
         /// </summary>
         [SugarColumn(ColumnName = "PostJaon", ColumnDataType = "nvarchar(max)")]
@@ -131,7 +117,17 @@ namespace GatEntities.DbModels
         [SugarColumn(ColumnName = "ModifyDtm")]
         public DateTime? ModifyDtm { get; set; }
 
-       
+        /// <summary>
+        /// 数量
+        /// </summary>
+        [SugarColumn(ColumnName = "Qty")]
+        public int? Qty { get; set; }
+
+        /// <summary>
+        /// 订单总金额（POS单总结算金额）
+        /// </summary>
+        [SugarColumn(ColumnName = "Amount", ColumnDataType = "decimal(24,6)")]
+        public decimal? Amount { get; set; }
 
         /// <summary>
         /// 是否导入

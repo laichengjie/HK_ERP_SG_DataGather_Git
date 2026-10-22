@@ -2,6 +2,7 @@
 using Gat.Web.Controller.Dtos;
 using Gat.Web.Controller.Dtos.NikeApi;
 using GatNewBll.Blls;
+using GatNewBll.Models;
 using GatNewBll.Models.NikeApi;
 using System;
 using System.Collections.Generic;
@@ -12,72 +13,38 @@ using System.Web.Http;
 namespace Gat.Web.Controller
 {
     /// <summary>
-    /// 伯俊
+    /// Nike
     /// </summary>
     public class NikeApiController : ApiController  
     {
         NikeApiBill bll = new NikeApiBill();
         [System.Web.Http.HttpPost] 
-        public NikeApiDetailDto<GatNikeApiLogModel> GatNikeApiLoList(NikeApiQueryDto input)
+        public QueryOutputDto<GatNikeApiLogModel> GatNikeApiLoList(QueryInputDto input)
         {
-            NikeApiDetailDto<GatNikeApiLogModel> result = new NikeApiDetailDto<GatNikeApiLogModel>();
-            int totalCount = 0;
-            int? totalQty = 0;
-            decimal? totalAmount = 0;
-            int solutionIdValue = 0;
-            if (input.SolutionId.HasValue)
-            {
-                solutionIdValue = input.SolutionId.Value;
-            }
-            else if (input.VendorId.HasValue)
-            {
-                SolutionBll solBll = new SolutionBll();
-                var solution = solBll.GetFirstSolutionByVendorId(input.VendorId.Value);
-                if (solution != null)
-                {
-                    solutionIdValue = solution.Id;
-                }
-            }
-            var pageList = bll.GatNikeApiLoList(solutionIdValue, input.Page, input.PageSize,
-                input.StartBillDate, input.EndBillDate, input.ShopCode, input.CardShopCode, input.BillNo, input.Status,input.InterfaceType, ref totalCount, ref totalQty, ref totalAmount,true);
-            result.TotalCount = totalCount;
-            result.Data = pageList;
-            result.Qty = totalQty;
-            result.Amount = totalAmount;
+            var result = bll.GatNikeApiLoList(input,true);
             return result;
         } 
 
 
         [System.Web.Http.HttpPost]
-        public NikeApiDetailDto<GatNikeApiPosSaleModel> GatNikeApiPosSaleList(NikeApiQueryDto input)
+        public QueryOutputDto<GatNikeApiPosSaleModel> GatNikeApiPosSaleList(QueryInputDto input)
         {
-            NikeApiDetailDto<GatNikeApiPosSaleModel> result = new NikeApiDetailDto<GatNikeApiPosSaleModel>();
-            int totalCount = 0;
-            int? totalQty = 0;
-            decimal? totalAmount = 0;
-            int solutionIdValue = 0;
-            if (input.SolutionId.HasValue)
-            {
-                solutionIdValue = input.SolutionId.Value;
-            }
-            else if (input.VendorId.HasValue)
-            {
-                SolutionBll solBll = new SolutionBll();
-                var solution = solBll.GetFirstSolutionByVendorId(input.VendorId.Value);
-                if (solution != null)
-                {
-                    solutionIdValue = solution.Id;
-                }
-            }
-            var pageList = bll.GatNikeApiPosSaleList(solutionIdValue, input.Page, input.PageSize,
-                input.StartBillDate, input.EndBillDate, input.ShopCode, input.CardShopCode, input.BillNo, input.Status, ref totalCount, ref totalQty, ref totalAmount, true);
-            result.TotalCount = totalCount;
-            result.Data = pageList;
-            result.Qty = totalQty;
-            result.Amount = totalAmount;
+            var result = bll.GatNikeApiPosSaleList(input, true);
             return result;
         }
 
+        [System.Web.Http.HttpPost]
+        public QueryOutputDto<GatNikeApiInvModel> GatNikeApiInvList(QueryInputDto input)
+        {
+            var result = bll.GatNikeApiInvList(input, true);
+            return result;
+        }
+        [System.Web.Http.HttpPost]
+        public QueryOutputDto<GatNikeApiOutInModel> GatNikeApiOutInList(QueryInputDto input)
+        {
+            var result = bll.GatNikeApiOutInList(input, true);
+            return result;
+        }
         public CommonResponseDto<object> Repost(RepostInputDto input)
         {
             CommonResponseDto<object> result = new CommonResponseDto<object>();

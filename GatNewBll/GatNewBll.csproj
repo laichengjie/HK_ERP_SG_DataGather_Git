@@ -62,8 +62,11 @@
   <ItemGroup>
     <Compile Include="Blls\NikeApiBill.cs" />
     <Compile Include="Blls\BurgeonBill.cs" />
+    <Compile Include="Models\QueryOutputDto.cs" />
     <Compile Include="Models\NikeApi\BaseRequest.cs" />
     <Compile Include="Models\NikeApi\BaseResponse.cs" />
+    <Compile Include="Models\NikeApi\GatNikeApiOutInModel.cs" />
+    <Compile Include="Models\NikeApi\GatNikeApiInvModel.cs" />
     <Compile Include="Models\NikeApi\NikeApiPosDetailData.cs" />
     <Compile Include="Models\NikeApi\NikeApiPosMasterData.cs" />
     <Compile Include="Models\NikeApi\NikeApiPosReceiptData.cs" />
@@ -72,6 +75,7 @@
     <Compile Include="Models\NikeApi\GatNikeApiPosSaleModel.cs" />
     <Compile Include="Models\NikeApi\GatGatNikeApiLogModel.cs" />
     <Compile Include="Models\Burgeon\GatBurgeonPosSaleDetailModel.cs" />
+    <Compile Include="Models\QueryInputDto.cs" />
     <Compile Include="Service References\BosService_Zx\Reference.cs" />
     <Compile Include="Blls\NikeBll_OC.cs" />
     <Compile Include="Blls\AdBll_OC.cs" />

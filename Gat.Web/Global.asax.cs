@@ -426,6 +426,8 @@ namespace Gat.Web
             //POS
             routes.MapPageRoute("rpt-nikeapi-log", "report/nikeapi/log/{page}", "~/report/nikeapi/rpt_log.aspx", true, new RouteValueDictionary { { "page", null } });
             routes.MapPageRoute("rpt-nikeapi-pos", "report/nikeapi/pos/{page}", "~/report/nikeapi/rpt_pos.aspx", true, new RouteValueDictionary { { "page", null } });
+            routes.MapPageRoute("rpt-nikeapi-inv", "report/nikeapi/inv/{page}", "~/report/nikeapi/rpt_inv.aspx", true, new RouteValueDictionary { { "page", null } });
+            routes.MapPageRoute("rpt-nikeapi-outin", "report/nikeapi/outin/{page}", "~/report/nikeapi/rpt_outin.aspx", true, new RouteValueDictionary { { "page", null } });
 
 
 

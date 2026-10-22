@@ -2,6 +2,7 @@
 using Gat.Utils;
 using Gat.Web.Common;
 using GatNewBll.Blls;
+using GatNewBll.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -49,11 +50,6 @@ namespace Gat.Web.report.nikeapi
             {
                 var StrstartBillDate = txtStartBillDate.Text;
                 var StrendBillDate = txtEndBillDate.Text;
-                var Shopcode = shopCode.Text;
-                var CardShopCode = cardShopCode.Text;
-                var BillNo = billNo.Text;
-                string statusValue = status.SelectedValue;
-
                 int SouleID = 0;
                 var strSouleID = solution.SelectedValue;
                 if (!string.IsNullOrWhiteSpace(strSouleID))
@@ -61,46 +57,33 @@ namespace Gat.Web.report.nikeapi
 
                 DateTime? StartBillDate = null;
                 DateTime? EndBillDate = null;
-
-                // ★ 修复了原代码中 Convert.ToDateTime(null) 会报错的问题
-                if (!string.IsNullOrEmpty(StrstartBillDate))
-                    DateTime.TryParse(StrstartBillDate, out DateTime tempStart);
                 if (!string.IsNullOrEmpty(StrstartBillDate) && DateTime.TryParse(StrstartBillDate, out DateTime tempStartDate))
                     StartBillDate = tempStartDate;
 
                 if (!string.IsNullOrEmpty(StrendBillDate) && DateTime.TryParse(StrendBillDate, out DateTime tempEndDate))
                     EndBillDate = tempEndDate;
-
-                int totalCount = 0;
-                int? totalQty = 0;
-                decimal? totalAmount = 0;
-
-                // 获取数据 (注意最后一个参数 false 可能代表不分页，请根据实际接口调整)
-                var salesData = bill.GatNikeApiPosSaleList(SouleID, 0, 0, StartBillDate, EndBillDate, Shopcode, CardShopCode, BillNo, statusValue, ref totalCount, ref totalQty, ref totalAmount, false);
-
-                // ★ 关键修改：提取的字段必须与前端表格列字段名严格一致
-                string[] exportColumns = new string[] {
-            "BillDate",
-            "STORE_CD",
-            "BusinessType",
-            "BillNo",
-            "OrderType",
-            "UPC",
-            "PRODUCT_CD",
-            "SIZE_CD",
-            "NET_SALES_PRC_INCL_TAX",
-            "SALES_QTY",
-            "NET_SALES_AMT_INCL_TAX",
-            "MSRP_LC",
-            "TOTAL_PARTNER_MSRP_AMT",
-            "ModifyDtm"
-        };
-
-                System.Data.DataTable dtSourceStock = salesData.ToDataTable(exportColumns);
+                QueryInputDto input = new QueryInputDto
+                {
+                    SolutionId = SouleID,
+                    VendorId = 0,
+                    Page = 0,
+                    PageSize = 0,
+                    StartBillDate = StartBillDate,
+                    EndBillDate = EndBillDate,
+                    ShopCode = shopCode != null ? shopCode.Text.Trim() : "",
+                    //StockCode = stockCode != null ? stockCode.Text.Trim() : "",
+                    BillNo = billNo != null ? billNo.Text.Trim() : "",
+                    BarCode = barCode != null ? barCode.Text.Trim() : "",
+                    MaterialCode = materialCode != null ? materialCode.Text.Trim() : "",
+                    SizeCode = sizeCode != null ? sizeCode.Text.Trim() : "",
+                    Status = status.SelectedValue,
+                    //InterfaceType = InterfaceType.SelectedValue
+                };
+                var result = bill.GatNikeApiPosSaleList(input, false);
+                string[] exportColumns = new string[] { "BillDate", "STORE_CD", "BusinessType","BillNo", "OrderType","UPC", "PRODUCT_CD","SIZE_CD", "NET_SALES_PRC_INCL_TAX","SALES_QTY", "NET_SALES_AMT_INCL_TAX","MSRP_LC","TOTAL_PARTNER_MSRP_AMT", "ModifyDtm"};
+                System.Data.DataTable dtSourceStock = result.Data.ToDataTable(exportColumns);
 
                 string fileName = "Nike销售明细.xlsx";
-
-                // 重命名中文列头
                 dtSourceStock.Columns["BillDate"].ColumnName = "单据日期";
                 dtSourceStock.Columns["STORE_CD"].ColumnName = "店铺代码";
                 dtSourceStock.Columns["BusinessType"].ColumnName = "业务类型";

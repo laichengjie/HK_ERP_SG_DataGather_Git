@@ -176,6 +176,8 @@
     <Content Include="report\iker\rpt_pos.aspx" />
     <Content Include="report\iker\rpt_stock_transfer.aspx" />
     <Content Include="report\iker\rpt_transfer.aspx" />
+    <Content Include="report\nikeapi\rpt_outin.aspx" />
+    <Content Include="report\nikeapi\rpt_inv.aspx" />
     <Content Include="report\nikeapi\rpt_pos.aspx" />
     <Content Include="report\nikeapi\rpt_log.aspx" />
     <Content Include="report\nike_omni_channel\rpt_inv\rpt_inv_day.aspx" />
@@ -1802,7 +1804,6 @@
     <Compile Include="Common\ControlHelper.cs" />
     <Compile Include="Common\CookieHelper.cs" />
     <Compile Include="Common\DGContext.cs" />
-    <Compile Include="Controller\Dtos\NikeApi\NikeApiQueryDto.cs" />
     <Compile Include="Controller\Dtos\NikeApi\NikeApiDetailDto.cs" />
     <Compile Include="Controller\Dtos\NikeApi\RepostInputDto.cs" />
     <Compile Include="Controller\NikeApiController.cs" />
@@ -1904,6 +1905,20 @@
     </Compile>
     <Compile Include="report\iker\rpt_transfer.aspx.designer.cs">
       <DependentUpon>rpt_transfer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="report\nikeapi\rpt_outin.aspx.cs">
+      <DependentUpon>rpt_outin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="report\nikeapi\rpt_outin.aspx.designer.cs">
+      <DependentUpon>rpt_outin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="report\nikeapi\rpt_inv.aspx.cs">
+      <DependentUpon>rpt_inv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="report\nikeapi\rpt_inv.aspx.designer.cs">
+      <DependentUpon>rpt_inv.aspx</DependentUpon>
     </Compile>
     <Compile Include="report\nikeapi\rpt_pos.aspx.cs">
       <DependentUpon>rpt_pos.aspx</DependentUpon>

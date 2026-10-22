@@ -2,6 +2,7 @@
 using Gat.Utils;
 using Gat.Web.Common;
 using GatNewBll.Blls;
+using GatNewBll.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -49,14 +50,6 @@ namespace Gat.Web.report.nikeapi
             {
                 var StrstartBillDate = txtStartBillDate.Text;
                 var StrendBillDate = txtEndBillDate.Text;
-                var Shopcode = shopCode.Text;
-                var CardShopCode = cardShopCode.Text;
-                var BillNo = billNo.Text;
-                string statusValue = status.SelectedValue;
-
-                string interfacetypeValue = InterfaceType.SelectedValue;
-                
-
                 int SouleID = 0;
                 var strSouleID = solution.SelectedValue;
                 if (!string.IsNullOrWhiteSpace(strSouleID))
@@ -64,30 +57,34 @@ namespace Gat.Web.report.nikeapi
 
                 DateTime? StartBillDate = null;
                 DateTime? EndBillDate = null;
+                if (!string.IsNullOrEmpty(StrstartBillDate) && DateTime.TryParse(StrstartBillDate, out DateTime tempStartDate))
+                    StartBillDate = tempStartDate;
 
-               
-                if (!string.IsNullOrEmpty(StrstartBillDate) && DateTime.TryParse(StrstartBillDate, out DateTime tempStart))
-                    StartBillDate = tempStart;
-
-                if (!string.IsNullOrEmpty(StrendBillDate) && DateTime.TryParse(StrendBillDate, out DateTime tempEnd))
-                    EndBillDate = tempEnd;
-
-                int totalCount = 0;
-                int? totalQty = 0;
-                decimal? totalAmount = 0;
-
-                
-                var salesData = bill.GatNikeApiLoList(SouleID, 0, 0, StartBillDate, EndBillDate, Shopcode, CardShopCode, BillNo, statusValue, interfacetypeValue, ref totalCount, ref totalQty, ref totalAmount, false);
-
+                if (!string.IsNullOrEmpty(StrendBillDate) && DateTime.TryParse(StrendBillDate, out DateTime tempEndDate))
+                    EndBillDate = tempEndDate;
+                QueryInputDto input = new QueryInputDto
+                {
+                    SolutionId = SouleID,
+                    VendorId = 0,
+                    Page = 0,
+                    PageSize = 0,
+                    StartBillDate = StartBillDate,
+                    EndBillDate = EndBillDate,
+                    ShopCode = shopCode != null ? shopCode.Text.Trim() : "",
+                    StockCode = stockCode != null ? stockCode.Text.Trim() : "",
+                    BillNo = billNo != null ? billNo.Text.Trim() : "",
+                    //BarCode = barCode != null ? barCode.Text.Trim() : "",
+                   // MaterialCode = materialCode != null ? materialCode.Text.Trim() : "",
+                   // SizeCode = sizeCode != null ? sizeCode.Text.Trim() : "",
+                    Status = status.SelectedValue,
+                    InterfaceType = InterfaceType.SelectedValue
+                };
+                var salesData = bill.GatNikeApiLoList(input, false);
               
-                System.Data.DataTable dtSourceStock = salesData.ToDataTable(new string[] {
-            "Id", "BillDate", "BillTypeName", "BillNo", "ShopCode", "StockCode",
-            "Qty", "Amount", "PostJaon", "ReturnJson", "ModifyDtm"
-        });
+                System.Data.DataTable dtSourceStock = salesData.Data.ToDataTable(new string[] {"Id", "BillDate", "BillTypeName", "BillNo", "ShopCode", "StockCode", "Qty", "Amount", "PostJaon", "ReturnJson", "ModifyDtm" });
 
                 string fileName = "Nike接口日志.xlsx";
 
-                // 重命名中文列头
                 dtSourceStock.Columns["Id"].ColumnName = "Id";
                 dtSourceStock.Columns["BillDate"].ColumnName = "单据日期";
                 dtSourceStock.Columns["BillTypeName"].ColumnName = "单据类型";

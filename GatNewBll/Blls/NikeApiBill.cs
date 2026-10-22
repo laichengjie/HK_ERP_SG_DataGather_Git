@@ -1,4 +1,5 @@
 ﻿using Gat.Utils;
+using Gat.Web.Controller.Dtos.NikeApi;
 using GatEntities.DbModels;
 using GatNewBll.Models;
 using GatNewBll.Models.NikeApi;
@@ -43,76 +44,80 @@ namespace GatNewBll.Blls
         /// <param name="totalAmount"></param>
         /// <param name="IsPaging"> 是否分页</param>
         /// <returns></returns>
-        public List<GatNikeApiLogModel> GatNikeApiLoList(int solutionId, int page, int pageSize, DateTime? startBillDate, DateTime? endBillDate, string shopCode
-            , string CardShopCode, string billNo, string status,string interfacetype, ref int totalCount, ref int? totalQty, ref decimal? totalAmount, bool IsPaging = false)
+        public QueryOutputDto<GatNikeApiLogModel> GatNikeApiLoList(QueryInputDto input, bool IsPaging = false)
         {
-            List<GatNikeApiLogModel> result = new List<GatNikeApiLogModel>();
+            QueryOutputDto<GatNikeApiLogModel> result = new QueryOutputDto<GatNikeApiLogModel>()
+            {
+                TotalCount =0,
+                Qty = 0,
+                Amount = 0,
+            };
             GatNikeApiLogManager manager = new GatNikeApiLogManager();
             var data = manager.AsQueryable()
-                .Where(o => o.SolutionId == solutionId);
-            if (startBillDate.HasValue)
+                .Where(o => o.SolutionId == input.SolutionId);
+            if (input.StartBillDate.HasValue)
             {
-                data = data.Where(o => o.BillDate >= startBillDate);
+                data = data.Where(o => o.BillDate >= input.StartBillDate);
             }
-            if (endBillDate.HasValue)
+            if (input.EndBillDate.HasValue)
             {
-                data = data.Where(o => o.BillDate <= endBillDate);
+                data = data.Where(o => o.BillDate <= input.EndBillDate);
             }
-            if (!string.IsNullOrEmpty(shopCode))
+            if (!string.IsNullOrEmpty(input.ShopCode))
             {
-                data = data.Where(o => o.ShopCode.Contains(shopCode));
+                data = data.Where(o => o.ShopCode.Contains(input.ShopCode));
             }
-            if (!string.IsNullOrEmpty(CardShopCode))
+            if (!string.IsNullOrEmpty(input.StockCode))
             {
-                data = data.Where(o => o.StockCode.Contains(CardShopCode));
+                data = data.Where(o => o.StockCode.Contains(input.StockCode));
             }
 
-            if (!string.IsNullOrEmpty(interfacetype))
+            if (!string.IsNullOrEmpty(input.InterfaceType))
             {
                 string BillType = "POS";
-                if (interfacetype == "1")
+                if (input.InterfaceType == "1")
                 {
                     BillType = "INV";
                 }
-                else if (interfacetype == "2")
+                else if (input.InterfaceType == "2")
                 {
                     BillType = "OutIn";
                 }
                 data = data.Where(o => o.BillType== BillType);
             }
-            if (!string.IsNullOrEmpty(billNo))
+            if (!string.IsNullOrEmpty(input.BillNo))
             {
-                data = data.Where(o => o.BillNo.Contains(billNo));
+                data = data.Where(o => o.BillNo.Contains(input.BillNo));
             }
-            if (!string.IsNullOrEmpty(status))
+            if (!string.IsNullOrEmpty(input.Status))
             {
-                data = data.Where(o => o.IsSuccess == (status == "0" ? false : true));
+                data = data.Where(o => o.IsSuccess == (input.Status == "0" ? false : true));
             }
-
-            totalQty = 0;
-            totalAmount = 0;
-            if (data.Count() > 0)
-            {
-                totalQty = data.Sum(o => o.Qty);
-                totalAmount = data.Sum(o => o.Amount);
+            int totalCount = data.Count();
+            if (totalCount > 0)
+            { 
+                result.Qty = (int)data.Sum(o => o.Qty);
+                result.Amount = (decimal)data.Sum(o => o.Amount);
             }
 
             if (IsPaging)
             {
-                result = data.Select((o) => new GatNikeApiLogModel()
+                result.Data = data.Select((o) => new GatNikeApiLogModel()
                 {
                     Id = o.Id.SelectAll()
                 }).OrderBy(o => new { o.BillDate, o.ShopCode, o.BillNo })
-                  .ToPageList(page, pageSize, ref totalCount);
+                  .ToPageList(input.Page, input.PageSize, ref totalCount);
+               
             }
             else
             {
-                result = data.Select((o) => new GatNikeApiLogModel()
+                result.Data = data.Select((o) => new GatNikeApiLogModel()
                 {
                     Id = o.Id.SelectAll()
                 }).OrderBy(o => new { o.BillDate, o.ShopCode, o.BillNo })
                   .ToList();
             }
+            result.TotalCount = totalCount;
             return result;
         }
 
@@ -133,62 +138,275 @@ namespace GatNewBll.Blls
         /// <param name="totalAmount"></param>
         /// <param name="IsPaging"></param>
         /// <returns></returns>
-        public List<GatNikeApiPosSaleModel> GatNikeApiPosSaleList(int solutionId, int page, int pageSize, DateTime? startBillDate, DateTime? endBillDate, string shopCode
-    , string CardShopCode, string billNo, string status, ref int totalCount, ref int? totalQty, ref decimal? totalAmount, bool IsPaging = false)
+        public QueryOutputDto<GatNikeApiPosSaleModel> GatNikeApiPosSaleList(QueryInputDto input, bool IsPaging = false)
         {
-            List<GatNikeApiPosSaleModel> result = new List<GatNikeApiPosSaleModel>();
+            QueryOutputDto<GatNikeApiPosSaleModel> result = new QueryOutputDto<GatNikeApiPosSaleModel>()
+            {
+                TotalCount = 0,
+                Qty = 0,
+                Amount = 0,
+            };
             GatNikeApiPosSaleManager manager = new GatNikeApiPosSaleManager();
             var data = manager.AsQueryable()
-                .Where(o => o.SolutionId == solutionId);
-            if (startBillDate.HasValue)
+                .Where(o => o.SolutionId == input.SolutionId);
+            if (input.StartBillDate.HasValue)
             {
-                data = data.Where(o => o.BillDate >= startBillDate);
+                data = data.Where(o => o.BillDate >= input.StartBillDate);
             }
-            if (endBillDate.HasValue)
+            if (input.EndBillDate.HasValue)
             {
-                data = data.Where(o => o.BillDate <= endBillDate);
+                data = data.Where(o => o.BillDate <= input.EndBillDate);
             }
-            if (!string.IsNullOrEmpty(shopCode))
+            if (!string.IsNullOrEmpty(input.ShopCode))
             {
-                data = data.Where(o => o.ShopCode.Contains(shopCode));
+                data = data.Where(o => o.ShopCode.Contains(input.ShopCode));
             }
-            if (!string.IsNullOrEmpty(CardShopCode))
+            //if (!string.IsNullOrEmpty(input.StockCode))
+            //{
+            //    data = data.Where(o => o.StockCode.Contains(input.StockCode));
+            //}
+
+            if (!string.IsNullOrEmpty(input.BillNo))
             {
-                data = data.Where(o => o.UPC.Contains(CardShopCode));
-            }
-            if (!string.IsNullOrEmpty(billNo))
-            {
-                data = data.Where(o => o.BillNo.Contains(billNo));
-            }
-            if (!string.IsNullOrEmpty(status))
-            {
-                data = data.Where(o => o.IsSuccess == (status == "0" ? false : true));
+                data = data.Where(o => o.BillNo.Contains(input.BillNo));
             }
 
-            totalQty = 0;
-            totalAmount = 0;
-            if (data.Count() > 0)
+            if (!string.IsNullOrEmpty(input.MaterialCode))
             {
-                totalQty = data.Sum(o => o.SALES_QTY);
-                totalAmount = data.Sum(o => o.TOTAL_PARTNER_MSRP_AMT);
+                data = data.Where(o => o.PRODUCT_CD.Contains(input.MaterialCode));
+            }
+
+            if (!string.IsNullOrEmpty(input.BarCode))
+            {
+                data = data.Where(o => o.UPC.Contains(input.BarCode));
+            }
+
+            if (!string.IsNullOrEmpty(input.SizeCode))
+            {
+                data = data.Where(o => o.SIZE_CD.Contains(input.SizeCode));
+            }
+
+            if (!string.IsNullOrEmpty(input.Status))
+            {
+                data = data.Where(o => o.IsSuccess == (input.Status == "0" ? false : true));
+            }
+
+            int totalCount = data.Count();
+            if (totalCount > 0)
+            {
+                result.Qty = (int)data.Sum(o => o.SALES_QTY);
+                result.Amount = (decimal)data.Sum(o => o.NET_SALES_AMT_INCL_TAX);
             }
 
             if (IsPaging)
             {
-                result = data.Select((o) => new GatNikeApiPosSaleModel()
+                result.Data = data.Select((o) => new GatNikeApiPosSaleModel()
                 {
                     Id = o.Id.SelectAll()
                 }).OrderBy(o => new { o.BillDate, o.ShopCode, o.BillNo })
-                  .ToPageList(page, pageSize, ref totalCount);
+                  .ToPageList(input.Page, input.PageSize, ref totalCount);
+
             }
             else
             {
-                result = data.Select((o) => new GatNikeApiPosSaleModel()
+                result.Data = data.Select((o) => new GatNikeApiPosSaleModel()
                 {
                     Id = o.Id.SelectAll()
                 }).OrderBy(o => new { o.BillDate, o.ShopCode, o.BillNo })
                   .ToList();
             }
+            result.TotalCount = totalCount;
+            return result;
+        }
+
+
+
+        /// <summary>
+        /// 查询库存数据
+        /// </summary>
+        /// <param name="solutionId"></param>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="startBillDate"></param>
+        /// <param name="endBillDate"></param>
+        /// <param name="shopCode"></param>
+        /// <param name="CardShopCode"></param>
+        /// <param name="billNo"></param>
+        /// <param name="status"></param>
+        /// <param name="totalCount"></param>
+        /// <param name="totalQty"></param> 
+        /// <param name="totalAmount"></param>
+        /// <param name="IsPaging"></param>
+        /// <returns></returns>
+        public QueryOutputDto<GatNikeApiInvModel> GatNikeApiInvList(QueryInputDto input, bool IsPaging = false)
+        {
+            QueryOutputDto<GatNikeApiInvModel> result = new QueryOutputDto<GatNikeApiInvModel>()
+            {
+                TotalCount = 0,
+                Qty = 0,
+                Amount = 0,
+            };
+            GatNikeApiInvManager manager = new GatNikeApiInvManager();
+            var data = manager.AsQueryable()
+                .Where(o => o.SolutionId == input.SolutionId);
+            if (!string.IsNullOrEmpty(input.ShopCode))
+            {
+                data = data.Where(o => o.SITE_CD.Contains(input.ShopCode));
+            }
+            if (!string.IsNullOrEmpty(input.StockCode))
+            {
+                data = data.Where(o => o.StockCode.Contains(input.StockCode));
+            }
+
+            if (!string.IsNullOrEmpty(input.MaterialCode))
+            {
+                data = data.Where(o => o.PRODUCT_CD.Contains(input.MaterialCode));
+            }
+
+            if (!string.IsNullOrEmpty(input.BarCode))
+            {
+                data = data.Where(o => o.UPC.Contains(input.BarCode));
+            }
+
+            if (!string.IsNullOrEmpty(input.SizeCode))
+            {
+                data = data.Where(o => o.SIZE_CD.Contains(input.SizeCode));
+            }
+
+            if (!string.IsNullOrEmpty(input.Status))
+            {
+                data = data.Where(o => o.IsSuccess == (input.Status == "0" ? false : true));
+            }
+            if (!string.IsNullOrEmpty(input.Status))
+            {
+                data = data.Where(o => o.IsSuccess == (input.Status == "0" ? false : true));
+            }
+
+            int totalCount = data.Count();
+            if (totalCount > 0)
+            {
+                result.Qty = (int)data.Sum(o => o.TOTAL_QTY);
+               
+            }
+
+            if (IsPaging)
+            {
+                result.Data = data.Select((o) => new GatNikeApiInvModel()
+                {
+                    Id = o.Id.SelectAll()
+                }).OrderBy(o => new { o.SITE_CD, o.PRODUCT_CD, o.UPC })
+                  .ToPageList(input.Page, input.PageSize, ref totalCount);
+
+            }
+            else
+            {
+                result.Data = data.Select((o) => new GatNikeApiInvModel()
+                {
+                    Id = o.Id.SelectAll()
+                }).OrderBy(o => new { o.SITE_CD, o.PRODUCT_CD, o.UPC })
+                  .ToList();
+            }
+           
+            return result;
+        }
+
+
+
+        /// <summary>
+        ///  查询出入库数据
+        /// </summary>
+        /// <param name="solutionId"></param>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="startBillDate"></param>
+        /// <param name="endBillDate"></param>
+        /// <param name="shopCode"></param>
+        /// <param name="CardShopCode"></param>
+        /// <param name="billNo"></param>
+        /// <param name="status"></param>
+        /// <param name="totalCount"></param>
+        /// <param name="totalQty"></param>
+        /// <param name="totalAmount"></param>
+        /// <param name="IsPaging"></param>
+        /// <returns></returns>
+        public QueryOutputDto<GatNikeApiOutInModel> GatNikeApiOutInList(QueryInputDto input, bool IsPaging = false)
+        {
+            QueryOutputDto<GatNikeApiOutInModel> result = new QueryOutputDto<GatNikeApiOutInModel>()
+            {
+                TotalCount = 0,
+                Qty = 0,
+                Amount = 0,
+            };
+            GatNikeApiOutInManager manager = new GatNikeApiOutInManager();
+            var data = manager.AsQueryable()
+                .Where(o => o.SolutionId == input.SolutionId);
+            if (input.StartBillDate.HasValue)
+            {
+                data = data.Where(o => o.BillDate >= input.StartBillDate);
+            }
+            if (input.EndBillDate.HasValue)
+            {
+                data = data.Where(o => o.BillDate <= input.EndBillDate);
+            }
+            if (!string.IsNullOrEmpty(input.ShopCode))
+            {
+                data = data.Where(o => o.SITE_CD.Contains(input.ShopCode));
+            }
+            if (!string.IsNullOrEmpty(input.StockCode))
+            {
+                data = data.Where(o => o.SITE_CD.Contains(input.StockCode));
+            }
+
+            if (!string.IsNullOrEmpty(input.BillNo))
+            {
+                data = data.Where(o => o.BillNo.Contains(input.BillNo));
+            }
+
+            if (!string.IsNullOrEmpty(input.MaterialCode))
+            {
+                data = data.Where(o => o.PRODUCT_CD.Contains(input.MaterialCode));
+            }
+
+            if (!string.IsNullOrEmpty(input.BarCode))
+            {
+                data = data.Where(o => o.UPC.Contains(input.BarCode));
+            }
+
+            if (!string.IsNullOrEmpty(input.SizeCode))
+            {
+                data = data.Where(o => o.SIZE_CD.Contains(input.SizeCode));
+            }
+
+            if (!string.IsNullOrEmpty(input.Status))
+            {
+                data = data.Where(o => o.IsSuccess == (input.Status == "0" ? false : true));
+            }
+
+            int totalCount = data.Count();
+            if (totalCount > 0)
+            {
+                result.Qty = (int)data.Sum(o => o.TRANSACTION_QTY);
+              
+            }
+
+            if (IsPaging)
+            {
+                result.Data = data.Select((o) => new GatNikeApiOutInModel()
+                {
+                    Id = o.Id.SelectAll()
+                }).OrderBy(o => new { o.BillDate, o.SITE_CD, o.BillNo }) 
+                  .ToPageList(input.Page, input.PageSize, ref totalCount);
+
+            }
+            else
+            {
+                result.Data = data.Select((o) => new GatNikeApiOutInModel()
+                {
+                    Id = o.Id.SelectAll()
+                }).OrderBy(o => new { o.BillDate, o.SITE_CD, o.BillNo })
+                  .ToList();
+            }
+            result.TotalCount = totalCount;
             return result;
         }
 

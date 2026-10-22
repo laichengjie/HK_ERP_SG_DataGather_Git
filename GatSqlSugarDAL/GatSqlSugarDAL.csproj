@@ -67,6 +67,8 @@
     <Compile Include="Services\GatAdMoveTransferManager_OC.cs" />
     <Compile Include="Services\GatAdMoveManager_OCTB.cs" />
     <Compile Include="Services\GatAdMoveManager_OC.cs" />
+    <Compile Include="Services\GatNikeApiOutInManager.cs" />
+    <Compile Include="Services\GatNikeApiInvManager.cs" />
     <Compile Include="Services\GatNikeApiPosSaleManager.cs" />
     <Compile Include="Services\GatBurgeonPosSaleDetailManager.cs" />
     <Compile Include="Services\GatNikeApiLogManager.cs" />

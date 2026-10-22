@@ -822,7 +822,7 @@ namespace Gat.Web.report
         {
             var sb = new StringBuilder("<ul>");
 
-            string[] rptRoute = new string[] { "default|平台首页", "rpt-nikeapi-log|接口日志", "rpt-nikeapi-pos|销售数据" };
+            string[] rptRoute = new string[] { "default|平台首页", "rpt-nikeapi-log|接口日志", "rpt-nikeapi-pos|销售数据", "rpt-nikeapi-inv|库存数据", "rpt-nikeapi-outin|出入库数据" };
             string[] temp;
             foreach (string route in rptRoute)
             {

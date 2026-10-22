@@ -155,9 +155,9 @@
             <asp:Button ID="btnExport" runat="server" OnClick="BtnExport_Click" Text="导出数据" />
 
             <!-- 统计数据（修复了错别字和排版） -->
-            <span class="total-info">总数量：<label id="LabelTotalQty">0</label>
-            </span>
             <span class="total-info">总金额：<label id="LabelTotalAmount">0</label>
+            </span>
+            <span class="total-info">总数量：<label id="LabelTotalQty">0</label>
             </span>
         </span>
     </div>
@@ -239,13 +239,12 @@
                             }
                         },
 
-
-                        { field: "SITE_CD", title: "仓库代码", width: 120 },
-                        { field: "UPC", title: "条码", width: 120 },
-                        { field: "PRODUCT_CD", title: "货号", width: 120 },
+                        { field: "SITE_CD", title: "仓库代码", width: 150 },
+                        { field: "UPC", title: "条码", width: 200 },
+                        { field: "PRODUCT_CD", title: "货号", width: 200 },
                         { field: "SIZE_CD", title: "尺码代码", width: 120 },
                         { field: "TOTAL_QTY", title: "总库存", width: 100 },
-                        { field: "ON_HAND_QTY", title: "在库库存", width: 80 },
+                        { field: "ON_HAND_QTY", title: "在库库存", width: 100 },
                         { field: "IN_TRANSIT_QTY", title: "在途库存", width: 100 },
                         { field: "INVENTORY_DT", title: "库存日期", width: 200 },
 

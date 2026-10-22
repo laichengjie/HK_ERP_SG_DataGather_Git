@@ -23,7 +23,7 @@ namespace Gat.Web.report.nikeapi
         protected override void OnLoad(EventArgs e)
         {
             this.TopTitle = " Nike报表";
-            this.SubTitle = "Nike 销售明细";
+            this.SubTitle = "Nike 出入库明细";
             base.OnLoad(e);
             if (!IsPostBack)
             {
@@ -79,24 +79,26 @@ namespace Gat.Web.report.nikeapi
                     Status = status.SelectedValue,
                     //InterfaceType = InterfaceType.SelectedValue
                 };
-                var result = bill.GatNikeApiPosSaleList(input, false);
-                string[] exportColumns = new string[] { "BillDate", "STORE_CD", "BusinessType", "BillNo", "OrderType", "UPC","PRODUCT_CD","SIZE_CD","NET_SALES_PRC_INCL_TAX", "SALES_QTY","NET_SALES_AMT_INCL_TAX","MSRP_LC", "TOTAL_PARTNER_MSRP_AMT","ModifyDtm" };
+                var result = bill.GatNikeApiOutInList(input, false);
+           
+                string[] exportColumns = new string[] { "BillDate","SITE_CD","WMS_ORDER_NO","UPC", "PRODUCT_CD","SIZE_CD","TRANSACTION_QTY", "DIRECTION_DESC","STATUS_TYPE_DESC","BillTypeName", "ModifyDtm"
+};
 
                 System.Data.DataTable dtSourceStock = result.Data.ToDataTable(exportColumns);
 
                 string fileName = "Nike出入库明细.xlsx";
+
+                // 重命名中文表头
                 dtSourceStock.Columns["BillDate"].ColumnName = "单据日期";
-                dtSourceStock.Columns["STORE_CD"].ColumnName = "店铺代码";
-                dtSourceStock.Columns["BusinessType"].ColumnName = "业务类型";
-                dtSourceStock.Columns["OrderType"].ColumnName = "订单类型";
+                dtSourceStock.Columns["SITE_CD"].ColumnName = "仓库代码";
+                dtSourceStock.Columns["WMS_ORDER_NO"].ColumnName = "单号";
                 dtSourceStock.Columns["UPC"].ColumnName = "条码";
                 dtSourceStock.Columns["PRODUCT_CD"].ColumnName = "货号";
                 dtSourceStock.Columns["SIZE_CD"].ColumnName = "尺码代码";
-                dtSourceStock.Columns["NET_SALES_PRC_INCL_TAX"].ColumnName = "结算价";
-                dtSourceStock.Columns["SALES_QTY"].ColumnName = "数量";
-                dtSourceStock.Columns["NET_SALES_AMT_INCL_TAX"].ColumnName = "结算金额";
-                dtSourceStock.Columns["MSRP_LC"].ColumnName = "零售价";
-                dtSourceStock.Columns["TOTAL_PARTNER_MSRP_AMT"].ColumnName = "零售金额";
+                dtSourceStock.Columns["TRANSACTION_QTY"].ColumnName = "数量";
+                dtSourceStock.Columns["DIRECTION_DESC"].ColumnName = "流转方向";
+                dtSourceStock.Columns["STATUS_TYPE_DESC"].ColumnName = "描述";
+                dtSourceStock.Columns["BillTypeName"].ColumnName = "单据类型";
                 dtSourceStock.Columns["ModifyDtm"].ColumnName = "修改时间";
 
                 ExcelHelper Excel = new ExcelHelper();

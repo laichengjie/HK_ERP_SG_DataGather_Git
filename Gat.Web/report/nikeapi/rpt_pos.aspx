@@ -129,7 +129,7 @@
     <!-- 查询条件区域 -->
     <div class="search">
         <span>
-            <label> 店铺代码：</label>
+            <label>店铺代码：</label>
             <asp:TextBox ID="shopCode" runat="server"></asp:TextBox>
             &nbsp;
             <%--<label>仓库代码：</label>
@@ -157,9 +157,9 @@
             <asp:Button ID="btnExport" runat="server" OnClick="BtnExport_Click" Text="导出数据" />
 
             <!-- 统计数据（修复了错别字和排版） -->
-            <span class="total-info">总数量：<label id="LabelTotalQty">0</label>
-            </span>
             <span class="total-info">总金额：<label id="LabelTotalAmount">0</label>
+            </span>
+            <span class="total-info">总数量：<label id="LabelTotalQty">0</label>
             </span>
         </span>
     </div>

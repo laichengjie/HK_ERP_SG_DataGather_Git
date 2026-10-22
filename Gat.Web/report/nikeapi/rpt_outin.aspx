@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/report/Reportkon.Master" AutoEventWireup="true" CodeBehind="rpt_outin.aspx.cs" Inherits="Gat.Web.report.nikeapi.rpt_outin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cpHeader" runat="server">
-    <title>Nike销售明细</title>
+    <title>Nike出入库明细</title>
     <script src="/scripts/jquery-1.10.2.min.js"></script>
     <!--kendo-->
     <link href="/styles/kendo/2014.1.318/kendo.common.min.css" rel="stylesheet" type="text/css" />
@@ -157,9 +157,9 @@
             <asp:Button ID="btnExport" runat="server" OnClick="BtnExport_Click" Text="导出数据" />
 
             <!-- 统计数据（修复了错别字和排版） -->
-            <span class="total-info">总数量：<label id="LabelTotalQty">0</label>
+            <<span class="total-info">总金额：<label id="LabelTotalAmount">0</label>
             </span>
-            <span class="total-info">总金额：<label id="LabelTotalAmount">0</label>
+            <span class="total-info">总数量：<label id="LabelTotalQty">0</label>
             </span>
         </span>
     </div>
@@ -240,20 +240,16 @@
                                 return "<input type='checkbox' disabled " + (on ? "checked" : "") + " />";
                             }
                         },
-
+                        { field: "SITE_CD", title: "仓库代码", width: 120 },
                         { field: "BillDate", title: "单据日期", width: 200 },
-                        { field: "STORE_CD", title: "店铺代码", width: 120 },
-                        { field: "BusinessType", title: "业务类型", width: 100 },
-                        { field: "BillNo", title: "单据编号", width: 200 },
-                        { field: "OrderType", title: "订单类型", width: 100 },
+                        { field: "WMS_ORDER_NO", title: "单号", width: 200 },
                         { field: "UPC", title: "条码", width: 120 },
                         { field: "PRODUCT_CD", title: "货号", width: 120 },
                         { field: "SIZE_CD", title: "尺码代码", width: 120 },
-                        { field: "NET_SALES_PRC_INCL_TAX", title: "结算价", width: 100 },
-                        { field: "SALES_QTY", title: "数量", width: 80 },
-                        { field: "NET_SALES_AMT_INCL_TAX", title: "结算金额", width: 100 },
-                        { field: "MSRP_LC", title: "零售价", width: 100 },
-                        { field: "TOTAL_PARTNER_MSRP_AMT", title: "零售金额", width: 100 },
+                        { field: "TRANSACTION_QTY", title: "数量", width: 80 },
+                        { field: "DIRECTION_DESC", title: "流转方向", width: 100 },
+                        { field: "STATUS_TYPE_DESC", title: "描述", width: 120 },
+                        { field: "BillTypeName", title: "单据类型", width: 180 },
                         { field: "ModifyDtm", title: "修改时间", width: 200 },
 
                     ]],

@@ -157,7 +157,7 @@ namespace Gat.Web.report
                         Response.Redirect(this.GetRouteUrl("rpt-burgeon-poslog", new { }));
                         break;
                     case ReportMap.NikeApi:
-                        Response.Redirect(this.GetRouteUrl("rpt-nikeapi-log", new { }));
+                        Response.Redirect(this.GetRouteUrl("rpt-nikeapi-pos", new { }));
                         break;
                 }
             }

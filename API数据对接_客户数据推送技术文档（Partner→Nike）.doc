@@ -1,0 +1,3772 @@
+Date: Tue, 28 Jul 2026 07:21:21 +0000 (UTC)
+Message-ID: <1633943304.8298.1785223281375@ip-10-238-12-45.us-west-2.compute.internal>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_8297_1316662290.1785223281375"
+
+------=_Part_8297_1316662290.1785223281375
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>01 - API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5: =E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner =E2=86=92 Nike=EF=BC=89</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-link-pressed, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>01 - API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5: =E5=AE=A2=E6=88=B7=E6=
+=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=BC=
+=88Partner =E2=86=92 Nike=EF=BC=89</h1>
+    <div class=3D"Section1">
+        <p>
+ <style type=3D"text/css">/*<![CDATA[*/
+div.rbtoc1785223281336 {padding: 0px;}
+div.rbtoc1785223281336 ul {margin-left: 0px;}
+div.rbtoc1785223281336 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style></p>
+<div class=3D"toc-macro rbtoc1785223281336">
+ <ul class=3D"toc-indentation">
+  <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=
+=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=
+=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-1.=E6=A6=82=E8=BF=B0">1. =E6=A6=
+=82=E8=BF=B0</a>
+   <ul class=3D"toc-indentation">
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-=E6=8E=A5=E5=85=A5Partner=E5=
+=88=97=E8=A1=A8">=E6=8E=A5=E5=85=A5 Partner =E5=88=97=E8=A1=A8</a></li>
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-=E6=94=AF=E6=8C=81=E7=9A=84=E6=
+=95=B0=E6=8D=AE=E7=B1=BB=E5=9E=8B">=E6=94=AF=E6=8C=81=E7=9A=84=E6=95=B0=E6=
+=8D=AE=E7=B1=BB=E5=9E=8B</a></li>
+   </ul></li>
+  <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=
+=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=
+=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-2.=E4=BA=A4=E4=BA=92=E8=AE=A4=E8=
+=AF=81=E4=B8=8E=E4=BA=A4=E4=BA=92=E6=B5=81=E7=A8=8B">2. =E4=BA=A4=E4=BA=92=
+=E8=AE=A4=E8=AF=81=E4=B8=8E=E4=BA=A4=E4=BA=92=E6=B5=81=E7=A8=8B</a>
+   <ul class=3D"toc-indentation">
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-=E7=AC=AC=E4=B8=80=E6=AD=A5=EF=
+=BC=9A=E8=8E=B7=E5=8F=96AccessToken">=E7=AC=AC=E4=B8=80=E6=AD=A5=EF=BC=9A=
+=E8=8E=B7=E5=8F=96 Access Token</a></li>
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-=E7=AC=AC=E4=BA=8C=E6=AD=A5=EF=
+=BC=9A=E4=B8=8A=E6=8A=A5=E6=95=B0=E6=8D=AE">=E7=AC=AC=E4=BA=8C=E6=AD=A5=EF=
+=BC=9A=E4=B8=8A=E6=8A=A5=E6=95=B0=E6=8D=AE</a></li>
+   </ul></li>
+  <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=
+=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=
+=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-3.API=E8=AF=B7=E6=B1=82=E8=A7=84=
+=E8=8C=83=E4=B8=8E=E6=A0=A1=E9=AA=8C">3. API =E8=AF=B7=E6=B1=82=E8=A7=84=E8=
+=8C=83=E4=B8=8E=E6=A0=A1=E9=AA=8C</a>
+   <ul class=3D"toc-indentation">
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-3.1=E8=AF=B7=E6=B1=82Header">3=
+.1 =E8=AF=B7=E6=B1=82 Header</a></li>
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-3.2=E8=AF=B7=E6=B1=82Body=EF=
+=BC=88=E5=85=AC=E5=85=B1=E6=8A=80=E6=9C=AF=E5=AD=97=E6=AE=B5=EF=BC=89">3.2 =
+=E8=AF=B7=E6=B1=82 Body=EF=BC=88=E5=85=AC=E5=85=B1=E6=8A=80=E6=9C=AF=E5=AD=
+=97=E6=AE=B5=EF=BC=89</a></li>
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-3.3=E8=AF=B7=E6=B1=82=E4=BD=93=
+=E7=A4=BA=E4=BE=8B">3.3 =E8=AF=B7=E6=B1=82=E4=BD=93=E7=A4=BA=E4=BE=8B</a></=
+li>
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-3.4=E6=89=B9=E6=AC=A1=E5=AE=8C=
+=E6=88=90=E5=88=A4=E5=AE=9A">3.4 =E6=89=B9=E6=AC=A1=E5=AE=8C=E6=88=90=E5=88=
+=A4=E5=AE=9A</a></li>
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-3.5=E5=B9=B6=E5=8F=91=E8=AF=B7=
+=E6=B1=82=E9=99=90=E5=88=B6">3.5 =E5=B9=B6=E5=8F=91=E8=AF=B7=E6=B1=82=E9=99=
+=90=E5=88=B6</a></li>
+   </ul></li>
+  <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=
+=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=
+=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-4.API=E5=93=8D=E5=BA=94=E8=A7=84=
+=E8=8C=83">4. API =E5=93=8D=E5=BA=94=E8=A7=84=E8=8C=83</a>
+   <ul class=3D"toc-indentation">
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-4.1=E5=93=8D=E5=BA=94Header">4=
+.1 =E5=93=8D=E5=BA=94 Header</a></li>
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-4.2=E5=93=8D=E5=BA=94Body=EF=
+=BC=88=E5=85=AC=E5=85=B1=E6=8A=80=E6=9C=AF=E5=AD=97=E6=AE=B5=EF=BC=89">4.2 =
+=E5=93=8D=E5=BA=94 Body=EF=BC=88=E5=85=AC=E5=85=B1=E6=8A=80=E6=9C=AF=E5=AD=
+=97=E6=AE=B5=EF=BC=89</a></li>
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-4.3=E5=93=8D=E5=BA=94=E4=BD=93=
+=E7=A4=BA=E4=BE=8B">4.3 =E5=93=8D=E5=BA=94=E4=BD=93=E7=A4=BA=E4=BE=8B</a></=
+li>
+   </ul></li>
+  <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=
+=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=
+=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-5.=E9=94=99=E8=AF=AF=E7=A0=81=E8=
+=A7=84=E8=8C=83">5. =E9=94=99=E8=AF=AF=E7=A0=81=E8=A7=84=E8=8C=83</a>
+   <ul class=3D"toc-indentation">
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-5.1HTTP=E7=8A=B6=E6=80=81=E7=
+=A0=81">5.1 HTTP =E7=8A=B6=E6=80=81=E7=A0=81</a></li>
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-5.2=E4=B8=9A=E5=8A=A1=E7=8A=B6=
+=E6=80=81=E7=A0=81=EF=BC=88=E5=93=8D=E5=BA=94=E4=BD=93code=E5=AD=97=E6=AE=
+=B5=EF=BC=89">5.2 =E4=B8=9A=E5=8A=A1=E7=8A=B6=E6=80=81=E7=A0=81=EF=BC=88=E5=
+=93=8D=E5=BA=94=E4=BD=93 code =E5=AD=97=E6=AE=B5=EF=BC=89</a></li>
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-5.3=E9=87=8D=E8=AF=95=E7=AD=96=
+=E7=95=A5">5.3 =E9=87=8D=E8=AF=95=E7=AD=96=E7=95=A5</a></li>
+   </ul></li>
+  <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=
+=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=
+=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-6.=E6=95=B0=E6=8D=AE=E8=AF=B4=E6=
+=98=8E">6. =E6=95=B0=E6=8D=AE=E8=AF=B4=E6=98=8E</a>
+   <ul class=3D"toc-indentation">
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-6.1=E9=94=80=E5=94=AE=E6=95=B0=
+=E6=8D=AE">6.1 =E9=94=80=E5=94=AE=E6=95=B0=E6=8D=AE</a></li>
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-6.2=E5=BA=93=E5=AD=98=E6=95=B0=
+=E6=8D=AE">6.2 =E5=BA=93=E5=AD=98=E6=95=B0=E6=8D=AE</a></li>
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-6.3=E5=BA=93=E5=AD=98=E7=A7=BB=
+=E5=8A=A8=E6=95=B0=E6=8D=AE">6.3 =E5=BA=93=E5=AD=98=E7=A7=BB=E5=8A=A8=E6=95=
+=B0=E6=8D=AE</a></li>
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-6.4=E9=97=A8=E5=BA=97=E4=B8=BB=
+=E6=95=B0=E6=8D=AE">6.4 =E9=97=A8=E5=BA=97=E4=B8=BB=E6=95=B0=E6=8D=AE</a></=
+li>
+    <li><a href=3D"#id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=
+=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=
+=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-6.5=E4=BB=93=E5=BA=93=E4=B8=BB=
+=E6=95=B0=E6=8D=AE">6.5 =E4=BB=93=E5=BA=93=E4=B8=BB=E6=95=B0=E6=8D=AE</a></=
+li>
+   </ul></li>
+ </ul>
+</div>
+<p></p>
+<h2 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-1.=E6=A6=82=E8=BF=B0"><span style=3D"le=
+tter-spacing: -0.008em;">1. =E6=A6=82=E8=BF=B0</span></h2>
+<p>API =E5=AF=B9=E6=8E=A5=E9=80=82=E7=94=A8=E4=BA=8E=E5=AE=9E=E6=97=B6=E6=
+=88=96=E6=89=B9=E9=87=8F=E6=95=B0=E6=8D=AE=E4=B8=8A=E6=8A=A5=E5=9C=BA=E6=99=
+=AF=E3=80=82Partner =E9=80=9A=E8=BF=87 Nike OAuth =E6=9C=8D=E5=8A=A1=E8=8E=
+=B7=E5=8F=96=E8=AE=BF=E9=97=AE=E5=87=AD=E8=AF=81=E5=90=8E=EF=BC=8C=E5=90=91=
+ Nike API Gateway =E4=B8=8A=E6=8A=A5=E6=95=B0=E6=8D=AE=EF=BC=8C<span style=
+=3D"color:#172b4d;">Nike =E5=AE=8C=E6=88=90=E8=AE=A4=E8=AF=81=E4=B8=8E=E6=
+=A0=BC=E5=BC=8F=E6=A0=A1=E9=AA=8C=E5=90=8E=E5=90=8C=E6=AD=A5=E8=BF=94=E5=9B=
+=9E=E5=8F=97=E7=90=86=E7=BB=93=E6=9E=9C=EF=BC=8C=E5=90=8E=E5=8F=B0=E5=BC=82=
+=E6=AD=A5=E5=86=99=E5=85=A5=E6=95=B0=E6=8D=AE=E5=B9=B3=E5=8F=B0=E3=80=82</s=
+pan></p>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-=E6=8E=A5=E5=85=A5Partner=E5=88=97=E8=
+=A1=A8">=E6=8E=A5=E5=85=A5 Partner =E5=88=97=E8=A1=A8</h3>
+<p>=E6=AF=8F=E4=B8=AAPartner=E7=94=B1Nike=E5=88=86=E9=85=8D=E5=94=AF=E4=B8=
+=80partner_code=E3=80=82=E8=AF=B7=E6=B1=82Header=E9=87=8C=E5=AD=97=E6=AE=B5=
+=E5=90=8D=E4=B8=BA X-Partner-Code=EF=BC=8C=E8=AF=B7=E6=B1=82Body=E9=87=8C=
+=E5=AD=97=E6=AE=B5=E5=90=8D=E4=B8=BApartner_code=EF=BC=8C=E4=B8=A4=E5=A4=84=
+=E5=BF=85=E9=A1=BB=E4=B8=80=E8=87=B4=EF=BC=8CNike=E4=BC=9A=E5=81=9A=E4=B8=
+=80=E8=87=B4=E6=80=A7=E6=A0=A1=E9=AA=8C=EF=BC=88=E4=B8=8D=E4=B8=80=E8=87=B4=
+=E8=BF=94=E5=9B=9E code 3001=EF=BC=89</p>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-=E6=94=AF=E6=8C=81=E7=9A=84=E6=95=B0=E6=
+=8D=AE=E7=B1=BB=E5=9E=8B">=E6=94=AF=E6=8C=81=E7=9A=84=E6=95=B0=E6=8D=AE=E7=
+=B1=BB=E5=9E=8B</h3>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped confluenceTable">
+  <colgroup>
+   <col style=3D"width: 50.0%;">
+   <col style=3D"width: 50.0%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"confluenceTh">Data Type</th>
+    <th class=3D"confluenceTh">=E8=AF=B4=E6=98=8E</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">pos</td>
+    <td class=3D"confluenceTd">=E9=94=80=E5=94=AE=E6=95=B0=E6=8D=AE</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">inventory</td>
+    <td class=3D"confluenceTd">=E5=BA=93=E5=AD=98=E6=95=B0=E6=8D=AE</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">movement</td>
+    <td class=3D"confluenceTd">=E5=BA=93=E5=AD=98=E7=A7=BB=E5=8A=A8=E6=95=
+=B0=E6=8D=AE</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">store</td>
+    <td class=3D"confluenceTd">=E5=BA=97=E9=93=BA=E4=B8=BB=E6=95=B0=E6=8D=
+=AE</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">warehouse</td>
+    <td class=3D"confluenceTd">=E4=BB=93=E5=BA=93=E4=B8=BB=E6=95=B0=E6=8D=
+=AE</td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<h2 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-2.=E4=BA=A4=E4=BA=92=E8=AE=A4=E8=AF=81=
+=E4=B8=8E=E4=BA=A4=E4=BA=92=E6=B5=81=E7=A8=8B">2. =E4=BA=A4=E4=BA=92=E8=AE=
+=A4=E8=AF=81=E4=B8=8E=E4=BA=A4=E4=BA=92=E6=B5=81=E7=A8=8B</h2>
+<h3 style=3D"text-align: left;" id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=
+=E6=8E=A5:=E5=AE=A2=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=
+=E6=9C=AF=E6=96=87=E6=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-=E7=AC=AC=
+=E4=B8=80=E6=AD=A5=EF=BC=9A=E8=8E=B7=E5=8F=96AccessToken">=E7=AC=AC=E4=B8=
+=80=E6=AD=A5=EF=BC=9A=E8=8E=B7=E5=8F=96 Access Token</h3>
+<ol style=3D"text-align: left;">
+ <li data-uuid=3D"5c4a517a-8306-4379-8603-bb562eba8fee">Nike =E4=B8=BA=E6=
+=AF=8F=E4=B8=AA Partner =E7=AD=BE=E5=8F=91<span>&nbsp;</span><code>client_i=
+d</code><span>&nbsp;</span>=E5=92=8C<span>&nbsp;</span><code>client_secret<=
+/code>=EF=BC=88=E6=B5=8B=E8=AF=95=E7=8E=AF=E5=A2=83=E5=92=8C=E7=94=9F=E4=BA=
+=A7=E7=8E=AF=E5=A2=83=E5=90=84=E4=B8=80=E5=A5=97=EF=BC=89</li>
+ <li data-uuid=3D"89e00193-0ba9-4fce-8640-0d319c4ecb5f">Partner =E5=90=91 N=
+ike OAuth =E6=9C=8D=E5=8A=A1=E5=8F=91=E8=B5=B7 Token =E8=AF=B7=E6=B1=82=EF=
+=BC=8C=E8=8E=B7=E5=8F=96<span>&nbsp;</span><code>access_token</code></li>
+ <li data-uuid=3D"0e57782a-1bac-443f-8c87-a16a0b945358"><code>access_token<=
+/code><span>&nbsp;</span>=E7=9A=84=E6=9C=89=E6=95=88=E6=9C=9F=E4=B8=BA=E4=
+=B8=80=E5=B0=8F=E6=97=B6</li>
+</ol>
+<blockquote style=3D"text-align: left;">
+ <p>=E5=BB=BA=E8=AE=AE=E5=9C=A8 Token =E8=BF=87=E6=9C=9F=E5=89=8D=E4=B8=BB=
+=E5=8A=A8=E5=88=B7=E6=96=B0=EF=BC=8C=E9=81=BF=E5=85=8D=E6=95=B0=E6=8D=AE=E4=
+=BC=A0=E8=BE=93=E4=B8=AD=E9=80=94=E5=A4=B1=E6=95=88=E3=80=82</p>
+</blockquote>
+<p><strong>Token =E8=AF=B7=E6=B1=82=E7=A4=BA=E4=BE=8B=EF=BC=9A</strong></p>
+<pre><code>curl --request POST 'https://oscar-test.oauth.nikecloud.com.cn/o=
+auth/access_token/v1' \
+ --header 'Content-Type: application/x-www-form-urlencoded' \
+ --header 'Authorization: Basic &lt;Base64(client_id:client_secret)&gt;' \
+ --data-urlencode 'grant_type=3Dclient_credentials' \
+ --data-urlencode 'scope=3Ddata_management:edagc.pde.ingest::create:'</code=
+></pre>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped confluenceTable">
+  <colgroup>
+   <col style=3D"width: 35.0%;">
+   <col style=3D"width: 65.0%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"confluenceTh">=E7=8E=AF=E5=A2=83</th>
+    <th class=3D"confluenceTh">OAuth Endpoint</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">=E6=B5=8B=E8=AF=95</td>
+    <td class=3D"confluenceTd"><code><a href=3D"https://oscar-test.oauth.ni=
+kecloud.com.cn/oauth/access_token/v1" class=3D"external-link" rel=3D"nofoll=
+ow">https://oscar-test.oauth.nikecloud.com.cn/oauth/access_token/v1</a></co=
+de></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">=E7=94=9F=E4=BA=A7</td>
+    <td class=3D"confluenceTd"><code><a href=3D"https://oscar.oauth.nikeclo=
+ud.com.cn/oauth/access_token/v1" class=3D"external-link" rel=3D"nofollow">h=
+ttps://oscar.oauth.nikecloud.com.cn/oauth/access_token/v1</a></code></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped confluenceTable">
+  <colgroup>
+   <col style=3D"width: 45.0%;">
+   <col style=3D"width: 55.0%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"confluenceTh">=E5=8F=82=E6=95=B0</th>
+    <th class=3D"confluenceTh">=E8=AF=B4=E6=98=8E</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>Authorization</code></td>
+    <td class=3D"confluenceTd"><code>Basic</code> + Base64 =E7=BC=96=E7=A0=
+=81=E7=9A=84 <code>client_id:client_secret</code></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>grant_type</code></td>
+    <td class=3D"confluenceTd">=E5=9B=BA=E5=AE=9A=E5=80=BC <code>client_cre=
+dentials</code></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>scope</code></td>
+    <td class=3D"confluenceTd">=E5=9B=BA=E5=AE=9A=E5=80=BC <code>data_manag=
+ement:edagc.pde.ingest::create:</code></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<p><strong>Token =E5=93=8D=E5=BA=94=E7=A4=BA=E4=BE=8B=EF=BC=9A</strong></p>
+<pre><code>{
+ "access_token": "eyJhbGciOiJSUzI1NiI...",
+ "issued_token_type": "urn:ietf:params:oauth:token-type:access_token",
+ "token_type": "Bearer",
+ "expires_in": 3600,
+ "scope": "data_management:edagc.pde.ingest::create:"
+}</code></pre>
+<p class=3D"highlight" style=3D"text-align: left;"><code><strong>Access Tok=
+en=E6=9C=89=E6=95=88=E6=9C=9F1=E5=B0=8F=E6=97=B6</strong></code></p>
+<p class=3D"highlight" style=3D"text-align: left;">=E8=B7=A8=E6=89=B9=E6=AC=
+=A1=E4=B8=8A=E4=BC=A0=E6=97=B6=EF=BC=9A<br>
+  1. =E5=BB=BA=E8=AE=AE=E6=8F=90=E5=89=8D 5 =E5=88=86=E9=92=9F=E4=B8=BB=E5=
+=8A=A8=E5=88=B7=E6=96=B0=EF=BC=9B<br>
+  2. =E8=8B=A5=E5=8D=95=E4=B8=AA request =E8=BF=94=E5=9B=9E HTTP 401 (code =
+3002)=EF=BC=8CPartner =E5=BA=94=E9=87=8D=E6=96=B0=E8=8E=B7=E5=8F=96 Token =
+=E5=90=8E =E7=94=A8=E5=90=8C=E4=B8=80=E4=B8=AA X-Request-ID =E9=87=8D=E4=BC=
+=A0=E8=AF=A5 request=EF=BC=9B<br>
+  3. =E6=9C=AA=E5=AE=8C=E6=88=90=E7=9A=84 request =E4=B8=8D=E5=BD=B1=E5=93=
+=8D=E6=89=B9=E6=AC=A1=E5=86=85=E5=85=B6=E4=BB=96=E5=B7=B2=E6=88=90=E5=8A=9F=
+ request =E7=9A=84=E5=A4=84=E7=90=86</p>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-=E7=AC=AC=E4=BA=8C=E6=AD=A5=EF=BC=9A=E4=
+=B8=8A=E6=8A=A5=E6=95=B0=E6=8D=AE">=E7=AC=AC=E4=BA=8C=E6=AD=A5=EF=BC=9A=E4=
+=B8=8A=E6=8A=A5=E6=95=B0=E6=8D=AE</h3>
+<p>=E2=80=A2 Partner =E6=8C=89=E7=BA=A6=E5=AE=9A=E9=A2=91=E7=8E=87=E5=90=91=
+ Nike API Gateway =E5=8F=91=E8=B5=B7 <code>POST /ades/partnerData/send</cod=
+e> =E8=AF=B7=E6=B1=82<br>
+  =E2=80=A2 =E8=AF=B7=E6=B1=82 Header =E6=90=BA=E5=B8=A6 <code>Authorizatio=
+n: Bearer &lt;access_token&gt;</code> =E5=8F=8A=E5=85=B6=E4=BB=96=E6=8A=80=
+=E6=9C=AF=E5=AD=97=E6=AE=B5<br>
+  =E2=80=A2 =E8=AF=B7=E6=B1=82 Body =E5=8C=85=E5=90=AB=E6=A0=87=E5=87=86=E6=
+=95=B0=E6=8D=AE=E7=BB=93=E6=9E=84=EF=BC=88=E8=AF=A6=E8=A7=81=E7=AC=AC 3 =E8=
+=8A=82=EF=BC=9AAPI =E8=AF=B7=E6=B1=82=E8=A7=84=E8=8C=83=EF=BC=89<br>
+  =E2=80=A2 Nike API Gateway =E5=AE=8C=E6=88=90=E8=AE=A4=E8=AF=81=E4=B8=8E=
+=E6=A0=BC=E5=BC=8F=E6=A0=A1=E9=AA=8C=E5=90=8E=EF=BC=8C=E5=90=8C=E6=AD=A5=E8=
+=BF=94=E5=9B=9E <code>200 OK</code> =E5=8F=8A=E5=8F=97=E7=90=86=E5=87=AD=E8=
+=AF=81 <code>request_id</code><br>
+  =E2=80=A2 Nike =E5=90=8E=E5=8F=B0=E5=BC=82=E6=AD=A5=E5=AE=8C=E6=88=90=E6=
+=95=B0=E6=8D=AE=E5=A4=84=E7=90=86=E5=B9=B6=E5=86=99=E5=85=A5=E6=95=B0=E6=8D=
+=AE=E5=B9=B3=E5=8F=B0</p>
+<h2 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-3.API=E8=AF=B7=E6=B1=82=E8=A7=84=E8=8C=
+=83=E4=B8=8E=E6=A0=A1=E9=AA=8C">3. API =E8=AF=B7=E6=B1=82=E8=A7=84=E8=8C=83=
+=E4=B8=8E=E6=A0=A1=E9=AA=8C</h2>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped relative-table confluenceTable" style=3D"width: 62=
+.2606%;">
+  <colgroup>
+   <col style=3D"width: 11.4207%;">
+   <col style=3D"width: 75.1446%;">
+   <col style=3D"width: 13.3757%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"confluenceTh">=E7=8E=AF=E5=A2=83</th>
+    <th class=3D"confluenceTh">Data Ingest API Endpoint</th>
+    <th class=3D"confluenceTh">=E7=8A=B6=E6=80=81</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">=E6=B5=8B=E8=AF=95</td>
+    <td class=3D"confluenceTd"><code>https://<a href=3D"http://uat-openapi.=
+nike.com.cn" class=3D"external-link" rel=3D"nofollow">uat-openapi.nike.com.=
+cn</a>/ades/partnerData/send</code></td>
+    <td class=3D"confluenceTd">=E5=B7=B2=E5=BC=80=E9=80=9A</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">=E7=94=9F=E4=BA=A7</td>
+    <td class=3D"confluenceTd"><code><code>https://<a href=3D"http://uat-op=
+enapi.nike.com.cn" class=3D"external-link" rel=3D"nofollow">openapi.nike.co=
+m.cn</a>/ades/partnerData/send</code></code></td>
+    <td class=3D"confluenceTd">=E5=B7=B2=E5=BC=80=E9=80=9A</td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-3.1=E8=AF=B7=E6=B1=82Header">3.1 =E8=AF=
+=B7=E6=B1=82 Header</h3>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped relative-table confluenceTable" style=3D"width: 76=
+.7507%;">
+  <colgroup>
+   <col style=3D"width: 20.5046%;">
+   <col style=3D"width: 10.5023%;">
+   <col style=3D"width: 10.5023%;">
+   <col style=3D"width: 58.5131%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"confluenceTh">=E5=AD=97=E6=AE=B5=E5=90=8D</th>
+    <th class=3D"confluenceTh">=E7=B1=BB=E5=9E=8B</th>
+    <th class=3D"confluenceTh">=E5=BF=85=E5=A1=AB</th>
+    <th class=3D"confluenceTh">=E8=AF=B4=E6=98=8E</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">Authorization</td>
+    <td class=3D"confluenceTd">string</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">Bearer Token=EF=BC=8C=E6=A0=BC=E5=BC=8F=EF=
+=BC=9A<code>Bearer &lt;access_token&gt;</code></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">Content-Type</td>
+    <td class=3D"confluenceTd">string</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=9B=BA=E5=AE=9A=E5=80=BC <code>applicatio=
+n/json</code></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">X-Auth-Type</td>
+    <td class=3D"confluenceTd">string</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=9B=BA=E5=AE=9A=E5=80=BC <code>oscar</cod=
+e></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">X-Request-ID</td>
+    <td class=3D"confluenceTd">string</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E8=AF=B7=E6=B1=82=E5=94=AF=E4=B8=80=E6=A0=
+=87=E8=AF=86=EF=BC=8CUUID v4=EF=BC=8C=E7=94=A8=E4=BA=8E=E5=B9=82=E7=AD=89=
+=E6=80=A7=E6=8E=A7=E5=88=B6=E4=B8=8E=E9=93=BE=E8=B7=AF=E8=BF=BD=E8=B8=AA</t=
+d>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">X-Partner-Code</td>
+    <td class=3D"confluenceTd">string</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=90=88=E4=BD=9C=E6=96=B9=E5=94=AF=E4=B8=
+=80=E6=A0=87=E8=AF=86=E7=A0=81=EF=BC=8C=E7=94=B1 Nike =E5=88=86=E9=85=8D</t=
+d>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">X-Timestamp</td>
+    <td class=3D"confluenceTd">string</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E8=AF=B7=E6=B1=82=E5=8F=91=E8=B5=B7=E6=97=
+=B6=E9=97=B4, =E6=A0=BC=E5=BC=8F yyyy-MM-dd HH:mm:ss</td>
+   </tr>
+   <tr>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">Content-Encoding</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">string</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E6=98=AF</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E5=9B=BA=E5=AE=9A=E5=80=BC gzip=EF=BC=8C =E5=85=B7=E4=BD=93=E8=B0=
+=83=E7=94=A8=E7=A4=BA=E4=BE=8B=E8=AF=B7=E6=9F=A5=E7=9C=8B =E7=AB=A0=E8=8A=
+=826 =E8=AF=B7=E6=B1=82=E4=BD=93gzip=E5=8E=8B=E7=BC=A9=E5=90=8E=E5=86=8D=E8=
+=B0=83=E7=94=A8=E7=A4=BA=E4=BE=8B</p></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-3.2=E8=AF=B7=E6=B1=82Body=EF=BC=88=E5=
+=85=AC=E5=85=B1=E6=8A=80=E6=9C=AF=E5=AD=97=E6=AE=B5=EF=BC=89">3.2 =E8=AF=B7=
+=E6=B1=82 Body=EF=BC=88=E5=85=AC=E5=85=B1=E6=8A=80=E6=9C=AF=E5=AD=97=E6=AE=
+=B5=EF=BC=89</h3>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped confluenceTable">
+  <colgroup>
+   <col style=3D"width: 28.0%;">
+   <col style=3D"width: 19.0%;">
+   <col style=3D"width: 8.0%;">
+   <col style=3D"width: 45.0%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"confluenceTh">=E5=AD=97=E6=AE=B5=E5=90=8D</th>
+    <th class=3D"confluenceTh">=E7=B1=BB=E5=9E=8B</th>
+    <th class=3D"confluenceTh">=E5=BF=85=E5=A1=AB</th>
+    <th class=3D"confluenceTh">=E8=AF=B4=E6=98=8E</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>batch_no</p></td>
+    <td class=3D"confluenceTd">
+     <p>string</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=98=AF</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=89=B9=E6=AC=A1=E5=8F=B7=EF=BC=88UUID v4=EF=BC=89=EF=BC=8C <code=
+>=E5=90=8C=E4=B8=80=E4=B8=AA=E6=89=B9=E6=AC=A1=EF=BC=8C=E5=8C=85=E5=90=AB=
+=E4=B8=80=E4=B8=AAdata_type =E5=BD=93=E5=A4=A9=E4=BC=A0=E8=BE=93=E7=9A=84=
+=E5=AE=8C=E6=95=B4=E6=95=B0=E6=8D=AE(=E5=A6=82=E6=9E=9C=E5=88=86=E5=A4=9A=
+=E4=B8=AArequest,=E5=85=B1=E4=BA=AB=E5=90=8C=E4=B8=80=E4=B8=AA=E6=89=B9=E6=
+=AC=A1=E5=8F=B7)&nbsp;</code></p>
+     <p>=E5=90=8C=E4=B8=80=E6=89=B9=E6=AC=A1=E5=86=85 total_requests =E6=97=
+=A0=E4=B8=8A=E9=99=90=EF=BC=8C=E4=BD=86=E6=8E=A5=E6=94=B6=E6=96=B9=E4=BB=A5=
+=E6=AF=8F=E6=AC=A1=E8=AF=B7=E6=B1=82=E6=90=BA=E5=B8=A6=E7=9A=84 total_reque=
+sts =E5=80=BC=E4=B8=BA=E5=87=86, =E6=9D=A5=E5=88=A4=E6=96=AD=E6=89=B9=E6=AC=
+=A1=E6=95=B0=E6=8D=AE=E6=98=AF=E5=90=A6=E6=8E=A5=E6=94=B6=E5=AE=8C=E6=88=90=
+</p></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>batch_date</p></td>
+    <td class=3D"confluenceTd">
+     <p>string</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=98=AF</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>Current Date - 1 Day=EF=BC=8C&nbsp; YYYY-MM-DD</p></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>request_seq</p></td>
+    <td class=3D"confluenceTd">
+     <p>integer</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=98=AF</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E8=AF=B7=E6=B1=82=E5=BA=8F=E5=8F=B7</p></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>request_id</p></td>
+    <td class=3D"confluenceTd">
+     <p>string</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=98=AF</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E4=B8=8E Header<span>&nbsp;</span><code>X-Request-ID</code><span>&=
+nbsp;</span>=E4=B8=80=E8=87=B4=EF=BC=8CUUID v4</p></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>total_requests</p></td>
+    <td class=3D"confluenceTd">
+     <p>integer</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=98=AF</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=9C=AC=E6=89=B9=E6=AC=A1=E9=A2=84=E8=AE=A1=E7=9A=84=E6=80=BB=E8=
+=AF=B7=E6=B1=82=E6=95=B0</p></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>partner_code</p></td>
+    <td class=3D"confluenceTd">
+     <p>string</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=98=AF</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E5=90=88=E4=BD=9C=E6=96=B9=E5=94=AF=E4=B8=80=E6=A0=87=E8=AF=86=E7=
+=A0=81</p></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>data_type</p></td>
+    <td class=3D"confluenceTd">
+     <p>string</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=98=AF</p></td>
+    <td class=3D"confluenceTd">
+     <p>=E5=85=81=E8=AE=B8=E5=80=BC=EF=BC=9Apos , inventory , movement , st=
+ore , warehouse</p></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>record_count</p></td>
+    <td class=3D"confluenceTd">
+     <p>integer</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=98=AF</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>records =E6=95=B0=E7=BB=84=E8=A1=8C=E6=95=B0=EF=BC=8C=E7=94=A8=E4=
+=BA=8E=E6=A0=A1=E9=AA=8C</p></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>amount_sum</p></td>
+    <td class=3D"confluenceTd">
+     <p>double</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=98=AF</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=9C=AC=E6=AC=A1=E8=AF=B7=E6=B1=82 records =E4=B8=AD=E9=87=91=E9=
+=A2=9D=E5=AD=97=E6=AE=B5=E7=9A=84=E6=B1=82=E5=92=8C=EF=BC=9A</p>
+     <ul>
+      <li data-uuid=3D"5389f3de-de36-4fe5-b3f6-c6ea4087abb2">pos =E7=94=A8 =
+<span style=3D"color:#172b4d;"><code>NET_SALES_AMT_INCL_TAX</code></span>=
+=EF=BC=8C</li>
+      <li data-uuid=3D"8195a671-27bc-42a3-bb87-d056ed8454d4">inventory =E4=
+=B8=8E store/warehouse/movement =E4=B8=8D=E9=80=82=E7=94=A8=E8=AF=B7=E4=BC=
+=A0 0</li>
+     </ul>
+     <p><br></p></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>quantity_sum</p></td>
+    <td class=3D"confluenceTd">
+     <p>integer</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=98=AF</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=9C=AC=E6=AC=A1=E8=AF=B7=E6=B1=82 records =E4=B8=AD=E6=95=B0=E9=
+=87=8F=E5=AD=97=E6=AE=B5=E7=9A=84=E6=B1=82=E5=92=8C=EF=BC=9A</p>
+     <ul>
+      <li data-uuid=3D"456945f6-1fdc-432b-ab22-55d4f6ee0b9b">pos =E7=94=A8 =
+SALES_QTY&nbsp;</li>
+      <li data-uuid=3D"9b358435-3505-4044-b85b-fed88184b201">inventory =E7=
+=94=A8 <span style=3D"color:#172b4d;"><code>TOTAL_QTY</code></span></li>
+      <li data-uuid=3D"9ba4244c-26bb-4a5e-93ee-586202b949b0">movement =E7=
+=94=A8 transaction_qty</li>
+      <li data-uuid=3D"2ccc2423-03c3-46de-9cc3-34e27da34be0">store =E4=B8=
+=8E warehouse =E8=AF=B7=E4=BC=A0 0</li>
+     </ul></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>schema_version</p></td>
+    <td class=3D"confluenceTd">
+     <p>string</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E5=90=A6</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E4=B8=9A=E5=8A=A1=E6=95=B0=E6=8D=AE=E7=BB=93=E6=9E=84=E7=89=88=E6=
+=9C=AC=EF=BC=8C=E5=A6=82<span>&nbsp;</span><code>1.0</code>=E3=80=81<code>2=
+.1</code></p></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>source_system</p></td>
+    <td class=3D"confluenceTd">
+     <p>string</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=8E=A8=E8=8D=90</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=95=B0=E6=8D=AE=E6=9D=A5=E6=BA=90=E7=B3=BB=E7=BB=9F=E5=90=8D=E7=
+=A7=B0=EF=BC=8C=E8=87=AA=E8=90=A5=E5=8A=A0=E7=9B=9F=E6=9D=A5=E8=87=AA=E4=B8=
+=A4=E4=B8=AA=E6=95=B0=E6=8D=AE=E5=BA=93 =E9=80=9A=E8=BF=87 "=E8=87=AA=E8=90=
+=A5" =EF=BC=8C"=E5=8A=A0=E7=9B=9F"=E5=8C=BA=E5=88=86</p></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>send_timestamp</p></td>
+    <td class=3D"confluenceTd">
+     <p>string</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=98=AF</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=95=B0=E6=8D=AE=E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4=EF=BC=8CISO =
+8601 =E6=A0=BC=E5=BC=8F=E5=90=AB=E6=97=B6=E5=8C=BA</p></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>records</p></td>
+    <td class=3D"confluenceTd">
+     <p>array</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E6=98=AF</p></td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">
+     <p>=E4=B8=9A=E5=8A=A1=E6=95=B0=E6=8D=AE=E6=95=B0=E7=BB=84=EF=BC=8C=E5=
+=86=85=E5=AE=B9=E7=BB=93=E6=9E=84=E7=94=B1<span>&nbsp;</span><code>data_typ=
+e</code><span>&nbsp;</span>=E5=86=B3=E5=AE=9A (=E6=AF=8F=E6=AC=A1=E8=AF=B7=
+=E6=B1=82=E6=9C=80=E5=A4=9A10000=E6=9D=A1, =E6=80=BB=E5=A4=A7=E5=B0=8F=E4=
+=B8=8D=E8=B6=85=E8=BF=877.6MB)</p></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-3.3=E8=AF=B7=E6=B1=82=E4=BD=93=E7=A4=BA=
+=E4=BE=8B">3.3 =E8=AF=B7=E6=B1=82=E4=BD=93=E7=A4=BA=E4=BE=8B</h3>
+<pre class=3D"highlight"><code>{
+&nbsp; "batch_no": "550e8400-e29b-41d4-a716-446655441234",<br> &nbsp;"batch=
+_date": "2026-05-22",<br> &nbsp;"request_seq": 1,<br>  "request_id": "550e8=
+400-e29b-41d4-a716-446655440000",<br>  "record_count": 500,<br> &nbsp;"tota=
+l_requests": 3,<br> &nbsp;"amount_sum": 9999.87,<br>  "quantity_sum": 10,
+&nbsp; "partner_code": "PARTNER001",
+  "data_type": "pos",
+  "schema_version": "1.0",
+  "source_system": "",
+  "send_timestamp": "2026-05-22T08:30:00+08:00",
+  "records": [ { "..." : "..." } ]
+}</code></pre>
+<blockquote style=3D"text-align: left;">
+ <p><code>records</code><span>&nbsp;</span>=E6=95=B0=E7=BB=84=E5=86=85=E7=
+=9A=84=E5=85=B7=E4=BD=93=E5=AD=97=E6=AE=B5=E5=AE=9A=E4=B9=89=EF=BC=8C=E7=94=
+=B1=E5=90=84=E6=95=B0=E6=8D=AE=E5=9F=9F=EF=BC=88domain=EF=BC=89=E5=8D=95=E7=
+=8B=AC=E5=AE=9A=E4=B9=89=EF=BC=8C=E8=AF=A6=E8=A7=81=E7=AC=AC 6 =E8=8A=82=E3=
+=80=82</p>
+</blockquote>
+<h3 style=3D"text-align: left;" id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=
+=E6=8E=A5:=E5=AE=A2=E6=88=B7=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=
+=E6=9C=AF=E6=96=87=E6=A1=A3=EF=BC=88Partner=E2=86=92Nike=EF=BC=89-3.4=E6=89=
+=B9=E6=AC=A1=E5=AE=8C=E6=88=90=E5=88=A4=E5=AE=9A">3.4 =E6=89=B9=E6=AC=A1=E5=
+=AE=8C=E6=88=90=E5=88=A4=E5=AE=9A</h3>
+<p style=3D"text-align: left;">&nbsp; Nike =E4=BE=A7=E4=BB=A5"=E5=BD=93=E5=
+=89=8D=E6=89=B9=E6=AC=A1=E5=B7=B2=E6=94=B6=E5=88=B0=E7=9A=84=E8=AF=B7=E6=B1=
+=82=E7=BB=9F=E8=AE=A1=E6=95=B0=E7=AD=89=E4=BA=8E=E6=80=BB=E8=AF=B7=E6=B1=82=
+=E6=95=B0 count(distinct request_id)=3Dtotal_requests"=E4=BD=9C=E4=B8=BA BA=
+TCH_COMPLETE =E5=88=A4=E5=AE=9A=E6=9D=A1=E4=BB=B6</p>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-3.5=E5=B9=B6=E5=8F=91=E8=AF=B7=E6=B1=82=
+=E9=99=90=E5=88=B6">3.5 =E5=B9=B6=E5=8F=91=E8=AF=B7=E6=B1=82=E9=99=90=E5=88=
+=B6</h3>
+<p>=E2=80=A2 =E5=B9=B6=E5=8F=91=E4=B8=8A=E9=99=90=EF=BC=9A=E6=AF=8F=E4=B8=
+=AA partner_code =E5=90=8C=E6=97=B6 POST =E8=AF=B7=E6=B1=82=E6=95=B0 =E2=89=
+=A4 10<br>
+  =E2=80=A2 =E8=AF=B7=E6=B1=82=E8=AE=B0=E5=BD=95=E4=B8=8A=E9=99=90=EF=BC=9A=
+ =E6=AF=8F=E4=B8=AArequest(=E8=AF=B7=E6=B1=82)=EF=BC=8C=E4=B8=8D=E8=B6=85=
+=E8=BF=8710000 records(=E8=A1=8C)</p>
+<h2 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-4.API=E5=93=8D=E5=BA=94=E8=A7=84=E8=8C=
+=83">4. API =E5=93=8D=E5=BA=94=E8=A7=84=E8=8C=83</h2>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-4.1=E5=93=8D=E5=BA=94Header">4.1 =E5=93=
+=8D=E5=BA=94 Header</h3>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped confluenceTable">
+  <colgroup>
+   <col style=3D"width: 24.0%;">
+   <col style=3D"width: 38.0%;">
+   <col style=3D"width: 38.0%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"confluenceTh">=E5=AD=97=E6=AE=B5=E5=90=8D</th>
+    <th class=3D"confluenceTh">=E7=B1=BB=E5=9E=8B</th>
+    <th class=3D"confluenceTh">=E8=AF=B4=E6=98=8E</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>X-Request-ID</code></td>
+    <td class=3D"confluenceTd">string</td>
+    <td class=3D"confluenceTd">=E5=9B=9E=E4=BC=A0=E8=AF=B7=E6=B1=82=E7=9A=
+=84 <code>X-Request-ID</code>=EF=BC=8C=E4=BE=BF=E4=BA=8E=E8=B0=83=E7=94=A8=
+=E6=96=B9=E5=85=B3=E8=81=94=E6=97=A5=E5=BF=97</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>X-Response-ID</code></td>
+    <td class=3D"confluenceTd">string</td>
+    <td class=3D"confluenceTd">Nike =E4=BE=A7=E7=94=9F=E6=88=90=E7=9A=84=E5=
+=93=8D=E5=BA=94=E5=94=AF=E4=B8=80=E6=A0=87=E8=AF=86=EF=BC=8CUUID v4</td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-4.2=E5=93=8D=E5=BA=94Body=EF=BC=88=E5=
+=85=AC=E5=85=B1=E6=8A=80=E6=9C=AF=E5=AD=97=E6=AE=B5=EF=BC=89">4.2 =E5=93=8D=
+=E5=BA=94 Body=EF=BC=88=E5=85=AC=E5=85=B1=E6=8A=80=E6=9C=AF=E5=AD=97=E6=AE=
+=B5=EF=BC=89</h3>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped relative-table confluenceTable" style=3D"width: 63=
+.102%;">
+  <colgroup>
+   <col style=3D"width: 20.7594%;">
+   <col style=3D"width: 11.8625%;">
+   <col style=3D"width: 10.2314%;">
+   <col style=3D"width: 57.0883%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"confluenceTh">=E5=AD=97=E6=AE=B5=E5=90=8D</th>
+    <th class=3D"confluenceTh">=E7=B1=BB=E5=9E=8B</th>
+    <th class=3D"confluenceTh">=E5=BF=85=E5=A1=AB</th>
+    <th class=3D"confluenceTh">=E8=AF=B4=E6=98=8E</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">response_id</td>
+    <td class=3D"confluenceTd">string</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E6=98=AF</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">Nike =E4=BE=A7=E5=94=AF=E4=B8=80=E5=93=8D=E5=BA=94=E6=A0=87=E8=AF=86=EF=
+=BC=8CUUID v4</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">batch_no</td>
+    <td class=3D"confluenceTd">string</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E6=98=AF</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E5=9B=9E=E4=BC=A0=E8=AF=B7=E6=B1=82=E7=9A=84<span>&nbsp;</span><code>b=
+atch_no</code></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">batch_date</td>
+    <td class=3D"confluenceTd">string</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E6=98=AF</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E5=9B=9E=E4=BC=A0=E8=AF=B7=E6=B1=82=E7=9A=84<span>&nbsp;</span><code>b=
+atch_date</code></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">request_seq</td>
+    <td class=3D"confluenceTd">integer</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E6=98=AF</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E5=9B=9E=E4=BC=A0=E8=AF=B7=E6=B1=82=E7=9A=84 request<code>_seq</code><=
+/td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">request_id</td>
+    <td class=3D"confluenceTd">string</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E6=98=AF</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E5=9B=9E=E4=BC=A0=E8=AF=B7=E6=B1=82=E7=9A=84<span>&nbsp;</span><code>r=
+equest_id</code>=EF=BC=8C=E7=94=A8=E4=BA=8E=E5=85=B3=E8=81=94=E6=BA=AF=E6=
+=BA=90</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">code</td>
+    <td class=3D"confluenceTd">string</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E6=98=AF</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E4=B8=9A=E5=8A=A1=E7=8A=B6=E6=80=81=E7=A0=81=EF=BC=8C=E8=A7=81=E7=AC=
+=AC 5 =E8=8A=82=EF=BC=9A=E9=94=99=E8=AF=AF=E7=A0=81=E8=A7=84=E8=8C=83</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">message</td>
+    <td class=3D"confluenceTd">string</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E6=98=AF</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E7=8A=B6=E6=80=81=E6=8F=8F=E8=BF=B0=E4=BF=A1=E6=81=AF=EF=BC=8C=E4=BA=
+=BA=E7=B1=BB=E5=8F=AF=E8=AF=BB</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">timestamp</td>
+    <td class=3D"confluenceTd">string</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E6=98=AF</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E5=93=8D=E5=BA=94=E7=94=9F=E6=88=90=E6=97=B6=E9=97=B4=EF=BC=8CISO 8601=
+ =E6=A0=BC=E5=BC=8F=E5=90=AB=E6=97=B6=E5=8C=BA</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">partner_code</td>
+    <td class=3D"confluenceTd">string</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E6=98=AF</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E5=9B=9E=E4=BC=A0=E8=AF=B7=E6=B1=82=E7=9A=84<span>&nbsp;</span><code>p=
+artner_code</code></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">data_type</td>
+    <td class=3D"confluenceTd">string</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E6=98=AF</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E5=9B=9E=E4=BC=A0=E8=AF=B7=E6=B1=82=E7=9A=84<span>&nbsp;</span><code>d=
+ata_type</code></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">errors</td>
+    <td class=3D"confluenceTd">array</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E6=9D=A1=E4=BB=B6</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E6=8E=A5=E5=8F=A3=E7=BA=A7=E5=A4=B1=E8=B4=A5=E6=97=B6=E5=A1=AB=E5=85=
+=85=E7=9A=84=E9=94=99=E8=AF=AF=E5=88=97=E8=A1=A8</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">trace_id</td>
+    <td class=3D"confluenceTd">string</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E6=98=AF</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">Nike =E5=86=85=E9=83=A8=E9=93=BE=E8=B7=AF=E8=BF=BD=E8=B8=AA ID=EF=BC=8C=
+=E7=94=A8=E4=BA=8E=E9=97=AE=E9=A2=98=E6=8E=92=E6=9F=A5</td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<p><strong><code>errors</code> =E5=AD=90=E9=A1=B9=E7=BB=93=E6=9E=84=EF=BC=
+=9A</strong></p>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped confluenceTable">
+  <colgroup>
+   <col style=3D"width: 31.0%;">
+   <col style=3D"width: 32.0%;">
+   <col style=3D"width: 37.0%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"confluenceTh">=E5=AD=97=E6=AE=B5=E5=90=8D</th>
+    <th class=3D"confluenceTh">=E7=B1=BB=E5=9E=8B</th>
+    <th class=3D"confluenceTh">=E8=AF=B4=E6=98=8E</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>code</code></td>
+    <td class=3D"confluenceTd">string</td>
+    <td class=3D"confluenceTd">=E9=94=99=E8=AF=AF=E7=A0=81</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>message</code></td>
+    <td class=3D"confluenceTd">string</td>
+    <td class=3D"confluenceTd">=E9=94=99=E8=AF=AF=E6=8F=8F=E8=BF=B0</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>field</code></td>
+    <td class=3D"confluenceTd">string</td>
+    <td class=3D"confluenceTd">=E6=B6=89=E5=8F=8A=E5=AD=97=E6=AE=B5=EF=BC=
+=88=E5=AD=97=E6=AE=B5=E7=BA=A7=E9=94=99=E8=AF=AF=E6=97=B6=E5=A1=AB=E5=85=85=
+=EF=BC=89</td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-4.3=E5=93=8D=E5=BA=94=E4=BD=93=E7=A4=BA=
+=E4=BE=8B">4.3 =E5=93=8D=E5=BA=94=E4=BD=93=E7=A4=BA=E4=BE=8B</h3>
+<p>=E6=88=90=E5=8A=9F=E5=8F=97=E7=90=86=EF=BC=9A</p>
+<p>{<br>
+  &nbsp; "response_id": "661e9511-f30c-52e5-b827-557766551111",<br>
+  &nbsp; "batch_no": "550e8400-e29b-41d4-a716-446655441234",<br>
+  &nbsp; "batch_date": "2026-05-22",<br>
+  &nbsp; "request_seq": 1,<br>
+  &nbsp; "request_id": "550e8400-e29b-41d4-a716-446655440000",<br>
+  &nbsp; "code": "0000",<br>
+  &nbsp; "message": "Data accepted for processing.",<br>
+  &nbsp; "timestamp": "2026-05-22T08:30:02+08:00",<br>
+  &nbsp; "partner_code": "PARTNER001",<br>
+  &nbsp; "data_type": "pos",<br>
+  &nbsp; "trace_id": "abc123def456"<br>
+  }</p>
+<p>=E6=8B=92=E7=BB=9D=E5=8F=97=E7=90=86=EF=BC=9A<br>
+  {<br>
+  &nbsp; &nbsp; "code": "4001",<br>
+  &nbsp; &nbsp; "message": "Duplicate request_id already processed",<br>
+  &nbsp; &nbsp; "timestamp": "2026-07-27T15:56:22.013798525+08:00",<br>
+  &nbsp; &nbsp; "errors": [{<br>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "code": "4001",<br>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "message": "Duplicate request_i=
+d already processed",<br>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "field": "request_id"<br>
+  &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+  &nbsp; &nbsp; ],<br>
+  &nbsp; &nbsp; "response_id": "5f2437da-aa06-465d-ba82-fb1e0a5256ba",<br>
+  &nbsp; &nbsp; "request_id": "ef3e7441-6bda-44f7-97a3-4423ca13375d",<br>
+  &nbsp; &nbsp; "partner_code": "PARTNER001",<br>
+  &nbsp; &nbsp; "data_type": "pos",<br>
+  &nbsp; &nbsp; "batch_date": "2026-07-26",<br>
+  &nbsp; &nbsp; "batch_no": "90fbd895-282b-490d-bf54-ba3bf1d71234",<br>
+  &nbsp; &nbsp; "request_seq": 1,<br>
+  &nbsp; &nbsp; "trace_id": "ef3e7441-6bda-44f7-97a3-4423ca13375d"<br>
+  }</p>
+<pre class=3D"highlight"><br></pre>
+<pre class=3D"highlight"><br></pre>
+<h2 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-5.=E9=94=99=E8=AF=AF=E7=A0=81=E8=A7=84=
+=E8=8C=83">5. =E9=94=99=E8=AF=AF=E7=A0=81=E8=A7=84=E8=8C=83</h2>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-5.1HTTP=E7=8A=B6=E6=80=81=E7=A0=81">5.1=
+ HTTP =E7=8A=B6=E6=80=81=E7=A0=81</h3>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped confluenceTable">
+  <colgroup>
+   <col style=3D"width: 45.0%;">
+   <col style=3D"width: 55.0%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"confluenceTh">HTTP =E7=8A=B6=E6=80=81=E7=A0=81</th>
+    <th class=3D"confluenceTh">=E5=90=AB=E4=B9=89</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>200</code></td>
+    <td class=3D"confluenceTd">=E8=AF=B7=E6=B1=82=E5=8F=97=E7=90=86=E6=88=
+=90=E5=8A=9F=EF=BC=88=E5=90=AB=E9=83=A8=E5=88=86=E6=8B=92=E7=BB=9D=E5=9C=BA=
+=E6=99=AF=EF=BC=89</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>400</code></td>
+    <td class=3D"confluenceTd">=E8=AF=B7=E6=B1=82=E5=8F=82=E6=95=B0=E6=A0=
+=BC=E5=BC=8F=E9=94=99=E8=AF=AF</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>401</code></td>
+    <td class=3D"confluenceTd">=E8=AE=A4=E8=AF=81=E5=A4=B1=E8=B4=A5=EF=BC=
+=88Token =E6=97=A0=E6=95=88=E6=88=96=E8=BF=87=E6=9C=9F=EF=BC=89</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>403</code></td>
+    <td class=3D"confluenceTd">=E6=9D=83=E9=99=90=E4=B8=8D=E8=B6=B3=EF=BC=
+=88Partner =E6=97=A0=E8=AF=A5=E6=95=B0=E6=8D=AE=E7=B1=BB=E5=9E=8B=E5=86=99=
+=E5=85=A5=E6=9D=83=E9=99=90=EF=BC=8C=E6=88=96=E6=97=A0=E8=AF=A5 API =E8=AE=
+=BF=E9=97=AE=E6=9D=83=E9=99=90=EF=BC=89</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>409</code></td>
+    <td class=3D"confluenceTd">=E5=B9=82=E7=AD=89=E5=86=B2=E7=AA=81=EF=BC=
+=88=E7=9B=B8=E5=90=8C <code>request_id</code> =E5=B7=B2=E5=A4=84=E7=90=86=
+=EF=BC=89</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>422</code></td>
+    <td class=3D"confluenceTd">=E4=B8=9A=E5=8A=A1=E6=A0=A1=E9=AA=8C=E5=A4=
+=B1=E8=B4=A5</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>429</code></td>
+    <td class=3D"confluenceTd">=E8=AF=B7=E6=B1=82=E9=A2=91=E7=8E=87=E8=B6=
+=85=E9=99=90</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>500</code></td>
+    <td class=3D"confluenceTd">Nike =E5=86=85=E9=83=A8=E6=9C=8D=E5=8A=A1=E5=
+=BC=82=E5=B8=B8</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd"><code>503</code></td>
+    <td class=3D"confluenceTd">=E6=9C=8D=E5=8A=A1=E6=9A=82=E6=97=B6=E4=B8=
+=8D=E5=8F=AF=E7=94=A8</td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-5.2=E4=B8=9A=E5=8A=A1=E7=8A=B6=E6=80=81=
+=E7=A0=81=EF=BC=88=E5=93=8D=E5=BA=94=E4=BD=93code=E5=AD=97=E6=AE=B5=EF=BC=
+=89">5.2 =E4=B8=9A=E5=8A=A1=E7=8A=B6=E6=80=81=E7=A0=81=EF=BC=88=E5=93=8D=E5=
+=BA=94=E4=BD=93 <code>code</code> =E5=AD=97=E6=AE=B5=EF=BC=89</h3>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped relative-table confluenceTable" style=3D"width: 47=
+.9575%;">
+  <colgroup>
+   <col style=3D"width: 26.9328%;">
+   <col style=3D"width: 72.9918%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"confluenceTh">code</th>
+    <th class=3D"confluenceTh">=E8=AF=B4=E6=98=8E</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">0000</td>
+    <td class=3D"confluenceTd">=E5=85=A8=E9=83=A8=E8=AE=B0=E5=BD=95=E5=8F=
+=97=E7=90=86=E6=88=90=E5=8A=9F</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">1001</td>
+    <td class=3D"confluenceTd">=E7=BC=BA=E5=B0=91=E5=BF=85=E5=A1=AB Header =
+=E5=AD=97=E6=AE=B5</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">1002</td>
+    <td class=3D"confluenceTd">X-Request-ID =E6=A0=BC=E5=BC=8F=E9=9D=9E=E6=
+=B3=95</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">2001</td>
+    <td class=3D"confluenceTd">=E8=AF=B7=E6=B1=82 Body =E6=97=A0=E6=B3=95=
+=E8=A7=A3=E6=9E=90=EF=BC=88JSON =E6=A0=BC=E5=BC=8F=E9=94=99=E8=AF=AF=EF=BC=
+=89</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">2002</td>
+    <td class=3D"confluenceTd">=E7=BC=BA=E5=B0=91=E5=BF=85=E5=A1=AB Body =
+=E5=AD=97=E6=AE=B5</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">2003</td>
+    <td class=3D"confluenceTd">record_count =E4=B8=8E records =E6=95=B0=E7=
+=BB=84=E5=AE=9E=E9=99=85=E9=95=BF=E5=BA=A6=E4=B8=8D=E7=AC=A6</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">2004</td>
+    <td class=3D"confluenceTd">data_type =E4=B8=8D=E5=9C=A8=E5=85=81=E8=AE=
+=B8=E8=8C=83=E5=9B=B4</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">3001</td>
+    <td class=3D"confluenceTd">partner_code =E6=9C=AA=E6=8E=88=E6=9D=83 =E6=
+=88=96 header/body partner_code =E4=B8=8D=E4=B8=80=E8=87=B4</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">3002</td>
+    <td class=3D"confluenceTd">Token =E6=97=A0=E6=95=88=E6=88=96=E5=B7=B2=
+=E8=BF=87=E6=9C=9F</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">4001</td>
+    <td class=3D"confluenceTd">=E5=B9=82=E7=AD=89=E5=86=B2=E7=AA=81=EF=BC=
+=8C=E7=9B=B8=E5=90=8C request_id =E5=B7=B2=E6=88=90=E5=8A=9F=E5=A4=84=E7=90=
+=86</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">4002</td>
+    <td class=3D"confluenceTd"><span style=3D"color:#352c63;">=E4=B8=8B=E6=
+=B8=B8=E5=BC=82=E6=AD=A5=E6=8A=95=E9=80=92=E5=A4=B1=E8=B4=A5</span>=EF=BC=
+=88=E5=BB=BA=E8=AE=AE=E6=9C=AA=E5=8E=8B=E7=BC=A9payload=E5=A4=A7=E5=B0=8F=
+=E5=9C=A87.6M=E4=BB=A5=E5=86=85=EF=BC=89</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">5001</td>
+    <td class=3D"confluenceTd">=E6=9C=8D=E5=8A=A1=E5=BC=82=E5=B8=B8=EF=BC=
+=8C=E8=AF=B7=E8=81=94=E7=B3=BB Nike =E6=8A=80=E6=9C=AF=E6=94=AF=E6=8C=81</t=
+d>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-5.3=E9=87=8D=E8=AF=95=E7=AD=96=E7=95=A5=
+"><span style=3D"color:#172b4d;">5.3 =E9=87=8D=E8=AF=95=E7=AD=96=E7=95=A5</=
+span></h3>
+<p><span style=3D"color:#fea362;"><span style=3D"color:#172b4d;">=E6=9C=80=
+=E5=A4=A7=E9=87=8D=E8=AF=95=E6=AC=A1=E6=95=B0=EF=BC=9A 5=E6=AC=A1</span><br=
+><span style=3D"color:#172b4d;">=E9=87=8D=E8=AF=95=E9=97=B4=E9=9A=94=EF=BC=
+=9A 5=E5=88=86=E9=92=9F</span><br><span style=3D"color:#172b4d;">5=E6=AC=A1=
+=E5=A4=B1=E8=B4=A5=E5=90=8E=E9=82=AE=E4=BB=B6=E9=80=9A=E7=9F=A5=E8=80=90=E5=
+=85=8B</span><span style=3D"color:#172b4d;"><span style=3D"color:#172b4d;">=
+L</span>st-GC.partner.data.excellence.support.group@nike.com</span></span><=
+/p>
+<h2 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-6.=E6=95=B0=E6=8D=AE=E8=AF=B4=E6=98=8E"=
+>6. =E6=95=B0=E6=8D=AE=E8=AF=B4=E6=98=8E</h2>
+<p>=E4=BB=A5=E4=B8=8B=E4=B8=BA=E5=90=84=E6=95=B0=E6=8D=AE=E7=B1=BB=E5=9E=8B=
+=E7=9A=84=E5=AE=8C=E6=95=B4 API =E8=AF=B7=E6=B1=82=E7=A4=BA=E4=BE=8B=EF=BC=
+=8C=E6=AF=8F=E8=8A=82=E5=8C=85=E5=90=AB=E5=AD=97=E6=AE=B5=E8=A7=84=E8=8C=83=
+=E5=92=8C <code>records</code> =E6=95=B0=E7=BB=84=E4=B8=AD=E5=A1=AB=E5=85=
+=85=E7=9C=9F=E5=AE=9E=E6=A0=B7=E4=BE=8B=E6=95=B0=E6=8D=AE=E7=9A=84=E5=AE=8C=
+=E6=95=B4=E8=AF=B7=E6=B1=82=E4=BD=93=E3=80=82</p>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-6.1=E9=94=80=E5=94=AE=E6=95=B0=E6=8D=AE=
+">6.1 =E9=94=80=E5=94=AE=E6=95=B0=E6=8D=AE</h3>
+<p><strong><code>records</code> =E5=AD=97=E6=AE=B5=E8=A7=84=E8=8C=83=EF=BC=
+=9A</strong></p>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped relative-table confluenceTable" style=3D"width: 86=
+.1926%;" data-snooker-col-series=3D"numbers" data-snooker-locked-cols=3D"0"=
+>
+  <colgroup>
+   <col style=3D"width: 5.4265%;">
+   <col style=3D"width: 23.2254%;">
+   <col style=3D"width: 10.3103%;">
+   <col style=3D"width: 10.6373%;">
+   <col style=3D"width: 9.22504%;">
+   <col style=3D"width: 41.2414%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"numberingColumn confluenceTh" scope=3D"col" contenteditabl=
+e=3D"false" data-mce-resize=3D"false"><br></th>
+    <th scope=3D"col" class=3D"confluenceTh">=E5=AD=97=E6=AE=B5=E5=90=8D</t=
+h>
+    <th scope=3D"col" class=3D"confluenceTh">=E4=B8=AD=E6=96=87=E5=90=8D</t=
+h>
+    <th scope=3D"col" class=3D"confluenceTh">=E6=95=B0=E6=8D=AE=E7=B1=BB=E5=
+=9E=8B</th>
+    <th scope=3D"col" class=3D"confluenceTh">=E5=BF=85=E5=A1=AB</th>
+    <th scope=3D"col" class=3D"confluenceTh">=E8=AF=B4=E6=98=8E</th>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">1</td>
+    <td class=3D"confluenceTd"><code>STORE_CD</code></td>
+    <td class=3D"confluenceTd">=E9=97=A8=E5=BA=97=E7=BC=96=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E8=AE=A2=E5=8D=95=E5=8F=91=E7=94=9F=E5=9C=
+=B0=E7=82=B9=E7=9A=84=E5=AE=A2=E6=88=B7=E9=97=A8=E5=BA=97=E4=B8=BB=E6=95=B0=
+=E6=8D=AE=E7=BC=96=E7=A0=81</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">2</td>
+    <td class=3D"confluenceTd"><code>BUSINESS_TYPE</code></td>
+    <td class=3D"confluenceTd">=E4=B8=9A=E5=8A=A1=E7=B1=BB=E5=9E=8B</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">
+     <p style=3D"text-align: left;">=E8=AE=A2=E5=8D=95=E8=A1=8C=E7=BA=A7=E5=
+=88=AB=E4=B8=9A=E5=8A=A1=E5=88=86=E7=B1=BB<br>
+       =E6=9E=9A=E4=B8=BE=E5=80=BC=EF=BC=9A</p>
+     <ul style=3D"text-align: left;">
+      <li data-uuid=3D"f6ed8a9c-5fcd-49a2-8e3b-57b3d9696de8">=E7=BA=BF=E4=
+=B8=8B</li>
+      <li data-uuid=3D"dcc1fb3f-2d13-43e7-b90b-3247f22e7f33">=E4=B8=B4=E6=
+=97=B6=E7=89=B9=E5=8D=96=EF=BC=88=E4=BE=8B=E5=A6=82=EF=BC=9A=E8=8A=B1=E8=BD=
+=A6=EF=BC=8C=E4=B8=AD=E5=BA=AD=EF=BC=89</li>
+      <li data-uuid=3D"1efaaabe-ba64-4f64-ba72-6e809d7a3dcf">=E5=9B=A2=E8=
+=B4=AD</li>
+      <li data-uuid=3D"57775d82-96ad-42af-90da-68aa8543d07e">=E5=B7=A5=E6=
+=9C=8D</li>
+      <li data-uuid=3D"a89e2a7c-46e9-4da3-b8cb-d3fcc6b91801">=E8=B5=A0=E5=
+=93=81</li>
+      <li data-uuid=3D"346ac6ac-8da9-413d-b094-ba34a85aaf15">=E7=BA=BF=E4=
+=B8=8A=EF=BC=88=E5=8C=85=E6=8B=AC=E9=97=A8=E5=BA=97=E6=8A=96=E9=9F=B3=E3=80=
+=81=E5=8D=B3=E6=97=B6=E9=9B=B6=E5=94=AE=EF=BC=88=E7=BE=8E=E5=9B=A2=EF=BC=89=
+=E3=80=81=E4=BA=AC=E4=B8=9C=E3=80=81=E5=A4=A9=E7=8C=AB =E7=AD=89=EF=BC=89</=
+li>
+      <li data-uuid=3D"348dc1a0-c148-4572-90d4-9d76755511aa">=E7=A7=81=E5=
+=9F=9F=E8=BF=90=E8=90=A5</li>
+     </ul></td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">3</td>
+    <td class=3D"confluenceTd"><code>TRANSACTION_DT</code></td>
+    <td class=3D"confluenceTd">=E4=BA=A4=E6=98=93=E6=97=B6=E9=97=B4</td>
+    <td class=3D"confluenceTd">Timestamp</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd"><span style=3D"color:#172b4d;">=E7=BA=BF=E4=
+=B8=8B=EF=BC=9A=E8=AE=A2=E5=8D=95=E5=9C=A8=E6=94=B6=E9=93=B6=E5=8F=B0=E5=AE=
+=8C=E6=88=90=E4=BA=A4=E6=98=93=E7=9A=84=E6=97=B6=E9=97=B4=E6=88=B3.</span><=
+br style=3D"text-align: left;"><span style=3D"color:#172b4d;">=E7=BA=BF=E4=
+=B8=8A=EF=BC=9A =E5=8F=91=E8=B4=A7=E6=97=B6=E9=97=B4&nbsp;</span><br style=
+=3D"text-align: left;"><span style=3D"color:#172b4d;">YYYY-MM-DD HH:mm:ss</=
+span></td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">4</td>
+    <td class=3D"confluenceTd"><code>ORDER_TYPE</code></td>
+    <td class=3D"confluenceTd">=E8=AE=A2=E5=8D=95=E7=B1=BB=E5=9E=8B</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E6=9E=9A=E4=B8=BE=E5=80=BC=EF=BC=9A=E9=94=
+=80=E5=94=AE=E3=80=81=E9=80=80=E8=B4=A7=E3=80=81=E6=8D=A2=E8=B4=A7</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">5</td>
+    <td class=3D"confluenceTd"><code>ORDER_NBR</code></td>
+    <td class=3D"confluenceTd">=E4=BA=A4=E6=98=93/=E8=AE=A2=E5=8D=95=E5=8F=
+=B7</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E4=BA=A4=E6=98=93=E5=94=AF=E4=B8=80=E9=94=
+=AE</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">6</td>
+    <td class=3D"confluenceTd"><code>UPC</code></td>
+    <td class=3D"confluenceTd">=E6=9D=A1=E5=BD=A2=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E6=9D=A1=E5=BD=A2=E7=A0=81=EF=BC=8C=E5=95=
+=86=E5=93=81=E5=94=AF=E4=B8=80=E8=AF=86=E5=88=AB=E7=A0=81</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">7</td>
+    <td class=3D"confluenceTd"><code>PRODUCT_CD</code></td>
+    <td class=3D"confluenceTd">=E8=B4=A7=E5=8F=B7</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=95=86=E5=93=81=E7=BC=96=E7=A0=81=E5=8C=
+=85=E5=90=AB=E6=AC=BE=E5=8F=B7=E5=92=8C=E9=A2=9C=E8=89=B2=E5=8F=B7</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">8</td>
+    <td class=3D"confluenceTd"><code>SIZE_CD</code></td>
+    <td class=3D"confluenceTd">=E5=B0=BA=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=95=86=E5=93=81=E5=B0=BA=E7=A0=81=E4=BB=
+=A3=E7=A0=81</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">9</td>
+    <td class=3D"confluenceTd"><code>PRODUCT_NM</code></td>
+    <td class=3D"confluenceTd">=E5=95=86=E5=93=81=E5=90=8D=E7=A7=B0</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E5=95=86=E5=93=81=E5=90=8D=E7=A7=B0</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">10</td>
+    <td class=3D"confluenceTd"><code>LINE_ITEM_NBR</code></td>
+    <td class=3D"confluenceTd">=E8=A1=8C=E9=A1=B9=E7=9B=AE=E5=BA=8F=E5=8F=
+=B7</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=95=86=E5=93=81=E7=9A=84=E8=A1=8C=E9=A1=
+=B9=E7=9B=AE=E5=BA=8F=E5=8F=B7</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">11</td>
+    <td class=3D"confluenceTd"><code>NET_SALES_PRC_INCL_TAX</code></td>
+    <td class=3D"confluenceTd">=E5=AE=9E=E9=99=85=E9=94=80=E5=94=AE=E5=8D=
+=95=E4=BB=B7</td>
+    <td class=3D"confluenceTd">Decimal</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=AE=9E=E9=99=85=E9=94=80=E5=94=AE=E5=8D=
+=95=E4=BB=B7</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">12</td>
+    <td class=3D"confluenceTd"><code>REBATE_AMT</code></td>
+    <td class=3D"confluenceTd">=E5=95=86=E5=9C=BA=E8=A1=A5=E8=B4=B4=E9=87=
+=91=E9=A2=9D</td>
+    <td class=3D"confluenceTd">Decimal</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E5=95=86=E5=9C=BA=E8=A1=A5=E8=B4=B4=E9=87=
+=91=E9=A2=9D</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">13</td>
+    <td class=3D"confluenceTd"><code>NET_SALES_AMT_INCL_TAX</code></td>
+    <td class=3D"confluenceTd">=E5=AE=9E=E9=99=85=E9=94=80=E5=94=AE=E9=87=
+=91=E9=A2=9D</td>
+    <td class=3D"confluenceTd">Decimal</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td style=3D"text-align: left;vertical-align: top;" class=3D"confluence=
+Td">=E5=AE=A2=E6=88=B7=E5=AE=9E=E6=94=B6=E9=87=91=E9=A2=9D=EF=BC=9A=E7=94=
+=B1=EF=BC=88=E5=AE=9E=E9=99=85=E9=94=80=E5=94=AE=E5=8D=95=E4=BB=B7=E5=90=AB=
+=E7=A8=8E=E9=87=91=E9=A2=9D =C3=97 =E6=95=B0=E9=87=8F=EF=BC=89=E6=B4=BE=E7=
+=94=9F=E5=BE=97=E5=87=BA=E7=9A=84=E5=AE=9E=E6=94=B6=E5=90=AB=E7=A8=8E=E6=80=
+=BB=E9=87=91=E9=A2=9D=EF=BC=9B=E8=8B=A5=E4=B8=BA=E9=80=80=E8=B4=A7=E5=88=99=
+=E4=B8=BA=E8=B4=9F=E6=95=B0</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">14</td>
+    <td class=3D"confluenceTd"><code>SALES_QTY</code></td>
+    <td class=3D"confluenceTd">=E9=94=80=E5=94=AE=E6=95=B0=E9=87=8F</td>
+    <td class=3D"confluenceTd">Integer</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E6=B6=88=E8=B4=B9=E8=80=85=E5=AE=9E=E9=99=
+=85=E8=B4=AD=E4=B9=B0=E7=9A=84=E5=95=86=E5=93=81=E6=95=B0=E9=87=8F=EF=BC=9B=
+=E8=8B=A5=E4=B8=BA=E9=80=80=E8=B4=A7=E5=88=99=E4=B8=BA=E8=B4=9F=E6=95=B0</t=
+d>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">15</td>
+    <td class=3D"confluenceTd"><code>MSRP_LC</code></td>
+    <td class=3D"confluenceTd">=E5=BB=BA=E8=AE=AE=E9=9B=B6=E5=94=AE=E5=8D=
+=95=E4=BB=B7(=E5=90=8A=E7=89=8C=E4=BB=B7)</td>
+    <td class=3D"confluenceTd">Decimal</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd"><span style=3D"color:#172b4d;">=E5=BB=BA=E8=
+=AE=AE=E9=9B=B6=E5=94=AE=E5=8D=95=E4=BB=B7(=E5=90=8A=E7=89=8C=E4=BB=B7)</sp=
+an></td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">16</td>
+    <td class=3D"confluenceTd"><code>TOTAL_PARTNER_MSRP_AMT</code></td>
+    <td class=3D"confluenceTd">=E5=90=8A=E7=89=8C=E6=80=BB=E9=87=91=E9=A2=
+=9D</td>
+    <td class=3D"confluenceTd">Decimal</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E5=90=8A=E7=89=8C=E6=80=BB=E9=87=91=E9=A2=
+=9D</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">17</td>
+    <td class=3D"confluenceTd"><code>TOTAL_DISCOUNT_AMT</code></td>
+    <td class=3D"confluenceTd">=E6=8A=98=E6=89=A3=E6=80=BB=E9=87=91=E9=A2=
+=9D</td>
+    <td class=3D"confluenceTd">Decimal</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E6=9C=AC=E5=B8=81=E8=AE=A1=E7=9A=84=E4=BB=
+=B7=E6=A0=BC=E8=B0=83=E6=95=B4/=E6=8A=98=E6=89=A3=E6=80=BB=E9=87=91=E9=A2=
+=9D</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">18</td>
+    <td class=3D"confluenceTd"><code>ORIGINAL_STORE_CD</code></td>
+    <td class=3D"confluenceTd">=E9=80=80=E6=8D=A2=E8=B4=A7=E5=8E=9F=E5=A7=
+=8B=E9=97=A8=E5=BA=97=E7=BC=96=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E9=80=80=E6=8D=A2=E8=B4=A7=E5=8C=B9=E9=85=
+=8D=E5=8E=9F=E5=A7=8B=E9=97=A8=E5=BA=97=E7=BC=96=E7=A0=81</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">19</td>
+    <td class=3D"confluenceTd"><code>ORIGINAL_ORDER_NBR</code></td>
+    <td class=3D"confluenceTd">=E9=80=80=E6=8D=A2=E8=B4=A7=E5=8E=9F=E5=A7=
+=8B=E4=BA=A4=E6=98=93/=E8=AE=A2=E5=8D=95=E5=8F=B7</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E9=80=80=E6=8D=A2=E8=B4=A7=E5=8C=B9=E9=85=
+=8D=E5=8E=9F=E5=A7=8B=E4=BA=A4=E6=98=93=E6=B5=81=E6=B0=B4=E5=8F=B7/=E5=8D=
+=95=E6=8D=AE=E5=8F=B7</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">20</td>
+    <td class=3D"confluenceTd"><code>ORIGINAL_TRANSACTION_DT</code></td>
+    <td class=3D"confluenceTd">=E9=80=80=E6=8D=A2=E8=B4=A7=E5=8E=9F=E5=A7=
+=8B=E4=BA=A4=E6=98=93=E6=97=A5=E6=9C=9F</td>
+    <td class=3D"confluenceTd">Timestamp</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E9=80=80=E6=8D=A2=E8=B4=A7=E5=8C=B9=E9=85=
+=8D=E5=8E=9F=E5=A7=8B=E4=BA=A4=E6=98=93=E6=97=A5=E6=9C=9F<br>
+      YYYY-MM-DD HH:mm:ss</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">21</td>
+    <td class=3D"confluenceTd"><code>ORIGINAL_LINE_ITEM_NBR</code></td>
+    <td class=3D"confluenceTd">=E9=80=80=E6=8D=A2=E8=B4=A7=E5=8E=9F=E5=A7=
+=8B=E8=A1=8C=E9=A1=B9=E7=9B=AE=E5=BA=8F=E5=8F=B7</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E9=80=80=E6=8D=A2=E8=B4=A7=E5=8C=B9=E9=85=
+=8D=E5=8E=9F=E5=A7=8B=E5=95=86=E5=93=81=E8=A1=8C=E9=A1=B9=E7=9B=AE=E5=BA=8F=
+=E5=8F=B7</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">22</td>
+    <td class=3D"confluenceTd"><code>LAST_UPDATED_TMST</code></td>
+    <td class=3D"confluenceTd">=E6=9C=80=E5=90=8E=E6=9B=B4=E6=96=B0=E6=97=
+=B6=E9=97=B4</td>
+    <td class=3D"confluenceTd">Timestamp</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E8=AE=B0=E5=BD=95=E6=9C=80=E5=90=8E=E6=9B=
+=B4=E6=96=B0=E7=9A=84=E6=97=B6=E9=97=B4=E6=88=B3<br>
+      YYYY-MM-DD HH:mm:ss</td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<p><strong>=E6=A0=B7=E4=BE=8B=E8=AF=B7=E6=B1=82=EF=BC=9A</strong></p>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped confluenceTable">
+  <colgroup>
+   <col>
+   <col>
+   <col>
+  </colgroup>
+  <tbody>
+   <tr>
+    <th scope=3D"col" class=3D"confluenceTh">python</th>
+    <th scope=3D"col" class=3D"confluenceTh">java</th>
+    <th scope=3D"col" class=3D"confluenceTh">curl(linux)</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">import gzip<br>
+      import json<br>
+      import requests<br>
+      url =3D "<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerData/=
+send" class=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.com=
+.cn/ades/partnerData/send</a>"<br>
+      token =3D "YOUR_TOKEN"<br>
+      payload =3D {<br>
+      &nbsp; "batch_no": "a1b2c3d4-0001-4000-8000-100000000001",<br>
+      &nbsp; "batch_date": "2026-05-10",<br>
+      &nbsp; "request_seq": 1,<br>
+      &nbsp; "request_id": "a1b2c3d4-0001-4000-8000-000000000001",<br>
+      &nbsp; "total_requests": 1,<br>
+      &nbsp; "partner_code": "PARTNER001",<br>
+      &nbsp; "data_type": "pos",<br>
+      &nbsp; "record_count": 1,<br>
+      &nbsp; "amount_sum": -999,<br>
+      &nbsp; "quantity_sum": -1,<br>
+      &nbsp; "schema_version": "1.0",<br>
+      &nbsp; "source_system": "=E8=87=AA=E8=90=A5",<br>
+      &nbsp; "send_timestamp": "2026-05-11T02:00:00+08:00",<br>
+      &nbsp; "records": [<br>
+      &nbsp; &nbsp; {<br>
+      &nbsp; &nbsp; &nbsp; "store_cd": "RL1001",<br>
+      &nbsp; &nbsp; &nbsp; "business_type": "=E7=BA=BF=E4=B8=8B",<br>
+      &nbsp; &nbsp; &nbsp; "transaction_dt": "2026-05-10 17:25:08",<br>
+      &nbsp; &nbsp; &nbsp; "order_type": "3",<br>
+      &nbsp; &nbsp; &nbsp; "order_nbr": "1001-20260510-00023",<br>
+      &nbsp; &nbsp; &nbsp; "upc": "06942388234561",<br>
+      &nbsp; &nbsp; &nbsp; "product_cd": "DM0773-101",<br>
+      &nbsp; &nbsp; &nbsp; "size_cd": "265",<br>
+      &nbsp; &nbsp; &nbsp; "product_nm": "Nike Air Max 90 =E8=93=9D=E7=99=
+=BD",<br>
+      &nbsp; &nbsp; &nbsp; "line_item_nbr": 1,<br>
+      &nbsp; &nbsp; &nbsp; "net_sales_prc_incl_tax": -999.0,<br>
+      &nbsp; &nbsp; &nbsp; "rebate_amt": "",<br>
+      &nbsp; &nbsp; &nbsp; "net_sales_amt_incl_tax": -999.0,<br>
+      &nbsp; &nbsp; &nbsp; "sales_qty": -1,<br>
+      &nbsp; &nbsp; &nbsp; "msrp_lc": 999.0,<br>
+      &nbsp; &nbsp; &nbsp; "total_partner_msrp_amt": -999.0,<br>
+      &nbsp; &nbsp; &nbsp; "total_discount_amt": 0.0,<br>
+      &nbsp; &nbsp; &nbsp; "original_store_cd": "1001",<br>
+      &nbsp; &nbsp; &nbsp; "original_order_nbr": "1001-20260506-00015",<br>
+      &nbsp; &nbsp; &nbsp; "original_transaction_dt": "2026-05-06",<br>
+      &nbsp; &nbsp; &nbsp; "original_line_item_nbr": 1,<br>
+      &nbsp; &nbsp; &nbsp; "last_updated_tmst": "2026-05-10 17:25:08"<br>
+      &nbsp; &nbsp; }<br>
+      &nbsp; ]<br>
+      }<br>
+      # =E5=8E=8B=E7=BC=A9 JSON<br>
+      raw =3D json.dumps(payload, ensure_ascii=3DFalse).encode("utf-8")<br>
+      gz_body =3D gzip.compress(raw)<br>
+      headers =3D {<br>
+      &nbsp; &nbsp; "Authorization": f"Bearer {token}",<br>
+      &nbsp; &nbsp; "accept": "*/*",<br>
+      &nbsp; &nbsp; "X-Auth-Type": "Oscar",<br>
+      &nbsp; &nbsp; "X-Request-ID": "a1b2c3d4-0001-4000-8000-000000000001",=
+<br>
+      &nbsp; &nbsp; "X-Partner-Code": "PARTNER001",<br>
+      &nbsp; &nbsp; "X-Timestamp": "2026-06-12 14:15:00",<br>
+      &nbsp; &nbsp; "Content-Type": "application/json",<br>
+      &nbsp; &nbsp; "Content-Encoding": "gzip"<br>
+      }<br>
+      # verify=3DFalse =E7=AD=89=E4=BB=B7 curl -k<br>
+      resp =3D requests.post(url, headers=3Dheaders, data=3Dgz_body, verify=
+=3DFalse, timeout=3D30)<br>
+      print(resp.status_code)<br>
+      print(resp.text)</td>
+    <td class=3D"confluenceTd">
+     <p>import <a href=3D"http://java.io" class=3D"external-link" rel=3D"no=
+follow">java.io</a>.ByteArrayOutputStream;<br>
+       import <a href=3D"http://java.io" class=3D"external-link" rel=3D"nof=
+ollow">java.io</a>.OutputStreamWriter;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.URI;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpClient;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpRequest;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpResponse;<br>
+       import java.nio.charset.StandardCharsets;<br>
+       import java.util.zip.GZIPOutputStream;</p>
+     <p>public class GzipApiCallExample {<br>
+       &nbsp; &nbsp; public static void main(String[] args) throws Exceptio=
+n {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; String token =3D "YOUR_TOKEN";</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; String json =3D "{"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"batch_n=
+o\":\"a1b2c3d4-0001-4000-8000-100000000001\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"batch_d=
+ate\":\"2026-05-10\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"request=
+_seq\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"request=
+_id\":\"a1b2c3d4-0001-4000-8000-000000000001\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"total_r=
+equests\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"partner=
+_code\":\"PARTNER001\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"data_ty=
+pe\":\"pos\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"record_=
+count\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"amount_=
+sum\":-999,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"quantit=
+y_sum\":-1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"schema_=
+version\":\"1.0\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"source_=
+system\":\"=E8=87=AA=E8=90=A5\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"send_ti=
+mestamp\":\"2026-05-11T02:00:00+08:00\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"records=
+\":[{"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"store_c=
+d\":\"RL1001\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"busines=
+s_type\":\"=E7=BA=BF=E4=B8=8B\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"transac=
+tion_dt\":\"2026-05-10 17:25:08\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"order_t=
+ype\":\"3\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"order_n=
+br\":\"1001-20260510-00023\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"upc\":\=
+"06942388234561\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"product=
+_cd\":\"DM0773-101\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"size_cd=
+\":\"265\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"product=
+_nm\":\"Nike Air Max 90 =E8=93=9D=E7=99=BD\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"line_it=
+em_nbr\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"net_sal=
+es_prc_incl_tax\":-999.0,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"rebate_=
+amt\":\"\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"net_sal=
+es_amt_incl_tax\":-999.0,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"sales_q=
+ty\":-1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"msrp_lc=
+\":999.0,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"total_p=
+artner_msrp_amt\":-999.0,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"total_d=
+iscount_amt\":0.0,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"origina=
+l_store_cd\":\"1001\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"origina=
+l_order_nbr\":\"1001-20260506-00015\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"origina=
+l_transaction_dt\":\"2026-05-06\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"origina=
+l_line_item_nbr\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"last_up=
+dated_tmst\":\"2026-05-10 17:25:08\""<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "}]"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "}";</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; byte[] gzipBody =3D gzip(json);</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; HttpRequest request =3D HttpRequest.new=
+Builder()<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .uri(URI.cre=
+ate("<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerData/send" clas=
+s=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.com.cn/ades/p=
+artnerData/send</a>"))<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Aut=
+horization", "Bearer " + token)<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("acc=
+ept", "*/*")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-A=
+uth-Type", "Oscar") // =E5=BB=BA=E8=AE=AE=E9=A6=96=E5=AD=97=E6=AF=8D=E5=A4=
+=A7=E5=86=99<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-R=
+equest-ID", "a1b2c3d4-0001-4000-8000-000000000001")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-P=
+artner-Code", "PARTNER001")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-T=
+imestamp", "2026-05-11 02:00:00")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Con=
+tent-Type", "application/json")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Con=
+tent-Encoding", "gzip")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .POST(HttpRe=
+quest.BodyPublishers.ofByteArray(gzipBody))<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .build();</p=
+>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; HttpClient client =3D HttpClient.newBui=
+lder().build();<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; HttpResponse&lt;String&gt; response =3D =
+client.send(<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; request, Htt=
+pResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; System.out.println("status =3D " + resp=
+onse.statusCode());<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; System.out.println("body &nbsp; =3D " + =
+response.body());<br>
+       &nbsp; &nbsp; }</p>
+     <p>&nbsp; &nbsp; private static byte[] gzip(String content) throws Exc=
+eption {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; ByteArrayOutputStream bos =3D new ByteAr=
+rayOutputStream();<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; try (GZIPOutputStream gzip =3D new GZIPO=
+utputStream(bos);<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;OutputStreamWriter w=
+riter =3D new OutputStreamWriter(gzip, StandardCharsets.UTF_8)) {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; writer.write(content);<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; return bos.toByteArray();<br>
+       &nbsp; &nbsp; }<br>
+       }</p></td>
+    <td class=3D"confluenceTd">
+     <p># 1) =E5=87=86=E5=A4=87=E8=AF=B7=E6=B1=82=E4=BD=93=E6=96=87=E4=BB=
+=B6<br>
+       cat &gt; body.json &lt;&lt;'EOF'<br>
+       {<br>
+       &nbsp; "batch_no": "a1b2c3d4-0001-4000-8000-100000000001",<br>
+       &nbsp; "batch_date": "2026-05-10",<br>
+       &nbsp; "request_seq": 1,<br>
+       &nbsp; "request_id": "a1b2c3d4-0001-4000-8000-000000000001",<br>
+       &nbsp; "total_requests": 1,<br>
+       &nbsp; "partner_code": "PARTNER001",<br>
+       &nbsp; "data_type": "pos",<br>
+       &nbsp; "record_count": 1,<br>
+       &nbsp; "amount_sum": -999,<br>
+       &nbsp; "quantity_sum": -1,<br>
+       &nbsp; "schema_version": "1.0",<br>
+       &nbsp; "source_system": "=E8=87=AA=E8=90=A5",<br>
+       &nbsp; "send_timestamp": "2026-05-11T02:00:00+08:00",<br>
+       &nbsp; "records": [<br>
+       &nbsp; &nbsp; {<br>
+       &nbsp; &nbsp; &nbsp; "store_cd": "RL1001",<br>
+       &nbsp; &nbsp; &nbsp; "business_type": "=E7=BA=BF=E4=B8=8B",<br>
+       &nbsp; &nbsp; &nbsp; "transaction_dt": "2026-05-10 17:25:08",<br>
+       &nbsp; &nbsp; &nbsp; "order_type": "3",<br>
+       &nbsp; &nbsp; &nbsp; "order_nbr": "1001-20260510-00023",<br>
+       &nbsp; &nbsp; &nbsp; "upc": "06942388234561",<br>
+       &nbsp; &nbsp; &nbsp; "product_cd": "DM0773-101",<br>
+       &nbsp; &nbsp; &nbsp; "size_cd": "265",<br>
+       &nbsp; &nbsp; &nbsp; "product_nm": "Nike Air Max 90 =E8=93=9D=E7=99=
+=BD",<br>
+       &nbsp; &nbsp; &nbsp; "line_item_nbr": 1,<br>
+       &nbsp; &nbsp; &nbsp; "net_sales_prc_incl_tax": -999.0,<br>
+       &nbsp; &nbsp; &nbsp; "rebate_amt": "",<br>
+       &nbsp; &nbsp; &nbsp; "net_sales_amt_incl_tax": -999.0,<br>
+       &nbsp; &nbsp; &nbsp; "sales_qty": -1,<br>
+       &nbsp; &nbsp; &nbsp; "msrp_lc": 999.0,<br>
+       &nbsp; &nbsp; &nbsp; "total_partner_msrp_amt": -999.0,<br>
+       &nbsp; &nbsp; &nbsp; "total_discount_amt": 0.0,<br>
+       &nbsp; &nbsp; &nbsp; "original_store_cd": "1001",<br>
+       &nbsp; &nbsp; &nbsp; "original_order_nbr": "1001-20260506-00015",<br=
+>
+       &nbsp; &nbsp; &nbsp; "original_transaction_dt": "2026-05-06",<br>
+       &nbsp; &nbsp; &nbsp; "original_line_item_nbr": 1,<br>
+       &nbsp; &nbsp; &nbsp; "last_updated_tmst": "2026-05-10 17:25:08"<br>
+       &nbsp; &nbsp; }<br>
+       &nbsp; ]<br>
+       }<br>
+       EOF</p>
+     <p># 2) gzip =E5=8E=8B=E7=BC=A9=E8=AF=B7=E6=B1=82=E4=BD=93<br>
+       gzip -c body.json &gt; body.json.gz</p>
+     <p># 3) =E5=8F=91=E8=B5=B7=E8=AF=B7=E6=B1=82=EF=BC=88UAT=EF=BC=89<br>
+       time curl -i -k -X POST \<br>
+       &nbsp; '<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerData/=
+send" class=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.com=
+.cn/ades/partnerData/send</a>' \<br>
+       &nbsp; -H "Authorization: Bearer ${token}" \<br>
+       &nbsp; -H 'accept: */*' \<br>
+       &nbsp; -H 'X-Auth-Type: Oscar' \<br>
+       &nbsp; -H 'X-Request-ID: a1b2c3d4-0001-4000-8000-000000000001' \<br>
+       &nbsp; -H 'X-Partner-Code: PARTNER001' \<br>
+       &nbsp; -H 'X-Timestamp: 2026-05-11 02:00:00' \<br>
+       &nbsp; -H 'Content-Type: application/json' \<br>
+       &nbsp; -H 'Content-Encoding: gzip' \<br>
+       &nbsp; --data-binary "@body.json.gz"</p></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<p><code>&nbsp;</code></p>
+<pre><br></pre>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-6.2=E5=BA=93=E5=AD=98=E6=95=B0=E6=8D=AE=
+">6.2 =E5=BA=93=E5=AD=98=E6=95=B0=E6=8D=AE</h3>
+<p><strong><code>records</code> =E5=AD=97=E6=AE=B5=E8=A7=84=E8=8C=83=EF=BC=
+=9A</strong></p>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped relative-table confluenceTable" style=3D"width: 95=
+.4476%;">
+  <colgroup>
+   <col style=3D"width: 3.62867%;">
+   <col style=3D"width: 28.3216%;">
+   <col style=3D"width: 10.4859%;">
+   <col style=3D"width: 14.6998%;">
+   <col style=3D"width: 8.42789%;">
+   <col style=3D"width: 34.5935%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"confluenceTh"><br></th>
+    <th class=3D"confluenceTh">=E5=AD=97=E6=AE=B5=E5=90=8D</th>
+    <th class=3D"confluenceTh">=E4=B8=AD=E6=96=87=E5=90=8D</th>
+    <th class=3D"confluenceTh">=E6=95=B0=E6=8D=AE=E7=B1=BB=E5=9E=8B</th>
+    <th class=3D"confluenceTh">=E5=BF=85=E5=A1=AB</th>
+    <th class=3D"confluenceTh">=E8=AF=B4=E6=98=8E</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">1</td>
+    <td class=3D"confluenceTd"><code>SITE_CD</code></td>
+    <td class=3D"confluenceTd">=E9=97=A8=E5=BA=97/=E4=BB=93=E5=BA=93=E7=BC=
+=96=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=AE=A2=E6=88=B7=E9=97=A8=E5=BA=97=E6=88=
+=96=E4=BB=93=E5=BA=93=E5=94=AF=E4=B8=80=E6=A0=87=E8=AF=86=E7=BC=96=E7=A0=81=
+</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">2</td>
+    <td class=3D"confluenceTd"><code>UPC</code></td>
+    <td class=3D"confluenceTd">=E6=9D=A1=E5=BD=A2=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E6=9D=A1=E5=BD=A2=E7=A0=81=EF=BC=8C=E5=95=
+=86=E5=93=81=E5=94=AF=E4=B8=80=E8=AF=86=E5=88=AB=E7=A0=81</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">3</td>
+    <td class=3D"confluenceTd"><code>PRODUCT_CD</code></td>
+    <td class=3D"confluenceTd">=E8=B4=A7=E5=8F=B7</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E4=BA=A7=E5=93=81=E7=BC=96=E7=A0=81=E5=8C=
+=85=E5=90=AB=E6=AC=BE=E5=8F=B7=E5=92=8C=E9=A2=9C=E8=89=B2=E5=8F=B7</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">4</td>
+    <td class=3D"confluenceTd"><code>SIZE_CD</code></td>
+    <td class=3D"confluenceTd">=E5=B0=BA=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=95=86=E5=93=81=E5=B0=BA=E7=A0=81=E4=BB=
+=A3=E7=A0=81</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">5</td>
+    <td class=3D"confluenceTd"><code>PRODUCT_NM</code></td>
+    <td class=3D"confluenceTd">=E5=95=86=E5=93=81=E5=90=8D=E7=A7=B0</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E4=BA=A7=E5=93=81=E5=90=8D=E7=A7=B0=EF=BC=
+=8C=E5=BB=BA=E8=AE=AE=E5=A1=AB</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">6</td>
+    <td class=3D"confluenceTd"><code>INVENTORY_DT</code></td>
+    <td class=3D"confluenceTd">=E5=BA=93=E5=AD=98=E6=97=A5=E6=9C=9F</td>
+    <td class=3D"confluenceTd">Date</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=BA=93=E5=AD=98=E5=BF=AB=E7=85=A7=E6=97=
+=A5=E6=9C=9F<br>
+      YYYY-MM-DD</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">7</td>
+    <td class=3D"confluenceTd"><code>TOTAL_QTY</code></td>
+    <td class=3D"confluenceTd">=E6=80=BB=E5=BA=93=E5=AD=98</td>
+    <td class=3D"confluenceTd">Integer</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E6=80=BB=E5=BA=93=E5=AD=98</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">8</td>
+    <td class=3D"confluenceTd"><code>ON_HAND_QTY</code></td>
+    <td class=3D"confluenceTd">=E5=9C=A8=E5=BA=93=E5=BA=93=E5=AD=98</td>
+    <td class=3D"confluenceTd">Integer</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=9C=A8=E5=BA=93=E5=BA=93=E5=AD=98</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">9</td>
+    <td class=3D"confluenceTd"><code>IN_TRANSIT_QTY</code></td>
+    <td class=3D"confluenceTd">=E5=9C=A8=E9=80=94=E5=BA=93=E5=AD=98</td>
+    <td class=3D"confluenceTd">Integer</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E4=BB=93=E5=BA=93/=E9=97=A8=E5=BA=97=E6=9C=
+=AA=E5=85=A5=E5=BA=93=E7=9A=84=E5=9C=A8=E9=80=94=E5=BA=93=E5=AD=98=E6=95=B0=
+=E9=87=8F</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">10</td>
+    <td class=3D"confluenceTd"><code>DEFECTIVE_PCS_QTY</code></td>
+    <td class=3D"confluenceTd">=E6=AE=8B=E6=AC=A1=E5=93=81=E5=BA=93=E5=AD=
+=98</td>
+    <td class=3D"confluenceTd">Integer</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E6=AE=8B=E6=AC=A1=E5=93=81=E5=BA=93=E5=AD=
+=98</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">11</td>
+    <td class=3D"confluenceTd"><code>MSRP_LC</code></td>
+    <td class=3D"confluenceTd">=E5=BB=BA=E8=AE=AE=E9=9B=B6=E5=94=AE=E5=8D=
+=95=E4=BB=B7(=E5=90=8A=E7=89=8C=E4=BB=B7)</td>
+    <td class=3D"confluenceTd">Decimal</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E5=BB=BA=E8=AE=AE=E9=9B=B6=E5=94=AE=E5=8D=
+=95=E4=BB=B7(=E5=90=8A=E7=89=8C=E4=BB=B7)</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">12</td>
+    <td class=3D"confluenceTd"><code>LAST_UPDATED_TMST</code></td>
+    <td class=3D"confluenceTd">=E6=9C=80=E5=90=8E=E6=9B=B4=E6=96=B0=E6=97=
+=B6=E9=97=B4</td>
+    <td class=3D"confluenceTd">Timestamp</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E8=AE=B0=E5=BD=95=E6=9C=80=E5=90=8E=E6=9B=
+=B4=E6=96=B0=E7=9A=84=E6=97=B6=E9=97=B4=E6=88=B3<br>
+      YYYY-MM-DD HH:mm:ss</td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<p><strong>=E6=A0=B7=E4=BE=8B=E8=AF=B7=E6=B1=82=EF=BC=9A</strong></p>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped confluenceTable">
+  <colgroup>
+   <col>
+   <col>
+   <col>
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"confluenceTh">python</th>
+    <th class=3D"confluenceTh">java</th>
+    <th class=3D"confluenceTh">curl(linux)</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>import gzip<br>
+       import json<br>
+       import requests</p>
+     <p>url =3D "<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerDat=
+a/send" class=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.c=
+om.cn/ades/partnerData/send</a>"<br>
+       token =3D "YOUR_TOKEN"</p>
+     <p>payload =3D {<br>
+       &nbsp; &nbsp; "batch_no": "a1b2c3d4-0003-4000-8000-100000000003",<br=
+>
+       &nbsp; &nbsp; "batch_date": "2026-05-10",<br>
+       &nbsp; &nbsp; "request_seq": 1,<br>
+       &nbsp; &nbsp; "request_id": "a1b2c3d4-0003-4000-8000-000000000003",<=
+br>
+       &nbsp; &nbsp; "total_requests": 1,<br>
+       &nbsp; &nbsp; "partner_code": "PARTNER001",<br>
+       &nbsp; &nbsp; "data_type": "inventory",<br>
+       &nbsp; &nbsp; "record_count": 1,<br>
+       &nbsp; &nbsp; "amount_sum": 0,<br>
+       &nbsp; &nbsp; "quantity_sum": 50,<br>
+       &nbsp; &nbsp; "schema_version": "1.0",<br>
+       &nbsp; &nbsp; "source_system": "WMS_SYS",<br>
+       &nbsp; &nbsp; "send_timestamp": "2026-05-10 02:30:00",<br>
+       &nbsp; &nbsp; "records": [<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "site_cd": "DC01",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "upc": "06942388123456",<b=
+r>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "product_cd": "FJ0701-100"=
+,<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "size_cd": "265",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "product_nm": "Nike Air Ma=
+x 90 =E8=93=9D=E7=99=BD",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "inventory_dt": "2026-05-1=
+0",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "total_qty": 50,<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "on_hand_qty": 50,<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "in_transit_qty": 50,<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "defective_pcs_qty": 50,<b=
+r>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "msrp_lc": 799.0,<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "last_updated_tmst": "2026=
+-05-10 02:00:00"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+       &nbsp; &nbsp; ]<br>
+       }</p>
+     <p># =E5=8E=8B=E7=BC=A9 JSON<br>
+       raw =3D json.dumps(payload, ensure_ascii=3DFalse).encode("utf-8")<br=
+>
+       gz_body =3D gzip.compress(raw)</p>
+     <p>headers =3D {<br>
+       &nbsp; &nbsp; "Authorization": f"Bearer {token}",<br>
+       &nbsp; &nbsp; "accept": "*/*",<br>
+       &nbsp; &nbsp; "X-Auth-Type": "Oscar",<br>
+       &nbsp; &nbsp; "X-Request-ID": "a1b2c3d4-0003-4000-8000-000000000003"=
+,<br>
+       &nbsp; &nbsp; "X-Partner-Code": "PARTNER001",<br>
+       &nbsp; &nbsp; "X-Timestamp": "2026-05-10 02:30:00",<br>
+       &nbsp; &nbsp; "Content-Type": "application/json",<br>
+       &nbsp; &nbsp; "Content-Encoding": "gzip"<br>
+       }</p>
+     <p># verify=3DFalse =E7=AD=89=E4=BB=B7 curl -k<br>
+       resp =3D requests.post(url, headers=3Dheaders, data=3Dgz_body, verif=
+y=3DFalse, timeout=3D30)<br>
+       print(resp.status_code)<br>
+       print(resp.text)</p></td>
+    <td class=3D"confluenceTd">
+     <p>import <a href=3D"http://java.io" class=3D"external-link" rel=3D"no=
+follow">java.io</a>.ByteArrayOutputStream;<br>
+       import <a href=3D"http://java.io" class=3D"external-link" rel=3D"nof=
+ollow">java.io</a>.OutputStreamWriter;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.URI;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpClient;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpRequest;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpResponse;<br>
+       import java.nio.charset.StandardCharsets;<br>
+       import java.util.zip.GZIPOutputStream;</p>
+     <p>public class GzipApiCallExample {<br>
+       &nbsp; &nbsp; public static void main(String[] args) throws Exceptio=
+n {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; String token =3D "YOUR_TOKEN";</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; String json =3D "{"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"batch_n=
+o\":\"a1b2c3d4-0003-4000-8000-100000000003\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"batch_d=
+ate\":\"2026-05-10\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"request=
+_seq\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"request=
+_id\":\"a1b2c3d4-0003-4000-8000-000000000003\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"total_r=
+equests\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"partner=
+_code\":\"PARTNER001\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"data_ty=
+pe\":\"inventory\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"record_=
+count\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"amount_=
+sum\":0,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"quantit=
+y_sum\":50,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"schema_=
+version\":\"1.0\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"source_=
+system\":\"WMS_SYS\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"send_ti=
+mestamp\":\"2026-05-10 02:30:00\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"records=
+\":[{"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"site_cd=
+\":\"DC01\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"upc\":\=
+"06942388123456\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"product=
+_cd\":\"FJ0701-100\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"size_cd=
+\":\"265\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"product=
+_nm\":\"Nike Air Max 90 =E8=93=9D=E7=99=BD\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"invento=
+ry_dt\":\"2026-05-10\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"total_q=
+ty\":50,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"on_hand=
+_qty\":50,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"in_tran=
+sit_qty\":50,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"defecti=
+ve_pcs_qty\":50,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"msrp_lc=
+\":799.0,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"last_up=
+dated_tmst\":\"2026-05-10 02:00:00\""<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "}]"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "}";</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; byte[] gzipBody =3D gzip(json);</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; HttpRequest request =3D HttpRequest.new=
+Builder()<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .uri(URI.cre=
+ate("<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerData/send" clas=
+s=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.com.cn/ades/p=
+artnerData/send</a>"))<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Aut=
+horization", "Bearer " + token)<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("acc=
+ept", "*/*")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-A=
+uth-Type", "Oscar")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-R=
+equest-ID", "a1b2c3d4-0003-4000-8000-000000000003")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-P=
+artner-Code", "PARTNER001")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-T=
+imestamp", "2026-05-10 02:30:00")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Con=
+tent-Type", "application/json")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Con=
+tent-Encoding", "gzip")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .POST(HttpRe=
+quest.BodyPublishers.ofByteArray(gzipBody))<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .build();</p=
+>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; HttpClient client =3D HttpClient.newBui=
+lder().build();<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; HttpResponse&lt;String&gt; response =3D =
+client.send(<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; request, Htt=
+pResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; System.out.println("status =3D " + resp=
+onse.statusCode());<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; System.out.println("body &nbsp; =3D " + =
+response.body());<br>
+       &nbsp; &nbsp; }</p>
+     <p>&nbsp; &nbsp; private static byte[] gzip(String content) throws Exc=
+eption {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; ByteArrayOutputStream bos =3D new ByteAr=
+rayOutputStream();<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; try (GZIPOutputStream gzip =3D new GZIPO=
+utputStream(bos);<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;OutputStreamWriter w=
+riter =3D new OutputStreamWriter(gzip, StandardCharsets.UTF_8)) {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; writer.write(content);<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; return bos.toByteArray();<br>
+       &nbsp; &nbsp; }<br>
+       }</p></td>
+    <td class=3D"confluenceTd">
+     <p># 1) =E5=87=86=E5=A4=87=E8=AF=B7=E6=B1=82=E4=BD=93=E6=96=87=E4=BB=
+=B6<br>
+       cat &gt; body.json &lt;&lt;'EOF'<br>
+       {<br>
+       &nbsp; "batch_no": "a1b2c3d4-0003-4000-8000-100000000003",<br>
+       &nbsp; "batch_date": "2026-05-10",<br>
+       &nbsp; "request_seq": 1,<br>
+       &nbsp; "request_id": "a1b2c3d4-0003-4000-8000-000000000003",<br>
+       &nbsp; "total_requests": 1,<br>
+       &nbsp; "partner_code": "PARTNER001",<br>
+       &nbsp; "data_type": "inventory",<br>
+       &nbsp; "record_count": 1,<br>
+       &nbsp; "amount_sum": 0,<br>
+       &nbsp; "quantity_sum": 50,<br>
+       &nbsp; "schema_version": "1.0",<br>
+       &nbsp; "source_system": "WMS_SYS",<br>
+       &nbsp; "send_timestamp": "2026-05-10 02:30:00",<br>
+       &nbsp; "records": [<br>
+       &nbsp; &nbsp; {<br>
+       &nbsp; &nbsp; &nbsp; "site_cd": "DC01",<br>
+       &nbsp; &nbsp; &nbsp; "upc": "06942388123456",<br>
+       &nbsp; &nbsp; &nbsp; "product_cd": "FJ0701-100",<br>
+       &nbsp; &nbsp; &nbsp; "size_cd": "265",<br>
+       &nbsp; &nbsp; &nbsp; "product_nm": "Nike Air Max 90 =E8=93=9D=E7=99=
+=BD",<br>
+       &nbsp; &nbsp; &nbsp; "inventory_dt": "2026-05-10",<br>
+       &nbsp; &nbsp; &nbsp; "total_qty": 50,<br>
+       &nbsp; &nbsp; &nbsp; "on_hand_qty": 50,<br>
+       &nbsp; &nbsp; &nbsp; "in_transit_qty": 50,<br>
+       &nbsp; &nbsp; &nbsp; "defective_pcs_qty": 50,<br>
+       &nbsp; &nbsp; &nbsp; "msrp_lc": 799.0,<br>
+       &nbsp; &nbsp; &nbsp; "last_updated_tmst": "2026-05-10 02:00:00"<br>
+       &nbsp; &nbsp; }<br>
+       &nbsp; ]<br>
+       }<br>
+       EOF</p>
+     <p># 2) gzip =E5=8E=8B=E7=BC=A9=E8=AF=B7=E6=B1=82=E4=BD=93<br>
+       gzip -c body.json &gt; body.json.gz</p>
+     <p># 3) =E5=8F=91=E8=B5=B7=E8=AF=B7=E6=B1=82=EF=BC=88UAT=EF=BC=89<br>
+       time curl -i -k -X 'POST' \<br>
+       &nbsp; '<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerData/=
+send" class=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.com=
+.cn/ades/partnerData/send</a>' \<br>
+       &nbsp; -H "Authorization: Bearer ${token}" \<br>
+       &nbsp; -H 'accept: */*' \<br>
+       &nbsp; -H 'X-Auth-Type: Oscar' \<br>
+       &nbsp; -H 'X-Request-ID: a1b2c3d4-0003-4000-8000-000000000003' \<br>
+       &nbsp; -H 'X-Partner-Code: PARTNER001' \<br>
+       &nbsp; -H 'X-Timestamp: 2026-05-10 02:30:00' \<br>
+       &nbsp; -H 'Content-Type: application/json' \<br>
+       &nbsp; -H 'Content-Encoding: gzip' \<br>
+       &nbsp; --data-binary "@body.json.gz"</p></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<pre><code> </code></pre>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-6.3=E5=BA=93=E5=AD=98=E7=A7=BB=E5=8A=A8=
+=E6=95=B0=E6=8D=AE">6.3 =E5=BA=93=E5=AD=98=E7=A7=BB=E5=8A=A8=E6=95=B0=E6=8D=
+=AE</h3>
+<p><strong><code>records</code> =E5=AD=97=E6=AE=B5=E8=A7=84=E8=8C=83=EF=BC=
+=9A</strong></p>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped relative-table confluenceTable" style=3D"width: 96=
+.0085%;">
+  <colgroup>
+   <col style=3D"width: 4.1917%;">
+   <col style=3D"width: 26.0128%;">
+   <col style=3D"width: 8.37865%;">
+   <col style=3D"width: 11.4963%;">
+   <col style=3D"width: 8.37865%;">
+   <col style=3D"width: 41.6984%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"confluenceTh"><br></th>
+    <th class=3D"confluenceTh">=E5=AD=97=E6=AE=B5=E5=90=8D</th>
+    <th class=3D"confluenceTh">=E4=B8=AD=E6=96=87=E5=90=8D</th>
+    <th class=3D"confluenceTh">=E6=95=B0=E6=8D=AE=E7=B1=BB=E5=9E=8B</th>
+    <th class=3D"confluenceTh">=E5=BF=85=E5=A1=AB</th>
+    <th class=3D"confluenceTh">=E8=AF=B4=E6=98=8E</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">1</td>
+    <td class=3D"confluenceTd"><code>SITE_CD</code></td>
+    <td class=3D"confluenceTd">=E9=97=A8=E5=BA=97/=E4=BB=93=E5=BA=93=E7=BC=
+=96=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=AE=A2=E6=88=B7=E9=97=A8=E5=BA=97=E6=88=
+=96=E4=BB=93=E5=BA=93=E5=94=AF=E4=B8=80=E6=A0=87=E8=AF=86=E7=BC=96=E7=A0=81=
+</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">2</td>
+    <td class=3D"confluenceTd"><code>SITE_NM</code></td>
+    <td class=3D"confluenceTd">=E9=97=A8=E5=BA=97/=E4=BB=93=E5=BA=93=E5=90=
+=8D=E7=A7=B0</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E4=BD=8D=E7=BD=AE=E5=90=8D=E7=A7=B0</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">3</td>
+    <td class=3D"confluenceTd"><code>UPC</code></td>
+    <td class=3D"confluenceTd">=E6=9D=A1=E5=BD=A2=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E6=9D=A1=E5=BD=A2=E7=A0=81=EF=BC=8C=E5=95=
+=86=E5=93=81=E5=94=AF=E4=B8=80=E8=AF=86=E5=88=AB=E7=A0=81</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">4</td>
+    <td class=3D"confluenceTd"><code>PRODUCT_CD</code></td>
+    <td class=3D"confluenceTd">=E8=B4=A7=E5=8F=B7</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=95=86=E5=93=81=E7=BC=96=E7=A0=81=E5=8C=
+=85=E5=90=AB=E6=AC=BE=E5=8F=B7=E5=92=8C=E9=A2=9C=E8=89=B2=E5=8F=B7</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">5</td>
+    <td class=3D"confluenceTd"><code>SIZE_CD</code></td>
+    <td class=3D"confluenceTd">=E5=B0=BA=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=95=86=E5=93=81=E5=B0=BA=E7=A0=81=E4=BB=
+=A3=E7=A0=81</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">6</td>
+    <td class=3D"confluenceTd"><code>PRODUCT_NM</code></td>
+    <td class=3D"confluenceTd">=E5=95=86=E5=93=81=E5=90=8D=E7=A7=B0</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E5=95=86=E5=93=81=E6=8F=8F=E8=BF=B0/=E5=90=
+=8D=E7=A7=B0</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">7</td>
+    <td class=3D"confluenceTd"><code>DIRECTION_DESC</code></td>
+    <td class=3D"confluenceTd">=E6=B5=81=E8=BD=AC=E6=96=B9=E5=90=91</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E4=BA=A4=E6=98=93=E6=96=B9=E5=90=91=EF=BC=
+=9A=E5=87=BA=E5=BA=93=E6=88=96=E5=85=A5=E5=BA=93</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">8</td>
+    <td class=3D"confluenceTd"><code>WMS_ORDER_NO</code></td>
+    <td class=3D"confluenceTd">=E4=BB=93=E5=BA=93=E4=BD=9C=E4=B8=9A=E6=B5=
+=81=E6=B0=B4=E5=8D=95=E5=8F=B7</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E4=BB=93=E5=BA=93=E4=BD=9C=E4=B8=9A=E6=B5=
+=81=E6=B0=B4=E5=8D=95=E5=8F=B7=EF=BC=8C=E4=BB=85=E5=BA=94=E7=94=A8=E4=BA=8E=
+=E4=BB=93=E5=BA=93</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">9</td>
+    <td class=3D"confluenceTd"><code>PROOF_OF_DELIVERY_NO</code></td>
+    <td class=3D"confluenceTd">=E5=8F=91=E8=B4=A7=E5=8D=95=E5=8F=B7</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=85=B3=E8=81=94=E8=80=90=E5=85=8B=E5=8F=
+=91=E8=B4=A7=E5=8D=95=E5=92=8C=E9=80=80=E8=BF=98=E8=80=90=E5=85=8B=E5=8F=91=
+=E8=B4=A7=E5=8D=95=EF=BC=8C =E8=80=90=E5=85=8B=E5=8F=91=E8=B4=A7=E4=B8=BA =
+=E8=A3=85=E7=AE=B1=E5=8D=95=E5=8F=B7EPL=EF=BC=8C =E8=80=90=E5=85=8B=E9=80=
+=80=E8=B4=A7=E4=B8=BA =E8=80=90=E5=85=8B=E9=80=80=E8=B4=A7=E8=AE=A2=E5=8D=
+=95=E5=8F=B7 RSO</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">10</td>
+    <td class=3D"confluenceTd"><code>STATUS_TYPE_DESC</code></td>
+    <td class=3D"confluenceTd">=E7=8A=B6=E6=80=81=E7=B1=BB=E5=9E=8B=E6=8F=
+=8F=E8=BF=B0</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">
+     <p>=E5=AE=A2=E6=88=B7=E5=87=BA=E5=85=A5=E5=BA=93=E7=B1=BB=E5=9E=8B=EF=
+=BC=8C<br>
+       =E6=9E=9A=E4=B8=BE=E5=80=BC=EF=BC=9A=E8=80=90=E5=85=8B=E5=8F=91=E8=
+=B4=A7=E3=80=81=E9=80=80=E8=BF=98=E8=80=90=E5=85=8B=E3=80=81=E5=8A=A0=E7=9B=
+=9F=E5=8F=91=E8=B4=A7=E3=80=81=E5=8A=A0=E7=9B=9F=E9=80=80=E8=B4=A7</p></td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">11</td>
+    <td class=3D"confluenceTd"><code>TRANSACTION_TMST</code></td>
+    <td class=3D"confluenceTd">=E6=B5=81=E6=B0=B4=E4=BD=9C=E4=B8=9A=E6=97=
+=B6=E9=97=B4=E6=88=B3</td>
+    <td class=3D"confluenceTd">Timestamp</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E6=B5=81=E6=B0=B4=E4=BD=9C=E4=B8=9A=E6=97=
+=B6=E9=97=B4=E6=88=B3=E5=8C=85=E5=90=AB=E6=97=A5=E6=9C=9F=E5=92=8C=E5=85=B7=
+=E4=BD=93=E6=97=B6=E9=97=B4<br>
+      YYYY-MM-DD HH:mm:ss</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">12</td>
+    <td class=3D"confluenceTd"><code>TRANSACTION_QTY</code></td>
+    <td class=3D"confluenceTd">=E6=B5=81=E6=B0=B4=E5=A4=84=E7=90=86=E4=BB=
+=B6=E6=95=B0</td>
+    <td class=3D"confluenceTd">Integer</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E6=B5=81=E6=B0=B4=E5=A4=84=E7=90=86=E4=BB=
+=B6=E6=95=B0</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">13</td>
+    <td class=3D"confluenceTd"><code>SOURCE_FROM_SITE_CD</code></td>
+    <td class=3D"confluenceTd">=E6=BA=90=E4=BD=8D=E7=BD=AE=E7=BC=96=E7=A0=
+=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E5=85=A5=E5=BA=93=E4=BA=A7=E5=93=81=E6=BA=
+=90=E5=A4=B4=E4=BB=93=E5=BA=93=E4=BD=8D=E7=BD=AE=E5=94=AF=E4=B8=80=E6=A0=87=
+=E8=AF=86</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">14</td>
+    <td class=3D"confluenceTd"><code>SOURCE_FROM_SITE_NM</code></td>
+    <td class=3D"confluenceTd">=E6=BA=90=E4=BD=8D=E7=BD=AE=E5=90=8D=E7=A7=
+=B0</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E5=85=A5=E5=BA=93=E4=BA=A7=E5=93=81=E6=BA=
+=90=E5=A4=B4=E4=BB=93=E5=BA=93=E4=BD=8D=E7=BD=AE=E5=90=8D=E7=A7=B0</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">15</td>
+    <td class=3D"confluenceTd"><code>DESTINATION_TO_SITE_CD</code></td>
+    <td class=3D"confluenceTd">=E7=9B=AE=E7=9A=84=E4=BD=8D=E7=BD=AE=E7=BC=
+=96=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E5=87=BA=E5=BA=93=E4=BA=A7=E5=93=81=E7=9B=
+=AE=E7=9A=84=E4=BB=93=E5=BA=93=E4=BD=8D=E7=BD=AE=E5=94=AF=E4=B8=80=E6=A0=87=
+=E8=AF=86</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">16</td>
+    <td class=3D"confluenceTd"><code>DESTINATION_TO_SITE_NM</code></td>
+    <td class=3D"confluenceTd">=E7=9B=AE=E7=9A=84=E4=BD=8D=E7=BD=AE=E5=90=
+=8D=E7=A7=B0</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E5=87=BA=E5=BA=93=E4=BA=A7=E5=93=81=E7=9B=
+=AE=E7=9A=84=E4=BB=93=E5=BA=93=E4=BD=8D=E7=BD=AE=E5=90=8D=E7=A7=B0</td>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">17</td>
+    <td class=3D"confluenceTd"><code>LAST_UPDATED_TMST</code></td>
+    <td class=3D"confluenceTd">=E6=9C=80=E5=90=8E=E6=9B=B4=E6=96=B0=E6=97=
+=B6=E9=97=B4</td>
+    <td class=3D"confluenceTd">Timestamp</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E8=AE=B0=E5=BD=95=E6=9C=80=E5=90=8E=E6=9B=
+=B4=E6=96=B0=E7=9A=84=E6=97=B6=E9=97=B4=E6=88=B3<br>
+      YYYY-MM-DD HH:mm:ss</td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<p><strong>=E6=A0=B7=E4=BE=8B=E8=AF=B7=E6=B1=82=EF=BC=9A</strong></p>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped confluenceTable">
+  <colgroup>
+   <col>
+   <col>
+   <col>
+  </colgroup>
+  <tbody>
+   <tr>
+    <th scope=3D"col" class=3D"confluenceTh">python</th>
+    <th scope=3D"col" class=3D"confluenceTh">java</th>
+    <th scope=3D"col" class=3D"confluenceTh">curl(linux)</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>import gzip<br>
+       import json<br>
+       import requests</p>
+     <p>url =3D "<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerDat=
+a/send" class=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.c=
+om.cn/ades/partnerData/send</a>"<br>
+       token =3D "YOUR_TOKEN"</p>
+     <p>payload =3D {<br>
+       &nbsp; &nbsp; "batch_no": "a1b2c3d4-0004-4000-8000-100000000004",<br=
+>
+       &nbsp; &nbsp; "batch_date": "2026-05-10",<br>
+       &nbsp; &nbsp; "request_seq": 1,<br>
+       &nbsp; &nbsp; "request_id": "a1b2c3d4-0004-4000-8000-000000000004",<=
+br>
+       &nbsp; &nbsp; "total_requests": 1,<br>
+       &nbsp; &nbsp; "partner_code": "PARTNER001",<br>
+       &nbsp; &nbsp; "data_type": "movement",<br>
+       &nbsp; &nbsp; "record_count": 1,<br>
+       &nbsp; &nbsp; "amount_sum": 0,<br>
+       &nbsp; &nbsp; "quantity_sum": 11,<br>
+       &nbsp; &nbsp; "schema_version": "1.0",<br>
+       &nbsp; &nbsp; "source_system": "WMS_SYS",<br>
+       &nbsp; &nbsp; "send_timestamp": "2026-05-11T02:00:00+08:00",<br>
+       &nbsp; &nbsp; "records": [<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "site_cd": "DC01",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "site_nm": "=E4=B8=8A=E6=
+=B5=B7=E8=87=AA=E8=90=A5=E6=95=B0=E5=AD=97=E5=8C=96=E9=85=8D=E9=80=81=E4=B8=
+=AD=E5=BF=83",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "upc": "06942388123456",<b=
+r>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "product_cd": "FJ0701-100"=
+,<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "size_cd": "265",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "product_nm": "Nike Air Fo=
+rce 1 '07 =E7=99=BD=E8=89=B2",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "direction_desc": "=E5=87=
+=BA=E5=BA=93",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "wms_order_no": "WMS202605=
+100001",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "proof_of_delivery_no": "P=
+OD202605100001",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "status_type_desc": "=E8=
+=80=90=E5=85=8B=E5=8F=91=E8=B4=A7",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "transaction_tmst": "2026-=
+05-10 08:53:00",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "transaction_qty": 11,<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "source_from_site_cd": "",=
+<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "source_from_site_nm": "",=
+<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "destination_to_site_cd": =
+"1001",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "destination_to_site_nm": =
+"=E4=B8=8A=E6=B5=B7=E5=8D=97=E4=BA=AC=E8=A5=BF=E8=B7=AF=E6=97=97=E8=88=B0=
+=E5=BA=97",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "last_updated_tmst": "2026=
+-05-10 17:25:08"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+       &nbsp; &nbsp; ]<br>
+       }</p>
+     <p># =E5=8E=8B=E7=BC=A9 JSON<br>
+       raw =3D json.dumps(payload, ensure_ascii=3DFalse).encode("utf-8")<br=
+>
+       gz_body =3D gzip.compress(raw)</p>
+     <p>headers =3D {<br>
+       &nbsp; &nbsp; "Authorization": f"Bearer {token}",<br>
+       &nbsp; &nbsp; "accept": "*/*",<br>
+       &nbsp; &nbsp; "X-Auth-Type": "Oscar",<br>
+       &nbsp; &nbsp; "X-Request-ID": "a1b2c3d4-0004-4000-8000-000000000004"=
+,<br>
+       &nbsp; &nbsp; "X-Partner-Code": "PARTNER001",<br>
+       &nbsp; &nbsp; "X-Timestamp": "2026-05-11 02:00:00",<br>
+       &nbsp; &nbsp; "Content-Type": "application/json",<br>
+       &nbsp; &nbsp; "Content-Encoding": "gzip"<br>
+       }</p>
+     <p># verify=3DFalse =E7=AD=89=E4=BB=B7 curl -k<br>
+       resp =3D requests.post(url, headers=3Dheaders, data=3Dgz_body, verif=
+y=3DFalse, timeout=3D30)<br>
+       print(resp.status_code)<br>
+       print(resp.text)</p></td>
+    <td class=3D"confluenceTd">
+     <p>import <a href=3D"http://java.io" class=3D"external-link" rel=3D"no=
+follow">java.io</a>.ByteArrayOutputStream;<br>
+       import <a href=3D"http://java.io" class=3D"external-link" rel=3D"nof=
+ollow">java.io</a>.OutputStreamWriter;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.URI;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpClient;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpRequest;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpResponse;<br>
+       import java.nio.charset.StandardCharsets;<br>
+       import java.util.zip.GZIPOutputStream;</p>
+     <p>public class GzipApiCallExample {<br>
+       &nbsp; &nbsp; public static void main(String[] args) throws Exceptio=
+n {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; String token =3D "YOUR_TOKEN";</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; String json =3D "{"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"batch_n=
+o\":\"a1b2c3d4-0004-4000-8000-100000000004\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"batch_d=
+ate\":\"2026-05-10\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"request=
+_seq\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"request=
+_id\":\"a1b2c3d4-0004-4000-8000-000000000004\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"total_r=
+equests\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"partner=
+_code\":\"PARTNER001\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"data_ty=
+pe\":\"movement\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"record_=
+count\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"amount_=
+sum\":0,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"quantit=
+y_sum\":11,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"schema_=
+version\":\"1.0\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"source_=
+system\":\"WMS_SYS\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"send_ti=
+mestamp\":\"2026-05-11T02:00:00+08:00\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"records=
+\":[{"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"site_cd=
+\":\"DC01\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"site_nm=
+\":\"=E4=B8=8A=E6=B5=B7=E8=87=AA=E8=90=A5=E6=95=B0=E5=AD=97=E5=8C=96=E9=85=
+=8D=E9=80=81=E4=B8=AD=E5=BF=83\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"upc\":\=
+"06942388123456\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"product=
+_cd\":\"FJ0701-100\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"size_cd=
+\":\"265\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"product=
+_nm\":\"Nike Air Force 1 '07 =E7=99=BD=E8=89=B2\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"directi=
+on_desc\":\"=E5=87=BA=E5=BA=93\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"wms_ord=
+er_no\":\"WMS202605100001\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"proof_o=
+f_delivery_no\":\"POD202605100001\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"status_=
+type_desc\":\"=E8=80=90=E5=85=8B=E5=8F=91=E8=B4=A7\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"transac=
+tion_tmst\":\"2026-05-10 08:53:00\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"transac=
+tion_qty\":11,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"source_=
+from_site_cd\":\"\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"source_=
+from_site_nm\":\"\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"destina=
+tion_to_site_cd\":\"1001\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"destina=
+tion_to_site_nm\":\"=E4=B8=8A=E6=B5=B7=E5=8D=97=E4=BA=AC=E8=A5=BF=E8=B7=AF=
+=E6=97=97=E8=88=B0=E5=BA=97\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"last_up=
+dated_tmst\":\"2026-05-10 17:25:08\""<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "}]"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "}";</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; byte[] gzipBody =3D gzip(json);</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; HttpRequest request =3D HttpRequest.new=
+Builder()<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .uri(URI.cre=
+ate("<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerData/send" clas=
+s=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.com.cn/ades/p=
+artnerData/send</a>"))<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Aut=
+horization", "Bearer " + token)<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("acc=
+ept", "*/*")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-A=
+uth-Type", "Oscar")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-R=
+equest-ID", "a1b2c3d4-0004-4000-8000-000000000004")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-P=
+artner-Code", "PARTNER001")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-T=
+imestamp", "2026-05-11 02:00:00")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Con=
+tent-Type", "application/json")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Con=
+tent-Encoding", "gzip")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .POST(HttpRe=
+quest.BodyPublishers.ofByteArray(gzipBody))<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .build();</p=
+>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; HttpClient client =3D HttpClient.newBui=
+lder().build();<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; HttpResponse&lt;String&gt; response =3D =
+client.send(<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; request, Htt=
+pResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; System.out.println("status =3D " + resp=
+onse.statusCode());<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; System.out.println("body &nbsp; =3D " + =
+response.body());<br>
+       &nbsp; &nbsp; }</p>
+     <p>&nbsp; &nbsp; private static byte[] gzip(String content) throws Exc=
+eption {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; ByteArrayOutputStream bos =3D new ByteAr=
+rayOutputStream();<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; try (GZIPOutputStream gzip =3D new GZIPO=
+utputStream(bos);<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;OutputStreamWriter w=
+riter =3D new OutputStreamWriter(gzip, StandardCharsets.UTF_8)) {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; writer.write(content);<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; return bos.toByteArray();<br>
+       &nbsp; &nbsp; }<br>
+       }</p></td>
+    <td class=3D"confluenceTd">
+     <p># 1) =E5=87=86=E5=A4=87=E8=AF=B7=E6=B1=82=E4=BD=93=E6=96=87=E4=BB=
+=B6<br>
+       cat &gt; body.json &lt;&lt;'EOF'<br>
+       {<br>
+       &nbsp; "batch_no": "a1b2c3d4-0004-4000-8000-100000000004",<br>
+       &nbsp; "batch_date": "2026-05-10",<br>
+       &nbsp; "request_seq": 1,<br>
+       &nbsp; "request_id": "a1b2c3d4-0004-4000-8000-000000000004",<br>
+       &nbsp; "total_requests": 1,<br>
+       &nbsp; "partner_code": "PARTNER001",<br>
+       &nbsp; "data_type": "movement",<br>
+       &nbsp; "record_count": 1,<br>
+       &nbsp; "amount_sum": 0,<br>
+       &nbsp; "quantity_sum": 11,<br>
+       &nbsp; "schema_version": "1.0",<br>
+       &nbsp; "source_system": "WMS_SYS",<br>
+       &nbsp; "send_timestamp": "2026-05-11T02:00:00+08:00",<br>
+       &nbsp; "records": [<br>
+       &nbsp; &nbsp; {<br>
+       &nbsp; &nbsp; &nbsp; "site_cd": "DC01",<br>
+       &nbsp; &nbsp; &nbsp; "site_nm": "=E4=B8=8A=E6=B5=B7=E8=87=AA=E8=90=
+=A5=E6=95=B0=E5=AD=97=E5=8C=96=E9=85=8D=E9=80=81=E4=B8=AD=E5=BF=83",<br>
+       &nbsp; &nbsp; &nbsp; "upc": "06942388123456",<br>
+       &nbsp; &nbsp; &nbsp; "product_cd": "FJ0701-100",<br>
+       &nbsp; &nbsp; &nbsp; "size_cd": "265",<br>
+       &nbsp; &nbsp; &nbsp; "product_nm": "Nike Air Force 1 '07 =E7=99=BD=
+=E8=89=B2",<br>
+       &nbsp; &nbsp; &nbsp; "direction_desc": "=E5=87=BA=E5=BA=93",<br>
+       &nbsp; &nbsp; &nbsp; "wms_order_no": "WMS202605100001",<br>
+       &nbsp; &nbsp; &nbsp; "proof_of_delivery_no": "POD202605100001",<br>
+       &nbsp; &nbsp; &nbsp; "status_type_desc": "=E8=80=90=E5=85=8B=E5=8F=
+=91=E8=B4=A7",<br>
+       &nbsp; &nbsp; &nbsp; "transaction_tmst": "2026-05-10 08:53:00",<br>
+       &nbsp; &nbsp; &nbsp; "transaction_qty": 11,<br>
+       &nbsp; &nbsp; &nbsp; "source_from_site_cd": "",<br>
+       &nbsp; &nbsp; &nbsp; "source_from_site_nm": "",<br>
+       &nbsp; &nbsp; &nbsp; "destination_to_site_cd": "1001",<br>
+       &nbsp; &nbsp; &nbsp; "destination_to_site_nm": "=E4=B8=8A=E6=B5=B7=
+=E5=8D=97=E4=BA=AC=E8=A5=BF=E8=B7=AF=E6=97=97=E8=88=B0=E5=BA=97",<br>
+       &nbsp; &nbsp; &nbsp; "last_updated_tmst": "2026-05-10 17:25:08"<br>
+       &nbsp; &nbsp; }<br>
+       &nbsp; ]<br>
+       }<br>
+       EOF</p>
+     <p># 2) gzip =E5=8E=8B=E7=BC=A9=E8=AF=B7=E6=B1=82=E4=BD=93<br>
+       gzip -c body.json &gt; body.json.gz</p>
+     <p># 3) =E5=8F=91=E8=B5=B7=E8=AF=B7=E6=B1=82=EF=BC=88UAT=EF=BC=89<br>
+       time curl -i -k -X 'POST' \<br>
+       &nbsp; '<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerData/=
+send" class=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.com=
+.cn/ades/partnerData/send</a>' \<br>
+       &nbsp; -H "Authorization: Bearer ${token}" \<br>
+       &nbsp; -H 'accept: */*' \<br>
+       &nbsp; -H 'X-Auth-Type: Oscar' \<br>
+       &nbsp; -H 'X-Request-ID: a1b2c3d4-0004-4000-8000-000000000004' \<br>
+       &nbsp; -H 'X-Partner-Code: PARTNER001' \<br>
+       &nbsp; -H 'X-Timestamp: 2026-05-11 02:00:00' \<br>
+       &nbsp; -H 'Content-Type: application/json' \<br>
+       &nbsp; -H 'Content-Encoding: gzip' \<br>
+       &nbsp; --data-binary "@body.json.gz"</p></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<pre><br></pre>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-6.4=E9=97=A8=E5=BA=97=E4=B8=BB=E6=95=B0=
+=E6=8D=AE">6.4 =E9=97=A8=E5=BA=97=E4=B8=BB=E6=95=B0=E6=8D=AE</h3>
+<p><strong><code>records</code> =E5=AD=97=E6=AE=B5=E8=A7=84=E8=8C=83=EF=BC=
+=9A</strong></p>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped relative-table confluenceTable" style=3D"width: 75=
+.9094%;" data-snooker-col-series=3D"numbers" data-snooker-locked-cols=3D"0"=
+>
+  <colgroup>
+   <col style=3D"width: 8.50333%;">
+   <col style=3D"width: 18.492%;">
+   <col style=3D"width: 10.5984%;">
+   <col style=3D"width: 18.239%;">
+   <col style=3D"width: 9.73569%;">
+   <col style=3D"width: 34.383%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"numberingColumn confluenceTh" contenteditable=3D"false" da=
+ta-mce-resize=3D"false"><br></th>
+    <th class=3D"confluenceTh">=E5=AD=97=E6=AE=B5=E5=90=8D</th>
+    <th class=3D"confluenceTh">=E4=B8=AD=E6=96=87=E5=90=8D</th>
+    <th class=3D"confluenceTh">=E6=95=B0=E6=8D=AE=E7=B1=BB=E5=9E=8B</th>
+    <th class=3D"confluenceTh">=E5=BF=85=E5=A1=AB</th>
+    <th class=3D"confluenceTh">=E8=AF=B4=E6=98=8E</th>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">1</td>
+    <td class=3D"confluenceTd"><code>STORE_CD</code></td>
+    <td class=3D"confluenceTd">=E5=BA=97=E9=93=BA=E7=BC=96=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=AE=A2=E6=88=B7=E8=87=AA=E6=9C=89=E5=BA=
+=97=E9=93=BA=E5=94=AF=E4=B8=80=E6=A0=87=E8=AF=86</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">2</td>
+    <td class=3D"confluenceTd"><code>NIKE_POS_ID</code></td>
+    <td class=3D"confluenceTd">=E8=80=90=E5=85=8B=E7=BC=96=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E8=80=90=E5=85=8BPOS ID</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">3</td>
+    <td class=3D"confluenceTd"><code>STORE_NM</code></td>
+    <td class=3D"confluenceTd">=E5=BA=97=E9=93=BA=E5=90=8D=E7=A7=B0</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=BA=97=E9=93=BA=E5=90=8D=E7=A7=B0</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">4</td>
+    <td class=3D"confluenceTd"><code>STORE_OWNERSHIP</code></td>
+    <td class=3D"confluenceTd">
+     <p>=E5=BA=97=E9=93=BA=E5=BD=92=E5=B1=9E</p></td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">
+     <p>=E5=BA=97=E9=93=BA=E5=BD=92=E5=B1=9E</p>
+     <p>=E6=9E=9A=E4=B8=BE=E5=80=BC=EF=BC=9A=E7=9B=B4=E8=90=A5=EF=BC=8C=E5=
+=8A=A0=E7=9B=9F</p></td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">5</td>
+    <td class=3D"confluenceTd"><code>STORE_TYPE</code></td>
+    <td class=3D"confluenceTd">=E5=BA=97=E9=93=BA=E7=B1=BB=E5=9E=8B</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">
+     <p>=E5=BA=97=E9=93=BA=E7=BB=86=E5=88=86=E4=B8=9A=E5=8A=A1=E7=B1=BB=E5=
+=9E=8B=EF=BC=8C<br>
+       =E6=9E=9A=E4=B8=BE=E5=80=BC=EF=BC=9A</p>
+     <ul>
+      <li data-uuid=3D"0e9da635-7ce6-4632-af99-3c299450d264">=E7=BA=BF=E4=
+=B8=8B=E9=97=A8=E5=BA=97</li>
+      <li data-uuid=3D"f8389b03-bf0a-45ba-8ad2-fa5ccb7cd040">=E7=BA=BF=E4=
+=B8=8B=E4=B8=B4=E6=97=B6=E7=89=B9=E5=8D=96</li>
+      <li data-uuid=3D"8a964987-f536-4021-8eb9-a67315c15e84">=E7=BA=BF=E4=
+=B8=8A=E9=97=A8=E5=BA=97</li>
+     </ul></td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">6</td>
+    <td class=3D"confluenceTd"><code>PROVINCE</code></td>
+    <td class=3D"confluenceTd">=E7=9C=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E9=97=A8=E5=BA=97=E6=89=80=E5=9C=A8=E7=9C=
+=81=E4=BB=BD</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">7</td>
+    <td class=3D"confluenceTd"><code>CITY</code></td>
+    <td class=3D"confluenceTd">=E5=9F=8E=E5=B8=82</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E9=97=A8=E5=BA=97=E6=89=80=E5=9C=A8=E5=9F=
+=8E=E5=B8=82</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">8</td>
+    <td class=3D"confluenceTd"><code>STORE_ENVIRONMENT</code></td>
+    <td class=3D"confluenceTd">=E7=8E=AF=E5=A2=83</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">
+     <p>=E5=BA=97=E9=93=BA=E7=8E=AF=E5=A2=83=E7=B1=BB=E5=9E=8B=EF=BC=8C<br>
+       =E6=9E=9A=E4=B8=BE=E5=80=BC=EF=BC=9A=E7=99=BE=E8=B4=A7=E5=BA=97=E3=
+=80=81=E8=B4=AD=E7=89=A9=E4=B8=AD=E5=BF=83=E3=80=81=E8=A1=97=E9=93=BA=E5=BA=
+=97=E3=80=81=E5=86=85=E4=B9=B0=E5=BA=97=E3=80=81=E5=95=86=E5=9C=BA=E5=BA=97=
+=E3=80=81=E5=95=86=E5=9F=8E=E5=BA=97=E3=80=81=E7=BD=91=E8=B4=AD=E5=BA=97=E3=
+=80=81=E7=9B=B4=E6=92=AD=E5=BA=97=E3=80=81=E5=85=B6=E4=BB=96</p></td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">9</td>
+    <td class=3D"confluenceTd"><code>STORE_STATUS</code></td>
+    <td class=3D"confluenceTd">=E7=8A=B6=E6=80=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E9=97=A8=E5=BA=97=E7=8A=B6=E6=80=81=EF=BC=
+=8C(Open, Close)</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">10</td>
+    <td class=3D"confluenceTd"><code>STORE_OPEN_DT</code></td>
+    <td class=3D"confluenceTd">=E5=BC=80=E5=BA=97=E6=97=A5=E6=9C=9F</td>
+    <td class=3D"confluenceTd">Date</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E6=A0=BC=E5=BC=8F=EF=BC=9AYYYY-MM-DD</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">11</td>
+    <td class=3D"confluenceTd"><code>STORE_CLOSE_DT</code></td>
+    <td class=3D"confluenceTd">=E5=85=B3=E5=BA=97=E6=97=A5=E6=9C=9F</td>
+    <td class=3D"confluenceTd">Date</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E6=A0=BC=E5=BC=8F=EF=BC=9AYYYY-MM-DD=EF=BC=
+=8C=E8=90=A5=E4=B8=9A=E4=B8=AD=E9=97=A8=E5=BA=97=E4=BC=A0=E7=A9=BA=E5=AD=97=
+=E7=AC=A6=E4=B8=B2</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">12</td>
+    <td class=3D"confluenceTd"><code>STORE_TOTAL_SPACE_SIZE</code></td>
+    <td class=3D"confluenceTd">=E6=80=BB=E9=9D=A2=E7=A7=AF</td>
+    <td class=3D"confluenceTd">Decimal</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=B9=B3=E6=96=B9=E7=B1=B3</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">13</td>
+    <td class=3D"confluenceTd"><code>STORE_SELLING_SPACE_SIZE</code></td>
+    <td class=3D"confluenceTd">=E9=94=80=E5=94=AE=E9=9D=A2=E7=A7=AF</td>
+    <td class=3D"confluenceTd">Decimal</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=B9=B3=E6=96=B9=E7=B1=B3</td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<p><strong>=E6=A0=B7=E4=BE=8B=E8=AF=B7=E6=B1=82=EF=BC=9A</strong></p>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped confluenceTable">
+  <colgroup>
+   <col>
+   <col>
+   <col>
+  </colgroup>
+  <tbody>
+   <tr>
+    <th scope=3D"col" class=3D"confluenceTh">python</th>
+    <th scope=3D"col" class=3D"confluenceTh">java</th>
+    <th scope=3D"col" class=3D"confluenceTh">curl(linux)</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>import gzip<br>
+       import json<br>
+       import requests</p>
+     <p>url =3D "<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerDat=
+a/send" class=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.c=
+om.cn/ades/partnerData/send</a>"<br>
+       token =3D "YOUR_TOKEN"</p>
+     <p>payload =3D {<br>
+       &nbsp; &nbsp; "batch_no": "a1b2c3d4-0005-4000-8000-100000000005",<br=
+>
+       &nbsp; &nbsp; "batch_date": "2026-06-03",<br>
+       &nbsp; &nbsp; "request_seq": 1,<br>
+       &nbsp; &nbsp; "request_id": "a1b2c3d4-0005-4000-8000-000000000005",<=
+br>
+       &nbsp; &nbsp; "total_requests": 1,<br>
+       &nbsp; &nbsp; "partner_code": "PARTNER001",<br>
+       &nbsp; &nbsp; "data_type": "store",<br>
+       &nbsp; &nbsp; "record_count": 1,<br>
+       &nbsp; &nbsp; "amount_sum": 0,<br>
+       &nbsp; &nbsp; "quantity_sum": 0,<br>
+       &nbsp; &nbsp; "schema_version": "1.0",<br>
+       &nbsp; &nbsp; "source_system": "MDM_SYS",<br>
+       &nbsp; &nbsp; "send_timestamp": "2026-06-03T09:00:00+08:00",<br>
+       &nbsp; &nbsp; "records": [<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "store_cd": "1001",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "store_nm": "=E4=B8=8A=E6=
+=B5=B7=E5=8D=97=E4=BA=AC=E8=A5=BF=E8=B7=AF=E6=97=97=E8=88=B0=E5=BA=97",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "store_ownership": "=E7=9B=
+=B4=E8=90=A5",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "store_type": "=E7=BA=BF=
+=E4=B8=8B=E9=97=A8=E5=BA=97",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "province": "=E4=B8=8A=E6=
+=B5=B7",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "city": "=E4=B8=8A=E6=B5=
+=B7",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "store_environment": "",<b=
+r>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "store_status": "Open",<br=
+>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "store_open_dt": "2018-03-=
+15",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "store_close_dt": "",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "store_total_space_size": =
+1200.0,<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "store_selling_space_size"=
+: 800.0<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+       &nbsp; &nbsp; ]<br>
+       }</p>
+     <p># =E5=8E=8B=E7=BC=A9 JSON<br>
+       raw =3D json.dumps(payload, ensure_ascii=3DFalse).encode("utf-8")<br=
+>
+       gz_body =3D gzip.compress(raw)</p>
+     <p>headers =3D {<br>
+       &nbsp; &nbsp; "Authorization": f"Bearer {token}",<br>
+       &nbsp; &nbsp; "accept": "*/*",<br>
+       &nbsp; &nbsp; "X-Auth-Type": "Oscar",<br>
+       &nbsp; &nbsp; "X-Request-ID": "a1b2c3d4-0005-4000-8000-000000000005"=
+,<br>
+       &nbsp; &nbsp; "X-Partner-Code": "PARTNER001",<br>
+       &nbsp; &nbsp; "X-Timestamp": "2026-06-03 09:00:00",<br>
+       &nbsp; &nbsp; "Content-Type": "application/json",<br>
+       &nbsp; &nbsp; "Content-Encoding": "gzip"<br>
+       }</p>
+     <p># verify=3DFalse =E7=AD=89=E4=BB=B7 curl -k<br>
+       resp =3D requests.post(url, headers=3Dheaders, data=3Dgz_body, verif=
+y=3DFalse, timeout=3D30)<br>
+       print(resp.status_code)<br>
+       print(resp.text)</p></td>
+    <td class=3D"confluenceTd">
+     <p>import <a href=3D"http://java.io" class=3D"external-link" rel=3D"no=
+follow">java.io</a>.ByteArrayOutputStream;<br>
+       import <a href=3D"http://java.io" class=3D"external-link" rel=3D"nof=
+ollow">java.io</a>.OutputStreamWriter;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.URI;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpClient;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpRequest;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpResponse;<br>
+       import java.nio.charset.StandardCharsets;<br>
+       import java.util.zip.GZIPOutputStream;</p>
+     <p>public class GzipApiCallExample {<br>
+       &nbsp; &nbsp; public static void main(String[] args) throws Exceptio=
+n {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; String token =3D "YOUR_TOKEN";</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; String json =3D "{"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"batch_n=
+o\":\"a1b2c3d4-0005-4000-8000-100000000005\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"batch_d=
+ate\":\"2026-06-03\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"request=
+_seq\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"request=
+_id\":\"a1b2c3d4-0005-4000-8000-000000000005\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"total_r=
+equests\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"partner=
+_code\":\"PARTNER001\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"data_ty=
+pe\":\"store\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"record_=
+count\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"amount_=
+sum\":0,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"quantit=
+y_sum\":0,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"schema_=
+version\":\"1.0\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"source_=
+system\":\"MDM_SYS\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"send_ti=
+mestamp\":\"2026-06-03T09:00:00+08:00\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"records=
+\":[{"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"store_c=
+d\":\"1001\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"store_n=
+m\":\"=E4=B8=8A=E6=B5=B7=E5=8D=97=E4=BA=AC=E8=A5=BF=E8=B7=AF=E6=97=97=E8=88=
+=B0=E5=BA=97\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"store_o=
+wnership\":\"=E7=9B=B4=E8=90=A5\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"store_t=
+ype\":\"=E7=BA=BF=E4=B8=8B=E9=97=A8=E5=BA=97\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"provinc=
+e\":\"=E4=B8=8A=E6=B5=B7\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"city\":=
+\"=E4=B8=8A=E6=B5=B7\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"store_e=
+nvironment\":\"\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"store_s=
+tatus\":\"Open\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"store_o=
+pen_dt\":\"2018-03-15\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"store_c=
+lose_dt\":\"\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"store_t=
+otal_space_size\":1200.0,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"store_s=
+elling_space_size\":800.0"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "}]"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "}";</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; byte[] gzipBody =3D gzip(json);</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; HttpRequest request =3D HttpRequest.new=
+Builder()<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .uri(URI.cre=
+ate("<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerData/send" clas=
+s=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.com.cn/ades/p=
+artnerData/send</a>"))<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Aut=
+horization", "Bearer " + token)<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("acc=
+ept", "*/*")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-A=
+uth-Type", "Oscar")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-R=
+equest-ID", "a1b2c3d4-0005-4000-8000-000000000005")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-P=
+artner-Code", "PARTNER001")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-T=
+imestamp", "2026-06-03 09:00:00")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Con=
+tent-Type", "application/json")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Con=
+tent-Encoding", "gzip")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .POST(HttpRe=
+quest.BodyPublishers.ofByteArray(gzipBody))<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .build();</p=
+>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; HttpClient client =3D HttpClient.newBui=
+lder().build();<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; HttpResponse&lt;String&gt; response =3D =
+client.send(<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; request, Htt=
+pResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; System.out.println("status =3D " + resp=
+onse.statusCode());<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; System.out.println("body &nbsp; =3D " + =
+response.body());<br>
+       &nbsp; &nbsp; }</p>
+     <p>&nbsp; &nbsp; private static byte[] gzip(String content) throws Exc=
+eption {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; ByteArrayOutputStream bos =3D new ByteAr=
+rayOutputStream();<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; try (GZIPOutputStream gzip =3D new GZIPO=
+utputStream(bos);<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;OutputStreamWriter w=
+riter =3D new OutputStreamWriter(gzip, StandardCharsets.UTF_8)) {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; writer.write(content);<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; return bos.toByteArray();<br>
+       &nbsp; &nbsp; }<br>
+       }</p></td>
+    <td class=3D"confluenceTd">
+     <div class=3D"content-wrapper">
+      <p># 1) =E5=87=86=E5=A4=87=E8=AF=B7=E6=B1=82=E4=BD=93=E6=96=87=E4=BB=
+=B6<br>
+        cat &gt; body.json &lt;&lt;'EOF'<br>
+        {<br>
+        &nbsp; "batch_no": "a1b2c3d4-0005-4000-8000-100000000005",<br>
+        &nbsp; "batch_date": "2026-06-03",<br>
+        &nbsp; "request_seq": 1,<br>
+        &nbsp; "request_id": "a1b2c3d4-0005-4000-8000-000000000005",<br>
+        &nbsp; "total_requests": 1,<br>
+        &nbsp; "partner_code": "PARTNER001",<br>
+        &nbsp; "data_type": "store",<br>
+        &nbsp; "record_count": 1,<br>
+        &nbsp; "amount_sum": 0,<br>
+        &nbsp; "quantity_sum": 0,<br>
+        &nbsp; "schema_version": "1.0",<br>
+        &nbsp; "source_system": "MDM_SYS",<br>
+        &nbsp; "send_timestamp": "2026-06-03T09:00:00+08:00",<br>
+        &nbsp; "records": [<br>
+        &nbsp; &nbsp; {<br>
+        &nbsp; &nbsp; &nbsp; "store_cd": "1001",<br>
+        &nbsp; &nbsp; &nbsp; "store_nm": "=E4=B8=8A=E6=B5=B7=E5=8D=97=E4=BA=
+=AC=E8=A5=BF=E8=B7=AF=E6=97=97=E8=88=B0=E5=BA=97",<br>
+        &nbsp; &nbsp; &nbsp; "store_ownership": "=E7=9B=B4=E8=90=A5",<br>
+        &nbsp; &nbsp; &nbsp; "store_type": "=E7=BA=BF=E4=B8=8B=E9=97=A8=E5=
+=BA=97",<br>
+        &nbsp; &nbsp; &nbsp; "province": "=E4=B8=8A=E6=B5=B7",<br>
+        &nbsp; &nbsp; &nbsp; "city": "=E4=B8=8A=E6=B5=B7",<br>
+        &nbsp; &nbsp; &nbsp; "store_environment": "",<br>
+        &nbsp; &nbsp; &nbsp; "store_status": "Open",<br>
+        &nbsp; &nbsp; &nbsp; "store_open_dt": "2018-03-15",<br>
+        &nbsp; &nbsp; &nbsp; "store_close_dt": "",<br>
+        &nbsp; &nbsp; &nbsp; "store_total_space_size": 1200.0,<br>
+        &nbsp; &nbsp; &nbsp; "store_selling_space_size": 800.0<br>
+        &nbsp; &nbsp; }<br>
+        &nbsp; ]<br>
+        }<br>
+        EOF</p>
+      <p># 2) gzip =E5=8E=8B=E7=BC=A9=E8=AF=B7=E6=B1=82=E4=BD=93<br>
+        gzip -c body.json &gt; body.json.gz</p>
+      <p># 3) =E5=8F=91=E8=B5=B7=E8=AF=B7=E6=B1=82=EF=BC=88UAT=EF=BC=89<br>
+        time curl -i -k -X 'POST' \<br>
+        &nbsp; '<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerData=
+/send" class=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.co=
+m.cn/ades/partnerData/send</a>' \<br>
+        &nbsp; -H "Authorization: Bearer ${token}" \<br>
+        &nbsp; -H 'accept: */*' \<br>
+        &nbsp; -H 'X-Auth-Type: Oscar' \<br>
+        &nbsp; -H 'X-Request-ID: a1b2c3d4-0005-4000-8000-000000000005' \<br=
+>
+        &nbsp; -H 'X-Partner-Code: PARTNER001' \<br>
+        &nbsp; -H 'X-Timestamp: 2026-06-03 09:00:00' \<br>
+        &nbsp; -H 'Content-Type: application/json' \<br>
+        &nbsp; -H 'Content-Encoding: gzip' \<br>
+        &nbsp; --data-binary "@body.json.gz"</p>
+     </div></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<pre><br></pre>
+<h3 id=3D"id-01API=E6=95=B0=E6=8D=AE=E5=AF=B9=E6=8E=A5:=E5=AE=A2=E6=88=B7=
+=E6=95=B0=E6=8D=AE=E6=8E=A8=E9=80=81=E6=8A=80=E6=9C=AF=E6=96=87=E6=A1=A3=EF=
+=BC=88Partner=E2=86=92Nike=EF=BC=89-6.5=E4=BB=93=E5=BA=93=E4=B8=BB=E6=95=B0=
+=E6=8D=AE">6.5 =E4=BB=93=E5=BA=93=E4=B8=BB=E6=95=B0=E6=8D=AE</h3>
+<p><strong><code>records</code> =E5=AD=97=E6=AE=B5=E8=A7=84=E8=8C=83=EF=BC=
+=9A</strong></p>
+<div class=3D"table-wrap">
+ <table class=3D"wrapped relative-table confluenceTable" style=3D"width: 99=
+.6544%;" data-snooker-col-series=3D"numbers" data-snooker-locked-cols=3D"0"=
+>
+  <colgroup>
+   <col style=3D"width: 6.43901%;">
+   <col style=3D"width: 13.2721%;">
+   <col style=3D"width: 10.9819%;">
+   <col style=3D"width: 19.2418%;">
+   <col style=3D"width: 8.82308%;">
+   <col style=3D"width: 41.2056%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th class=3D"numberingColumn confluenceTh" scope=3D"col" contenteditabl=
+e=3D"false" data-mce-resize=3D"false"><br></th>
+    <th scope=3D"col" class=3D"confluenceTh">=E5=AD=97=E6=AE=B5=E5=90=8D</t=
+h>
+    <th scope=3D"col" class=3D"confluenceTh">=E4=B8=AD=E6=96=87=E5=90=8D</t=
+h>
+    <th scope=3D"col" class=3D"confluenceTh">=E6=95=B0=E6=8D=AE=E7=B1=BB=E5=
+=9E=8B</th>
+    <th scope=3D"col" class=3D"confluenceTh">=E5=BF=85=E5=A1=AB</th>
+    <th scope=3D"col" class=3D"confluenceTh">=E8=AF=B4=E6=98=8E</th>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">1</td>
+    <td class=3D"confluenceTd"><code>SITE_CD</code></td>
+    <td class=3D"confluenceTd">=E4=BB=93=E5=BA=93=E7=BC=96=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E5=AE=A2=E6=88=B7=E8=87=AA=E6=9C=89=E4=BD=
+=8D=E7=BD=AE=E5=94=AF=E4=B8=80=E6=A0=87=E8=AF=86</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">2</td>
+    <td class=3D"confluenceTd"><code>NIKE_POS_ID</code></td>
+    <td class=3D"confluenceTd">=E8=80=90=E5=85=8B=E7=BC=96=E7=A0=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E9=80=89=E5=A1=AB</td>
+    <td class=3D"confluenceTd">=E8=80=90=E5=85=8BPOS ID</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">3</td>
+    <td class=3D"confluenceTd"><code>SITE_NM</code></td>
+    <td class=3D"confluenceTd">=E4=BB=93=E5=BA=93=E5=90=8D=E7=A7=B0</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E4=BB=93=E5=BA=93=E5=90=8D=E7=A7=B0</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">4</td>
+    <td class=3D"confluenceTd"><code>SITE_OWNERSHIP</code></td>
+    <td class=3D"confluenceTd">
+     <p>=E4=BB=93=E5=BA=93=E5=BD=92=E5=B1=9E</p></td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E4=BB=93=E5=BA=93=E5=BD=92=E5=B1=9E<br>
+      =E6=9E=9A=E4=B8=BE=E5=80=BC=EF=BC=9A=E7=9B=B4=E8=90=A5=E3=80=81=E5=8A=
+=A0=E7=9B=9F</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">5</td>
+    <td class=3D"confluenceTd"><code>SITE_TYPE</code></td>
+    <td class=3D"confluenceTd">=E4=BB=93=E5=BA=93=E7=B1=BB=E5=9E=8B</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">
+     <p>=E4=BB=93=E5=BA=93=E7=B1=BB=E5=9E=8B<br>
+       =E6=9E=9A=E4=B8=BE=E5=80=BC=EF=BC=9A=E6=A0=87=E5=87=86=E4=BB=93=E3=
+=80=81=E6=AE=8B=E6=AC=A1=E5=93=81=E4=BB=93=E3=80=81=E5=B7=A5=E6=9C=8D=E4=BB=
+=93=E3=80=81=E4=B8=AD=E8=BD=AC=E4=BB=93=E3=80=81=E9=80=80=E8=B4=A7=E4=BB=93=
+=E3=80=81=E8=B5=A0=E5=93=81=E4=BB=93=E3=80=81=E5=85=B6=E4=BB=96</p></td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">6</td>
+    <td class=3D"confluenceTd"><code>PROVINCE</code></td>
+    <td class=3D"confluenceTd">=E7=9C=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E4=BB=93=E5=BA=93=E6=89=80=E5=9C=A8=E7=9C=
+=81=E4=BB=BD</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">7</td>
+    <td class=3D"confluenceTd"><code>CITY</code></td>
+    <td class=3D"confluenceTd">=E5=9F=8E=E5=B8=82</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E4=BB=93=E5=BA=93=E6=89=80=E5=9C=A8=E5=9F=
+=8E=E5=B8=82</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">8</td>
+    <td class=3D"confluenceTd"><code>ADDRESS</code></td>
+    <td class=3D"confluenceTd">=E8=AF=A6=E7=BB=86=E5=9C=B0=E5=9D=80</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E4=BB=93=E5=BA=93=E7=89=A9=E7=90=86=E8=AF=
+=A6=E7=BB=86=E5=9C=B0=E5=9D=80</td>
+   </tr>
+   <tr>
+    <td class=3D"numberingColumn confluenceTd" contenteditable=3D"false" da=
+ta-mce-resize=3D"false">9</td>
+    <td class=3D"confluenceTd"><code>SITE_STATUS</code></td>
+    <td class=3D"confluenceTd">=E7=8A=B6=E6=80=81</td>
+    <td class=3D"confluenceTd">String</td>
+    <td class=3D"confluenceTd">=E6=98=AF</td>
+    <td class=3D"confluenceTd">=E4=BB=93=E5=BA=93=E7=8A=B6=E6=80=81=EF=BC=
+=8C(Open, Close)</td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<p><strong>=E6=A0=B7=E4=BE=8B=E8=AF=B7=E6=B1=82=EF=BC=9A</strong></p>
+<div class=3D"table-wrap">
+ <table class=3D"relative-table wrapped confluenceTable" style=3D"width: 60=
+.5233%;">
+  <colgroup>
+   <col style=3D"width: 75.5246%;">
+   <col style=3D"width: 9.35332%;">
+   <col style=3D"width: 15.077%;">
+  </colgroup>
+  <tbody>
+   <tr>
+    <th scope=3D"col" class=3D"confluenceTh">python</th>
+    <th scope=3D"col" class=3D"confluenceTh">java</th>
+    <th scope=3D"col" class=3D"confluenceTh">curl(linux)</th>
+   </tr>
+   <tr>
+    <td class=3D"confluenceTd">
+     <p>import gzip<br>
+       import json<br>
+       import requests</p>
+     <p>url =3D "<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerDat=
+a/send" class=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.c=
+om.cn/ades/partnerData/send</a>"<br>
+       token =3D "YOUR_TOKEN"</p>
+     <p>payload =3D {<br>
+       &nbsp; &nbsp; "batch_no": "a1b2c3d4-0006-4000-8000-100000000006",<br=
+>
+       &nbsp; &nbsp; "batch_date": "2026-06-03",<br>
+       &nbsp; &nbsp; "request_seq": 1,<br>
+       &nbsp; &nbsp; "request_id": "a1b2c3d4-0006-4000-8000-000000000006",<=
+br>
+       &nbsp; &nbsp; "total_requests": 1,<br>
+       &nbsp; &nbsp; "partner_code": "PARTNER001",<br>
+       &nbsp; &nbsp; "data_type": "warehouse",<br>
+       &nbsp; &nbsp; "record_count": 1,<br>
+       &nbsp; &nbsp; "amount_sum": 0,<br>
+       &nbsp; &nbsp; "quantity_sum": 0,<br>
+       &nbsp; &nbsp; "schema_version": "1.0",<br>
+       &nbsp; &nbsp; "source_system": "MDM_SYS",<br>
+       &nbsp; &nbsp; "send_timestamp": "2026-06-03T09:00:00+08:00",<br>
+       &nbsp; &nbsp; "records": [<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "site_cd": "DC01",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "site_nm": "=E4=B8=8A=E6=
+=B5=B7=E8=87=AA=E8=90=A5=E6=95=B0=E5=AD=97=E5=8C=96=E9=85=8D=E9=80=81=E4=B8=
+=AD=E5=BF=83",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "site_ownership": "=E7=9B=
+=B4=E8=90=A5",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "site_type": "=E6=A0=87=E5=
+=87=86=E4=BB=93",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "province": "=E4=B8=8A=E6=
+=B5=B7",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "city": "=E4=B8=8A=E6=B5=
+=B7",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "address": "=E4=B8=8A=E6=
+=B5=B7=E5=B8=82=E6=B5=A6=E4=B8=9C=E6=96=B0=E5=8C=BA=E7=BA=AC=E5=9C=B0=E8=B7=
+=AF18=E5=8F=B7",<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "site_status": "Open"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+       &nbsp; &nbsp; ]<br>
+       }</p>
+     <p># =E5=8E=8B=E7=BC=A9 JSON<br>
+       raw =3D json.dumps(payload, ensure_ascii=3DFalse).encode("utf-8")<br=
+>
+       gz_body =3D gzip.compress(raw)</p>
+     <p>headers =3D {<br>
+       &nbsp; &nbsp; "Authorization": f"Bearer {token}",<br>
+       &nbsp; &nbsp; "accept": "*/*",<br>
+       &nbsp; &nbsp; "X-Auth-Type": "Oscar",<br>
+       &nbsp; &nbsp; "X-Request-ID": "a1b2c3d4-0006-4000-8000-000000000006"=
+,<br>
+       &nbsp; &nbsp; "X-Partner-Code": "PARTNER001",<br>
+       &nbsp; &nbsp; "X-Timestamp": "2026-06-03 09:00:00",<br>
+       &nbsp; &nbsp; "Content-Type": "application/json",<br>
+       &nbsp; &nbsp; "Content-Encoding": "gzip"<br>
+       }</p>
+     <p># verify=3DFalse =E7=AD=89=E4=BB=B7 curl -k<br>
+       resp =3D requests.post(url, headers=3Dheaders, data=3Dgz_body, verif=
+y=3DFalse, timeout=3D30)<br>
+       print(resp.status_code)<br>
+       print(resp.text)</p></td>
+    <td class=3D"confluenceTd">
+     <p>import <a href=3D"http://java.io" class=3D"external-link" rel=3D"no=
+follow">java.io</a>.ByteArrayOutputStream;<br>
+       import <a href=3D"http://java.io" class=3D"external-link" rel=3D"nof=
+ollow">java.io</a>.OutputStreamWriter;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.URI;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpClient;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpRequest;<br>
+       import <a href=3D"http://java.net" class=3D"external-link" rel=3D"no=
+follow">java.net</a>.http.HttpResponse;<br>
+       import java.nio.charset.StandardCharsets;<br>
+       import java.util.zip.GZIPOutputStream;</p>
+     <p>public class GzipApiCallExample {<br>
+       &nbsp; &nbsp; public static void main(String[] args) throws Exceptio=
+n {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; String token =3D "YOUR_TOKEN";</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; String json =3D "{"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"batch_n=
+o\":\"a1b2c3d4-0006-4000-8000-100000000006\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"batch_d=
+ate\":\"2026-06-03\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"request=
+_seq\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"request=
+_id\":\"a1b2c3d4-0006-4000-8000-000000000006\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"total_r=
+equests\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"partner=
+_code\":\"PARTNER001\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"data_ty=
+pe\":\"warehouse\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"record_=
+count\":1,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"amount_=
+sum\":0,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"quantit=
+y_sum\":0,"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"schema_=
+version\":\"1.0\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"source_=
+system\":\"MDM_SYS\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"send_ti=
+mestamp\":\"2026-06-03T09:00:00+08:00\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"records=
+\":[{"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"site_cd=
+\":\"DC01\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"site_nm=
+\":\"=E4=B8=8A=E6=B5=B7=E8=87=AA=E8=90=A5=E6=95=B0=E5=AD=97=E5=8C=96=E9=85=
+=8D=E9=80=81=E4=B8=AD=E5=BF=83\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"site_ow=
+nership\":\"=E7=9B=B4=E8=90=A5\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"site_ty=
+pe\":\"=E6=A0=87=E5=87=86=E4=BB=93\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"provinc=
+e\":\"=E4=B8=8A=E6=B5=B7\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"city\":=
+\"=E4=B8=8A=E6=B5=B7\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"address=
+\":\"=E4=B8=8A=E6=B5=B7=E5=B8=82=E6=B5=A6=E4=B8=9C=E6=96=B0=E5=8C=BA=E7=BA=
+=AC=E5=9C=B0=E8=B7=AF18=E5=8F=B7\","<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "\"site_st=
+atus\":\"Open\""<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "}]"<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + "}";</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; byte[] gzipBody =3D gzip(json);</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; HttpRequest request =3D HttpRequest.new=
+Builder()<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .uri(URI.cre=
+ate("<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerData/send" clas=
+s=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.com.cn/ades/p=
+artnerData/send</a>"))<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Aut=
+horization", "Bearer " + token)<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("acc=
+ept", "*/*")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-A=
+uth-Type", "Oscar")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-R=
+equest-ID", "a1b2c3d4-0006-4000-8000-000000000006")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-P=
+artner-Code", "PARTNER001")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("X-T=
+imestamp", "2026-06-03 09:00:00")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Con=
+tent-Type", "application/json")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .header("Con=
+tent-Encoding", "gzip")<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .POST(HttpRe=
+quest.BodyPublishers.ofByteArray(gzipBody))<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .build();</p=
+>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; HttpClient client =3D HttpClient.newBui=
+lder().build();<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; HttpResponse&lt;String&gt; response =3D =
+client.send(<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; request, Htt=
+pResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));</p>
+     <p>&nbsp; &nbsp; &nbsp; &nbsp; System.out.println("status =3D " + resp=
+onse.statusCode());<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; System.out.println("body &nbsp; =3D " + =
+response.body());<br>
+       &nbsp; &nbsp; }</p>
+     <p>&nbsp; &nbsp; private static byte[] gzip(String content) throws Exc=
+eption {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; ByteArrayOutputStream bos =3D new ByteAr=
+rayOutputStream();<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; try (GZIPOutputStream gzip =3D new GZIPO=
+utputStream(bos);<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;OutputStreamWriter w=
+riter =3D new OutputStreamWriter(gzip, StandardCharsets.UTF_8)) {<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; writer.write(content);<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; }<br>
+       &nbsp; &nbsp; &nbsp; &nbsp; return bos.toByteArray();<br>
+       &nbsp; &nbsp; }<br>
+       }</p></td>
+    <td class=3D"confluenceTd">
+     <p># 1) =E5=87=86=E5=A4=87=E8=AF=B7=E6=B1=82=E4=BD=93=E6=96=87=E4=BB=
+=B6<br>
+       cat &gt; body.json &lt;&lt;'EOF'<br>
+       {<br>
+       &nbsp; "batch_no": "a1b2c3d4-0006-4000-8000-100000000006",<br>
+       &nbsp; "batch_date": "2026-06-03",<br>
+       &nbsp; "request_seq": 1,<br>
+       &nbsp; "request_id": "a1b2c3d4-0006-4000-8000-000000000006",<br>
+       &nbsp; "total_requests": 1,<br>
+       &nbsp; "partner_code": "PARTNER001",<br>
+       &nbsp; "data_type": "warehouse",<br>
+       &nbsp; "record_count": 1,<br>
+       &nbsp; "amount_sum": 0,<br>
+       &nbsp; "quantity_sum": 0,<br>
+       &nbsp; "schema_version": "1.0",<br>
+       &nbsp; "source_system": "MDM_SYS",<br>
+       &nbsp; "send_timestamp": "2026-06-03T09:00:00+08:00",<br>
+       &nbsp; "records": [<br>
+       &nbsp; &nbsp; {<br>
+       &nbsp; &nbsp; &nbsp; "site_cd": "DC01",<br>
+       &nbsp; &nbsp; &nbsp; "site_nm": "=E4=B8=8A=E6=B5=B7=E8=87=AA=E8=90=
+=A5=E6=95=B0=E5=AD=97=E5=8C=96=E9=85=8D=E9=80=81=E4=B8=AD=E5=BF=83",<br>
+       &nbsp; &nbsp; &nbsp; "site_ownership": "=E7=9B=B4=E8=90=A5",<br>
+       &nbsp; &nbsp; &nbsp; "site_type": "=E6=A0=87=E5=87=86=E4=BB=93",<br>
+       &nbsp; &nbsp; &nbsp; "province": "=E4=B8=8A=E6=B5=B7",<br>
+       &nbsp; &nbsp; &nbsp; "city": "=E4=B8=8A=E6=B5=B7",<br>
+       &nbsp; &nbsp; &nbsp; "address": "=E4=B8=8A=E6=B5=B7=E5=B8=82=E6=B5=
+=A6=E4=B8=9C=E6=96=B0=E5=8C=BA=E7=BA=AC=E5=9C=B0=E8=B7=AF18=E5=8F=B7",<br>
+       &nbsp; &nbsp; &nbsp; "site_status": "Open"<br>
+       &nbsp; &nbsp; }<br>
+       &nbsp; ]<br>
+       }<br>
+       EOF</p>
+     <p># 2) gzip =E5=8E=8B=E7=BC=A9=E8=AF=B7=E6=B1=82=E4=BD=93<br>
+       gzip -c body.json &gt; body.json.gz</p>
+     <p># 3) =E5=8F=91=E8=B5=B7=E8=AF=B7=E6=B1=82=EF=BC=88UAT=EF=BC=89<br>
+       time curl -i -k -X 'POST' \<br>
+       &nbsp; '<a href=3D"https://uat-openapi.nike.com.cn/ades/partnerData/=
+send" class=3D"external-link" rel=3D"nofollow">https://uat-openapi.nike.com=
+.cn/ades/partnerData/send</a>' \<br>
+       &nbsp; -H "Authorization: Bearer ${token}" \<br>
+       &nbsp; -H 'accept: */*' \<br>
+       &nbsp; -H 'X-Auth-Type: Oscar' \<br>
+       &nbsp; -H 'X-Request-ID: a1b2c3d4-0006-4000-8000-000000000006' \<br>
+       &nbsp; -H 'X-Partner-Code: PARTNER001' \<br>
+       &nbsp; -H 'X-Timestamp: 2026-06-03 09:00:00' \<br>
+       &nbsp; -H 'Content-Type: application/json' \<br>
+       &nbsp; -H 'Content-Encoding: gzip' \<br>
+       &nbsp; --data-binary "@body.json.gz"</p></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
+<p><br></p>
+<pre><br></pre>
+<p><code> </code></p>
+    </div>
+</body>
+</html>
+------=_Part_8297_1316662290.1785223281375--

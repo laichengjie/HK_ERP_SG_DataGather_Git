@@ -55,4 +55,44 @@ namespace GatNewBll.Models.NikeApi
         /// <summary>业务数据数组，内容结构由 data_type 决定（每次请求最多 10000 条，总大小不超过 7.6MB）</summary>
         public List<T> records { get; set; }
     }
+
+
+    #region 内部类
+
+    /// <summary>单条业务明细 + 金额/数量（用于计算 amount_sum、quantity_sum）</summary>
+    public class NikeApiRecordItem
+    {
+        public object Record { get; set; }
+        public decimal Amount { get; set; }
+        public int Quantity { get; set; }
+    }
+
+    /// <summary>一个 request 的推送内容</summary>
+    public class NikeApiPushPlan
+    {
+        public NikeApiBillContext Context { get; set; }
+        public List<object> Records { get; set; }
+        public decimal AmountSum { get; set; }
+        public int QuantitySum { get; set; }
+    }
+
+    /// <summary>一个单据（日志行）在本批次中的推送结果（可能拆成多个 request）</summary>
+    public class NikeApiBillContext
+    {
+        public GatNikeApiLogModel Bill { get; set; }
+        public bool IsSuccess { get; set; }
+        public string ErrorMessage { get; set; }
+        public StringBuilder PostJson { get; set; } = new StringBuilder();
+        public StringBuilder ReturnJson { get; set; } = new StringBuilder();
+    }
+
+    /// <summary>单个 request 的发送结果</summary>
+    public class NikeApiSendResult
+    {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
+        public string ReturnJson { get; set; }
+    }
+
+    #endregion
 }

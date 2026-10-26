@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/report/Reportkon.Master" AutoEventWireup="true" CodeBehind="rpt_inv.aspx.cs" Inherits="Gat.Web.report.nikeapi.rpt_inv" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cpHeader" runat="server">
-    <title>Nike销售明细</title>
+    <title>Nike库存明细</title>
     <script src="/scripts/jquery-1.10.2.min.js"></script>
     <!--kendo-->
     <link href="/styles/kendo/2014.1.318/kendo.common.min.css" rel="stylesheet" type="text/css" />
@@ -140,8 +140,6 @@
             &nbsp;
             <label>尺码：</label>
             <asp:TextBox ID="sizeCode" runat="server"></asp:TextBox>
-            <label>单号：</label>
-            <asp:TextBox ID="billNo" runat="server"></asp:TextBox>
             &nbsp;
             <label>上传状态：</label>
             <asp:DropDownList ID="status" runat="server">

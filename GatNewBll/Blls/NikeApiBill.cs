@@ -2,19 +2,25 @@
 using Gat.Web.Controller.Dtos.NikeApi;
 using GatEntities.DbModels;
 using GatNewBll.Models;
+using GatNewBll.Models.Burgeon;
 using GatNewBll.Models.NikeApi;
+using GatNewBll.Models.On;
 using GatSqlSugarDAL.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using RestSharp.Serializers;
 using SqlSugar;
+using SqlSugar.DistributedSystem.Snowflake;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Text;
@@ -28,6 +34,14 @@ namespace GatNewBll.Blls
     /// </summary>
     public class NikeApiBill : BaseBll
     {
+
+        string client_id ="";   // 客户端标识 / 客户端 ID
+        string client_secret =""; // 客户端密钥 / 客户端密码
+        string partner_code =""; // 合作方编码 / 合作伙伴代码
+        string gettoken_url =""; // 获取访问令牌的 URL
+        string api_url =""; // API 接口的 URL
+        NikeApiToken Token = null;//
+
         /// <summary>
         /// 查询Nke接口日志
         /// </summary> 
@@ -525,24 +539,19 @@ namespace GatNewBll.Blls
                         Message = "接口地址不能为空"
                     };
                 }
-                //string idsStr = "";
-                //if (ids != null)
-                //{
-                //    idsStr=string.Join(",", ids);
-                //}
-                //GatNikeApiWebServices WebServices = new GatNikeApiWebServices(url, AppKey, SourceSys, AppSecret, AppToken);
+                
                 var dataList = GetPosData(solutionId, startTime, endTime, idsStr);
 
                 bool IsOk = true;
                 bool IsUpdate = false;
                 bool IsImport = false;
-                if (dataList.Count > 0)
+                if (dataList.Item1.Count > 0)
                 {
-                    foreach (var item in dataList)
+                    foreach (var item in dataList.Item2)
                     {
                         IsUpdate = false;
                         IsOk = true;
-                        IsImport = item.IsImport;
+                        IsImport = false;
                         var sgData = gatlwManager.GetFirst(s => s.SolutionId == solutionId && s.BillNo == item.BillNo);
                         if (sgData == null)
                         {
@@ -585,7 +594,7 @@ namespace GatNewBll.Blls
                                 NikeApiBillDate Maste = new NikeApiBillDate()
                                 {
                                     order_no = item.BillNo.ToString(),//  线上订单号   string  是
-                                    w_docno = item.ExternalBillNo.ToString(),// 外部单号 string  是
+                                  
                                     billdate = item.BillDate.ToString("yyyyMMdd"),// 单据日期 string  是
                                     storecode = item.ShopCode.ToString(),// 销售店仓  string  是
                                     mesg_id = "INT_3010R_BOS",//接口编号    string  是   值：INT_3010R_BOS
@@ -657,25 +666,66 @@ namespace GatNewBll.Blls
         }
 
         /// <summary>
-        /// 获取提报POS数据
+        /// 获取POS数据
         /// </summary>
         /// <param name="solutionId"></param>
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>
         /// <returns></returns>
-        private List<NikeApiPosMasterData> GetPosData(int solutionId, DateTime? startTime = null, DateTime? endTime = null, string ids = "")
+        private Tuple<List<GatNikeApiPosSaleModel>, List<GatNikeApiLogModel>>  GetPosData(int solutionId, DateTime? startTime = null, DateTime? endTime = null, string ids = "")
         {
             try
             {
-                return ErpDb.Ado.UseStoredProcedure()
-                    .SqlQuery<NikeApiPosMasterData>("sp_SGIS_GatNikeApi_GetPosSale",
-                    new { SolutionId = solutionId, StartTime = startTime, EndTime = endTime, Ids = ids });
+                return ExtractorDB.Ado.UseStoredProcedure()
+                    .SqlQuery<GatNikeApiPosSaleModel, GatNikeApiLogModel>("sp_SGIS_NikeApi_GetData",
+                    new { SolutionId = solutionId, StartTime = startTime, EndTime = endTime, Ids = ids, Type = "POS" });
             }
             catch (Exception ex)
             {
                 throw new Exception("获取销售数据异常" + ex.Message);
             }
         }
+        /// <summary>
+        /// 获取库存数据
+        /// </summary>
+        /// <param name="solutionId"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <returns></returns>
+        private Tuple<List<GatNikeApiInvModel>, List<GatNikeApiLogModel>> GetInventoryData(int solutionId, DateTime? startTime = null, DateTime? endTime = null, string ids = "")
+        {
+            try
+            {
+                return ExtractorDB.Ado.UseStoredProcedure()
+                    .SqlQuery<GatNikeApiInvModel, GatNikeApiLogModel>("sp_SGIS_NikeApi_GetData",
+                    new { SolutionId = solutionId, StartTime = startTime, EndTime = endTime, Ids = ids, Type = "INV" });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("获取库存数据异常" + ex.Message);
+            }
+        }
+        /// <summary>
+        /// 获取出入库数据
+        /// </summary>
+        /// <param name="solutionId"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <returns></returns>
+        private Tuple<List<GatNikeApiOutInModel>, List<GatNikeApiLogModel>> GetOutInData(int solutionId, DateTime? startTime = null, DateTime? endTime = null, string ids = "")
+        {
+            try
+            {
+                return ExtractorDB.Ado.UseStoredProcedure()
+                    .SqlQuery<GatNikeApiOutInModel, GatNikeApiLogModel>("sp_SGIS_NikeApi_GetData",
+                    new { SolutionId = solutionId, StartTime = startTime, EndTime = endTime, Ids = ids, Type = "OUTIN" });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("获取出入库数据异常" + ex.Message);
+            }
+        }
+
 
         /// <summary>
         /// 更新Nike日志状态为成功
@@ -702,5 +752,159 @@ namespace GatNewBll.Blls
         }
 
 
-    }
+        public void test()
+        {
+            WebHeaderCollection headerValue = GetWebHeader();
+            //string requestbody = JsonConvert.SerializeObject(input);
+            string requestbody = "";
+            string requestUrl = "";
+            string responsebody = HttpPost(requestUrl, requestbody, headerValue);
+            var result = JsonConvert.DeserializeObject<NikeApiPosMasterData>(responsebody);
+        }
+        /// <summary>
+        /// 获取请求头部信息
+        /// </summary>
+        /// <returns></returns>
+        public WebHeaderCollection GetWebHeader()
+        {
+            WebHeaderCollection headerValue = new WebHeaderCollection();
+            headerValue.Add("Authorization", "Bearer " + GetAccessToken());
+            return headerValue;
+        }
+
+
+        public string HttpPost(string url, string content, WebHeaderCollection HeaderValue)
+        {
+            try
+            {
+                JsonSerializerSettings jsetting = new JsonSerializerSettings();
+                jsetting.NullValueHandling = NullValueHandling.Ignore;
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
+                var client = new RestClient(url);
+                RestRequest request = new RestRequest();
+                foreach (string key in HeaderValue.Keys)
+                {
+                    request.AddHeader(key, HeaderValue[key]);
+                }
+                request.AddStringBody(content, ContentType.Json);
+
+                var response = client.ExecutePostAsync(request).GetAwaiter().GetResult();
+                if (string.IsNullOrEmpty(response.Content))
+                {
+                    throw new Exception($"请求接口失败");
+                }
+                return response.Content;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"发送请求异常,message:{ex.Message},trace:{ex.StackTrace}");
+            }
+        }
+
+        /// <summary>
+        /// 获取接口参数
+        /// </summary>
+        /// <returns></returns>
+        public HandleArgs GetInterfaceParameters(int solutionId)
+        {
+            HandleArgs result = new HandleArgs();
+            GatSolutionManager manager = new GatSolutionManager();
+            var solution = manager.GetById(solutionId);
+            var postConfig = solution.Directory;
+            if (string.IsNullOrEmpty(postConfig))
+            {
+                return new HandleArgs()
+                {
+                    Status = HandleStatus.Fail,
+                    Message = "接口参数不能为空"
+                };
+            }
+            var configs = postConfig.Split(';');
+
+            gettoken_url = configs[0];// 获取访问令牌的 URL
+            api_url = configs[1];// API 接口的 URL
+            client_id = configs[2];  // 客户端标识 / 客户端 ID
+            client_secret = configs[3]; // 客户端密钥 / 客户端密码
+            partner_code = configs[4];// 合作方编码 / 合作伙伴代码
+
+            result.Status = HandleStatus.Completed;
+            return result;
+
+
+        }
+
+        /// <summary>
+        /// 获取有效的 access_token。
+        /// 若缓存有效则直接返回；否则请求新 Token。
+        /// 提前 5 分钟刷新，避免传输中途失效（文档要求）。
+        /// </summary>
+        public string GetAccessToken()
+        {
+            // 原判断是 DateTime.UtcNow < ExpireAtUtc.AddMinutes(-5)，方向写反了：
+            // 会导致「Token 还有效时去刷新，快过期了反而不刷新」。
+            // 正确逻辑：进入「到期前 5 分钟」窗口即重新获取。
+            var needRefresh = Token == null
+                              || string.IsNullOrEmpty(Token.access_token)
+                              || DateTime.UtcNow >= Token.ExpireAtUtc.AddMinutes(-5);
+
+            if (needRefresh)
+            {
+                Token = RequestToken();
+            }
+
+            return Token.access_token;
+        }
+        private NikeApiToken RequestToken()
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(gettoken_url))
+                {
+                    throw new Exception("未配置获取Token的地址");
+                }
+
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
+
+                // 1. Basic 认证：Base64(client_id:client_secret)
+                var basic = Convert.ToBase64String(
+                    Encoding.UTF8.GetBytes($"{client_id}:{client_secret}"));
+
+                // 2. 组装请求（与 HttpPost 同一套 RestSharp 写法）
+                var client = new RestClient(gettoken_url);
+                RestRequest request = new RestRequest();
+
+                request.AddHeader("Authorization", "Basic " + basic);
+                request.AddHeader("Accept", "application/json");
+                request.AddParameter("grant_type", "client_credentials");
+                request.AddParameter("scope", partner_code);
+
+                var response = client.ExecutePostAsync(request).GetAwaiter().GetResult();
+
+                if (string.IsNullOrEmpty(response.Content))
+                {
+                    throw new Exception($"请求Token接口失败");
+                }
+                if (!response.IsSuccessful)
+                {
+                    throw new Exception($"请求Token接口失败，HTTP {(int)response.StatusCode}，响应：{response.Content}");
+                }
+
+                var result = JsonConvert.DeserializeObject<NikeApiToken>(response.Content);
+                if (result == null || string.IsNullOrEmpty(result.access_token))
+                {
+                    throw new Exception($"Token 响应解析失败或 access_token 为空，响应：{response.Content}");
+                }
+                var seconds = result.expires_in > 0 ? result.expires_in : 3600;
+                result.ExpireAtUtc = DateTime.UtcNow.AddSeconds(seconds);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"获取Token异常,message:{ex.Message},trace:{ex.StackTrace}");
+            }
+        }
+    
+
+
+}
 }

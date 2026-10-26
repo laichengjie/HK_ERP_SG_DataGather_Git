@@ -267,6 +267,9 @@ namespace Gat.Web.admin
                 case "burgeon":
                     HANDLE = new BurgeonBill().NormalBurgeonPost(id, DateTime.Parse(start), endTime, false);
                     break;
+                case "nikeapi":
+                    HANDLE = new NikeApiBill().PushNikeApiAllData(id, DateTime.Parse(start), endTime, false);
+                    break;
                 case "nikeomnichannel":
                     HANDLE = new NikeBll_OC().GetExtractorData("sp_SGIS_ExecBatch_OC_Nike", vendor.VendorCode, 0, companyID, cardID, start, end, 0);
                     break;

@@ -81,6 +81,9 @@ namespace Gat.Web.Controller
                     case "burgeon":
                         HANDLE = new BurgeonBill().PushAllBurgeonPos(solutionId, startTime, endTime, positive);
                         break;
+                    case "nikeapi":
+                        HANDLE = new NikeApiBill().PushNikeApiAllData(solutionId, startTime, endTime, positive);
+                        break;
                     case "vans_em":
                         HANDLE = new VansBill().VansPush(solutionId, startTime, endTime, 0);
                         break;

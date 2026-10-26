@@ -39,6 +39,35 @@ BEGIN
             isShop     BIT
         );
 
+        IF OBJECT_ID('tempdb..#Log', 'U') IS NOT NULL
+            DROP TABLE #Log;
+
+        CREATE TABLE #Log
+        (
+            [ID] [int] IDENTITY(1,1) NOT NULL,
+            [SolutionId] [int] NOT NULL,
+            [CompanyID] [varchar](20) NOT NULL,
+            [BillType] [varchar](40) NOT NULL, --单据类型
+            [BillTypeID][varchar](40) NOT NULL, --单据类型
+            [BillTypeName] NVARCHAR(40) NOT NULL, --单据类型名称
+            [BillDate] [datetime] NOT NULL, --销售时间
+            [BillNo] [varchar](40) NOT NULL, --单号
+            [CardID] [varchar](20) NULL, --品牌ID
+            [ShopID] [varchar](50) NULL,
+            [ShopCode] [varchar](50) NULL, --店铺代码
+            [StockID] VARCHAR(50) NULL,   --仓库代码
+            [StockCode] VARCHAR(50) NULL, --仓库代码
+            [PostJaon] NVARCHAR(MAX) NULL,
+            [ReturnJson] NVARCHAR(MAX) NULL,
+            [IsSuccess] [bit] NULL,
+            [CreateDtm] [datetime] NULL,
+            [ModifyDtm] [datetime] NULL,
+            [Qty] [int] NULL, --数量
+            [Amount] [decimal](24, 6) NULL, --订单总金额（POS单总结算金额）
+            [IsImport] [bit] NULL,
+            [PushBillNo] VARCHAR(40) NULL, --推送单号
+        );
+
         DECLARE @RepeatStartTime DATETIME = GETDATE(); --开始同步时间
         DECLARE @Start           DATETIME = GETDATE(); --本次捞取数据的开始时间
         DECLARE @End             DATETIME = GETDATE(); --本次捞取数据的结束时间
@@ -139,7 +168,6 @@ BEGIN
         FROM #Shop a
             INNER JOIN dbo.Bas_Stock b
                 ON b.StockID = a.StockID;
-
 
         IF OBJECT_ID('tempdb..#tempBillCodes', 'U') IS NOT NULL
             DROP TABLE #tempBillCodes;
@@ -663,48 +691,48 @@ BEGIN
             WHERE a.SolutionID = @SolutionId;
         END;
 
-
         --更新修改时间
         UPDATE a
         SET LAST_UPDATED_TMST = @Now,
             ModifyDtm         = @Now
         FROM #SaleDetail a;
 
-        --记录本次上报日志（按单记一条）
-        INSERT INTO HK_ERP_SG_DataGather.dbo.Gat_NikeApi_Log
+        INSERT INTO #Log
         (
-            SolutionId,
-            CompanyID,
-			BillType,
-            BillTypeID,
-	       BillTypeName,
-            BillDate,
-            BillNo,
-            CardID,
-            ShopID,
-            ShopCode,
-			StockCode,
-            PostJaon,
-            ReturnJson,
-            IsSuccess,
-            CreateDtm,
-            ModifyDtm,
-            Qty,
-            Amount,
-            IsImport,
+            SolutionId ,
+            CompanyID ,
+            BillType ,
+            BillTypeID ,
+            BillTypeName ,
+            BillDate ,
+            BillNo ,
+            CardID ,
+            ShopID ,
+            ShopCode ,
+            StockID ,
+            StockCode ,
+            PostJaon ,
+            ReturnJson ,
+            IsSuccess ,
+            CreateDtm ,
+            ModifyDtm ,
+            Qty ,
+            Amount ,
+            IsImport ,
             PushBillNo
         )
         SELECT MAX(SolutionId)                        AS SolutionId,
                CompanyID,
                'POS'                                  AS BillType,
-			   'POS'                                  AS BillTypeID,
-			   N'POS销售单' BillTypeName,
+               'POS'                                  AS BillTypeID,
+               N'POS销售单' BillTypeName,
                MAX(BillDate)                          AS BillDate,
                BillNo,
                MAX(CardID)                            AS CardID,
                MAX(ShopID)                            AS ShopID,
                MAX(ShopCode)                          AS ShopCode,
-			   ''                                     AS StockCode,
+               ''                                     AS  StockID ,
+               ''                                     AS StockCode,
                ''                                     AS PostJaon,
                ''                                     AS ReturnJson,
                0                                      AS IsSuccess,
@@ -786,7 +814,6 @@ BEGIN
                ModifyDtm,               --提报时间
                PushBillNo               --推送单号
         FROM #SaleDetail a;
-
         SELECT SolutionId,              --方案
                CompanyID,               --公司
                BillNo,                  --单号
@@ -1020,20 +1047,20 @@ BEGIN
             IsSuccess=0
         FROM #Inv a;
 
-        --记录本次上报日志（按单记一条）
-        INSERT INTO HK_ERP_SG_DataGather.dbo.Gat_NikeApi_Log
+        INSERT INTO #Log
         (
             SolutionId,
             CompanyID,
-			BillType,
+            BillType,
             BillTypeID,
-		BillTypeName,
+            BillTypeName,
             BillDate,
             BillNo,
             CardID,
             ShopID,
             ShopCode,
-			StockCode,
+            StockID ,
+            StockCode,
             PostJaon,
             ReturnJson,
             IsSuccess,
@@ -1047,14 +1074,15 @@ BEGIN
         SELECT MAX(SolutionId)           AS SolutionId,
                CompanyID,
                'INV'                     AS BillType,
-			   'INV'                     AS BillTypeID,
-			    N'库存明细' BillTypeName,
+               'INV'                     AS BillTypeID,
+               N'库存明细' BillTypeName,
                @Now                      AS BillDate,
                MAX(StockID)              AS BillNo,
                @CardID                   AS CardID,
                ''                        AS ShopID,
-               ''              AS ShopCode,
-			   MAX(SITE_CD)              AS StockCode,
+               ''                        AS ShopCode,
+               ''                        AS StockID ,
+               MAX(SITE_CD)              AS StockCode,
                ''                        AS PostJaon,
                ''                        AS ReturnJson,
                0                         AS IsSuccess,
@@ -1154,7 +1182,7 @@ BEGIN
                 [ID] [int] IDENTITY(1,1) NOT NULL,
                 [SolutionId] [int] NOT NULL,
                 [CompanyID] [varchar](20) NOT NULL,
-				[BillNo] [varchar](40) NOT NULL, --单号
+                [BillNo] [varchar](40) NOT NULL, --单号
                 [BillDate] [datetime] NOT NULL, --单据日期
                 [CardID] [varchar](20) NULL, --品牌ID
                 [SITE_CD] [varchar](50) NOT NULL, --SITE_CD 门店/仓库编码 String 是 客户门店或仓库唯一标识编码
@@ -1183,7 +1211,6 @@ BEGIN
                 [BillTypeID] VARCHAR(20) NULL,
             );
 
-
             BEGIN
                 SET @Start = @StartTime;
                 SET @End   = @EndTime;
@@ -1197,7 +1224,7 @@ BEGIN
                 (
                     SolutionId,        --方案
                     CompanyID,         --公司
-					BillNo,
+                    BillNo,
                     BillDate,          --单据日期
                     CardID,            --品牌
                     SITE_CD,           --仓库编码
@@ -1228,7 +1255,7 @@ BEGIN
                 SELECT
                     @SolutionID  SolutionId, --方案
                     a.CompanyID     CompanyID, --公司
-					a.BillNo,
+                    a.BillNo,
                     m.CheckDate     BillDate, --单据日期
                     @CardID    CardID, --品牌
                     d.StockCode   SITE_CD, --仓库编码
@@ -1254,9 +1281,9 @@ BEGIN
                             N'耐克发货'
                         WHEN m.BillTypeID = 'Inv_Thck' THEN
                             N'退还耐克'
-						WHEN m.BillTypeID = 'Inv_Ssck' THEN
+                        WHEN m.BillTypeID = 'Inv_Ssck' THEN
                             N'加盟发货'
-						 WHEN m.BillTypeID = 'Inv_Thrk' THEN
+                        WHEN m.BillTypeID = 'Inv_Thrk' THEN
                             N'加盟退货'
                         ELSE
                             ''
@@ -1298,13 +1325,11 @@ BEGIN
                       AND c.CardID = @CardID
                       AND m.CheckDate > @Start
                       AND m.CheckDate <= @End
-                      AND m.BillTypeID IN ( 'Inv_Cgrk', 'Inv_Thrk', 'Inv_Ssck', 'Inv_Thck' )
+                      AND m.BillTypeID IN ('Inv_Cgrk', 'Inv_Thrk', 'Inv_Ssck', 'Inv_Thck')
                       AND m.BillStatus=4;
 
             END;
         END;
-
-		
 
         --删除已经同步成功的历史单据
         DELETE a
@@ -1326,7 +1351,6 @@ BEGIN
             INNER JOIN #MaterialRange b
                 ON b.MaterialCode = a.PRODUCT_CD;
 
-
         --删除已存在数据，避免重复记录
         BEGIN
             DELETE a
@@ -1346,7 +1370,6 @@ BEGIN
             WHERE a.SolutionID = @SolutionId;
         END;
 
-
         --更新修改时间
         UPDATE a
         SET LAST_UPDATED_TMST = @Now,
@@ -1356,19 +1379,20 @@ BEGIN
         FROM #OutIn a;
 
         --记录本次上报日志（按单记一条）
-        INSERT INTO HK_ERP_SG_DataGather.dbo.Gat_NikeApi_Log
+        INSERT INTO #Log
         (
             SolutionId,
             CompanyID,
-			BillType,
+            BillType,
             BillTypeID,
-			BillTypeName,
+            BillTypeName,
             BillDate,
             BillNo,
             CardID,
             ShopID,
             ShopCode,
-			StockCode,
+            StockID ,
+            StockCode,
             PostJaon,
             ReturnJson,
             IsSuccess,
@@ -1381,15 +1405,16 @@ BEGIN
         )
         SELECT MAX(SolutionId)                        AS SolutionId,
                CompanyID,
-			  @Type BillType,
+               @Type BillType,
                BillTypeID                            AS BillTypeID,
-			   MAX(BillTypeName) BillTypeName,
+               MAX(BillTypeName) BillTypeName,
                MAX(BillDate)                          AS BillDate,
                BillNo,
                @CardID                            AS CardID,
-              ''                            AS ShopID,
-                ''                          AS ShopCode,
-			   MAX(SITE_CD)                          AS StockCode,
+               ''                            AS ShopID,
+               ''                          AS ShopCode,
+               ''                          AS StockID ,
+               MAX(SITE_CD)                          AS StockCode,
                ''                                     AS PostJaon,
                ''                                     AS ReturnJson,
                0                                      AS IsSuccess,
@@ -1407,7 +1432,7 @@ BEGIN
         (
             SolutionId,        --方案
             CompanyID,         --公司
-			BillNo,
+            BillNo,
             BillDate,          --单据日期
             CardID,            --品牌
             SITE_CD,           --仓库编码
@@ -1437,7 +1462,7 @@ BEGIN
         )
         SELECT SolutionId,        --方案
                CompanyID,         --公司
-			   BillNo,
+               BillNo,
                BillDate,          --单据日期
                CardID,            --品牌
                SITE_CD,           --仓库编码
@@ -1468,7 +1493,7 @@ BEGIN
 
         SELECT SolutionId,        --方案
                CompanyID,         --公司
-			   BillNo,
+               BillNo,
                BillDate,          --单据日期
                CardID,            --品牌
                SITE_CD,           --仓库编码
@@ -1501,9 +1526,77 @@ BEGIN
             DROP TABLE #OutIn;
     END;
 
+    INSERT INTO HK_ERP_SG_DataGather.dbo.Gat_NikeApi_Log
+    (
+        SolutionId,
+        CompanyID,
+        BillType,
+        BillTypeID,
+        BillTypeName,
+        BillDate,
+        BillNo,
+        CardID,
+        ShopID,
+        ShopCode,
+        StockCode,
+        PostJaon,
+        ReturnJson,
+        IsSuccess,
+        CreateDtm,
+        ModifyDtm,
+        Qty,
+        Amount,
+        IsImport,
+        PushBillNo
+    )
+    SELECT  SolutionId,
+        CompanyID,
+        BillType,
+        BillTypeID,
+        BillTypeName,
+        BillDate,
+        BillNo,
+        CardID,
+        ShopID,
+        ShopCode,
+        StockCode,
+        PostJaon,
+        ReturnJson,
+        IsSuccess,
+        CreateDtm,
+        ModifyDtm,
+        Qty,
+        Amount,
+        IsImport,
+        PushBillNo
+    FROM #Log
+
+    SELECT  SolutionId,
+        CompanyID,
+        BillType,
+        BillTypeID,
+        BillTypeName,
+        BillDate,
+        BillNo,
+        --CardID,
+        --ShopID,
+        --ShopCode,
+        --StockCode,
+        --PostJaon,
+        --ReturnJson,
+        --IsSuccess,
+        --CreateDtm,
+        --ModifyDtm,
+        Qty,
+        Amount,
+        --IsImport,
+        PushBillNo
+    FROM #Log
 
     IF OBJECT_ID('tempdb..#tempIds', 'U') IS NOT NULL
         DROP TABLE #tempIds;
     IF OBJECT_ID('tempdb..#tempBillCodes', 'U') IS NOT NULL
         DROP TABLE #tempBillCodes;
+	IF OBJECT_ID('tempdb..#Log', 'U') IS NOT NULL
+        DROP TABLE #Log;
 END;

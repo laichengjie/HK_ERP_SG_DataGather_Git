@@ -62,15 +62,16 @@
   <ItemGroup>
     <Compile Include="Blls\NikeApiBill.cs" />
     <Compile Include="Blls\BurgeonBill.cs" />
+    <Compile Include="Models\NikeApi\NikeApiRequest_Inv.cs" />
+    <Compile Include="Models\NikeApi\NikeApiRequest_OutIn.cs" />
     <Compile Include="Models\NikeApi\NikeApiToken.cs" />
     <Compile Include="Models\QueryOutputDto.cs" />
-    <Compile Include="Models\NikeApi\BaseRequest.cs" />
-    <Compile Include="Models\NikeApi\BaseResponse.cs" />
+    <Compile Include="Models\NikeApi\NikeApiRequest.cs" />
     <Compile Include="Models\NikeApi\GatNikeApiOutInModel.cs" />
     <Compile Include="Models\NikeApi\GatNikeApiInvModel.cs" />
-    <Compile Include="Models\NikeApi\NikeApiPosMasterData.cs" />
-    <Compile Include="Models\NikeApi\NikeApinPosRequest.cs" />
-    <Compile Include="Models\NikeApi\NikeApiPosResponse.cs" />
+    <Compile Include="Models\NikeApi\NikeApiResponse_Pos.cs" />
+    <Compile Include="Models\NikeApi\NikeApiRequest_Pos.cs" />
+    <Compile Include="Models\NikeApi\NikeApiResponse.cs" />
     <Compile Include="Models\NikeApi\GatNikeApiPosSaleModel.cs" />
     <Compile Include="Models\NikeApi\GatGatNikeApiLogModel.cs" />
     <Compile Include="Models\Burgeon\GatBurgeonPosSaleDetailModel.cs" />

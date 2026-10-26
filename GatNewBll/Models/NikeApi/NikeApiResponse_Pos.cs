@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GatNewBll.Models.NikeApi
 {
-    public class NikeApiPosMasterData
+    public class NikeApiResponse_Pos
     {
         /// <summary>
         /// ID（自增主键）

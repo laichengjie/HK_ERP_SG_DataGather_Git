@@ -68,7 +68,20 @@ namespace Gat.Web.Controller
                 {
                     idsStr = string.Join(",", input.Ids);
                 }
-                var HANDLE = bll.PushPostDataSave(input.SolutionId,null,null, idsStr,input.InterfaceType);
+                HandleArgs HANDLE = new HandleArgs();
+                if (input.InterfaceType == "0")
+                {
+                    HANDLE = bll.PushPosDataSave(input.SolutionId, null, null, idsStr);
+                }
+                else if (input.InterfaceType == "1")
+                {
+                    HANDLE = bll.PushInvDataSave(input.SolutionId, null, null, idsStr);
+                }
+                else if (input.InterfaceType == "2")
+                {
+                    HANDLE = bll.PushOutInDataSave(input.SolutionId, null, null, idsStr);
+                }
+
                 if (HANDLE.Status == HandleStatus.Completed)
                 {
                     result.Success = true;

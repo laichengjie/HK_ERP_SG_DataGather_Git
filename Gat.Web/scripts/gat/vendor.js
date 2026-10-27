@@ -102,7 +102,7 @@ jQuery(function ($) {
     })
     ;
 
-    $('.vendor-card-list,vendor-shop-list')
+    $('.vendor-card-list,vendor-shop-list,.vendor-parameter-list')
     .each(function () {
         setMaxHeight($(this));
     });
@@ -657,3 +657,4 @@ function deleteShop(anchor) {
     });    
     
 }
+

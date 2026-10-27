@@ -59,6 +59,7 @@
     <Compile Include="Services\BasStockManager.cs" />
     <Compile Include="Services\BasStockmapManager.cs" />
     <Compile Include="Services\BasVendorcardManager.cs" />
+    <Compile Include="Services\BasVendorParameterValueManager.cs" />
     <Compile Include="Services\BasVendorManager.cs" />
     <Compile Include="Services\BasVendshopManager.cs" />
     <Compile Include="Services\GatAdMeterialinvManager.cs" />

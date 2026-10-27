@@ -109,7 +109,7 @@ namespace GatEntities.DbModels
         /// 行项目序号
         /// </summary>
         [SugarColumn(ColumnName = "LINE_ITEM_NBR", Length = 10)]
-        public int LINE_ITEM_NBR { get; set; }
+        public string LINE_ITEM_NBR { get; set; }
 
         /// <summary>
         /// 实际销售单价

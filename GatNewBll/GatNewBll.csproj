@@ -73,7 +73,6 @@
     <Compile Include="Models\NikeApi\NikeApiResponse_Pos.cs" />
     <Compile Include="Models\NikeApi\NikeApiRequest_Pos.cs" />
     <Compile Include="Models\NikeApi\NikeApiResponse.cs" />
-    <Compile Include="Models\NikeApi\NikeApiHttpResult.cs" />
     <Compile Include="Models\NikeApi\GatNikeApiPosSaleModel.cs" />
     <Compile Include="Models\NikeApi\GatGatNikeApiLogModel.cs" />
     <Compile Include="Models\Burgeon\GatBurgeonPosSaleDetailModel.cs" />
@@ -185,6 +184,8 @@
     <Compile Include="Models\TuMI\TuMiInvResponse.cs" />
     <Compile Include="Models\TuMI\TuMiPosResponse.cs" />
     <Compile Include="Models\VendorModel.cs" />
+    <Compile Include="Models\VendorParameterModel.cs" />
+    <Compile Include="Blls\VendorParameterBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

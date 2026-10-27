@@ -26,7 +26,6 @@ using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Services;
 
@@ -58,18 +57,7 @@ namespace GatNewBll.Blls
 
         /// <summary>业务状态码：全部记录受理成功</summary>
         private const string CodeSuccess = "0000";
-        /// <summary>业务状态码：Token 无效或已过期</summary>
-        private const string CodeTokenExpired = "3002";
-        /// <summary>业务状态码：幂等冲突（相同 request_id 已成功处理）</summary>
-        private const string CodeDuplicateRequest = "4001";
 
-        /// <summary>每个 request 最多 10000 条 records（文档 3.2）</summary>
-        private const int MaxRecordsPerRequest = 10000;
-
-        /// <summary>最大重试次数（文档 5.3）</summary>
-        private const int MaxRetryCount = 5;
-        /// <summary>重试间隔（毫秒），文档 5.3 要求 5 分钟</summary>
-        private const int RetryIntervalMs = 5 * 60 * 1000;
         /// <summary>单次 HTTP 请求超时（毫秒）</summary>
         private const int RequestTimeoutMs = 3 * 60 * 1000;
 
@@ -81,12 +69,13 @@ namespace GatNewBll.Blls
 
         #endregion
 
-        string client_id = "";   // 客户端标识 / 客户端 ID
-        string client_secret = ""; // 客户端密钥 / 客户端密码
-        string partner_code = ""; // 合作方编码 / 合作伙伴代码
-        string source_system = ""; // 数据来源系统名称（自营/加盟）
-        string gettoken_url = ""; // 获取访问令牌的 URL
-        string api_url = ""; // API 接口的 URL
+        string ClientId = "";   // 客户端标识 / 客户端 ID
+        string ClientSecret = ""; // 客户端密钥 / 客户端密码
+        string PartnerCode = ""; // 合作方编码 / 合作伙伴代码
+        string SourceSystem = ""; // 数据来源系统名称（自营/加盟）
+        string GetTokenUrl = ""; // 获取访问令牌的 URL
+        string ApiUrl = ""; // API 接口的 URL
+
         NikeApiToken Token = null;//
 
         /// <summary>
@@ -484,7 +473,7 @@ namespace GatNewBll.Blls
         {
             GatSolutionManager SolutionManager = new GatSolutionManager();
             BasVendorManager VendorManager = new BasVendorManager();
-            List<BasVendor> ListVendor = VendorManager.GetList(s => s.AllowUsed == true && s.ReportPath == 28);
+            List<BasVendor> ListVendor = VendorManager.GetList(s => s.AllowUsed == true && s.ReportPath == 29);
             HandleArgs result = new HandleArgs();
             result.Status = HandleStatus.Completed;
             foreach (BasVendor vendor in ListVendor)
@@ -562,8 +551,189 @@ namespace GatNewBll.Blls
         /// <returns></returns>
         public HandleArgs PushPosDataSave(int solutionId, DateTime? startTime, DateTime? endTime, string idsStr)
         {
-            return PushDataSave(solutionId, startTime, endTime, idsStr,
-                DataTypePos, BillTypePos, GetPosData, FilterPosDetails, BuildPosRecords);
+            HandleArgs result = new HandleArgs();
+            try
+            {
+                GatNikeApiLogManager gatlwManager = new GatNikeApiLogManager();
+                GatSolutionManager manager = new GatSolutionManager();
+                var solution = manager.GetById(solutionId);
+                result = GetParameterValue(solution.VendorID);
+                if (result.Status == HandleStatus.Fail)
+                {
+                    return result;
+                }
+                GetAccessToken();
+                if (string.IsNullOrEmpty(Token.access_token))
+                {
+                    result.Status = HandleStatus.Fail;
+                    result.Message = "获取Token失败";
+                    return result;
+                }
+
+                var dataList = GetPosData(solutionId, startTime, endTime, idsStr);
+                if (dataList.Item1.Count > 0)
+                {
+                    //公共技术字段：同一批次共用一个 batch_no（文档 3.2）
+                    string batchNo = Guid.NewGuid().ToString();
+                    string batchDate = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+                    int totalRequests = dataList.Item2.Count;
+                    int requestSeq = 0;
+
+                    foreach (var item in dataList.Item2)
+                    {
+                        var sgData = gatlwManager.GetFirst(s => s.SolutionId == solutionId
+                                                                && s.CompanyID == item.CompanyID
+                                                                && s.BillNo == item.BillNo
+                                                                && s.BillType == BillTypePos);
+                        if (sgData == null)
+                        {
+                            sgData = new GatNikeApiLog()
+                            {
+                                SolutionId = solutionId,//提报方案
+                                CompanyID = item.CompanyID,//公司
+                                BillType = BillTypePos,//单据类型
+                                BillTypeID = item.BillTypeID,//单据类型ID
+                                BillTypeName = item.BillTypeName,//单据类型名称
+                                BillNo = item.BillNo,//线上订单号
+                                BillDate = item.BillDate,//订单时间
+                                CardID = item.CardID,//品牌ID
+                                ShopID = item.ShopID,//店铺ID
+                                ShopCode = item.ShopCode,//店铺代码
+                                Qty = item.Qty,//数量
+                                Amount = item.Amount,//金额
+                                PushBillNo = item.PushBillNo,//推送单号
+                                IsSuccess = false,
+                            };
+                        }
+                        else
+                        {
+                            sgData.Qty = item.Qty;//数量
+                            sgData.Amount = item.Amount;//金额
+                        }
+
+                        try
+                        {
+                            decimal totalAmount = 0;
+                            int totalQty = 0;
+
+                            NikeApiRequest<NikeApiRequest_Pos> Request = new NikeApiRequest<NikeApiRequest_Pos>();
+
+                            List<NikeApiRequest_Pos> detailList = new List<NikeApiRequest_Pos>();
+
+                            var details = dataList.Item1.FindAll(s => s.BillNo == item.BillNo && s.CompanyID == item.CompanyID);
+                            foreach (var detail in details)
+                            {
+                                NikeApiRequest_Pos Pos = new NikeApiRequest_Pos()
+                                {
+                                    store_cd = string.IsNullOrEmpty(detail.STORE_CD) ? detail.ShopCode : detail.STORE_CD,
+                                    business_type = detail.BusinessType,
+                                    transaction_dt = detail.BillDate?.ToString("yyyy-MM-dd HH:mm:ss") ?? "",
+                                    order_type = detail.OrderType,
+                                    order_nbr = detail.BillNo,
+                                    upc = detail.UPC,
+                                    product_cd = detail.PRODUCT_CD,
+                                    size_cd = detail.SIZE_CD,
+                                    product_nm = detail.PRODUCT_NM,
+                                    line_item_nbr = detail.LINE_ITEM_NBR,
+                                    net_sales_prc_incl_tax = detail.NET_SALES_PRC_INCL_TAX,
+                                    rebate_amt = detail.REBATE_AMT == null ? null : detail.REBATE_AMT.ToString(),
+                                    net_sales_amt_incl_tax = detail.NET_SALES_AMT_INCL_TAX,
+                                    sales_qty = detail.SALES_QTY,
+                                    msrp_lc = detail.MSRP_LC,
+                                    total_partner_msrp_amt = detail.TOTAL_PARTNER_MSRP_AMT,
+                                    total_discount_amt = detail.TOTAL_DISCOUNT_AMT,
+                                    original_store_cd = detail.ORIGINAL_STORE_CD,
+                                    original_order_nbr = detail.ORIGINAL_ORDER_NBR,
+                                    original_transaction_dt = detail.ORIGINAL_TRANSACTION_DT?.ToString("yyyy-MM-dd HH:mm:ss") ?? "",
+                                    original_line_item_nbr = 0,
+                                    last_updated_tmst = (detail.LAST_UPDATED_TMST ?? DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")
+                                };
+                                if (!string.IsNullOrEmpty(detail.ORIGINAL_LINE_ITEM_NBR))
+                                {
+                                    int.TryParse(detail.ORIGINAL_LINE_ITEM_NBR, out int originalLineItemNbr);
+                                    Pos.original_line_item_nbr = originalLineItemNbr;
+                                }
+                                totalAmount += detail.NET_SALES_AMT_INCL_TAX ?? 0;
+                                totalQty += detail.SALES_QTY ?? 0;
+                                detailList.Add(Pos);
+                            }
+                            Request.records = detailList;
+
+                            #region 公共技术字段（文档 3.2）
+                            requestSeq++;
+                            string requestId = Guid.NewGuid().ToString();
+                            Request.batch_no = batchNo;//批次号（UUID v4），本批次共用
+                            Request.batch_date = batchDate;//Current Date - 1 Day
+                            Request.request_seq = requestSeq;//请求序号
+                            Request.request_id = requestId;//与 Header 的 X-Request-ID 一致
+                            Request.total_requests = totalRequests;//本批次预计的总请求数
+                            Request.partner_code = PartnerCode;//合作方唯一标识码
+                            Request.data_type = DataTypePos;//pos
+                            Request.record_count = detailList.Count;//records 数组行数
+                            Request.amount_sum = Math.Round(totalAmount, 2);//NET_SALES_AMT_INCL_TAX 求和
+                            Request.quantity_sum = totalQty;//SALES_QTY 求和
+                            Request.schema_version = SchemaVersion;//业务数据结构版本
+                            Request.source_system = SourceSystem;//数据来源系统名称（自营/加盟）
+                            Request.send_timestamp = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:sszzz");//ISO 8601 含时区
+                            #endregion
+
+                            string content = JsonConvert.SerializeObject(Request);
+                            WebHeaderCollection headerValue = GetWebHeader(requestId);
+                            string Response = HttpPost(ApiUrl, content, headerValue);
+                            var ResultData = JsonConvert.DeserializeObject<NikeApiResponse>(Response);
+
+                            if (ResultData != null && ResultData.code == CodeSuccess)
+                            {
+                                sgData.IsSuccess = true;
+                                UpdateNikeLogState(item.CompanyID, item.BillNo, BillTypePos, item.BillTypeID);
+                            }
+                            else
+                            {
+                                sgData.IsSuccess = false;
+                            }
+                            sgData.PostJaon = "地址：" + ApiUrl + "报文：" + content;
+                            sgData.ReturnJson = Response;
+                        }
+                        catch (Exception ex)
+                        {
+                            sgData.IsSuccess = false;
+                            sgData.ReturnJson = $"{ex.Message},{ex.StackTrace}";
+                        }
+                        sgData.ModifyDtm = DateTime.Now;
+                        gatlwManager.InsertOrUpdate(sgData);
+                    }
+                    SysLogManager logManager = new SysLogManager();
+                    //记录请求日志syslog
+                    SysLog log = new SysLog()
+                    {
+                        CompanyID = solution.CompanyID,
+                        CardID = solution.CardID,
+                        IsSucceed = true,
+                        LogType = Convert.ToByte(LogType.Gat),
+                        SolutionID = solution.Id,
+                        VendorID = solution.VendorID,
+                        ModifyDTM = DateTime.Now,
+                        Script = $"sp_SGIS_NikeApi_GetData{startTime.ToString()}-{endTime.ToString()}",
+                        Remark = "NIke Pos推送"
+                    };
+                    logManager.Insert(log);
+                    result.Status = HandleStatus.Completed;
+                    result.Message = "Pos提报成功";
+                }
+                else
+                {
+                    result.Status = HandleStatus.Completed;
+                    result.Message = "Pos重传成功:未获取到数据";
+                }
+                return result;
+            }
+            catch (Exception ex)
+        {
+                result.Status = HandleStatus.Fail;
+                result.Exception = ex;
+                result.Message = ex.Message;
+                return result;
+            }
         }
 
         /// <summary>
@@ -577,8 +747,173 @@ namespace GatNewBll.Blls
         /// <returns></returns>
         public HandleArgs PushInvDataSave(int solutionId, DateTime? startTime, DateTime? endTime, string idsStr)
         {
-            return PushDataSave(solutionId, startTime, endTime, idsStr,
-                DataTypeInventory, BillTypeInv, GetInventoryData, FilterInvDetails, BuildInvRecords);
+            HandleArgs result = new HandleArgs();
+            try
+            {
+                GatNikeApiLogManager gatlwManager = new GatNikeApiLogManager();
+                GatSolutionManager manager = new GatSolutionManager();
+                var solution = manager.GetById(solutionId);
+                result = GetParameterValue(solution.VendorID);
+                if (result.Status == HandleStatus.Fail)
+                {
+                    return result;
+                }
+                GetAccessToken();
+                if (string.IsNullOrEmpty(Token.access_token))
+                {
+                    result.Status = HandleStatus.Fail;
+                    result.Message = "获取Token失败";
+                    return result;
+                }
+
+                var dataList = GetInventoryData(solutionId, startTime, endTime, idsStr);
+                if (dataList.Item1.Count > 0)
+                {
+                    //公共技术字段：同一批次共用一个 batch_no（文档 3.2）
+                    string batchNo = Guid.NewGuid().ToString();
+                    string batchDate = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+                    int totalRequests = dataList.Item2.Count;
+                    int requestSeq = 0;
+
+                    foreach (var item in dataList.Item2)
+                    {
+                        var sgData = gatlwManager.GetFirst(s => s.SolutionId == solutionId
+                                                                && s.CompanyID == item.CompanyID
+                                                                && s.BillNo == item.BillNo
+                                                                && s.BillType == BillTypeInv);
+                        if (sgData == null)
+                        {
+                            sgData = new GatNikeApiLog()
+                            {
+                                SolutionId = solutionId,//提报方案
+                                CompanyID = item.CompanyID,//公司
+                                BillType = BillTypeInv,//单据类型
+                                BillTypeID = item.BillTypeID,//单据类型ID
+                                BillTypeName = item.BillTypeName,//单据类型名称
+                                BillNo = item.BillNo,//仓库ID
+                                BillDate = item.BillDate,//库存日期
+                                CardID = item.CardID,//品牌ID
+                                StockID = item.StockID,//仓库ID
+                                StockCode = item.StockCode,//仓库代码
+                                Qty = item.Qty,//数量
+                                Amount = item.Amount,//金额
+                                PushBillNo = item.PushBillNo,//推送单号
+                                IsSuccess = false,
+                            };
+                        }
+                        else
+                        {
+                            sgData.Qty = item.Qty;//数量
+                            sgData.Amount = item.Amount;//金额
+                        }
+
+                        try
+                        {
+                            int totalQty = 0;
+
+                            NikeApiRequest<NikeApiRequest_Inv> Request = new NikeApiRequest<NikeApiRequest_Inv>();
+
+                            List<NikeApiRequest_Inv> detailList = new List<NikeApiRequest_Inv>();
+
+                            //库存按「公司+仓库」分组，日志的 BillNo 存的是 StockID
+                            var details = dataList.Item1.FindAll(s => s.StockID == item.BillNo && s.CompanyID == item.CompanyID);
+                            foreach (var detail in details)
+                            {
+                                NikeApiRequest_Inv Inv = new NikeApiRequest_Inv()
+                                {
+                                    site_cd = detail.SITE_CD,
+                                    upc = detail.UPC,
+                                    product_cd = detail.PRODUCT_CD,
+                                    size_cd = detail.SIZE_CD,
+                                    product_nm = detail.PRODUCT_NM,
+                                    inventory_dt = detail.INVENTORY_DT?.ToString("yyyy-MM-dd") ?? "",
+                                    total_qty = detail.TOTAL_QTY ?? 0,
+                                    on_hand_qty = detail.ON_HAND_QTY ?? 0,
+                                    in_transit_qty = detail.IN_TRANSIT_QTY ?? 0,
+                                    defective_pcs_qty = detail.DEFECTIVE_PCS_QTY ?? 0,
+                                    msrp_lc = detail.MSRP_LC ?? 0,
+                                    last_updated_tmst = detail.LAST_UPDATED_TMST.ToString("yyyy-MM-dd HH:mm:ss")
+                                };
+                                totalQty += detail.TOTAL_QTY ?? 0;
+                                detailList.Add(Inv);
+                            }
+                            Request.records = detailList;
+
+                            #region 公共技术字段（文档 3.2）
+                            requestSeq++;
+                            string requestId = Guid.NewGuid().ToString();
+                            Request.batch_no = batchNo;//批次号（UUID v4），本批次共用
+                            Request.batch_date = batchDate;//Current Date - 1 Day
+                            Request.request_seq = requestSeq;//请求序号
+                            Request.request_id = requestId;//与 Header 的 X-Request-ID 一致
+                            Request.total_requests = totalRequests;//本批次预计的总请求数
+                            Request.partner_code = PartnerCode;//合作方唯一标识码
+                            Request.data_type = DataTypeInventory;//inventory
+                            Request.record_count = detailList.Count;//records 数组行数
+                            Request.amount_sum = 0;//inventory 不适用，传 0
+                            Request.quantity_sum = totalQty;//TOTAL_QTY 求和
+                            Request.schema_version = SchemaVersion;//业务数据结构版本
+                            Request.source_system = SourceSystem;//数据来源系统名称（自营/加盟）
+                            Request.send_timestamp = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:sszzz");//ISO 8601 含时区
+                            #endregion
+
+                            string content = JsonConvert.SerializeObject(Request);
+                            WebHeaderCollection headerValue = GetWebHeader(requestId);
+                            string Response = HttpPost(ApiUrl, content, headerValue);
+                            var ResultData = JsonConvert.DeserializeObject<NikeApiResponse>(Response);
+
+                            if (ResultData != null && ResultData.code == CodeSuccess)
+                            {
+                                sgData.IsSuccess = true;
+                                UpdateNikeLogState(item.CompanyID, item.BillNo, BillTypeInv, item.BillTypeID);
+                            }
+                            else
+                            {
+                                sgData.IsSuccess = false;
+                            }
+                            sgData.PostJaon = "地址：" + ApiUrl + "报文：" + content;
+                            sgData.ReturnJson = Response;
+                        }
+                        catch (Exception ex)
+                        {
+                            sgData.IsSuccess = false;
+                            sgData.ReturnJson = $"{ex.Message},{ex.StackTrace}";
+                        }
+                        sgData.ModifyDtm = DateTime.Now;
+                        gatlwManager.InsertOrUpdate(sgData);
+                    }
+                    SysLogManager logManager = new SysLogManager();
+                    //记录请求日志syslog
+                    SysLog log = new SysLog()
+                    {
+                        CompanyID = solution.CompanyID,
+                        CardID = solution.CardID,
+                        IsSucceed = true,
+                        LogType = Convert.ToByte(LogType.Gat),
+                        SolutionID = solution.Id,
+                        VendorID = solution.VendorID,
+                        ModifyDTM = DateTime.Now,
+                        Script = $"sp_SGIS_NikeApi_GetData{startTime.ToString()}-{endTime.ToString()}",
+                        Remark = "NIke Inv推送"
+                    };
+                    logManager.Insert(log);
+                    result.Status = HandleStatus.Completed;
+                    result.Message = "Inv提报成功";
+                }
+                else
+                {
+                    result.Status = HandleStatus.Completed;
+                    result.Message = "Inv重传成功:未获取到数据";
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.Status = HandleStatus.Fail;
+                result.Exception = ex;
+                result.Message = ex.Message;
+                return result;
+            }
         }
 
 
@@ -593,210 +928,169 @@ namespace GatNewBll.Blls
         /// <returns></returns>
         public HandleArgs PushOutInDataSave(int solutionId, DateTime? startTime, DateTime? endTime, string idsStr)
         {
-            return PushDataSave(solutionId, startTime, endTime, idsStr,
-                DataTypeMovement, BillTypeOutIn, GetOutInData, FilterOutInDetails, BuildOutInRecords);
-        }
-
-
-        /// <summary>
-        /// 推送数据到 Nike 的公共流程（文档 3：一个批次 = 一个 data_type 当天传输的完整数据）
-        /// 1. 同一批次共用 batch_no，先规划出全部 request 以确定 total_requests；
-        /// 2. 每个 request 不超过 10000 条 records，request_seq 递增、request_id 与 Header X-Request-ID 一致；
-        /// 3. 按文档 2/5.3 处理 Token 失效重传与失败重试。
-        /// </summary>
-        private HandleArgs PushDataSave<T>(int solutionId, DateTime? startTime, DateTime? endTime, string idsStr,
-            string dataType, string billType,
-            Func<int, DateTime?, DateTime?, string, Tuple<List<T>, List<GatNikeApiLogModel>>> getData,
-            Func<List<T>, GatNikeApiLogModel, List<T>> filterDetails,
-            Func<List<T>, List<NikeApiRecordItem>> buildRecords)
-        {
             HandleArgs result = new HandleArgs();
             try
             {
                 GatNikeApiLogManager gatlwManager = new GatNikeApiLogManager();
                 GatSolutionManager manager = new GatSolutionManager();
                 var solution = manager.GetById(solutionId);
-                if (solution == null)
-                {
-                    result.Status = HandleStatus.Fail;
-                    result.Message = $"未找到提报方案（SolutionId={solutionId}）";
-                    return result;
-                }
-                result = GetInterfaceParameters(solution.Directory);
+                result = GetParameterValue(solution.VendorID);
                 if (result.Status == HandleStatus.Fail)
                 {
                     return result;
                 }
                 GetAccessToken();
-                if (Token == null || string.IsNullOrEmpty(Token.access_token))
+                if (string.IsNullOrEmpty(Token.access_token))
                 {
                     result.Status = HandleStatus.Fail;
                     result.Message = "获取Token失败";
                     return result;
                 }
 
-                var dataList = getData(solutionId, startTime, endTime, idsStr);
-                List<T> allDetails = dataList == null ? new List<T>() : (dataList.Item1 ?? new List<T>());
-                List<GatNikeApiLogModel> billList = dataList == null
-                    ? new List<GatNikeApiLogModel>()
-                    : (dataList.Item2 ?? new List<GatNikeApiLogModel>());
+                var dataList = GetOutInData(solutionId, startTime, endTime, idsStr);
+                if (dataList.Item1.Count > 0)
+                {
+                    //公共技术字段：同一批次共用一个 batch_no（文档 3.2）
+                    string batchNo = Guid.NewGuid().ToString();
+                    string batchDate = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+                    int totalRequests = dataList.Item2.Count;
+                    int requestSeq = 0;
 
-                if (allDetails.Count == 0 || billList.Count == 0)
+                    foreach (var item in dataList.Item2)
+                    {
+                        var sgData = gatlwManager.GetFirst(s => s.SolutionId == solutionId
+                                                                && s.CompanyID == item.CompanyID
+                                                                && s.BillNo == item.BillNo
+                                                                && s.BillType == BillTypeOutIn);
+                        if (sgData == null)
+                        {
+                            sgData = new GatNikeApiLog()
+                            {
+                                SolutionId = solutionId,//提报方案
+                                CompanyID = item.CompanyID,//公司
+                                BillType = BillTypeOutIn,//单据类型
+                                BillTypeID = item.BillTypeID,//单据类型ID
+                                BillTypeName = item.BillTypeName,//单据类型名称
+                                BillNo = item.BillNo,//出入库单号
+                                BillDate = item.BillDate,//单据时间
+                                CardID = item.CardID,//品牌ID
+                                StockID = item.StockID,//仓库ID
+                                StockCode = item.StockCode,//仓库代码
+                                Qty = item.Qty,//数量
+                                Amount = item.Amount,//金额
+                                PushBillNo = item.PushBillNo,//推送单号
+                                IsSuccess = false,
+                            };
+                        }
+                        else
+                        {
+                            sgData.Qty = item.Qty;//数量
+                            sgData.Amount = item.Amount;//金额
+                        }
+
+                        try
+                        {
+                            int totalQty = 0;
+
+                            NikeApiRequest<NikeApiRequest_OutIn> Request = new NikeApiRequest<NikeApiRequest_OutIn>();
+
+                            List<NikeApiRequest_OutIn> detailList = new List<NikeApiRequest_OutIn>();
+
+                            var details = dataList.Item1.FindAll(s => s.BillNo == item.BillNo
+                                                                      && s.CompanyID == item.CompanyID
+                                                                      && s.BillTypeID == item.BillTypeID);
+                            foreach (var detail in details)
+                            {
+                                NikeApiRequest_OutIn OutIn = new NikeApiRequest_OutIn()
+                                {
+                                    site_cd = detail.SITE_CD,
+                                    site_nm = detail.SITE_NM,
+                                    upc = detail.UPC,
+                                    product_cd = detail.PRODUCT_CD,
+                                    size_cd = detail.SIZE_CD,
+                                    product_nm = detail.PRODUCT_NM,
+                                    direction_desc = detail.DIRECTION_DESC,
+                                    wms_order_no = detail.WMS_ORDER_NO,
+                                    proof_of_delivery_no = detail.PROOF_OF_DELIVERY_NO,
+                                    status_type_desc = detail.STATUS_TYPE_DESC,
+                                    transaction_tmst = detail.TRANSACTION_TMST.ToString("yyyy-MM-dd HH:mm:ss"),
+                                    transaction_qty = detail.TRANSACTION_QTY ?? 0,
+                                    source_from_site_cd = detail.SOURCE_FROM_SITE_CD,
+                                    source_from_site_nm = detail.SOURCE_FROM_SITE_NM,
+                                    destination_to_site_cd = detail.DESTINATION_TO_SITE_CD,
+                                    destination_to_site_nm = detail.DESTINATION_TO_SITE_NM,
+                                    last_updated_tmst = (detail.LAST_UPDATED_TMST ?? DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")
+                                };
+                                totalQty += detail.TRANSACTION_QTY ?? 0;
+                                detailList.Add(OutIn);
+                            }
+                            Request.records = detailList;
+
+                            #region 公共技术字段（文档 3.2）
+                            requestSeq++;
+                            string requestId = Guid.NewGuid().ToString();
+                            Request.batch_no = batchNo;//批次号（UUID v4），本批次共用
+                            Request.batch_date = batchDate;//Current Date - 1 Day
+                            Request.request_seq = requestSeq;//请求序号
+                            Request.request_id = requestId;//与 Header 的 X-Request-ID 一致
+                            Request.total_requests = totalRequests;//本批次预计的总请求数
+                            Request.partner_code = PartnerCode;//合作方唯一标识码
+                            Request.data_type = DataTypeMovement;//movement
+                            Request.record_count = detailList.Count;//records 数组行数
+                            Request.amount_sum = 0;//movement 不适用，传 0
+                            Request.quantity_sum = totalQty;//transaction_qty 求和
+                            Request.schema_version = SchemaVersion;//业务数据结构版本
+                            Request.source_system = SourceSystem;//数据来源系统名称（自营/加盟）
+                            Request.send_timestamp = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:sszzz");//ISO 8601 含时区
+                            #endregion
+
+                            string content = JsonConvert.SerializeObject(Request);
+                            WebHeaderCollection headerValue = GetWebHeader(requestId);
+                            string Response = HttpPost(ApiUrl, content, headerValue);
+                            var ResultData = JsonConvert.DeserializeObject<NikeApiResponse>(Response);
+
+                            if (ResultData != null && ResultData.code == CodeSuccess)
+                            {
+                                sgData.IsSuccess = true;
+                                UpdateNikeLogState(item.CompanyID, item.BillNo, BillTypeOutIn, item.BillTypeID);
+                            }
+                            else
+                            {
+                                sgData.IsSuccess = false;
+                            }
+                            sgData.PostJaon = "地址：" + ApiUrl + "报文：" + content;
+                            sgData.ReturnJson = Response;
+                        }
+                        catch (Exception ex)
+                        {
+                            sgData.IsSuccess = false;
+                            sgData.ReturnJson = $"{ex.Message},{ex.StackTrace}";
+                        }
+                        sgData.ModifyDtm = DateTime.Now;
+                        gatlwManager.InsertOrUpdate(sgData);
+                    }
+                    SysLogManager logManager = new SysLogManager();
+                    //记录请求日志syslog
+                    SysLog log = new SysLog()
+                    {
+                        CompanyID = solution.CompanyID,
+                        CardID = solution.CardID,
+                        IsSucceed = true,
+                        LogType = Convert.ToByte(LogType.Gat),
+                        SolutionID = solution.Id,
+                        VendorID = solution.VendorID,
+                        ModifyDTM = DateTime.Now,
+                        Script = $"sp_SGIS_NikeApi_GetData{startTime.ToString()}-{endTime.ToString()}",
+                        Remark = "NIke OutIn推送"
+                    };
+                    logManager.Insert(log);
+                    result.Status = HandleStatus.Completed;
+                    result.Message = "OutIn提报成功";
+                }
+                else
                 {
                     result.Status = HandleStatus.Completed;
-                    result.Message = $"{billType}提报成功：未获取到数据";
-                    return result;
-                }
-
-                // 批次号（UUID v4），本批次所有 request 共用；batch_date = Current Date - 1 Day
-                string batchNo = Guid.NewGuid().ToString();
-                string batchDate = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
-
-                // 先切分出本批次全部 request，才能得到 total_requests（文档 3.2 / 3.4）
-                List<NikeApiPushPlan> plans = new List<NikeApiPushPlan>();
-                List<NikeApiBillContext> contexts = new List<NikeApiBillContext>();
-                foreach (var bill in billList)
-                {
-                    var billDetails = filterDetails(allDetails, bill);
-                    if (billDetails == null || billDetails.Count == 0)
-                    {
-                        continue;
-                    }
-                    var items = buildRecords(billDetails);
-                    if (items == null || items.Count == 0)
-                    {
-                        continue;
-                    }
-
-                    NikeApiBillContext context = new NikeApiBillContext() { Bill = bill, IsSuccess = true };
-                    contexts.Add(context);
-
-                    for (int offset = 0; offset < items.Count; offset += MaxRecordsPerRequest)
-                    {
-                        var chunk = items.Skip(offset).Take(MaxRecordsPerRequest).ToList();
-                        plans.Add(new NikeApiPushPlan()
-                        {
-                            Context = context,
-                            Records = chunk.Select(o => o.Record).ToList(),
-                            AmountSum = Math.Round(chunk.Sum(o => o.Amount), 2),
-                            QuantitySum = chunk.Sum(o => o.Quantity)
-                        });
-                    }
-                }
-
-                if (plans.Count == 0)
-                {
-                    result.Status = HandleStatus.Completed;
-                    result.Message = $"{billType}提报成功：未获取到数据";
-                    return result;
-                }
-
-                int totalRequests = plans.Count;
-
-                for (int i = 0; i < plans.Count; i++)
-                {
-                    NikeApiPushPlan plan = plans[i];
-                    // request_id：UUID v4，幂等性控制与链路追踪；重传时保持不变
-                    string requestId = Guid.NewGuid().ToString();
-
-
-                    var request = BuildNikeApiRequest(dataType, batchNo, batchDate, requestId, i + 1, totalRequests, plan);
-                    string content = JsonConvert.SerializeObject(request);
-
-                    NikeApiSendResult sendResult = SendWithRetry(content, requestId);
-
-                    plan.Context.PostJson.AppendLine("地址：" + api_url + " 报文：" + content);
-                    plan.Context.ReturnJson.AppendLine(sendResult.ReturnJson);
-                    if (!sendResult.IsSuccess)
-                    {
-                        plan.Context.IsSuccess = false;
-                        plan.Context.ErrorMessage = sendResult.Message;
-                    }
-                }
-
-                int successCount = 0;
-                int failCount = 0;
-                foreach (var context in contexts)
-                {
-                    var bill = context.Bill;
-                    var sgData = gatlwManager.GetFirst(s => s.SolutionId == solutionId
-                                                            && s.CompanyID == bill.CompanyID
-                                                            && s.BillNo == bill.BillNo
-                                                            && s.BillType == billType
-                                                            && s.BillTypeID == bill.BillTypeID);
-                    if (sgData == null)
-                    {
-                        sgData = new GatNikeApiLog()
-                        {
-                            SolutionId = solutionId,//提报方案
-                            CompanyID = bill.CompanyID,//公司
-                            BillType = billType,//单据类型
-                            BillTypeID = bill.BillTypeID,//单据类型ID
-                            BillTypeName = bill.BillTypeName,//单据类型名称
-                            BillNo = bill.BillNo,//单号
-                            BillDate = bill.BillDate,//单据时间
-                            CardID = bill.CardID,//品牌ID
-                            ShopID = bill.ShopID,//店铺ID
-                            ShopCode = bill.ShopCode,//店铺代码
-                            StockID = bill.StockID,//仓库ID
-                            StockCode = bill.StockCode,//仓库代码
-                            Qty = bill.Qty,//数量
-                            Amount = bill.Amount,//金额
-                            PushBillNo = bill.PushBillNo,//推送单号
-                            IsSuccess = false,
-                            CreateDtm = DateTime.Now,
-                        };
-                    }
-                    else
-                    {
-                        sgData.Qty = bill.Qty;//数量
-                        sgData.Amount = bill.Amount;//金额
-                        sgData.BillTypeName = bill.BillTypeName;
-                        sgData.PushBillNo = bill.PushBillNo;
-                    }
-
-                    sgData.PostJaon = context.PostJson.ToString();
-                    sgData.ReturnJson = context.ReturnJson.ToString();
-                    sgData.IsSuccess = context.IsSuccess;
-                    sgData.ModifyDtm = DateTime.Now;
-                    gatlwManager.InsertOrUpdate(sgData);
-
-                    if (context.IsSuccess)
-                    {
-                        successCount++;
-                        UpdateNikeLogState(bill.CompanyID, bill.BillNo, billType, bill.BillTypeID);
-                    }
-                    else
-                    {
-                        failCount++;
-                    }
-                }
-
-                SysLogManager logManager = new SysLogManager();
-                //记录请求日志syslog
-                SysLog log = new SysLog()
-                {
-                    CompanyID = solution.CompanyID,
-                    CardID = solution.CardID,
-                    IsSucceed = failCount == 0,
-                    LogType = Convert.ToByte(LogType.Gat),
-                    SolutionID = solution.Id,
-                    VendorID = solution.VendorID,
-                    ModifyDTM = DateTime.Now,
-                    Script = $"sp_SGIS_NikeApi_GetData{startTime.ToString()}-{endTime.ToString()}",
-                    Remark = $"NIke {billType}推送"
-                };
-                logManager.Insert(log);
-
-                result.Status = failCount == 0 ? HandleStatus.Completed : HandleStatus.Fail;
-                result.Message = $"{billType}提报完成：共{totalRequests}个请求，成功{successCount}单，失败{failCount}单";
-                if (failCount > 0)
-                {
-                    var errorContext = contexts.Find(o => !string.IsNullOrEmpty(o.ErrorMessage));
-                    if (errorContext != null)
-                    {
-                        result.Message += "，首个错误：" + errorContext.ErrorMessage;
-                    }
+                    result.Message = "OutIn重传成功:未获取到数据";
                 }
                 return result;
             }
@@ -809,305 +1103,7 @@ namespace GatNewBll.Blls
             }
         }
 
-        /// <summary>
-        /// 组装请求 Body（公共技术字段，文档 3.2）
-        /// </summary>
-        private NikeApiRequest<object> BuildNikeApiRequest(string dataType, string batchNo, string batchDate,
-            string requestId, int requestSeq, int totalRequests, NikeApiPushPlan plan)
-        {
-            return new NikeApiRequest<object>()
-            {
-                batch_no = batchNo,
-                batch_date = batchDate,
-                request_seq = requestSeq,
-                request_id = requestId,
-                total_requests = totalRequests,
-                partner_code = partner_code,
-                data_type = dataType,
-                record_count = plan.Records.Count,
-                amount_sum = plan.AmountSum,
-                quantity_sum = plan.QuantitySum,
-                schema_version = SchemaVersion,
-                source_system = source_system,
-                send_timestamp = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:sszzz"),
-                records = plan.Records
-            };
-        }
 
-        #region 明细筛选
-
-        private List<GatNikeApiPosSaleModel> FilterPosDetails(List<GatNikeApiPosSaleModel> details, GatNikeApiLogModel bill)
-        {
-            return details.FindAll(s => s.CompanyID == bill.CompanyID && s.BillNo == bill.BillNo);
-        }
-
-        private List<GatNikeApiInvModel> FilterInvDetails(List<GatNikeApiInvModel> details, GatNikeApiLogModel bill)
-        {
-            // 库存按「公司+仓库」分组，日志的 BillNo 存的是 StockID
-            return details.FindAll(s => s.CompanyID == bill.CompanyID && s.StockID == bill.BillNo);
-        }
-
-        private List<GatNikeApiOutInModel> FilterOutInDetails(List<GatNikeApiOutInModel> details, GatNikeApiLogModel bill)
-        {
-            return details.FindAll(s => s.CompanyID == bill.CompanyID
-                                        && s.BillNo == bill.BillNo
-                                        && s.BillTypeID == bill.BillTypeID);
-        }
-
-        #endregion
-
-        #region records 明细转换
-
-        /// <summary>销售 records（data_type = pos），amount_sum 取 NET_SALES_AMT_INCL_TAX，quantity_sum 取 SALES_QTY</summary>
-        private List<NikeApiRecordItem> BuildPosRecords(List<GatNikeApiPosSaleModel> details)
-        {
-            List<NikeApiRecordItem> list = new List<NikeApiRecordItem>();
-            foreach (var detail in details)
-            {
-                int originalLineItemNbr = 0;
-                if (!string.IsNullOrEmpty(detail.ORIGINAL_LINE_ITEM_NBR))
-                {
-                    int.TryParse(detail.ORIGINAL_LINE_ITEM_NBR, out originalLineItemNbr);
-                }
-
-                var record = new NikeApiRequest_Pos()
-                {
-                    store_cd = string.IsNullOrEmpty(detail.STORE_CD) ? detail.ShopCode : detail.STORE_CD,
-                    business_type = detail.BusinessType,
-                    transaction_dt = detail.BillDate?.ToString("yyyy-MM-dd HH:mm:ss") ?? "",
-                    order_type = detail.OrderType,
-                    order_nbr = detail.BillNo,
-                    upc = detail.UPC,
-                    product_cd = detail.PRODUCT_CD,
-                    size_cd = detail.SIZE_CD,
-                    product_nm = detail.PRODUCT_NM,
-                    line_item_nbr = detail.LINE_ITEM_NBR,
-                    net_sales_prc_incl_tax = detail.NET_SALES_PRC_INCL_TAX,
-                    rebate_amt = detail.REBATE_AMT == null ? null : detail.REBATE_AMT.ToString(),
-                    net_sales_amt_incl_tax = detail.NET_SALES_AMT_INCL_TAX,
-                    sales_qty = detail.SALES_QTY,
-                    msrp_lc = detail.MSRP_LC,
-                    total_partner_msrp_amt = detail.TOTAL_PARTNER_MSRP_AMT,
-                    total_discount_amt = detail.TOTAL_DISCOUNT_AMT,
-                    original_store_cd = detail.ORIGINAL_STORE_CD,
-                    original_order_nbr = detail.ORIGINAL_ORDER_NBR,
-                    original_transaction_dt = detail.ORIGINAL_TRANSACTION_DT?.ToString("yyyy-MM-dd HH:mm:ss") ?? "",
-                    original_line_item_nbr = originalLineItemNbr,
-                    last_updated_tmst = (detail.LAST_UPDATED_TMST ?? DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")
-                };
-
-                list.Add(new NikeApiRecordItem()
-                {
-                    Record = record,
-                    Amount = detail.NET_SALES_AMT_INCL_TAX ?? 0,
-                    Quantity = detail.SALES_QTY ?? 0
-                });
-            }
-            return list;
-        }
-
-        /// <summary>库存 records（data_type = inventory），amount_sum 传 0，quantity_sum 取 TOTAL_QTY</summary>
-        private List<NikeApiRecordItem> BuildInvRecords(List<GatNikeApiInvModel> details)
-        {
-            List<NikeApiRecordItem> list = new List<NikeApiRecordItem>();
-            foreach (var detail in details)
-            {
-                var record = new NikeApiRequest_Inv()
-                {
-                    site_cd = detail.SITE_CD,
-                    upc = detail.UPC,
-                    product_cd = detail.PRODUCT_CD,
-                    size_cd = detail.SIZE_CD,
-                    product_nm = detail.PRODUCT_NM,
-                    inventory_dt = detail.INVENTORY_DT?.ToString("yyyy-MM-dd") ?? "",
-                    total_qty = detail.TOTAL_QTY ?? 0,
-                    on_hand_qty = detail.ON_HAND_QTY ?? 0,
-                    in_transit_qty = detail.IN_TRANSIT_QTY ?? 0,
-                    defective_pcs_qty = detail.DEFECTIVE_PCS_QTY ?? 0,
-                    msrp_lc = detail.MSRP_LC ?? 0,
-                    last_updated_tmst = detail.LAST_UPDATED_TMST.ToString("yyyy-MM-dd HH:mm:ss")
-                };
-
-                list.Add(new NikeApiRecordItem()
-                {
-                    Record = record,
-                    Amount = 0,
-                    Quantity = detail.TOTAL_QTY ?? 0
-                });
-            }
-            return list;
-        }
-
-        /// <summary>库存移动 records（data_type = movement），amount_sum 传 0，quantity_sum 取 TRANSACTION_QTY</summary>
-        private List<NikeApiRecordItem> BuildOutInRecords(List<GatNikeApiOutInModel> details)
-        {
-            List<NikeApiRecordItem> list = new List<NikeApiRecordItem>();
-            foreach (var detail in details)
-            {
-                var record = new NikeApiRequest_OutIn()
-                {
-                    site_cd = detail.SITE_CD,
-                    site_nm = detail.SITE_NM,
-                    upc = detail.UPC,
-                    product_cd = detail.PRODUCT_CD,
-                    size_cd = detail.SIZE_CD,
-                    product_nm = detail.PRODUCT_NM,
-                    direction_desc = detail.DIRECTION_DESC,
-                    wms_order_no = detail.WMS_ORDER_NO,
-                    proof_of_delivery_no = detail.PROOF_OF_DELIVERY_NO,
-                    status_type_desc = detail.STATUS_TYPE_DESC,
-                    transaction_tmst = detail.TRANSACTION_TMST.ToString("yyyy-MM-dd HH:mm:ss"),
-                    transaction_qty = detail.TRANSACTION_QTY ?? 0,
-                    source_from_site_cd = detail.SOURCE_FROM_SITE_CD,
-                    source_from_site_nm = detail.SOURCE_FROM_SITE_NM,
-                    destination_to_site_cd = detail.DESTINATION_TO_SITE_CD,
-                    destination_to_site_nm = detail.DESTINATION_TO_SITE_NM,
-                    last_updated_tmst = (detail.LAST_UPDATED_TMST ?? DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")
-                };
-
-                list.Add(new NikeApiRecordItem()
-                {
-                    Record = record,
-                    Amount = 0,
-                    Quantity = detail.TRANSACTION_QTY ?? 0
-                });
-            }
-            return list;
-        }
-
-        #endregion
-
-        #region 发送（gzip + 重试 + Token 失效重传）
-
-        /// <summary>
-        /// 发送请求，按文档 5.3 重试：最大 5 次、间隔 5 分钟；
-        /// 401 / code 3002 时重新获取 Token 后用同一个 X-Request-ID 立即重传。
-        /// </summary>
-        private NikeApiSendResult SendWithRetry(string content, string requestId)
-        {
-            NikeApiSendResult lastResult = new NikeApiSendResult()
-            {
-                IsSuccess = false,
-                Message = "推送失败：未知错误",
-                ReturnJson = "推送失败：未知错误"
-            };
-
-            for (int attempt = 1; attempt <= MaxRetryCount; attempt++)
-            {
-                NikeApiHttpResult http = HttpPost(api_url, content, GetWebHeader(requestId));
-
-                if (!http.IsNetworkError)
-                {
-                    var rsp = DeserializeResponse(http.Content);
-                    string code = rsp == null ? "" : (rsp.code ?? "");
-
-                    // HTTP 401 / code 3002：Token 无效或已过期，重新获取 Token 后用同一个 X-Request-ID 重传
-                    if (http.StatusCode == 401 || code == CodeTokenExpired)
-                    {
-                        lastResult = BuildFailResult(http, rsp, "Token 无效或已过期，刷新Token失败");
-                        if (!RefreshToken())
-                        {
-                            return lastResult;
-                        }
-                        continue;
-                    }
-
-                    // 幂等冲突：相同 request_id 已成功处理，视为本条已受理
-                    if (http.StatusCode == 409 || code == CodeDuplicateRequest)
-                    {
-                        return new NikeApiSendResult()
-                        {
-                            IsSuccess = true,
-                            Message = rsp == null ? "" : rsp.message,
-                            ReturnJson = BuildReturnJson(http, rsp)
-                        };
-                    }
-
-                    if (http.StatusCode == 200 && code == CodeSuccess)
-                    {
-                        return new NikeApiSendResult()
-                        {
-                            IsSuccess = true,
-                            Message = rsp == null ? "" : rsp.message,
-                            ReturnJson = BuildReturnJson(http, rsp)
-                        };
-                    }
-
-                    lastResult = BuildFailResult(http, rsp, rsp == null ? http.Content : rsp.message);
-
-                    // 400 参数错误 / 403 权限不足 / 422 业务校验失败：重试无意义，直接返回
-                    if (!(http.StatusCode == 408 || http.StatusCode == 429 || http.StatusCode >= 500))
-                    {
-                        return lastResult;
-                    }
-                }
-                else
-                {
-                    lastResult = new NikeApiSendResult()
-                    {
-                        IsSuccess = false,
-                        Message = http.ErrorMessage,
-                        ReturnJson = http.ErrorMessage
-                    };
-                }
-
-                if (attempt < MaxRetryCount)
-                {
-                    Thread.Sleep(RetryIntervalMs);
-                }
-            }
-
-            return lastResult;
-        }
-
-        /// <summary>强制刷新 access_token</summary>
-        private bool RefreshToken()
-        {
-            try
-            {
-                Token = null;
-                GetAccessToken();
-                return Token != null && !string.IsNullOrEmpty(Token.access_token);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        private NikeApiSendResult BuildFailResult(NikeApiHttpResult http, NikeApiResponse rsp, string message)
-        {
-            return new NikeApiSendResult()
-            {
-                IsSuccess = false,
-                Message = $"HTTP {http.StatusCode}，{message}",
-                ReturnJson = BuildReturnJson(http, rsp)
-            };
-        }
-
-        private string BuildReturnJson(NikeApiHttpResult http, NikeApiResponse rsp)
-        {
-            string summary = rsp == null
-                ? ""
-                : $"response_id:{rsp.response_id},code:{rsp.code},message:{rsp.message},trace_id:{rsp.trace_id}";
-            return $"HTTP {http.StatusCode}；{summary}；原始报文：{http.Content}";
-        }
-
-        private NikeApiResponse DeserializeResponse(string content)
-        {
-            if (string.IsNullOrWhiteSpace(content))
-            {
-                return null;
-            }
-            try
-            {
-                return JsonConvert.DeserializeObject<NikeApiResponse>(content);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
 
         /// <summary>请求体 gzip 压缩（文档 3.1：Content-Encoding 固定 gzip）</summary>
         private byte[] GzipCompress(string content)
@@ -1123,7 +1119,6 @@ namespace GatNewBll.Blls
             }
         }
 
-        #endregion
 
      
 
@@ -1250,7 +1245,7 @@ namespace GatNewBll.Blls
             headerValue.Add("Content-Type", "application/json");//固定值
             headerValue.Add("X-Auth-Type", AuthType);//固定值 oscar
             headerValue.Add("X-Request-ID", requestId);//请求唯一标识，UUID v4，用于幂等性控制与链路追踪
-            headerValue.Add("X-Partner-Code", partner_code);//合作方唯一标识码，与 Body 的 partner_code 必须一致
+            headerValue.Add("X-Partner-Code", PartnerCode);//合作方唯一标识码，与 Body 的 PartnerCode 必须一致
             headerValue.Add("X-Timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));//请求发起时间
             headerValue.Add("Content-Encoding", "gzip");//固定值，请求体需 gzip 压缩
             return headerValue;
@@ -1258,13 +1253,13 @@ namespace GatNewBll.Blls
 
 
         /// <summary>
-        /// POST 报文到 Nike（请求体 gzip 压缩后发送）
+        /// POST 报文到 Nike（请求体按 Header Content-Encoding: gzip 压缩后发送）
         /// </summary>
         /// <param name="url">接口地址</param>
         /// <param name="content">请求体 JSON</param>
         /// <param name="headerValue">请求头</param>
-        /// <returns>HTTP 状态码与响应原文</returns>
-        public NikeApiHttpResult HttpPost(string url, string content, WebHeaderCollection HeaderValue)
+        /// <returns>响应原文</returns>
+        public string HttpPost(string url, string content, WebHeaderCollection HeaderValue)
         {
             try
             {
@@ -1306,49 +1301,32 @@ namespace GatNewBll.Blls
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
                 {
-                    return new NikeApiHttpResult()
-                    {
-                        StatusCode = (int)response.StatusCode,
-                        Content = reader.ReadToEnd()
-                    };
+                    return reader.ReadToEnd();
                 }
             }
             catch (WebException wex)
             {
+                //401/403/422/429/500 等 HTTP 错误响应：仍返回响应体，便于解析业务状态码 code
                 HttpWebResponse errorResponse = wex.Response as HttpWebResponse;
                 if (errorResponse != null)
                 {
-                    string errorContent = "";
                     try
                     {
                         using (StreamReader reader = new StreamReader(errorResponse.GetResponseStream(), Encoding.UTF8))
                         {
-                            errorContent = reader.ReadToEnd();
+                            return reader.ReadToEnd();
                         }
                     }
                     catch (Exception)
                     {
-                        errorContent = "";
+                        return "";
                     }
-                    return new NikeApiHttpResult()
-                    {
-                        StatusCode = (int)errorResponse.StatusCode,
-                        Content = errorContent
-                    };
                 }
-                return new NikeApiHttpResult()
-                {
-                    IsNetworkError = true,
-                    ErrorMessage = $"发送请求异常,message:{wex.Message}"
-                };
+                throw new Exception($"发送请求异常,message:{wex.Message}");
             }
             catch (Exception ex)
             {
-                return new NikeApiHttpResult()
-                {
-                    IsNetworkError = true,
-                    ErrorMessage = $"发送请求异常,message:{ex.Message},trace:{ex.StackTrace}"
-                };
+                throw new Exception($"发送请求异常,message:{ex.Message},trace:{ex.StackTrace}");
             }
         }
 
@@ -1356,35 +1334,17 @@ namespace GatNewBll.Blls
         /// 获取接口参数
         /// </summary>
         /// <returns></returns>
-        public HandleArgs GetInterfaceParameters(string Directory)
+        public HandleArgs GetParameterValue(int? VendorID)
         {
-            HandleArgs result = new HandleArgs();
-            if (string.IsNullOrEmpty(Directory))
-            {
-                return new HandleArgs()
-                {
-                    Status = HandleStatus.Fail,
-                    Message = "接口参数不能为空"
-                };
-            }
-            var configs = Directory.Split(';');
-            if (configs.Length < 5)
-            {
-                return new HandleArgs()
-                {
-                    Status = HandleStatus.Fail,
-                    Message = "接口参数格式不正确，应为：Token地址;接口地址;client_id;client_secret;partner_code[;source_system]"
-                };
-            }
-
-            gettoken_url = configs[0].Trim();// 获取访问令牌的 URL
-            api_url = configs[1].Trim();// API 接口的 URL
-            client_id = configs[2].Trim();  // 客户端标识 / 客户端 ID
-            client_secret = configs[3].Trim(); // 客户端密钥 / 客户端密码
-            partner_code = configs[4].Trim();// 合作方编码 / 合作伙伴代码
-            // 数据来源系统名称（自营/加盟），选填
-            source_system = configs.Length > 5 ? configs[5].Trim() : "";
-
+            HandleArgs result = new HandleArgs(); 
+            BasVendorParameterValueManager ParameterValueManager = new BasVendorParameterValueManager();
+            List<BasVendParameterValue> ListValue = ParameterValueManager.GetList(s => s.VendorID == VendorID);
+            ClientId = ListValue.Where(s=>s.ParameterCode== "ClientId")?.FirstOrDefault()?.ParameterValue;   // 客户端标识 / 客户端 ID
+            ClientSecret = ListValue.Where(s=>s.ParameterCode== "ClientSecret")?.FirstOrDefault()?.ParameterValue; // 客户端密钥 / 客户端密码
+            PartnerCode = ListValue.Where(s=>s.ParameterCode== "PartnerCode")?.FirstOrDefault()?.ParameterValue; // 合作方编码 / 合作伙伴代码
+            SourceSystem = ListValue.Where(s=>s.ParameterCode== "SourceSystem")?.FirstOrDefault()?.ParameterValue; // 数据来源系统名称（自营/加盟）
+            GetTokenUrl = ListValue.Where(s=>s.ParameterCode== "GetTokenUrl")?.FirstOrDefault()?.ParameterValue; // 获取访问令牌的 URL
+            ApiUrl = ListValue.Where(s=>s.ParameterCode== "ApiUrl")?.FirstOrDefault()?.ParameterValue; // API 接口的 URL
             result.Status = HandleStatus.Completed;
             return result;
 
@@ -1415,19 +1375,19 @@ namespace GatNewBll.Blls
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(gettoken_url))
+                if (string.IsNullOrWhiteSpace(GetTokenUrl))
                 {
                     throw new Exception("未配置获取Token的地址");
                 }
 
                 System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
 
-                // 1. Basic 认证：Base64(client_id:client_secret)
+                // 1. Basic 认证：Base64(ClientId:ClientSecret)
                 var basic = Convert.ToBase64String(
-                    Encoding.UTF8.GetBytes($"{client_id}:{client_secret}"));
+                    Encoding.UTF8.GetBytes($"{ClientId}:{ClientSecret}"));
 
                 // 2. 组装请求（与 HttpPost 同一套 RestSharp 写法）
-                var client = new RestClient(gettoken_url);
+                var client = new RestClient(GetTokenUrl);
                 RestRequest request = new RestRequest();
 
                 request.AddHeader("Authorization", "Basic " + basic);

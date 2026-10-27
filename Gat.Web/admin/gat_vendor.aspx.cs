@@ -11,6 +11,8 @@ using Gat.Utils;
 using System.Text.RegularExpressions;
 using Gat.Web.Common;
 using System.IO;
+using GatNewBll.Blls;
+using GatNewBll.Models;
 
 namespace Gat.Web.admin
 {
@@ -108,6 +110,8 @@ namespace Gat.Web.admin
                 //绑定供应商的店铺与品牌，因为界面有AJAX处理， 所以无论页面是否回发都要绑定
                 this.BindVendorCard(this.IdentityKey);
                 this.BindVendorShop(this.IdentityKey);
+                //参数值是列表里可直接编辑的输入框，回发时不能重新绑定，否则会覆盖用户录入的值
+                if (!Page.IsPostBack) this.BindVendorParameter(this.IdentityKey);
             }
 
         }
@@ -177,6 +181,15 @@ namespace Gat.Web.admin
                 this.IdentityKey = vendor.ID;
                 this.UpdateCache(vendor);
 
+                //参数值随界面一起保存
+                HandleArgs paramHandle = this.SaveVendorParameterValues(vendor.ID);
+                this.BindVendorParameter(vendor.ID);
+                if (paramHandle.Status == HandleStatus.Fail)
+                {
+                    this.Alert("保存供应商资料成功，但" + paramHandle.Message, Core.DialogIcon.Warning);
+                    return;
+                }
+
                 //保存成功，同步基础资料
                 HandleArgs syncHandle = ERPRepository.DataSynchron();
                 if (syncHandle.Status == HandleStatus.Fail)
@@ -224,6 +237,56 @@ namespace Gat.Web.admin
             this.gvVendorShop.DataSource = dataSource;
             this.gvVendorShop.DataBind();
             this.gvVendorShop.CssClass = dataSource.Count == 0 ? "qp-gridview-empty" : "qp-gridview";
+        }
+
+        /// <summary>
+        /// 绑定供应商参数表格（按供应商的关联报表 ReportPath 加载参数，再带出已设置的参数值）
+        /// </summary>
+        /// <param name="vendorID"></param>
+        private void BindVendorParameter(int vendorID)
+        {
+            VendorB vendor = WebRepository.FetchVendor(vendorID);
+            byte? reportPath = vendor == null ? (byte?)null : (byte)vendor.ReportPath;
+
+            List<VendorParameterModel> dataSource = new VendorParameterBll().QueryVendorParameters(vendorID, reportPath);
+            this.gvVendorParameter.DataSource = dataSource;
+            this.gvVendorParameter.DataBind();
+            this.gvVendorParameter.CssClass = dataSource.Count == 0 ? "qp-gridview-empty" : "qp-gridview";
+        }
+
+        /// <summary>
+        /// 保存供应商参数值：直接读取参数列表里每一行的输入框，随页面「保存」一起提交
+        /// </summary>
+        /// <param name="vendorID"></param>
+        /// <returns></returns>
+        private HandleArgs SaveVendorParameterValues(int vendorID)
+        {
+            HandleArgs result = new HandleArgs();
+            result.Status = HandleStatus.Completed;
+
+            if (this.gvVendorParameter.Rows.Count == 0)
+            {
+                return result;
+            }
+
+            VendorParameterBll parameterBll = new VendorParameterBll();
+            foreach (GridViewRow row in this.gvVendorParameter.Rows)
+            {
+                HiddenField hdfParameterCode = row.FindControl("hdfParameterCode") as HiddenField;
+                TextBox txtParameterValue = row.FindControl("txtParameterValue") as TextBox;
+                if (hdfParameterCode == null || txtParameterValue == null) continue;
+
+                HandleArgs handle = parameterBll.SaveVendorParameterValue(
+                    vendorID, hdfParameterCode.Value, txtParameterValue.Text.Trim());
+                if (handle.Status == HandleStatus.Fail)
+                {
+                    result.Status = HandleStatus.Fail;
+                    result.Message = handle.Message;
+                    return result;
+                }
+            }
+
+            return result;
         }
 
         /// <summary>

@@ -71,6 +71,21 @@
         .qp-gridview tr:hover td {
             background: none repeat scroll 0 0 #fff;
         }
+        /*供应商参数：参数值输入框填满单元格*/
+        .vendor-parameter-list td {
+            padding: 2px 3px;
+        }
+        .vendor-parameter-list input.text {
+            width: 100%;
+            height: 20px;
+            padding: 2px 3px;
+            border: 1px solid #ccc;
+            color: #003366;
+            background: #fff;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
         .ui-icon{ background-image: url(/images/ui-icons_ef8c08_256x240.png)}
     </style>
 </asp:Content>
@@ -263,6 +278,62 @@
     </div>       
     <% }%>
    
+    <!--供应商参数-->
+    <% if (this.CUID == Gat.Web.Core.CUID.Update){%>
+    <div class="detail-wrapper vendor-parameter" style="padding:20px 0; ">
+        <div class="detail-wrapper-header">
+            <i>&nbsp;</i>
+            <span class="detail-wrapper-title">
+                供应商参数
+            </span>
+            <b class="ui-icon ui-icon-calculator">&nbsp;</b>
+        </div>
+        <div class="detail-wrapper-list vendor-parameter-list">
+            <asp:GridView ID="gvVendorParameter" runat="server" AutoGenerateColumns = "False" CssClass="qp-gridview">
+                <Columns>
+                    <asp:TemplateField HeaderText="参数代码" HeaderStyle-Width="150px" ItemStyle-HorizontalAlign="Left">
+                        <ItemTemplate>
+                            <asp:HiddenField ID="hdfParameterCode" runat="server" Value='<%#Eval("ParameterCode") %>' />
+                            <span class="code"><%#Eval("ParameterCode") %></span>
+                        </ItemTemplate>
+
+<HeaderStyle Width="150px"></HeaderStyle>
+
+<ItemStyle HorizontalAlign="Left"></ItemStyle>
+                    </asp:TemplateField>
+                    <asp:BoundField HeaderText="参数名称" DataField="ParameterName" HeaderStyle-Width="200px" ItemStyle-HorizontalAlign="Left">
+
+<HeaderStyle Width="200px"></HeaderStyle>
+
+<ItemStyle HorizontalAlign="Left"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:TemplateField HeaderText="参数值" HeaderStyle-Width="340px" ItemStyle-HorizontalAlign="Left">
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtParameterValue" runat="server" CssClass="text" MaxLength="250"
+                                Text='<%#Eval("ParameterValue") %>' />
+                        </ItemTemplate>
+
+<HeaderStyle Width="340px"></HeaderStyle>
+
+<ItemStyle HorizontalAlign="Left"></ItemStyle>
+                    </asp:TemplateField>
+                    <asp:BoundField HeaderText="修改时间" DataField="ModifyDate" HeaderStyle-Width="150px" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" ItemStyle-HorizontalAlign="Center">
+
+<HeaderStyle Width="150px"></HeaderStyle>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
+                    </asp:BoundField>
+                </Columns>
+                <EmptyDataTemplate>
+                   <div class="data-empty">
+                        该报表下没有需要设置的参数！
+                   </div>
+                </EmptyDataTemplate>
+            </asp:GridView>
+        </div>
+    </div>       
+    <% }%>
+
    <!--品牌基础资料-->
    <div id="bas_card" class="hidden">
     <div class="wrapper">
@@ -322,6 +393,8 @@
             </div>
         </div>
    </div>
+
+
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cpAction" runat="server">
     <% if (this.CUID == Gat.Web.Core.CUID.Update){%>

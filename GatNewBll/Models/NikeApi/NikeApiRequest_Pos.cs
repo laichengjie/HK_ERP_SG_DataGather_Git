@@ -40,7 +40,7 @@ namespace GatNewBll.Models.NikeApi
         public string product_nm { get; set; }
 
         /// <summary>行项目序号。商品的行项目序号</summary>
-        public int line_item_nbr { get; set; }
+        public string line_item_nbr { get; set; }
 
         /// <summary>实际销售单价（含税）</summary>
         public decimal? net_sales_prc_incl_tax { get; set; }

@@ -57,6 +57,8 @@
     <Compile Include="DbModels\BasStockmap.cs" />
     <Compile Include="DbModels\BasVendor.cs" />
     <Compile Include="DbModels\BasVendorcard.cs" />
+    <Compile Include="DbModels\BasVendorParameter.cs" />
+    <Compile Include="DbModels\BasVendParameterValue.cs" />
     <Compile Include="DbModels\BasVendshop.cs" />
     <Compile Include="DbModels\GatAdMeterialinv.cs" />
     <Compile Include="DbModels\GatNikeApiOutIn.cs" />

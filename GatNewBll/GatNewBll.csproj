@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Blls\NikeApiBill.cs" />
     <Compile Include="Blls\BurgeonBill.cs" />
+    <Compile Include="Models\NikeApi\NikeApiHttpResult.cs" />
     <Compile Include="Models\NikeApi\NikeApiRequest_Inv.cs" />
     <Compile Include="Models\NikeApi\NikeApiRequest_OutIn.cs" />
     <Compile Include="Models\NikeApi\NikeApiToken.cs" />

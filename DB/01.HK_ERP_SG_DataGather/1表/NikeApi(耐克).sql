@@ -21,6 +21,7 @@ CREATE TABLE [dbo].[Gat_NikeApi_Log](
 	[ShopCode] [varchar](50) NULL, --店铺代码
 	[StockID] VARCHAR(50) NULL,   --仓库代码
     [StockCode] VARCHAR(50) NULL, --仓库代码
+	[ApiUrl] NVARCHAR(500) NULL,
 	[PostJaon] NVARCHAR(MAX) NULL,
 	[ReturnJson] NVARCHAR(MAX) NULL,
 	[IsSuccess] [bit] NULL,

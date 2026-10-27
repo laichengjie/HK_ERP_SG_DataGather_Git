@@ -81,7 +81,9 @@ namespace GatNewBll.Models.NikeApi
     {
         public GatNikeApiLogModel Bill { get; set; }
         public bool IsSuccess { get; set; }
-        public string ErrorMessage { get; set; }
+        public string ErrorMessage { get; set; } 
+
+        public string ApiUrl { get; set; }
         public StringBuilder PostJson { get; set; } = new StringBuilder();
         public StringBuilder ReturnJson { get; set; } = new StringBuilder();
     }

@@ -87,11 +87,18 @@ namespace GatEntities.DbModels
         [SugarColumn(ColumnName = "StockCode", Length = 50)]
         public string StockCode { get; set; }
 
+
         /// <summary>
         /// 上传数据json
         /// </summary>
         [SugarColumn(ColumnName = "PostJaon", ColumnDataType = "nvarchar(max)")]
         public string PostJaon { get; set; }
+
+        /// <summary>
+        /// API 接口的 URL
+        /// </summary>
+        [SugarColumn(ColumnName = "ApiUrl", Length = 500)]
+        public string ApiUrl { get; set; }
 
         /// <summary>
         /// 返回数据json

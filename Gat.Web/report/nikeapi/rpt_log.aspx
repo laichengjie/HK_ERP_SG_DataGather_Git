@@ -270,6 +270,7 @@
                         { field: "Amount", title: "金额", width: 80 },
                         { field: "PostJaon", title: "发送数据", width: 300 },
                         { field: "ReturnJson", title: "返回数据", width: 300 },
+                        { field: "ApiUrl", title: "接口地址", width: 200 },
                         { field: "ModifyDtm", title: "最后修改时间", width: 200 },
 
                     ]],

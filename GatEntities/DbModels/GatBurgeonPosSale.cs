@@ -97,6 +97,12 @@ namespace GatEntities.DbModels
         /// </summary>
         public string PushBillNo { get; set; }
 
+
+        /// <summary>
+        /// ApiUrl
+        /// </summary>
+        public string ApiUrl { get; set; }
+
         /// <summary>
         /// 上传数据json
         /// </summary>

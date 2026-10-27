@@ -15,6 +15,7 @@ CREATE TABLE [dbo].[Gat_Burgeon_PosSale](
 	[ShopCode] [varchar](50) NULL,--店铺代码
 	[OrigCode] [varchar](50) NULL,--发货店仓
 	[DestCode] [varchar](50) NULL,--收货店仓
+	[ApiUrl] NVARCHAR(500) NULL,
 	[PostJaon] [text] NULL,
 	[ReturnJson] [text] NULL,
 	[IsSuccess] [bit]  NULL,
@@ -32,7 +33,9 @@ CREATE TABLE [dbo].[Gat_Burgeon_PosSale](
 	[BillNo] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-end
+END
+
+
 
 --明细表
 IF NOT Exists(select top 1 * from sysObjects where Id=OBJECT_ID(N'Gat_Burgeon_PosSale_Detail') and xtype='U')

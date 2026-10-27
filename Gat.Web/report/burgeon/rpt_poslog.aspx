@@ -231,7 +231,7 @@
                         { field: "Amount", title: "金额", width: 100 },
                         { field: "PostJaon", title: "发送数据", width: 300 },
                         { field: "ReturnJson", title: "返回数据", width: 300 },
-                        /*                        { field: "CreateDtm", title: "首次发送时间", width: 200, type: "date", format: "{0:yyyy/MM/dd}" },*/
+                        { field: "ApiUrl", title: "接口地址", width: 200 },
                         { field: "ModifyDtm", title: "最后修改时间", width: 200, type: "date", format: "{0:yyyy/MM/dd}" },
 
                     ]]

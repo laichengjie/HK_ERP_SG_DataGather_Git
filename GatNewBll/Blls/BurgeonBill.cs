@@ -237,23 +237,17 @@ namespace GatNewBll.Blls
                 GatBurgeonPosSaleManager gatlwManager = new GatBurgeonPosSaleManager();
                 GatSolutionManager manager = new GatSolutionManager();
                 var solution = manager.GetById(solutionId);
-                var postConfig = solution.Directory;
-                //解析配置获取接口地址
-                if (string.IsNullOrEmpty(postConfig))
-                {
-                    return new HandleArgs()
-                    {
-                        Status = HandleStatus.Fail,
-                        Message = "基本方案未配置提报参数"
-                    };
-                }
-                var configs = postConfig.Split(';');
-                string url = configs[0];
-                string AppKey = configs[1]; //接口认证ID
-                string AppSecret = configs[2]; //接口认证口令
-                string AppToken = configs[3];
-                string SourceSys = configs[4];
-                if (string.IsNullOrEmpty(url))
+
+                BasVendorParameterValueManager ParameterValueManager = new BasVendorParameterValueManager();
+                List<BasVendParameterValue> ListValue = ParameterValueManager.GetList(s => s.VendorID == solution.VendorID);
+                string ApiUrl = ListValue.Where(s => s.ParameterCode == "ApiUrl")?.FirstOrDefault()?.ParameterValue; //API接口地址
+                string AppKey = ListValue.Where(s => s.ParameterCode == "AppKey")?.FirstOrDefault()?.ParameterValue; //接口认证ID
+                string AppSecret = ListValue.Where(s => s.ParameterCode == "AppSecret")?.FirstOrDefault()?.ParameterValue; // 接口认证口令
+                string AppToken = ListValue.Where(s => s.ParameterCode == "AppToken")?.FirstOrDefault()?.ParameterValue; // 客户编号
+                string Salesrep = ListValue.Where(s => s.ParameterCode == "Salesrep")?.FirstOrDefault()?.ParameterValue; // 默认营业员
+                string SourceSys = ListValue.Where(s => s.ParameterCode == "SourceSys")?.FirstOrDefault()?.ParameterValue; //发送系统
+
+                if (string.IsNullOrEmpty(ApiUrl))
                 {
                     return new HandleArgs()
                     {
@@ -266,7 +260,7 @@ namespace GatNewBll.Blls
                 {
                     idsStr=string.Join(",", ids);
                 }
-                BurgeonWebServices WebServices = new BurgeonWebServices(url, AppKey, SourceSys, AppSecret, AppToken);
+                BurgeonWebServices WebServices = new BurgeonWebServices(ApiUrl, AppKey, SourceSys, AppSecret, AppToken);
                 var dataList = GetPostData(solutionId, startTime, endTime, idsStr);
 
                 bool IsOk = true;
@@ -390,7 +384,8 @@ namespace GatNewBll.Blls
                                 {
                                     sgData.IsSuccess = false;
                                 }
-                                sgData.PostJaon = "地址：" + url + "报文：" + JsonConvert.SerializeObject(content);
+                               
+                                sgData.PostJaon =  JsonConvert.SerializeObject(content);
                                 sgData.ReturnJson = Response;
                             }
                             catch (Exception ex)
@@ -399,6 +394,7 @@ namespace GatNewBll.Blls
                                 sgData.ReturnJson = $"{ex.Message},{ex.StackTrace}";
                             }
                         }
+                        sgData.ApiUrl = ApiUrl;
                         sgData.ModifyDtm = DateTime.Now;
                         gatlwManager.InsertOrUpdate(sgData);
                     }

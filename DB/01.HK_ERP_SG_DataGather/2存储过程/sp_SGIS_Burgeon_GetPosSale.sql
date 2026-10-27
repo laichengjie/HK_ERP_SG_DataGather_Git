@@ -47,6 +47,9 @@ BEGIN
     DECLARE @VendorID INT = 0; --供应商ID
     DECLARE @CompanyID VARCHAR(20); --公司ID
     DECLARE @CardID VARCHAR(20); --品牌ID
+	DECLARE @Salesrep VARCHAR(50); --默认营业员
+
+
 
     --①.先获取方案内容
     SELECT TOP 1
@@ -94,11 +97,17 @@ BEGIN
           AND a.CardID = @CardID
           AND ISNULL(a.VendorID, -2) = @VendorID;
 
-    UPDATE a
-    SET a.ShopCode = b.ShopCode
-    FROM #Shop a
-        INNER JOIN dbo.Bas_Shop b
-            ON b.ShopID = a.ShopID;
+UPDATE a
+SET a.ShopCode = CASE
+                     WHEN a.TradeCode IS NULL OR a.TradeCode = '' THEN b.ShopCode
+                     ELSE a.TradeCode
+                 END
+FROM #Shop a
+    INNER JOIN dbo.Bas_Shop b
+        ON b.ShopID = a.ShopID;
+
+
+	SELECT 1 @Salesrep=ParameterValue FROM HK_ERP_SG_DataGather.dbo.Bas_VendParameterValue WHERE ParameterCode = 'Salesrep' AND VendorID=@VendorID
 
     --明细查询
     BEGIN
@@ -464,10 +473,9 @@ BEGIN
 
 		--营业员
 		UPDATE a
-        SET a.Salesrep = b.PersonnelCode
+        SET a.Salesrep = @Salesrep
         FROM #SaleMaster a
-            INNER JOIN Bas_Personnel b
-                ON b.PersonnelID = a.PersonnelID;
+        
 
         --销售类型处理
         UPDATE a
@@ -615,28 +623,6 @@ BEGIN
                  a.ReceiptTypeID,
 				 B.BalanceNumber,
                  a.SystemDefID;
-
-		UPDATE #SaleReceipt SET PaymentMethod = N'未知';
-		--Cash	 =>现金
-        UPDATE #SaleReceipt SET PaymentMethod = N'现金' WHERE SystemDefID = 'Cash';
-		--WXPay	 =>微信
-        UPDATE #SaleReceipt SET PaymentMethod = N'微信' WHERE SystemDefID = 'WXPay';
-		 --BankCard /Cheque =>银行卡银联VISA
-        UPDATE #SaleReceipt SET PaymentMethod = N'银行卡银联VISA' WHERE SystemDefID IN('BankCard','Cheque') ;
-		 --Alipay =>支付宝
-        UPDATE #SaleReceipt SET PaymentMethod = N'支付宝' WHERE SystemDefID = 'Alipay';
-		--CloudFlashPay=>云闪付
-        UPDATE #SaleReceipt SET PaymentMethod = N'云闪付' WHERE SystemDefID = 'CloudFlashPay';
-		--Other=>调账
-        UPDATE #SaleReceipt SET PaymentMethod = N'调账' WHERE SystemDefID = 'Other';
-		--THQ  VIPCoupon OtherVIPPoints =>优惠券
-        UPDATE #SaleReceipt SET PaymentMethod = N'优惠券' WHERE SystemDefID IN('THQ','VIPCoupon','OtherVIPPoints') ;
-
-		--其他收款都按购物券但是券号 传空
-		--Select StateId,StateType,cnStateName as StateName From Sys_State Where StateFixFlag = 'ReceiptType'
-		UPDATE #SaleReceipt SET BalanceNumber = '' WHERE SystemDefID NOT IN('THQ','VIPCoupon','OtherVIPPoints') ;
-
-
     END;
 
 	--换货拆成两个单  销售\退货  SH 销售   TH 退货   HH 换货 
@@ -970,6 +956,37 @@ BEGIN
         a.Amount = ISNULL(a.Amount, 0)
     FROM #SaleMaster a;
 
+	--收款方式映射处理
+	begin
+	   UPDATE #SaleReceipt SET PaymentMethod = N'未知';
+		--Cash	 =>现金
+        UPDATE #SaleReceipt SET PaymentMethod = N'现金' WHERE SystemDefID = 'Cash';
+		--WXPay	 =>微信
+        UPDATE #SaleReceipt SET PaymentMethod = N'微信' WHERE SystemDefID = 'WXPay';
+		 --BankCard /Cheque =>银行卡银联VISA
+        UPDATE #SaleReceipt SET PaymentMethod = N'银行卡银联VISA' WHERE SystemDefID IN('BankCard','Cheque') ;
+		 --Alipay =>支付宝
+        UPDATE #SaleReceipt SET PaymentMethod = N'支付宝' WHERE SystemDefID = 'Alipay';
+		--CloudFlashPay=>云闪付
+        UPDATE #SaleReceipt SET PaymentMethod = N'云闪付' WHERE SystemDefID = 'CloudFlashPay';
+		--Other=>调账
+        UPDATE #SaleReceipt SET PaymentMethod = N'调账' WHERE SystemDefID = 'Other';
+		--THQ  VIPCoupon OtherVIPPoints =>优惠券
+        UPDATE #SaleReceipt SET PaymentMethod = N'优惠券' WHERE SystemDefID IN('THQ','VIPCoupon','OtherVIPPoints') ;
+
+		--其他收款都按购物券但是券号 传空
+		--Select StateId,StateType,cnStateName as StateName From Sys_State Where StateFixFlag = 'ReceiptType'
+		UPDATE #SaleReceipt SET BalanceNumber = '' WHERE SystemDefID NOT IN('THQ','VIPCoupon','OtherVIPPoints') ;
+	END
+    
+
+	DELETE a
+    FROM HK_ERP_SG_DataGather.dbo.Gat_Burgeon_PosSale a
+        INNER JOIN #SaleMaster b
+            ON b.CompanyID = a.CompanyID
+               AND b.BillNo = a.BillNo
+    WHERE a.SolutionID = @SolutionId;
+
     DELETE a
     FROM HK_ERP_SG_DataGather.dbo.Gat_Burgeon_PosSale_Detail a
         INNER JOIN #SaleMaster b
@@ -1050,6 +1067,55 @@ BEGIN
            Amount,          --支付金额
            BalanceNumber    --券号
     FROM #SaleReceipt;
+
+	INSERT INTO HK_ERP_SG_DataGather.dbo.Gat_Burgeon_PosSale
+    (
+    SolutionId,
+    CompanyID,
+    BillDate,
+    BillNo,
+    ExternalBillNo,
+    Salesrep,
+    Rate,
+    CardID,
+    ShopID,
+    ShopCode,
+    OrigCode,
+    DestCode,
+    ApiUrl,
+    PostJaon,
+    ReturnJson,
+    IsSuccess,
+    CreateDtm,
+    ModifyDtm,
+    Qty,
+    Amount,
+    IsImport,
+    PushBillNo
+    )
+    SELECT   SolutionId,
+    CompanyID,
+    BillDate,
+    BillNo,
+    ExternalBillNo,
+    Salesrep,
+    Rate,
+    CardID,
+    ShopID,
+    ShopCode,
+    OrigCode,
+    DestCode,
+    '' ApiUrl,
+   '' PostJaon,
+   '' ReturnJson,
+   0 IsSuccess,
+    GETDATE()  CreateDtm,
+    GETDATE() ModifyDtm,
+    Qty,
+    Amount,
+    IsImport,
+    PushBillNo
+    FROM #SaleMaster
 
     SELECT  SolutionId,     --提报方案
             CompanyID,      --公司

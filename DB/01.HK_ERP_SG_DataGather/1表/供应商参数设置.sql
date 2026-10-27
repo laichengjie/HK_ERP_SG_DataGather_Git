@@ -38,51 +38,85 @@ GO
 begin
 
 -- 获取Toke地址
-IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'GetTokenUrl')
+IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'GetTokenUrl' AND ReportPath=29)
 BEGIN
-    INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath)
-    VALUES ('GetTokenUrl', '获取Token地址', 29);
+    INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath)VALUES ('GetTokenUrl', '获取Token地址', 29);
 END
 
 
 --API 接口地址
-IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'ApiUrl')
+IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'ApiUrl' AND ReportPath=29)
 BEGIN
-    INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath)
-    VALUES ('ApiUrl', 'API接口地址', 29);
+    INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath) VALUES ('ApiUrl', 'API接口地址', 29);
 END
 
 
 -- 客户端标识
-IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'ClientId')
+IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'ClientId'  AND ReportPath=29)
 BEGIN
-    INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath)
-    VALUES ('ClientId', '客户端标识', 29);
+    INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath) VALUES ('ClientId', '客户端标识', 29);
 END
 
 
--- 2客户端密钥
-IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'ClientSecret')
+-- 客户端密钥
+IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'ClientSecret' AND ReportPath=29)
 BEGIN
-    INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath)
-    VALUES ('ClientSecret', '客户端密钥', 29);
+    INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath) VALUES ('ClientSecret', '客户端密钥', 29);
 END
 
 
 -- 合作方编码
-IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'PartnerCode')
+IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'PartnerCode'  AND ReportPath=29)
 BEGIN
-    INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath)
-    VALUES ('PartnerCode', '合作方编码', 29);
+    INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath) VALUES ('PartnerCode', '合作方编码', 29);
 END
 
 
 --  数据来源系统名称（自营/加盟）
-IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'SourceSystem')
+IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'SourceSystem' AND ReportPath=29)
 BEGIN
-    INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath)
-    VALUES ('SourceSystem', '数据来源系统名称', 29);
+    INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath) VALUES ('SourceSystem', '数据来源系统名称', 29);
 END
 END
 
 
+
+
+
+
+-- Burgeon 伯俊 供应商配置
+begin
+
+-- 获取Toke地址
+IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'ApiUrl' AND ReportPath=28)
+BEGIN
+      INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath)VALUES ('ApiUrl', 'API接口地址', 28);
+END
+
+IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'AppKey' AND ReportPath=28)
+BEGIN
+      INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath) VALUES ('AppKey', '接口认证ID', 28);
+END
+
+
+IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'AppSecret' AND ReportPath=28)
+BEGIN
+      INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath) VALUES ('AppSecret', '接口认证口令', 28);
+END
+
+IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'AppToken' AND ReportPath=28)
+BEGIN
+      INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath) VALUES ('AppToken', '客户编号', 28);
+END
+
+IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'Salesrep' AND ReportPath=28)
+BEGIN
+      INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath) VALUES ('Salesrep', '默认营业员', 28);
+END
+
+IF NOT EXISTS (SELECT 1 FROM dbo.Bas_VendorParameter WHERE ParameterCode = 'SourceSys' AND ReportPath=28)
+BEGIN
+      INSERT INTO dbo.Bas_VendorParameter (ParameterCode, ParameterName, ReportPath) VALUES ('SourceSys', '发送系统', 28);
+END
+
+END

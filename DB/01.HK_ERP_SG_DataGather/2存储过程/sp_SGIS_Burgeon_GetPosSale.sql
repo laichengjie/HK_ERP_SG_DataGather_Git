@@ -107,7 +107,7 @@ FROM #Shop a
         ON b.ShopID = a.ShopID;
 
 
-	SELECT 1 @Salesrep=ParameterValue FROM HK_ERP_SG_DataGather.dbo.Bas_VendParameterValue WHERE ParameterCode = 'Salesrep' AND VendorID=@VendorID
+	SELECT @Salesrep=ParameterValue FROM HK_ERP_SG_DataGather.dbo.Bas_VendParameterValue WHERE ParameterCode = 'Salesrep' AND VendorID=@VendorID
 
     --Ã÷Ï¸²éÑ¯
     BEGIN

@@ -64,7 +64,7 @@ namespace GatNewBll.Blls
         private const string CodeDuplicateRequest = "4001";
 
         /// <summary>每个 request 最多 10000 条 records（文档 3.2）</summary>
-        private const int MaxRecordsPerRequest = 3;
+        private const int MaxRecordsPerRequest = 10000;
 
         /// <summary>最大重试次数（文档 5.3）</summary>
         private const int MaxRetryCount = 5;

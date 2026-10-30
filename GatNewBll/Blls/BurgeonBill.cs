@@ -174,7 +174,7 @@ namespace GatNewBll.Blls
         {
             GatSolutionManager SolutionManager = new GatSolutionManager();
             BasVendorManager VendorManager = new BasVendorManager();
-            List<BasVendor> ListVendor = VendorManager.GetList(s => s.AllowUsed == true && s.ReportPath == 27);
+            List<BasVendor> ListVendor = VendorManager.GetList(s => s.AllowUsed == true && s.ReportPath == 28);
             HandleArgs result = new HandleArgs();
             result.Status = HandleStatus.Completed;
             foreach (BasVendor vendor in ListVendor)

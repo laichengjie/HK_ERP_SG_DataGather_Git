@@ -50,6 +50,11 @@ namespace Gat.BLL.Modules
         public string PersonnelID { get; set; }
         public string SmallTicketNo { get; set; }
         public string Remark { get; set; }
+
+        public int? TradeType { get; set; }
+
+        public string TradeTypeName { get; set; }
+      
         #endregion
 
         #region 构造函数

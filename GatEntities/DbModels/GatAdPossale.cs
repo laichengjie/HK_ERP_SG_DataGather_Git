@@ -120,5 +120,11 @@ namespace GatEntities.DbModels
         ///</summary>
          [SugarColumn(ColumnName="Remark"    )]
          public string Remark { get; set; }
+
+        [SugarColumn(ColumnName = "TradeType")]
+        public int? TradeType { get; set; }
+
+        [SugarColumn(ColumnName = "TradeTypeName")]
+        public string TradeTypeName { get; set; }
     }
 }

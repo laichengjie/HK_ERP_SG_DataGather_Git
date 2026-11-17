@@ -7186,6 +7186,11 @@ namespace Gat.DAL
 
         private string _Remark;
 
+        private int? _TradeType;
+        private string _TradeTypeName;
+
+     
+
         public GatAdPosSale()
         {
         }
@@ -7541,6 +7546,43 @@ namespace Gat.DAL
                 }
             }
         }
+
+
+
+ 
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_TradeType")]
+        public int? TradeType
+        {
+            get
+            {
+                return this._TradeType;
+            }
+            set
+            {
+                if ((this._TradeType != value))
+                {
+                    this._TradeType = value;
+                }
+            }
+        } 
+
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_TradeTypeName")]
+        public string TradeTypeName
+        {
+            get
+            {
+                return this._TradeTypeName;
+            }
+            set
+            {
+                if ((this._TradeTypeName != value))
+                {
+                    this._TradeTypeName = value; 
+                }
+            }
+        }
+        
     }
 
     [global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.Gat_Ad_PosSale_OC")]

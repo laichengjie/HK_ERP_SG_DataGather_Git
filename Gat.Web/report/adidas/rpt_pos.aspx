@@ -186,7 +186,10 @@
                 <ItemStyle HorizontalAlign="Left"></ItemStyle>
             </asp:BoundField>
             <asp:BoundField DataField="SmallTicketNo" HeaderText="小票号" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Left" />
+            <asp:BoundField DataField="TradeType" HeaderText="销售类型" HeaderStyle-Width="50px" ItemStyle-HorizontalAlign="Left" /> 
+            <asp:BoundField DataField="TradeTypeName" HeaderText="销售类型名称" HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Left" />
             <asp:BoundField DataField="Remark" HeaderText="备注" HeaderStyle-Width="300px" ItemStyle-HorizontalAlign="Left" />
+   
         </Columns>
         <EmptyDataTemplate>
             <div class="data-empty">

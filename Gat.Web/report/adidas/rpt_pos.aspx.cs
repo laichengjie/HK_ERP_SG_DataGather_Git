@@ -207,7 +207,7 @@ namespace Gat.Web.report.adidas
                 if (!string.IsNullOrWhiteSpace(strSouleID))
                     Int32.TryParse(strSouleID, out SouleID);
                 var salesData = WebRepository.QueryGatAdPosSalesData(SouleID, shopCode, startBillTime, endBillTime, startBillDate, endBillDate, materialCode, sizeCode);
-                System.Data.DataTable dtSourceStock = salesData.ToDataTable(new string[] { "CompanyName", "BillNo", "ShopCode", "CardName", "MaterialCode", "BarCode", "SizeName", "Qty", "SaleAmount", "BillDate", "SmallTicketNo", "PersonnelID", "Remark" });
+                System.Data.DataTable dtSourceStock = salesData.ToDataTable(new string[] { "CompanyName", "BillNo", "ShopCode", "CardName", "MaterialCode", "BarCode", "SizeName", "Qty", "SaleAmount", "BillDate", "SmallTicketNo", "PersonnelID", "Remark", "TradeType", "TradeTypeName" });
                 string fileName = "阿迪的销售提报.xlsx";
                 dtSourceStock.Columns["CompanyName"].ColumnName = "公司名称";
                 dtSourceStock.Columns["BillNo"].ColumnName = "单号";
@@ -222,6 +222,8 @@ namespace Gat.Web.report.adidas
                 dtSourceStock.Columns["SmallTicketNo"].ColumnName = "小票号";
                 dtSourceStock.Columns["PersonnelID"].ColumnName = "銷售員ID";
                 dtSourceStock.Columns["Remark"].ColumnName = "备注";
+                dtSourceStock.Columns["TradeType"].ColumnName = "销售类型";
+                dtSourceStock.Columns["TradeTypeName"].ColumnName = "销售类型名称";
 
                 ExcelHelper Excel = new ExcelHelper();
                 MemoryStream ms = Excel.GridToExcelXSSFByNPOI(dtSourceStock, fileName);

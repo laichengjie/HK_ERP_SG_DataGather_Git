@@ -34,6 +34,7 @@ BEGIN
             ShopCode   VARCHAR(50),
             StockID    VARCHAR(50),
             StockCode  VARCHAR(50), --仓库代码
+            StockName  NVARCHAR(50), --仓库名称
             TradeCode  VARCHAR(50), --品牌店铺代码
             TradeCode2 VARCHAR(50), --品牌店铺代码
             isShop     BIT
@@ -164,7 +165,8 @@ BEGIN
               );
 
         UPDATE a
-        SET a.StockCode = b.StockCode
+        SET a.StockCode = b.StockCode,
+            a.StockName = b.StockName
         FROM #Shop a
             INNER JOIN dbo.Bas_Stock b
                 ON b.StockID = a.StockID;
@@ -179,6 +181,7 @@ BEGIN
             BillNo     VARCHAR(40) NOT NULL, --单号
             PushBillNo VARCHAR(40) NOT NULL  --单号
         );
+        CREATE INDEX ix_bill ON #tempBillCodes(CompanyID, BillNo);
 
         IF OBJECT_ID('tempdb..#tempIds', 'U') IS NOT NULL
             DROP TABLE #tempIds;
@@ -330,17 +333,14 @@ BEGIN
                            AND a.BillNo = b.BillNo
                     INNER JOIN dbo.SD_Mat_Material c
                         ON a.MaterialID = c.MaterialID
-                    INNER JOIN dbo.Bas_Shop d
-                        ON a.ShopID = d.ShopID
-                           AND a.CompanyID = d.CompanyID
                     INNER JOIN #Shop k
-                        ON a.ShopID = k.ShopID
+                        ON b.ShopID = k.ShopID
                     INNER JOIN #tempBillCodes bill --关联单号查询
-                        ON bill.CompanyID = a.CompanyID
-                           AND bill.PushBillNo = a.BillNo
+                        ON bill.CompanyID = b.CompanyID
+                           AND bill.PushBillNo = b.BillNo
                     LEFT JOIN SD_Mat_Size s
                         ON s.SizeID = a.SizeID
-                WHERE a.CompanyID = @CompanyID
+                WHERE b.CompanyID = @CompanyID
                       AND c.CardID = @CardID;
 
                 INSERT INTO #SaleDetail
@@ -417,17 +417,14 @@ BEGIN
                            AND a.BillNo = b.BillNo
                     INNER JOIN dbo.SD_Mat_Material c
                         ON a.MaterialID = c.MaterialID
-                    INNER JOIN dbo.Bas_Shop d
-                        ON a.ShopID = d.ShopID
-                           AND a.CompanyID = d.CompanyID
                     INNER JOIN #Shop k
                         ON a.ShopID = k.ShopID
                     INNER JOIN #tempBillCodes bill --关联单号查询
-                        ON bill.CompanyID = a.CompanyID
-                           AND bill.PushBillNo = a.BillNo
+                        ON bill.CompanyID = b.CompanyID
+                           AND bill.PushBillNo = b.BillNo
                     LEFT JOIN SD_Mat_Size s
                         ON s.SizeID = a.SizeID
-                WHERE a.CompanyID = @CompanyID
+                WHERE b.CompanyID = @CompanyID
                       AND c.CardID = @CardID;
             END;
             ELSE
@@ -514,15 +511,12 @@ BEGIN
                            AND a.BillNo = b.BillNo
                     INNER JOIN dbo.SD_Mat_Material c
                         ON a.MaterialID = c.MaterialID
-                    INNER JOIN dbo.Bas_Shop d
-                        ON a.ShopID = d.ShopID
-                           AND a.CompanyID = d.CompanyID
                     INNER JOIN #Shop k
-                        ON a.ShopID = k.ShopID
+                        ON b.ShopID = k.ShopID
                            AND k.isShop = 1
                     LEFT JOIN SD_Mat_Size s
                         ON s.SizeID = a.SizeID
-                WHERE a.CompanyID = @CompanyID
+                WHERE b.CompanyID = @CompanyID
                       AND c.CardID = @CardID
                       AND b.BillTime > @Start
                       AND b.BillTime <= @End;
@@ -601,15 +595,12 @@ BEGIN
                            AND a.BillNo = b.BillNo
                     INNER JOIN dbo.SD_Mat_Material c
                         ON a.MaterialID = c.MaterialID
-                    INNER JOIN dbo.Bas_Shop d
-                        ON a.ShopID = d.ShopID
-                           AND a.CompanyID = d.CompanyID
                     INNER JOIN #Shop k
-                        ON a.ShopID = k.ShopID
+                        ON b.ShopID = k.ShopID
                            AND k.isShop = 1
                     LEFT JOIN SD_Mat_Size s
                         ON s.SizeID = a.SizeID
-                WHERE a.CompanyID = @CompanyID
+                WHERE b.CompanyID = @CompanyID
                       AND c.CardID = @CardID
                       AND b.BillTime > @Start
                       AND b.BillTime <= @End;
@@ -858,8 +849,35 @@ BEGIN
         BEGIN
             IF OBJECT_ID('tempdb..#Inv', 'U') IS NOT NULL
                 DROP TABLE #Inv;
-
             CREATE TABLE #Inv
+            (
+                [ID]                 [int] IDENTITY(1, 1) NOT NULL,
+                [SolutionId]         [int] NOT NULL,
+                [CompanyID]          [varchar](20) NOT NULL,
+                [CardID]             [varchar](20) NULL, --品牌ID
+                [StockID]            VARCHAR(50) NULL,   --仓库代码
+                [StockCode]          VARCHAR(50) NULL,   --仓库代码
+                [SITE_CD]            [varchar](50)  NULL, --SITE_CD 门店/仓库编码 String 是 客户门店或仓库唯一标识编码
+                [UPC]                NVARCHAR(40)  NULL,  --UPC 条形码 String 是 条形码，商品唯一识别码
+                [MaterialID]         VARCHAR(40) NULL,       --货号ID
+                [PRODUCT_CD]         NVARCHAR(40) NULL,      --PRODUCT_CD 货号 String 是 商品编码包含款号和颜色号
+                [PRODUCT_NM]         NVARCHAR(60) NULL,      --PRODUCT_NM 商品名称 String 选填 商品名称
+                [SIZE_CD]            NVARCHAR(40) NULL,      --SIZE_CD 尺码 String 是 商品尺码代码
+                [INVENTORY_DT]       [datetime] NULL,        --INVENTORY_DT 库存日期 Date 是 库存快照日期YYYY-MM-DD
+                [TOTAL_QTY]          [int] NULL,             --TOTAL_QTY 总库存 Integer 是 总库存
+                [ON_HAND_QTY]        [int] NULL,             --ON_HAND_QTY 在库库存 Integer 是 在库库存
+                [IN_TRANSIT_QTY]     [int] NULL,             --IN_TRANSIT_QTY 在途库存 Integer 是 仓库/门店未入库的在途库存数量
+                [DEFECTIVE_PCS_QTY]  [int] NULL,             --DEFECTIVE_PCS_QTY 残次品库存 Integer 是 残次品库存
+                [MSRP_LC]            [numeric](24, 6) NULL,  --MSRP_LC 建议零售单价(吊牌价) Decimal 选填 建议零售单价(吊牌价)
+                [LAST_UPDATED_TMST]  DATETIME2(0)  NULL,  --LAST_UPDATED_TMST 最后更新时间 Timestamp 是 记录最后更新的时间戳YYYY-MM-DD HH:mm:ss
+                [IsImport]           [bit] NULL,
+                [IsSuccess]          [bit] NULL,
+                [ModifyDtm]          [datetime] NULL,
+            );
+
+            IF OBJECT_ID('tempdb..#InvStock', 'U') IS NOT NULL
+                DROP TABLE #InvStock;
+            CREATE TABLE #InvStock
             (
                 [ID]                 [int] IDENTITY(1, 1) NOT NULL,
                 [SolutionId]         [int] NOT NULL,
@@ -917,7 +935,7 @@ BEGIN
                     @CardID CardID,            --品牌
                     a.StockID,                 --仓库代码
                     ISNULL(NULLIF(k.TradeCode, ''), k.StockCode) StockCode, --仓库代码
-                    CASE k.isShop WHEN 1 THEN ISNULL(NULLIF(k.TradeCode, ''), k.ShopCode) ELSE ISNULL(NULLIF(k.TradeCode, ''), k.StockCode) END SITE_CD, --店铺/仓库代码
+                    ISNULL(NULLIF(k.TradeCode, ''), k.StockCode) SITE_CD, --店铺/仓库代码
                     d.BarCode UPC,             --条码
                     a.MaterialID,              --货号
                     f.MaterialCode PRODUCT_CD, --货号
@@ -983,7 +1001,7 @@ BEGIN
                     @CardID CardID,            --品牌
                     a.StockID,                 --仓库代码
                     ISNULL(NULLIF(k.TradeCode, ''), k.StockCode) StockCode, --仓库代码
-                    CASE k.isShop WHEN 1 THEN ISNULL(NULLIF(k.TradeCode, ''), k.ShopCode) ELSE ISNULL(NULLIF(k.TradeCode, ''), k.StockCode) END SITE_CD, --店铺/仓库代码
+                    ISNULL(NULLIF(k.TradeCode, ''), k.StockCode) SITE_CD, --店铺/仓库代码
                     d.BarCode UPC,             --条码
                     a.MaterialID,              --货号
                     f.MaterialCode PRODUCT_CD, --货号
@@ -1019,25 +1037,90 @@ BEGIN
             END;
         END;
 
+        --
+        DELETE a
+        FROM #Inv a WHERE ON_HAND_QTY=0 AND  IN_TRANSIT_QTY=0
+
+         --不上传货号处理
+        DELETE a
+        FROM #Inv a
+            INNER JOIN #MaterialRange b
+                ON b.MaterialCode = a.PRODUCT_CD;
+
+        --按 公司 仓库 条码 合并
+        INSERT INTO #InvStock
+                (
+                    SolutionId,        -- 方案
+                    CompanyID,         --公司
+                    CardID,            --品牌
+                    StockID,           --仓库代码
+                    StockCode,         --仓库代码
+                    SITE_CD,           --仓库代码
+                    UPC,               --条码
+                    MaterialID,        --货号
+                    PRODUCT_CD,        --货号
+                    PRODUCT_NM,        --货号名称
+                    SIZE_CD,           --尺码代码
+                    --INVENTORY_DT,    --库存日期
+                    TOTAL_QTY,         --总库存
+                    ON_HAND_QTY,       --在库库存
+                    IN_TRANSIT_QTY,    --在途库存
+                    DEFECTIVE_PCS_QTY, --残次品库存
+                    MSRP_LC            -- 建议零售单价
+                    --LAST_UPDATED_TMST, --最后更新时间
+                    --IsImport,        --是否成功
+                    --IsSuccess,       --是否导入
+                    --ModifyDtm        --修改时间
+                )
+                SELECT 
+                    SolutionId,        -- 方案
+                    CompanyID,         --公司
+                    CardID,            --品牌
+                    SITE_CD StockID,           --仓库代码
+                    SITE_CD StockCode,         --仓库代码
+                    SITE_CD,           --仓库代码
+                    UPC,               --条码
+                    MaterialID,        --货号
+                    PRODUCT_CD,        --货号
+                    PRODUCT_NM,        --货号名称
+                    SIZE_CD,           --尺码代码
+                    --INVENTORY_DT,    --库存日期
+                   sum(TOTAL_QTY) TOTAL_QTY,         --总库存
+                   sum(ON_HAND_QTY)   ON_HAND_QTY,       --在库库存
+                   sum(IN_TRANSIT_QTY)   IN_TRANSIT_QTY,    --在途库存
+                   sum(DEFECTIVE_PCS_QTY)  DEFECTIVE_PCS_QTY, --残次品库存
+                    MSRP_LC            -- 建议零售单价
+                    --LAST_UPDATED_TMST, --最后更新时间
+                    --IsImport,        --是否成功
+                    --IsSuccess,       --是否导入
+                    --ModifyDtm        --修改时间
+                    FROM  #Inv
+                    GROUP BY
+                     SolutionId,        -- 方案
+                    CompanyID,         --公司
+                    CardID,            --品牌
+                    --StockID,           --仓库代码
+                    --StockCode,         --仓库代码
+                    SITE_CD,           --仓库代码
+                    UPC,               --条码
+                    MaterialID,        --货号
+                    PRODUCT_CD,        --货号
+                    PRODUCT_NM,        --货号名称
+                    SIZE_CD,           --尺码代码
+                    MSRP_LC            -- 建议零售单价
+
+
         --删除已经同步成功的历史单据
         DELETE a
         FROM HK_ERP_SG_DataGather.dbo.Gat_NikeApi_Inv a
         WHERE EXISTS
         (
             SELECT 1
-            FROM #Inv b
+            FROM #InvStock b
             WHERE b.SolutionId = @SolutionId
                   AND b.CompanyID = a.CompanyID
-                  AND b.StockID = a.StockID
+                 
         );
-
-        --不上传货号处理
-        DELETE a
-        FROM #Inv a
-            INNER JOIN #MaterialRange b
-                ON b.MaterialCode = a.PRODUCT_CD;
-        --更新零售价
-
         --更新修改时间
         UPDATE a
         SET LAST_UPDATED_TMST = @Now,
@@ -1045,7 +1128,7 @@ BEGIN
             INVENTORY_DT      = @Now,
             IsImport=0,
             IsSuccess=0
-        FROM #Inv a;
+        FROM #InvStock a;
 
         INSERT INTO #Log
         (
@@ -1072,17 +1155,17 @@ BEGIN
             PushBillNo
         )
         SELECT MAX(SolutionId)           AS SolutionId,
-               CompanyID,
+               CompanyID                 AS CompanyID,
                'INV'                     AS BillType,
                'INV'                     AS BillTypeID,
-               N'库存明细' BillTypeName,
+               N'库存明细'               AS BillTypeName,
                @Now                      AS BillDate,
-               MAX(StockID)              AS BillNo,
+               SITE_CD                   AS BillNo,
                @CardID                   AS CardID,
                ''                        AS ShopID,
                ''                        AS ShopCode,
-               ''                        AS StockID ,
-               MAX(SITE_CD)              AS StockCode,
+               SITE_CD                   AS StockID ,
+               SITE_CD                   AS StockCode,
                ''                        AS PostJaon,
                ''                        AS ReturnJson,
                0                         AS IsSuccess,
@@ -1091,10 +1174,10 @@ BEGIN
                SUM(ISNULL(TOTAL_QTY, 0)) AS Qty,
                0                         AS Amount,
                0                         AS IsImport,
-               MAX(StockID)              AS PushBillNo
-        FROM #Inv
+               SITE_CD                   AS PushBillNo
+        FROM #InvStock
         WHERE SolutionId = @SolutionId
-        GROUP BY CompanyID, StockID;
+        GROUP BY CompanyID, SITE_CD;
 
         INSERT INTO HK_ERP_SG_DataGather.dbo.Gat_NikeApi_Inv
         (
@@ -1141,7 +1224,7 @@ BEGIN
                IsImport,          --是否成功
                IsSuccess,         --是否导入
                ModifyDtm          --修改时间
-        FROM #Inv a;
+        FROM #InvStock a;
 
         SELECT SolutionId,        -- 方案
                CompanyID,         --公司
@@ -1164,16 +1247,33 @@ BEGIN
                IsImport,          --是否成功
                IsSuccess,         --是否导入
                ModifyDtm          --修改时间
-        FROM #Inv;
+        FROM #InvStock;
 
         IF OBJECT_ID('tempdb..#Inv', 'U') IS NOT NULL
             DROP TABLE #Inv;
+
+        IF OBJECT_ID('tempdb..#InvStock', 'U') IS NOT NULL
+            DROP TABLE #InvStock;
     END;
 
     --出入库
     IF @Type = 'OutIn'
     BEGIN
         BEGIN
+            IF OBJECT_ID('tempdb..#VendCust', 'U') IS NOT NULL
+                DROP TABLE #VendCust;
+            CREATE TABLE #VendCust
+            (
+                [ID] [int] IDENTITY(1,1) NOT NULL,
+                [CompanyID] [varchar](20)  NULL,
+                [VendCustID] [VARCHAR](40)  NULL, --单号
+            )
+
+            INSERT INTO #VendCust (CompanyID,VendCustID)
+            SELECT CompanyID,VendCustID
+            FROM HK_ERP_SG_DataGather.dbo.Gat_VendCustRight
+            WHERE SolutionID = @SolutionId AND AllowUsed=1
+
             IF OBJECT_ID('tempdb..#OutIn', 'U') IS NOT NULL
                 DROP TABLE #OutIn;
 
@@ -1219,7 +1319,7 @@ BEGIN
                 BEGIN
                     SELECT @Start = @RepeatStartTime;
                 END;
-
+                --采购
                 INSERT INTO #OutIn
                 (
                     SolutionId,        --方案
@@ -1259,7 +1359,7 @@ BEGIN
                     m.CheckDate     BillDate, --单据日期
                     @CardID    CardID, --品牌
                     d.StockCode   SITE_CD, --仓库编码
-                    d.StockCode  SITE_NM, --仓库名称
+                    d.StockName  SITE_NM, --仓库名称
                     ms.BarCode   UPC, --条码
                     c.MaterialID  MaterialID, --货号
                     c.MaterialCode   PRODUCT_CD, --货号
@@ -1275,7 +1375,7 @@ BEGIN
                     END
                     )  DIRECTION_DESC, ----交易方向：出库或入库
                     a.BillNo   WMS_ORDER_NO, --单号
-                    m.SourceBillNo   PROOF_OF_DELIVERY_NO, --来源单单号
+                    m.ManualBillNo   PROOF_OF_DELIVERY_NO, --来源单单号
                     (CASE
                         WHEN m.BillTypeID = 'Inv_Cgrk' THEN
                             N'耐克发货'
@@ -1325,7 +1425,117 @@ BEGIN
                       AND c.CardID = @CardID
                       AND m.CheckDate > @Start
                       AND m.CheckDate <= @End
-                      AND m.BillTypeID IN ('Inv_Cgrk', 'Inv_Thrk', 'Inv_Ssck', 'Inv_Thck')
+                      AND m.BillTypeID IN ('Inv_Cgrk','Inv_Thck')
+                      AND m.BillStatus=4;
+
+                --销售
+                INSERT INTO #OutIn
+                (
+                    SolutionId,        --方案
+                    CompanyID,         --公司
+                    BillNo,
+                    BillDate,          --单据日期
+                    CardID,            --品牌
+                    SITE_CD,           --仓库编码
+                    SITE_NM,           --仓库名称
+                    UPC,               --条码
+                    MaterialID,        --货号
+                    PRODUCT_CD,        --货号
+                    PRODUCT_NM,        --可为空 货号名称
+                    SIZE_CD,           --尺码代码
+                    DIRECTION_DESC,    ----交易方向：出库或入库
+                    WMS_ORDER_NO,      --单号
+                    PROOF_OF_DELIVERY_NO, --来源单单号
+                    STATUS_TYPE_DESC,  --待定  客户出入库类型
+                    TRANSACTION_TMST,  --单据生效时间
+                    TRANSACTION_QTY,   --数量
+                    SOURCE_FROM_SITE_CD, --传空 入库产品源头仓库位置唯一标识
+                    SOURCE_FROM_SITE_NM, --传空  入库产品源头仓库位置名称
+                    DESTINATION_TO_SITE_CD, --传空 出库产品目的仓库位置唯一标识
+                    DESTINATION_TO_SITE_NM, --传空  出库产品目的仓库位置名称
+                    --LAST_UPDATED_TMST, --最后更新时间
+                    --IsImport,
+                    --IsSuccess,
+                    --ModifyDtm,
+                    PushBillNo,
+                    BillTypeName, --单据类型
+                    BillTypeID                --单据类型
+                )
+                SELECT
+                    @SolutionID  SolutionId, --方案
+                    a.CompanyID     CompanyID, --公司
+                    a.BillNo,
+                    m.CheckDate     BillDate, --单据日期
+                    @CardID    CardID, --品牌
+                    d.StockCode   SITE_CD, --仓库编码
+                    d.StockName  SITE_NM, --仓库名称
+                    ms.BarCode   UPC, --条码
+                    c.MaterialID  MaterialID, --货号
+                    c.MaterialCode   PRODUCT_CD, --货号
+                    ''  PRODUCT_NM, --可为空 货号名称
+                    f.SizeCode   SIZE_CD, --尺码代码
+                    (CASE
+                        WHEN m.BillTypeID = 'Inv_Ssck' THEN
+                            N'出库'
+                        WHEN m.BillTypeID = 'Inv_Thck' THEN
+                            N'出库'
+                        ELSE
+                            N'入库'
+                    END
+                    )  DIRECTION_DESC, ----交易方向：出库或入库
+                    a.BillNo   WMS_ORDER_NO, --单号
+                    m.ManualBillNo   PROOF_OF_DELIVERY_NO, --来源单单号
+                    (CASE
+                        WHEN m.BillTypeID = 'Inv_Cgrk' THEN
+                            N'耐克发货'
+                        WHEN m.BillTypeID = 'Inv_Thck' THEN
+                            N'退还耐克'
+                        WHEN m.BillTypeID = 'Inv_Ssck' THEN
+                            N'加盟发货'
+                        WHEN m.BillTypeID = 'Inv_Thrk' THEN
+                            N'加盟退货'
+                        ELSE
+                            ''
+                    END
+                    )  STATUS_TYPE_DESC, --待定  客户出入库类型
+                    m.CheckDate  TRANSACTION_TMST, --单据生效时间
+                    a.Qty  TRANSACTION_QTY, --数量
+                    '' SOURCE_FROM_SITE_CD, --传空 入库产品源头仓库位置唯一标识
+                    '' SOURCE_FROM_SITE_NM, --传空  入库产品源头仓库位置名称
+                    '' DESTINATION_TO_SITE_CD, --传空 出库产品目的仓库位置唯一标识
+                    '' DESTINATION_TO_SITE_NM, --传空  出库产品目的仓库位置名称
+                    -- LAST_UPDATED_TMST, --最后更新时间
+                    --  IsImport,
+                    -- IsSuccess,
+                    --  ModifyDtm,
+                    a.BillNo  PushBillNo,
+                    bt.BillTypeName BillTypeName, --单据类型
+                    m.BillTypeID                 --单据类型
+                FROM dbo.SD_Inv_TransSize a
+                    INNER JOIN dbo.SD_Inv_TransDetail b
+                        ON b.CompanyID = a.CompanyID
+                           AND b.BillNo = a.BillNo
+                           AND b.Sequence = a.Sequence
+                    INNER JOIN dbo.SD_Inv_TransMaster m
+                        ON a.CompanyID = m.CompanyID
+                           AND a.BillNo = m.BillNo
+                    INNER JOIN dbo.SD_Mat_Material c
+                        ON a.MaterialID = c.MaterialID
+                    INNER JOIN #Shop d
+                        ON d.StockID = m.StockID
+                    INNER JOIN #VendCust v ON v.CompanyID=m.CompanyID AND v.VendCustID=m.VendCustID
+                    INNER JOIN dbo.SD_Mat_Size f
+                        ON a.SizeID = f.SizeID
+                    LEFT JOIN dbo.Sys_BillType bt
+                        ON bt.BillTypeID = m.BillTypeID
+                    JOIN dbo.SD_Mat_MaterialSize ms
+                        ON ms.SizeID = a.SizeID
+                           AND ms.MaterialID = a.MaterialID
+                WHERE m.CompanyID = @CompanyID
+                      AND c.CardID = @CardID
+                      AND m.CheckDate > @Start
+                      AND m.CheckDate <= @End
+                      AND m.BillTypeID IN ('Inv_Thrk','Inv_Ssck')
                       AND m.BillStatus=4;
 
             END;
@@ -1377,6 +1587,23 @@ BEGIN
             IsImport=0,
             IsSuccess=0
         FROM #OutIn a;
+
+        --手工单号格式例如：品牌特殊商品/19255485，取/后面值传给NK
+        UPDATE #OutIn
+        SET PROOF_OF_DELIVERY_NO = 
+            CASE 
+                -- 如果包含 '/'，则截取后面的部分
+                WHEN CHARINDEX('/', PROOF_OF_DELIVERY_NO) > 0 
+                THEN SUBSTRING(
+                        PROOF_OF_DELIVERY_NO, 
+                        CHARINDEX('/', PROOF_OF_DELIVERY_NO) + 1, 
+                        LEN(PROOF_OF_DELIVERY_NO) - CHARINDEX('/', PROOF_OF_DELIVERY_NO)
+                     )
+                -- 如果不包含 '/'，保留原值或设为 NULL（根据你的业务规则选择）
+                ELSE PROOF_OF_DELIVERY_NO 
+            END
+        WHERE PROOF_OF_DELIVERY_NO IS NOT NULL 
+          AND ISNULL(PROOF_OF_DELIVERY_NO,'')  > '';
 
         --记录本次上报日志（按单记一条）
         INSERT INTO #Log
@@ -1597,6 +1824,6 @@ BEGIN
         DROP TABLE #tempIds;
     IF OBJECT_ID('tempdb..#tempBillCodes', 'U') IS NOT NULL
         DROP TABLE #tempBillCodes;
-	IF OBJECT_ID('tempdb..#Log', 'U') IS NOT NULL
+    IF OBJECT_ID('tempdb..#Log', 'U') IS NOT NULL
         DROP TABLE #Log;
 END;

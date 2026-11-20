@@ -242,8 +242,10 @@
                             }
                         },
                         { field: "SITE_CD", title: "仓库代码", width: 120 },
+                        { field: "SITE_NM", title: "仓库名称", width: 120 },
                         { field: "BillDate", title: "单据日期", width: 200 },
                         { field: "WMS_ORDER_NO", title: "单号", width: 200 },
+                        { field: "PROOF_OF_DELIVERY_NO", title: "来源单号", width: 200 },
                         { field: "UPC", title: "条码", width: 120 },
                         { field: "PRODUCT_CD", title: "货号", width: 120 },
                         { field: "SIZE_CD", title: "尺码代码", width: 120 },
